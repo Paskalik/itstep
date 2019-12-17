@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 6 */
+      const convert = +'0.9';
+      let dollar = +prompt('Сумма в долларах:','');
+      alert(dollar + ' доллара/ов = ' + dollar*convert + ' евро');
+      /* Task 7 */
+      let volume = +prompt('Введите объём флешки в Гб:','');
+      alert('На флешку объёмом ' + volume + ' Гб может поместиться ' + ~~((volume*1000)/840) + ' файлов размером 840 Мб');
+      /* Task 8 */
+      let money = +prompt('Введите сумму в кошельке в грн:','');
+      let price = +prompt('Введите цену одной шоколадки в грн:','');
+      alert('Вы можете купить ' + ~~(money/price) + ' шоколадок. У вас останется ' + money%price + ' грн');
+      /* Task 9 */
+      let variant = +prompt('Введите трёхзначное число:','');
+      alert('Ваше число наоборот выглядит так: ' + variant%10 + (~~(variant/10))%10 + ~~(variant/100));
+      /* Task 10 */
+      let yourNumber = +prompt('Введите целое число:','');
+      alert((yourNumber%2===0&&'Четное')||('Нечетное'));
+  </script>
+</body>
+</html>
