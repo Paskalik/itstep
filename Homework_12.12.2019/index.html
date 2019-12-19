@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      let age = +prompt('Введите, пожалуйста, свой возраст:','');
+      alert(age > 60 ? 'Вы пенсионер' : age > 18 ? 'Вы взрослый' : age > 12 ? 'Вы подросток' : age > 0 ? 'Вы ребёнок' : 'Неверный возраст');
+      /* Task 2 */
+      let result = '';
+      const number = +prompt('Введите, пожалуйста, целое число от 0 до 9:','');
+      switch (number) {
+          case 0:
+              result = ')';
+              break;
+          case 1:
+              result = '!';
+              break;
+          case 2:
+              result = '@';
+              break;
+          case 3:
+              result = '#';
+              break;
+          case 4:
+              result = '$';
+              break;
+          case 5:
+              result = '%';
+              break;
+          case 6:
+              result = '^';
+              break;
+          case 7:
+              result = '&';
+              break;
+          case  8:
+              result = '*';
+              break;
+          case 9:
+              result = '(';
+              break;
+          default:
+              result = 'Неверное число';
+      }
+      alert(result);
+      /* Task 3 */
+      const yourNumber = +prompt('Введите, пожалуйста, трехзначное число:','');
+      let first = Math.floor(yourNumber/100);
+      let second = (Math.floor(yourNumber/10))%10;
+      let third = yourNumber%10;
+      if (Math.floor(yourNumber/1000) >= 1 || Math.floor(yourNumber/100) < 1) {
+          alert('Неверное число');
+      }
+      else {
+          alert((first === second || first === third || second === third) ? 'Есть одинаковые цифры' : 'Нет одинаковых цифр');
+      }
+      /* Task 4 */
+      const year = +prompt('Введите, пожалуйста, год:','');
+      if ((year%100 === 0) && (year%400 !== 0)) {
+          alert('Год невисокосный');
+      }
+      else if (year%4 === 0) {
+          alert('Год високосный');
+      }
+      else if (year%4 !== 0) {
+          alert('Год невисокосный');
+      }
+      /* Task 5 */
+      const variant = +prompt('Введите, пожалуйста, пятиразрядное число','');
+      if (Math.floor(variant/100000) >= 1 || Math.floor(variant/10000) < 1) {
+          alert('Неверное число');
+      }
+      else if ((Math.floor(variant/10000) === variant%10) && (Math.floor(variant/1000))%10 === (Math.floor(variant/10))%10) {
+          alert('Палиндром');
+      }
+      else {
+          alert('Не палиндром');
+      }
+  </script>
+</body>
+</html>
