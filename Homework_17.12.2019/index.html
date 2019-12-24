@@ -54,9 +54,9 @@
       let month = +prompt('Введите месяц','');
       let year = +prompt('Введите год','');
       if (day >= 1 && day <= 31 && month >= 1 && month <= 12) {
-          if (day > 1 && day < 27) {
+          if (day >= 1 && day <= 27) {
               day = day + 1;
-              alert('Следующая дата:' + day + '.' + month + '.' + year);
+              alert('Следующая дата: ' + day + '.' + month + '.' + year);
           }
           else {
               switch (day) {
@@ -73,18 +73,18 @@
                               month = 3;
                           }
                       }
-                      alert('Следующая дата:' + day + '.' + month + '.' + year);
+                      alert('Следующая дата: ' + day + '.' + month + '.' + year);
                       break;
                   case 29:
                       if (month !== 2) {
                           day = day + 1;
-                          alert('Следующая дата:' + day + '.' + month + '.' + year);
+                          alert('Следующая дата: ' + day + '.' + month + '.' + year);
                       }
                       else {
                           if (((year%4 === 0) && (year%100 !== 0)) || (year%400 === 0)) {
                               day = 1;
                               month = 3;
-                              alert('Следующая дата:' + day + '.' + month + '.' + year);
+                              alert('Следующая дата: ' + day + '.' + month + '.' + year);
                           }
                           else {
                               alert('Неверная дата');
@@ -103,7 +103,7 @@
                           else {
                               day = day + 1;
                           }
-                          alert('Следующая дата:' + day + '.' + month + '.' + year);
+                          alert('Следующая дата: ' + day + '.' + month + '.' + year);
                       }
                       break;
                   case 31:
@@ -111,7 +111,7 @@
                           day = 1;
                           month = 1;
                           year = year + 1;
-                          alert('Следующая дата:' + day + '.' + month + '.' + year);
+                          alert('Следующая дата: ' + day + '.' + month + '.' + year);
                       }
                       else {
                           if (month === 2 || month === 4 || month === 6 || month === 9 || month === 11) {
@@ -120,7 +120,7 @@
                           else {
                               day = 1;
                               month = month + 1;
-                              alert('Следующая дата:' + day + '.' + month + '.' + year);
+                              alert('Следующая дата: ' + day + '.' + month + '.' + year);
                           }
                       }
                       break;
