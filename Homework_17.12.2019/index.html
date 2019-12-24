@@ -63,19 +63,17 @@
                   case 28:
                       if (month !== 2) {
                           day = day + 1;
-                          alert('Следующая дата:' + day + '.' + month + '.' + year);
                       }
                       else {
                           if (((year%4 === 0) && (year%100 !== 0)) || (year%400 === 0)) {
                               day = day + 1;
-                              alert('Следующая дата:' + day + '.' + month + '.' + year);
                           }
                           else {
                               day = 1;
                               month = 3;
-                              alert('Следующая дата:' + day + '.' + month + '.' + year);
                           }
                       }
+                      alert('Следующая дата:' + day + '.' + month + '.' + year);
                       break;
                   case 29:
                       if (month !== 2) {
@@ -101,12 +99,11 @@
                           if (month === 4 || month === 6 || month === 9 || month === 11) {
                               day = 1;
                               month = month + 1;
-                              alert('Следующая дата:' + day + '.' + month + '.' + year);
                           }
                           else {
                               day = day + 1;
-                              alert('Следующая дата:' + day + '.' + month + '.' + year);
                           }
+                          alert('Следующая дата:' + day + '.' + month + '.' + year);
                       }
                       break;
                   case 31:
