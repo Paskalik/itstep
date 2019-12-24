@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      let result;
+      const sum = +prompt('Введите, пожалуйста, сумму в долларах:','');
+      const currency = +prompt('Выберите, пожалуйста, один из вариантов, в какую валюту конвертировать:\n1) EUR\n2) UAH\n3) AZN','');
+      switch (currency) {
+          case 1:
+              result = (sum*0.9).toFixed(2);
+              break;
+          case 2:
+              result = (sum*23.32).toFixed(2);
+              break;
+          case 3:
+              result = (sum*1.7).toFixed(2);
+              break;
+          default:
+              result = 'Неверный вариант';
+      }
+      alert(result);
+      /* Task 2 */
+      let per;
+      const buy = +prompt('Введите, пожалуйста, сумму покупки:','');
+      per = (buy >= 500 ? 7 : buy >= 300 ? 5 : buy >= 200 ? 3 : buy > 0 ? 0 : 'Неверная сумма');
+      if (per === 'Неверная сумма') {
+          alert(per);
+      }
+      else {
+          per = buy - ((buy/100)*+per);
+          alert('Сумма покупки со скидкой: ' + per.toFixed(2));
+      }
+      /* Task 3 */
+      const d = +prompt('Введите, пожалуйста, длину окружности:','');
+      const p = +prompt('Введите, пожалуйста, периметр квадрата:','');
+      alert(d/Math.PI <= p/4 ? 'Окружность можно вписать в квадрат' : d/Math.PI > p/4 ? 'Окружность нельзя вписать в квадрат' : 'Неверные данные');
+      /* Task 4 */
+      let ball = 0;
+      let answer = +prompt('Столица Украины:\n1) Киев\n2) Харьков\n3) Одесса','');
+      ball = (answer === 1 ? (ball + 2) : ball);
+      answer = +prompt('Столица Финляндии:\n1) Тампере\n2) Хельсинки\n3) Эспоо','');
+      ball = (answer === 2 ? (ball + 2) : ball);
+      answer = +prompt('Столица Лихтенштейна:\n1) Шан\n2) Тризен\n3) Вадуц','');
+      ball = (answer === 3 ? (ball + 2) : ball);
+      alert('Количество набранных баллов: ' + ball);
+      /* Task 5 */
+      let day = +prompt('Введите день:','');
+      let month = +prompt('Введите месяц','');
+      let year = +prompt('Введите год','');
+      if (day >= 1 && day <= 31 && month >= 1 && month <= 12) {
+          if (day > 1 && day < 27) {
+              day = day + 1;
+              alert('Следующая дата:' + day + '.' + month + '.' + year);
+          }
+          else {
+              switch (day) {
+                  case 28:
+                      if (month !== 2) {
+                          day = day + 1;
+                          alert('Следующая дата:' + day + '.' + month + '.' + year);
+                      }
+                      else {
+                          if (((year%4 === 0) && (year%100 !== 0)) || (year%400 === 0)) {
+                              day = day + 1;
+                              alert('Следующая дата:' + day + '.' + month + '.' + year);
+                          }
+                          else {
+                              day = 1;
+                              month = 3;
+                              alert('Следующая дата:' + day + '.' + month + '.' + year);
+                          }
+                      }
+                      break;
+                  case 29:
+                      if (month !== 2) {
+                          day = day + 1;
+                          alert('Следующая дата:' + day + '.' + month + '.' + year);
+                      }
+                      else {
+                          if (((year%4 === 0) && (year%100 !== 0)) || (year%400 === 0)) {
+                              day = 1;
+                              month = 3;
+                              alert('Следующая дата:' + day + '.' + month + '.' + year);
+                          }
+                          else {
+                              alert('Неверная дата');
+                          }
+                      }
+                      break;
+                  case 30:
+                      if (month === 2) {
+                          alert('Неверная дата');
+                      }
+                      else {
+                          if (month === 4 || month === 6 || month === 9 || month === 11) {
+                              day = 1;
+                              month = month + 1;
+                              alert('Следующая дата:' + day + '.' + month + '.' + year);
+                          }
+                          else {
+                              day = day + 1;
+                              alert('Следующая дата:' + day + '.' + month + '.' + year);
+                          }
+                      }
+                      break;
+                  case 31:
+                      if (month === 12) {
+                          day = 1;
+                          month = 1;
+                          year = year + 1;
+                          alert('Следующая дата:' + day + '.' + month + '.' + year);
+                      }
+                      else {
+                          if (month === 2 || month === 4 || month === 6 || month === 9 || month === 11) {
+                              alert('Неверная дата');
+                          }
+                          else {
+                              day = 1;
+                              month = month + 1;
+                              alert('Следующая дата:' + day + '.' + month + '.' + year);
+                          }
+                      }
+                      break;
+              }
+          }
+      }
+      else {
+          alert('Неверная дата');
+      }
+  </script>
+</body>
+</html>
