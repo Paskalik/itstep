@@ -127,6 +127,7 @@
       while (confirm('Хотите решить еще один пример?'));
       /* Task 7 */
       let shift = 0;
+      let shift_f = 0;
       let start = +prompt('Введите, пожалуйста, число:','');
       if (!start || (start === 0)) {
           alert('Неверное число')
@@ -145,10 +146,11 @@
                   end /= 10;
                   count++
               } while (end >= 1);
-              if ((count - change) < 0) {
+              shift_f = count - change;
+              if (shift_f < 0) {
                   alert('Количество цифр, на которое нужно сдвинуть число, больше количества цифр в числе');
               } else {
-                  shift = Math.pow(10, (count - change));
+                  shift = Math.pow(10, shift_f);
                   alert('Ваше число после изменения: ' + (start % shift) + (Math.floor(start / shift)));
               }
           }
