@@ -98,16 +98,21 @@
       /* Task 6 */
       do {
           let one = +prompt('Введите, пожалуйста, первое число:','');
-          if (!one) continue;
+          if ((!one) && (one !== 0)) continue;
           let two = +prompt('Введите, пожалуйста, второе число:','');
-          if (!two) continue;
+          if ((!two) && (two !== 0)) continue;
           let sign = prompt('Введите, пожалуйста, знак (*, /, +, -):','');
           switch (sign) {
               case '*':
                   alert('Результат вычисления = ' + (one*two));
                   break;
               case '/':
-                  alert('Результат вычисления = ' + (one/two).toFixed(2));
+                  if (two === 0) {
+                      alert('На 0 делить нельзя!');
+                  }
+                  else {
+                      alert('Результат вычисления = ' + (one / two).toFixed(1));
+                  }
                   break;
               case '+':
                   alert('Результат вычисления = ' + (one+two));
@@ -195,10 +200,10 @@
                   j = +prompt('Ваше число:\n1) >' + N + '\n2) <' + N + '\n3) =' + N);
                   if ((!j) || (j < 1) || (j > 3)) break game;
                   if (j === 1) {
-                          c = N;
+                          c = N + 1;
                   }
                   if (j === 2) {
-                      i = N;
+                      i = N - 1;
                   }
               }
           while (j !== 3);
