@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      function checkIdealNumber (x,y) {
+          if ((x > 0) && (y > x)) {
+              let k = 0;
+              for (let i = x; i <= y; i++) {
+                  let sum = 0;
+                  for (let s = 1; s < i; s++) {
+                          if (i % s === 0) {
+                              sum = sum + s;
+                          }
+                      }
+                      if (sum === i) {
+                          k = k + 1;
+                          alert(i);
+                      }
+              }
+              if (k === 0) {
+                  return alert('Совершенные числа в указанном диапазоне отсутствуют');
+              }
+          }
+          else {
+              return alert('Неверное число');
+          }
+      }
+      const start = +prompt('Введите, пожалуйста, минимальное значение диапазона:','');
+      const end = +prompt('Введите, пожалуйста, максимальное значение диапазона:','');
+      checkIdealNumber (start,end);
+      /* Task 2 */
+      function showTime(h,m,s) {
+          let hour;
+          let minute;
+          let second;
+          if ((h >= 0) && (h <=23) && (m >= 0) && (m <= 59) && (s >= 0) && (s <= 59)) {
+              if (h <= 9) {
+                  hour = '0' + String(h);
+              }
+              else {
+                  hour = String(h);
+              }
+              if (m === 0) {
+                  minute = '00';
+              }
+              else {
+                  if (m <= 9) {
+                      minute = '0' + String(m);
+                  }
+                  else {
+                      minute = String(m);
+                  }
+              }
+              if (s === 0) {
+                  second = '00';
+              }
+              else {
+                  if (s <= 9) {
+                      second = '0' + String(s);
+                  }
+                  else {
+                      second = String(s);
+                  }
+              }
+              return alert('Заданное время: ' + hour + ':' + minute + ':' + second);
+          }
+          else {
+              return alert('Неверное время');
+          }
+      }
+      const h = +prompt('Введите, пожалуйста, часы: ');
+      const m = +prompt('Введите, пожалуйста, минуты: ');
+      const s = +prompt('Введите, пожалуйста, секунды: ');
+      showTime(h,m,s);
+      /* Task 3 */
+      function countSeconds(hs,ms,ss) {
+          if ((hs >= 0) && (ms >= 0) && (ss >= 0)) {
+              let time = 3600*hs + 60*ms + ss;
+              return alert('Указанное количество времени в секундах: ' + time);
+          }
+          else {
+              return alert('Неверное время');
+          }
+      }
+      const hs = +prompt('Введите, пожалуйста, часы: ');
+      const ms = +prompt('Введите, пожалуйста, минуты: ');
+      const ss = +prompt('Введите, пожалуйста, секунды: ');
+      countSeconds(hs,ms,ss);
+      /* Task 4 */
+
+      /* Task 5 */
+
+  </script>
+</body>
+</html>
