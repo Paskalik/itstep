@@ -74,28 +74,94 @@
               return alert('Неверное время');
           }
       }
-      const h = +prompt('Введите, пожалуйста, часы: ');
-      const m = +prompt('Введите, пожалуйста, минуты: ');
-      const s = +prompt('Введите, пожалуйста, секунды: ');
+      const h = +prompt('Введите, пожалуйста, часы:','');
+      const m = +prompt('Введите, пожалуйста, минуты:','');
+      const s = +prompt('Введите, пожалуйста, секунды:','');
       showTime(h,m,s);
       /* Task 3 */
       function countSeconds(hs,ms,ss) {
           if ((hs >= 0) && (ms >= 0) && (ss >= 0)) {
-              let time = 3600*hs + 60*ms + ss;
-              return alert('Указанное количество времени в секундах: ' + time);
+              return 3600 * hs + 60 * ms + ss;
           }
           else {
               return alert('Неверное время');
           }
       }
-      const hs = +prompt('Введите, пожалуйста, часы: ');
-      const ms = +prompt('Введите, пожалуйста, минуты: ');
-      const ss = +prompt('Введите, пожалуйста, секунды: ');
-      countSeconds(hs,ms,ss);
+      const hs = +prompt('Введите, пожалуйста, часы:','');
+      const ms = +prompt('Введите, пожалуйста, минуты:','');
+      const ss = +prompt('Введите, пожалуйста, секунды:','');
+      alert(countSeconds(hs,ms,ss));
       /* Task 4 */
-
+      function showTimeBySec(sec) {
+          let hour;
+          let minute;
+          let second;
+          let h;
+          let m;
+          let s;
+          if (!sec) {
+              return ('Неверное время')
+          } else {
+              h = Math.floor(sec/3600);
+              sec = sec - h * 3600;
+              m = Math.floor(sec/60);
+              s = sec - m * 60;
+              if (h === 0) {
+                  hour = '00';
+              } else {
+                  if (h <= 9) {
+                      hour = '0' + String(h);
+                  } else {
+                      hour = String(h);
+                  }
+              }
+              if (m === 0) {
+                  minute = '00';
+              } else {
+                  if (m <= 9) {
+                      minute = '0' + String(m);
+                  } else {
+                      minute = String(m);
+                  }
+              }
+              if (s === 0) {
+                  second = '00';
+              } else {
+                  if (s <= 9) {
+                      second = '0' + String(s);
+                  } else {
+                      second = String(s);
+                  }
+              }
+              return (hour + ':' + minute + ':' + second);
+          }
+      }
+      let sec = +prompt('Введите, пожалуйста, количество секунд:','');
+      alert(showTimeBySec(sec));
       /* Task 5 */
-
+      function showDifference(h1,m1,s1,h2,m2,s2) {
+          if ((h1 >= 0) && (m1 >= 0) && (s1 >= 0) && (h2 >= 0) && (m2 >= 0) && (s2 >= 0)) {
+              const first = countSeconds(h1,m1,s1);
+              const second = countSeconds(h2,m2,s2);
+              let timeInSec = second - first;
+              if (timeInSec > 0) {
+                  return showTimeBySec(timeInSec);
+              }
+              else {
+                  return  ('Вторая дата меньше или равна первой');
+              }
+          }
+          else {
+              return ('Неверные данные');
+          }
+      }
+      let h1 = +prompt('Введите, пожалуйста, часы:','');
+      let m1 = +prompt('Введите, пожалуйста, минуты:','');
+      let s1 = +prompt('Введите, пожалуйста, секунды:','');
+      let h2 = +prompt('Введите, пожалуйста, часы:','');
+      let m2 = +prompt('Введите, пожалуйста, минуты:','');
+      let s2 = +prompt('Введите, пожалуйста, секунды:','');
+      alert(showDifference(h1,m1,s1,h2,m2,s2));
   </script>
 </body>
 </html>
