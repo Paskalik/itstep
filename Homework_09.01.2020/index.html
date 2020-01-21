@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      /**
+       * @return {number}
+       */
+      function Power(x,n) {
+          if (n !== 1) {
+              return x * Power(x, n - 1);
+          }
+          else {
+              return x;
+          }
+      }
+      function PowerPlus(x,n) {
+          if ((x === 0) && (n === 0)) {
+              return alert('Нуль в нулевой степени не определен, такое выражение не имеет смысла');
+          }
+          else {
+                  if ((x !== 0) && (n === 0)) {
+                  return alert('Любое число в степени 0 равно 1');
+                  }
+                  else {
+                      if ((x === 0) && (n !== 0)) {
+                          return alert('Любая степень числа 0, кроме 0, равно 0');
+                      }
+                      else {
+                          if ((!x) || (!n)) {
+                              return alert('Неверные данные');
+                          }
+                          else {
+                              return alert('Число ' + x + ' в степени ' + n + ' равно ' + Power(x,n));
+                      }
+                  }
+              }
+          }
+      }
+      let x = +prompt('Введите, пожалуйста, число','');
+      let n = +prompt('Введите, пожалуйста, степень','');
+      PowerPlus(x,n);
+      /* Task 2 */
+      function gcd(z,y) {
+          if (y !== 0) {
+              return gcd(y, y%z);
+          }
+          else {
+              return z;
+          }
+      }
+      function gcdPlus(z,y) {
+          if (!z || !y || z < 0 || y < 0) {
+              return alert ('Некорректные данные')
+          }
+          else {
+              if (z <= y) {
+                  return alert ('Наибольшмй общий делитель заданных чисел = ' + gcd(z,y));
+              }
+              else {
+                  return alert('Наибольшмй общий делитель заданных чисел = ' + gcd(y,z));
+              }
+          }
+      }
+      let z = +prompt('Введите, пожалуйста, первое число:','');
+      let y = +prompt('Введите, пожалуйста, второе число:','');
+      gcdPlus(z,y);
+      /* Task 3 */
+      function maxNum(k=0,num) {
+          let i = num%10;
+          let j = Math.floor(num/10);
+          if (j !== 0) {
+              if (i > k) {
+                  k = i;
+                  return maxNum(k,j);
+              }
+              else return maxNum(k,j);
+          }
+          else {
+              return k;
+          }
+      }
+      function maxNumPlus(num)  {
+          if (!num || num <= 0) {
+              return alert('Некорректные данные');
+          }
+          else {
+              if (num < 10) {
+                  return alert('Максимальная цифра числа ' + num + ' равна ' + num);
+              }
+              else
+                  {
+                  return alert('Максимальная цифра числа ' + num + ' равна ' + maxNum(x, num));
+              }
+          }
+      }
+      let num = +prompt('Введите, пожалуйста, число:','');
+      maxNumPlus(num);
+      /* Task 4 */
+      function simpleNumber(s,l=2) {
+          if (!s || s <= 0) {
+              return 'Некорректные данные';
+          }
+          else {
+              if (s < 2) {
+                  return 'Не простое';
+              } else {
+                  if (s === 2) {
+                      return 'Простое';
+                  } else {
+                      if (s % l === 0) {
+                          return 'Не простое';
+                      } else {
+                          if (l < s / 2) {
+                              return simpleNumber(s, (l + 1));
+                          } else {
+                              return 'Простое';
+                          }
+                      }
+                  }
+              }
+          }
+      }
+      let s = +prompt('Введите, пожалуйста, натуральное число:','');
+      alert(simpleNumber(s));
+      /* Task 5 */
+      function factorAll(fact,t=2) {
+          if (!fact || fact <= 0) {
+              return alert('Некорректные данные');
+          }
+          else {
+              if (t > fact / 2) {
+                  return alert('Множитель числа: ' + fact);
+              } else {
+                  if (fact % t === 0) {
+                      alert('Множитель числа: ' + t);
+                      return factorAll(fact/t, t);
+                  } else {
+                      return factorAll(fact, (t + 1));
+                  }
+              }
+          }
+      }
+      let fact = +prompt('Введите, пожалуйста, число:','');
+      factorAll(fact);
+      /* Task 6 */
+      function numFib(rang) {
+          if (rang <= 1) {
+              return rang;
+          }
+          else {
+              return numFib(rang - 1) + numFib(rang - 2);
+          }
+      }
+      function numFibPlus(rang) {
+          if (!rang || rang <= 0) {
+              return alert('Некорректные данные');
+          }
+          else {
+              alert('Число Фибоначчи с порядковым номером ' + rang + ' равно ' + numFib(rang));
+          }
+      }
+      let rang = +prompt('Введите, пожалуйста, порядковый номер числа Фибоначчи:','');
+      numFibPlus(rang);
+  </script>
+</body>
+</html>
