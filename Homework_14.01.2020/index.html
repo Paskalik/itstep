@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      function sum() {
+          let result = 0;
+          if (arguments.length < 1) {
+              return 'Слишком мало аргументов';
+          }
+          else {
+              if (arguments.length > 5) {
+                  return 'Слишком много аргументов';
+              }
+              else {
+                  for (let i = 0; i < arguments.length; i++) {
+                      if (!arguments[i]) {
+                          return 'Некорректные данные';
+                      }
+                      else {
+                          result = result + arguments[i];
+                      }
+                  }
+                  return result;
+              }
+          }
+      }
+      let x1 = +prompt('Введите, пожалуйста, первое число:','');
+      let x2 = +prompt('Введите, пожалуйста, второе число:','');
+      let x3 = +prompt('Введите, пожалуйста, третье число:','');
+      let x4 = +prompt('Введите, пожалуйста, четвертое число:','');
+      let x5 = +prompt('Введите, пожалуйста, пятое число:','');
+      let x6 = +prompt('Введите, пожалуйста, шестое число:','');
+      alert(sum());
+      alert(sum(x1));
+      alert(sum(x1,x2));
+      alert(sum(x1,x2,x3));
+      alert(sum(x1,x2,x3,x4));
+      alert(sum(x1,x2,x3,x4,x5));
+      alert(sum(x1,x2,x3,x4,x5,x6));
+      /* Task 3 */
+      function brackets(count) {
+          if (count > 0) {
+              return ('(' + brackets(count-1) + ')');
+          }
+          else {
+              return '';
+          }
+      }
+      function bracketsPlus(count) {
+          if (!count) {
+              return alert('Некорректные данные');
+          }
+          else {
+              return alert(brackets(count));
+          }
+      }
+      let count = +prompt('Введите, пожалуйста, количество повторений:','');
+      bracketsPlus(count);
+      /* Task 4 */
+      function division(n) {
+          let num = 0;
+          let m = n;
+          if (!n || (n < 50)) {
+              return alert('Некорректное число');
+          }
+          else {
+              while (n >= 50) {
+                  num++;
+                  n = n / 2;
+              }
+              return alert('Число ' + m + ' было разделено на 2 ' + num + ' раз');
+          }
+      }
+      let n = +prompt('Введите, пожалуйста, число больше 50-ти:','');
+      division(n);
+      /* Task 5 */
+      function counter() {
+          let i = 1;
+          return function() {
+              return (i++ + ' вызов');
+          };
+      }
+      let counterPlus = counter();
+      alert(counterPlus());
+      alert(counterPlus());
+      alert(counterPlus());
+      alert(counterPlus());
+      /* Task 2 */
+      function multTable(num) {
+          if (!num || (num < 2) || (num > 9)) {
+              return alert('Некорректные данные');
+          }
+          else {
+              document.write('<div style="display: inline-table; width: 100px">');
+              for (let i=1; i<=10; i++) {
+                  console.log(num + '*' + i+ '=' + (num*i));
+                  document.write(num + '*' + i + '=' + (num*i) + '<br>');
+              }
+              document.write('</div>');
+          }
+      }
+      multTable(2);
+      multTable(3);
+      multTable(4);
+      multTable(5);
+      multTable(6);
+      multTable(7);
+      multTable(8);
+      multTable(9);
+  </script>
+</body>
+</html>
