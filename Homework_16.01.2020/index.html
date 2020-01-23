@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      let car = {};
+      car.name = 'Mercedes Benz';
+      car.model = 'Bionic';
+      car.model = 'Pete';
+      delete car.model;
+      /* Task 2 */
+      let obj = {
+          name: 'Object',
+          price: 15,
+          count: 2,
+          isShow: true
+      };
+      function multiply(obj) {
+          for (let i in obj) {
+              if (obj.hasOwnProperty(i) && (typeof obj[i] === 'number')) {
+                  obj[i] = obj[i] * 4;
+              }
+          }
+      }
+      multiply(obj);
+      console.log(obj);
+      /* Task 3 */
+      let myCar = {
+          producer: 'Ferrari (Fiat)',
+          model: 'Enzo',
+          yearProd: 2002,
+          avSpeed: 200
+      };
+      function showDetail(myCar) {
+              for (let j in myCar) {
+                  if (myCar.hasOwnProperty(j)) {
+                      document.write('<div style="display: inline-table; width: 150px">');
+                      console.log(j + ': ' + myCar[j]);
+                      document.write(j + ': ' + myCar[j] + '<br>');
+                  }
+              }
+      }
+      showDetail(myCar);
+      function calcTime(distance,myCar) {
+          if (!distance) {
+              return alert('Некорректные данные');
+          }
+          else {
+              let time = distance / myCar.avSpeed;
+              let relax = Math.floor(time / 4);
+              return alert('Для преодоления указанного расстояния необходимо затратить ' + (time + relax) + ' часов');
+          }
+      }
+      let distance = +prompt('Введите, пожалуйста, интересующее расстояние:','');
+      calcTime(distance,myCar);
+  </script>
+</body>
+</html>
