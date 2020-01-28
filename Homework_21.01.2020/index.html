@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      let obj = {
+          a: 'Surname',
+          b: 'Name',
+          c: 'Patronymic'
+      };
+      console.log(obj.b);
+      console.log(obj['b']);
+      obj['new b'] = 'Mother`s name';
+      obj.a = obj['new b'];
+      delete obj['new b'];
+      /* Task 2 */
+      let fstFraction = {
+          num: 5,
+          denom: 9
+      };
+      let sndFraction = {
+          num: 4,
+          denom: 12
+      };
+      /* Вычисление общего делителя */
+      function minGeneralDivider(a, b) {
+          if (Math.max(a, b) % Math.min(a, b) === 0) {
+              return Math.min(a, b);
+          }
+          else {
+              return minGeneralDivider((Math.max(a, b) % Math.min(a, b)), Math.min(a, b));
+          }
+      }
+      /* Сокращение дробей */
+      function reductionFraction(sndFraction) {
+          let minDiv = minGeneralDivider(sndFraction.num,sndFraction.denom);
+          if (minDiv === 1) {
+              return sndFraction.num + '/' + sndFraction.denom;
+          }
+          else {
+              return (sndFraction.num / minDiv) + '/' + (sndFraction.denom / minDiv);
+          }
+      }
+      console.log(reductionFraction(sndFraction));
+      /* Сложение дробей */
+      function addFraction(fstFraction,sndFraction) {
+          let minDiv = minGeneralDivider(fstFraction.denom,sndFraction.denom);
+          let num;
+          let denom;
+          if (minDiv === 1) {
+              num = (fstFraction.num * sndFraction.denom) + (sndFraction.num * fstFraction.denom);
+              denom = fstFraction.num * sndFraction.num;
+          }
+          else {
+              num = (fstFraction.num * (sndFraction.denom / minDiv)) + (sndFraction.num * (fstFraction.denom / minDiv));
+              denom = (fstFraction.denom * sndFraction.denom) / minDiv;
+          }
+          let obj = {
+              num: num,
+              denom: denom
+          };
+          return reductionFraction(obj);
+      }
+      console.log(addFraction(fstFraction,sndFraction));
+      /* Вычитание дробей */
+      function subFraction(fstFraction,sndFraction) {
+          let minDiv = minGeneralDivider(fstFraction.denom,sndFraction.denom);
+          let num;
+          let denom;
+          if (minDiv === 1) {
+              num = (fstFraction.num * sndFraction.denom) - (sndFraction.num * fstFraction.denom);
+              denom = fstFraction.num * sndFraction.num;
+          }
+          else {
+              num = (fstFraction.num * (sndFraction.denom / minDiv)) - (sndFraction.num * (fstFraction.denom / minDiv));
+              denom = (fstFraction.denom * sndFraction.denom) / minDiv;
+          }
+          let obj = {
+              num: num,
+              denom: denom
+          };
+          return reductionFraction(obj);
+      }
+      console.log(subFraction(fstFraction,sndFraction));
+      /* Умножение дробей */
+      function multiFraction(fstFraction,sndFraction) {
+          let num = fstFraction.num * sndFraction.num;
+          let denom = fstFraction.denom * sndFraction.denom;
+          let obj = {
+              num: num,
+              denom: denom
+          };
+          return reductionFraction(obj);
+      }
+      console.log(multiFraction(fstFraction,sndFraction));
+      /* Деление дробей */
+      function fractination(fstFraction,sndFraction) {
+          let num = fstFraction.num * sndFraction.denom;
+          let denom = fstFraction.denom * sndFraction.num;
+          let obj = {
+              num: num,
+              denom: denom
+          };
+          return reductionFraction(obj);
+      }
+      console.log(fractination(fstFraction,sndFraction));
+      /* Task 3 */
+      let time = {
+          hour: 12,
+          min: 54,
+          sec: 54
+      };
+      /* Вывод времени */
+      function showTime(time) {
+          if (time.sec >= 10 && time.min >= 10) {
+              return time.hour + ':' + time.min + ':' + time.sec;
+          }
+          else {
+              if (time.sec < 10 && time.min < 10) {
+                  return time.hour + ':0' + time.min + ':0' + time.sec;
+              }
+              else {
+                  if (time.sec < 10) {
+                      return time.hour + ':' + time.min + ':0' + time.sec;
+                  }
+                  else {
+                      return time.hour + ':0' + time.min + ':' + time.sec;
+                  }
+              }
+          }
+      }
+      console.log(showTime(time));
+      /* Изменение времени на переданное количество секунд */
+      function changeTimeBySec(time,sec) {
+          sec = time.sec + sec;
+          if ((sec) < 60) {
+              time.sec = sec;
+          }
+          else {
+              time.sec = sec % 60;
+              let min = time.min + Math.floor(sec / 60);
+              if (min < 60) {
+                  time.min = min;
+              }
+              else {
+                  time.hour = time.hour + Math.floor(min / 60);
+                  time.min = min % 60;
+              }
+          }
+          return showTime(time);
+      }
+      let sec = +prompt('Введите, пожалуйста, количество секунд:','');
+      console.log(changeTimeBySec(time,sec));
+      /* Изменение времени на переданное количество минут */
+      function changeTimeByMin(time,min) {
+          min = time.min + min;
+          if ((min) < 60) {
+              time.min = min;
+          }
+          else {
+              time.hour = time.hour + Math.floor(min / 60);
+              time.min = min % 60;
+          }
+          return showTime(time);
+      }
+      let min = +prompt('Введите, пожалуйста, количество минут:','');
+      console.log(changeTimeByMin(time,min));
+      /* Изменение времени на переданное количество часов */
+      function changeTimeByHour(time,hour) {
+          time.hour = time.hour + hour;
+          return showTime(time);
+      }
+      let hour = +prompt('Введите, пожалуйста, количество часов:','');
+      console.log(changeTimeByHour(time,hour));
+  </script>
+</body>
+</html>
