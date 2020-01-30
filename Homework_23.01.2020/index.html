@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      let fruits = [];
+      fruits.push('Apple','Pineapple');
+      console.log(fruits[1]);
+      fruits.forEach(function(item, i, arr) {
+          console.log( 'Значение: ' + item + ', позиция: ' + i + ', массив fruits: ' + arr);
+      });
+      fruits.pop();
+      /* Task 2 */
+     function rangeBetween(a,b) {
+         if (a === '' || isNaN(a) || !b || (a > b)) {
+             return 'Некорректные данные';
+         }
+         else {
+             let arr = [];
+             let i = a;
+             while (i <= b) {
+                 arr.push(i);
+                 i++;
+             }
+             return arr;
+         }
+     }
+     let a = +prompt('Введите, пожалуйста, значение начала интервала:','');
+     let b = +prompt('Введите, пожалуйста, значение конца интервала:','');
+     console.log(rangeBetween(a,b));
+      /* Task 3 */
+      function fillArray(x,y) {
+          if (x === '' || isNaN(x) || !y) {
+              return 'Некорректные данные';
+          }
+          else {
+              let arr = [];
+              let i = 1;
+              while (i <= y) {
+                  arr.push(x);
+                  i++;
+              }
+              return arr;
+          }
+      }
+      let x = +prompt('Введите, пожалуйста, значение массива:','');
+      let y = +prompt('Введите, пожалуйста, количество значений массива:','');
+      console.log(fillArray(x,y));
+      /* Task 4 */
+      let arr = [1,4,'first',8,12,'second',0];
+      function sumArray(arr) {
+          let result = 0;
+          for (let i = 0; i <= arr.length; i++) {
+              if (typeof arr[i] === 'number') {
+                  result = result + arr[i];
+              }
+          }
+          return result;
+      }
+      console.log(sumArray(arr));
+  </script>
+</body>
+</html>
