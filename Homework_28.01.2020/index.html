@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      /* Список покупок */
+      let shoppingList = [
+          {
+              name: 'potato',
+              quantity: 2,
+              bought: true
+          },
+          {
+              name: 'tomato',
+              quantity: 4,
+              bought: false
+          },
+          {
+              name: 'cucumber',
+              quantity: 3,
+              bought: false
+          },
+          {
+              name: 'onion',
+              quantity: 1,
+              bought: true
+          }
+      ];
+      /* Вывод всего списка на экран таким образом, чтобы сначала шли некупленные продукты, а потом – купленные */
+      function showShoppingList(arr) {
+          arr.sort(function (a, b) {
+              if (a.bought) return 1;
+              if (!b.bought) return 0;
+              return -1;
+          });
+          arr.forEach(function (item) {
+              console.log(item);
+          });
+      }
+      showShoppingList(shoppingList);
+      /* Добавление покупки в список */
+      function addPurchase(arr,name,quantity)
+      {
+          if (typeof quantity !== "number") {
+              return console.log('Указано некорректное количество!');
+          }
+          else {
+              let purchase = arr.find(function (item) {
+                  return item.name.toLowerCase() === name.toLowerCase();
+              });
+              if (!purchase) {
+                  arr.push({
+                      name: name.toLowerCase(),
+                      quantity: quantity,
+                      bought: false
+                  })
+              } else {
+                  purchase.quantity = purchase.quantity + quantity;
+              }
+          }
+      }
+      addPurchase(shoppingList,'Potato','number');
+      addPurchase(shoppingList,'Potato',1);
+      addPurchase(shoppingList,'carrot',2);
+      /* Покупка продукта */
+      function setBought(arr,name) {
+          let good = arr.find(function (item) {
+              return item.name.toLowerCase() === name.toLowerCase();
+          });
+          if (!good) {
+              return console.log('Указанный продукт отсутствует в списке!');
+          }
+          else {
+              if (good.bought === true) {
+                  return console.log('Указанный продукт уже куплен!');
+              }
+              else {
+                  good.bought = true;
+              }
+          }
+      }
+      setBought(shoppingList,'Potato');
+      setBought(shoppingList,'Potatoes');
+      setBought(shoppingList,'carrot');
+      /* Task 2 */
+      /* Чек */
+      let receipt = [
+          {
+              name: 'Milk',
+              quantity: 2,
+              price: 24.3
+          },
+          {
+              name: 'Egg',
+              quantity: 10,
+              price: 2.5
+          },
+          {
+              name: 'Bread',
+              quantity: 1,
+              price: 16.7
+          },
+          {
+              name: 'Butter',
+              quantity: 1,
+              price: 46.35
+          }
+      ];
+      /* Распечатка чека на экран */
+      function showReceipt(arr) {
+          arr.forEach(function (item) {
+              console.log(item);
+          })
+      }
+      showReceipt(receipt);
+      /* Подсчет общей суммы покупки */
+      let result = receipt.reduce(function (sum, item) {
+          return sum + item.price;
+      }, 0);
+      console.log(result);
+      /* Получение самой дорогой покупки в чеке */
+      function checkExpensive(arr) {
+          let max = 0;
+          arr.forEach(function (item) {
+              let sum = item.quantity*item.price;
+              if (sum > max) {
+                  max = sum;
+                  return max;
+              }
+          });
+          return 'Самая дорогая покупка в чеке на сумму ' + max;
+      }
+      console.log(checkExpensive(receipt));
+      /* Подсчет средней стоимости одного товара в чеке */
+      function getAveragePrice(arr) {
+          let sumPrice = arr.reduce(function (av, good) {
+              return av + good.quantity*good.price;
+          }, 0);
+          return (sumPrice/arr.length).toFixed(2);
+      }
+      console.log(getAveragePrice(receipt));
+      /* Task 4 */
+      /* Аудитории академии */
+      let lectureHall = [
+          {
+              name: 'C315',
+              sits: 15,
+              faculty: 'ИнЭк'
+          },
+          {
+              name: 'D214',
+              sits: 20,
+              faculty: 'Прикладная математика'
+          },
+          {
+              name: 'A101',
+              sits: 10,
+              faculty: 'ИнЭк'
+          },
+          {
+              name: 'F26',
+              sits: 12,
+              faculty: 'Прикладная математика'
+          }
+      ];
+      /* Вывод на экран всех аудиторий */
+      function showLectureHall(arr) {
+          arr.forEach(function (item) {
+              console.log(item);
+          })
+      }
+      showLectureHall(lectureHall);
+      /* Вывод на экран аудиторий для указанного факультета */
+      function showOurHall(arr,faculty) {
+          let ourHall = arr.filter(function (item) {
+              return item.faculty === faculty;
+          });
+          if (ourHall.length === 0) {
+              return console.log('Для данного факультета отсутствуют аудитории!');
+          }
+          else {
+              return ourHall.forEach(function (item) {
+                  console.log(item);
+              });
+          }
+      }
+      showOurHall(lectureHall,'Исторический');
+      showOurHall(lectureHall,'ИнЭк');
+      /* Вывод на экран только тех аудиторий, которые подходят для переданной группы */
+      function checkOurHall(arr,group) {
+          let ourHall = arr.filter(function (item) {
+              return ((item.faculty === group.faculty) && (item.sits >= group.students));
+          });
+          if (ourHall.length === 0) {
+              return console.log('Для данной группы отсутствуют аудитории!');
+          }
+          else {
+              return ourHall.forEach(function (item) {
+                  console.log(item);
+              });
+          }
+      }
+      checkOurHall(lectureHall,{name: 'Группа 1', students: 25, faculty: 'ИнЭк'});
+      checkOurHall(lectureHall,{name: 'Группа 2', students: 20, faculty: 'ИнЭк'});
+      checkOurHall(lectureHall,{name: 'Группа 3', students: 20, faculty: 'Прикладная математика'});
+      /* Функция сортировки аудиторий по количеству мест */
+      function showHallSortBySits(arr) {
+          arr.sort(function (a, b) {
+              if (a.sits > b.sits) return 1;
+              if (a.sits === b.sits) return 0;
+              if (a.sits < b.sits) return -1;
+          });
+          arr.forEach(function (item) {
+              console.log(item);
+          });
+      }
+      showHallSortBySits(lectureHall);
+      /* Функция сортировки аудиторий по названию (по алфавиту) */
+      function showHallSortByName(arr) {
+          arr.sort(function (a, b) {
+              if (a.name > b.name) return 1;
+              if (a.name === b.name) return 0;
+              if (a.name < b.name) return -1;
+          });
+          arr.forEach(function (item) {
+              console.log(item);
+          });
+      }
+      showHallSortByName(lectureHall);
+      /* Task 3 */
+      /* Стили */
+      let styles = [
+          {
+              name: 'color',
+              value: 'red'
+          },
+          {
+              name: 'font-size',
+              value: '18px'
+          },
+          {
+              name: 'font-weight',
+              value: 'bold'
+          },
+          {
+              name: 'text-align',
+              value: 'center'
+          },
+          {
+              name: 'opacity',
+              value: '0.5'
+          }
+      ];
+      /* Вывод текста с применением стилей */
+      function writeText(arr,text) {
+          document.write('<p style="');
+          arr.forEach(function (item) {
+              document.write(item.name + ': ' + item.value + ';');
+          });
+          document.write('">' + text + '</p>');
+      }
+      writeText(styles,'Вот такая петрушка!');
+  </script>
+</body>
+</html>
