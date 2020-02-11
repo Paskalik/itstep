@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      let array = [1,2,3,4,5,6,7,8,9];
+
+      function getFromStart(array, n) {
+          if (array === null) return 'Отсутствует массив';
+          if (n === null) return array[0];
+          if (n <= 0) return array;
+          return array.slice(0, n);
+      }
+      console.log(getFromStart(array,null));
+      console.log(getFromStart(null,1));
+      console.log(getFromStart(array,-50));
+      console.log(getFromStart(array,0));
+      console.log(getFromStart(array,10));
+      console.log(getFromStart(array,4));
+      /* Task 2 */
+      let arrFirst = [1, 2, 3, 4];
+      let arrSecond = [4, 5, 6];
+      function getSumOfArrays(arrFirst,arrSecond) {
+          let count;
+          let arrSum = [];
+          if (arrFirst.length >= arrSecond.length) {
+              count = arrFirst.length;
+          } else {
+              count = arrSecond.length;
+          }
+          for (let i = 0; i < count; i++) {
+              if (arrSecond[i] === undefined) {
+                  arrSecond.push(0);
+              } else {
+                  if (arrFirst[i] === undefined) {
+                      arrFirst.push(0);
+                  }
+              }
+              arrSum.push(arrFirst[i] + arrSecond[i]);
+          }
+          return arrSum;
+      }
+      console.log(getSumOfArrays(arrFirst,arrSecond));
+      /* Task 3 */
+      let arr = [1,2,1,1,2,2,3,4,5,5,6,7,7,8,9,8,0];
+      function getDouble(arr) {
+          let unique = [];
+          let count = 0;
+          arr.forEach( function (item) {
+              if (!unique.includes(item)) unique.push(item);
+          });
+          unique.forEach(function (item) {
+              let n = 0;
+              for (let i = 0; i < arr.length; i++) {
+                  if (item === arr[i]) n++;
+                  if (n > 1) {
+                      count++;
+                      break;
+                  }
+              }
+          });
+          return count;
+      }
+      console.log(getDouble(arr));
+      /* Task 4 */
+      function moveElement(array,from,to) {
+          array.splice(to,0,array.splice(from,1)[0]);
+          return array;
+      }
+      console.log(moveElement(array,4,1));
+  </script>
+</body>
+</html>

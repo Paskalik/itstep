@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      let string = 'I was born on the 14th of December in 1983!';
+      function statForString(string) {
+          if ((string === null) || (string === undefined) || (string.length === 0) || typeof string !== 'string') {
+              return 'Некрректная строка';
+          } else {
+              let letter = 'abcdefghijklmnopqrstuvwxyz';
+              let number = '1234567890';
+              let countL = 0;
+              let countN = 0;
+              let arr = string.split('');
+              arr.forEach(function (item) {
+                  if (letter.includes(item.toLowerCase())) {
+                      countL = countL + 1;
+                  }
+              });
+              arr.forEach(function (item) {
+                  if (number.includes(item.toLowerCase())) {
+                      countN = countN + 1;
+                  }
+              });
+              let countZ = string.length - countL - countN;
+              return 'Строка содержит ' + countL + ' букв, ' + countN + ' цифр и ' + countZ + ' других символов';
+          }
+      }
+      console.log(statForString(string));
+      /* Task 2 */
+      function numberInText(number) {
+          const values = [
+              ['ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', '', 'две', '', 'четыр', 'пят', 'шест', 'сем', 'восем', 'девят'],
+              ['', '', 'двадцать', 'тридцать', 'сорок', '', '', '', '', 'девяносто']
+          ];
+          if (number < 0 || number >= 100 || number === null || number === undefined) {
+              return 'Некорректное число';
+          }
+          if (number >= 0 && number <= 10) {
+              return values[0][number];
+          }
+          if (number > 10 && number <= 19) {
+              return (values[0][number] || values[0][number - 10]) + 'надцать';
+          }
+          if (number >= 20 && number <= 99) {
+              const [units=0, tens] = [...('' + number)].reverse().map(Number);
+              return [
+                  tens ? values[1][tens] || (values[0][tens] + 'десят') : '',
+                  units ? values[0][units] : ''
+              ].join(' ');
+          }
+      }
+      console.log(numberInText(95));
+      /* Task 3 */
+      function changeString(string) {
+          let newString = '';
+          let number = ['1','2','3','4','5','6','7','8','9','0'];
+          if ((string === null) || (string === undefined) || (typeof string !== 'string')) {
+              return 'Некорректная строка'
+          }
+          else {
+              for (let char of string) {
+                  if (number.indexOf(char) >= 0) {
+                      newString += '_';
+                  } else {
+                      if (char.toUpperCase() === char) {
+                          newString += char.toLowerCase();
+                      } else {
+                          if (char.toLowerCase() === char) {
+                              newString += char.toUpperCase();
+                          }
+                      }
+                  }
+              }
+          }
+          return newString;
+      }
+      console.log(changeString(string));
+      /* Task 4 */
+      function changeToCamelCase(string) {
+          if ((string === null) || (string === undefined) || (string === '') || (typeof string !== 'string')) {
+              return 'Некорректная строка';
+          }
+          else {
+              let i;
+              let newString = '';
+              for (let char of string) {
+                  if (char === '-') {
+                      i = string.indexOf(char);
+                      newString = string.replace(string.slice(i, (i + 2)), string[i + 1].toUpperCase());
+                  }
+              }
+              if (newString === '') {
+                  return 'Передан не css-style';
+              } else {
+                  return newString;
+              }
+          }
+      }
+      console.log(changeToCamelCase('font-size'));
+      /* Task 5 */
+      function changeStringToAbbr(string) {
+          if ((string === null) || (string === undefined) || (string === '') || (typeof string !== 'string')) {
+              return 'Некорректная строка';
+          }
+          else {
+              let i;
+              let newString = string[0].toUpperCase();
+              for (let char of string) {
+                  if ((char === '-') || (char === ' ')) {
+                      i = string.indexOf(char);
+                      newString = newString + string[i + 1].toUpperCase();
+                  }
+              }
+              return newString;
+          }
+      }
+      console.log(changeStringToAbbr('cascading style sheets'));
+  </script>
+</body>
+</html>
