@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      function compareString(stringFirst,stringSecond) {
+          if (stringFirst.length > stringSecond.length) {
+              return 1;
+          }
+          else if (stringFirst.length < stringSecond.length) {
+              return -1;
+              }
+          else {
+              return 0;
+          }
+      }
+      let stringFirst = 'Hello';
+      let stringSecond = 'Hello, boy';
+      console.log(compareString(stringFirst,stringSecond));
+      /* Task 2 */
+      function capString(string) {
+          return string[0].toUpperCase() + string.slice(1);
+      }
+      let string = 'hello, my little friend';
+      console.log(capString(string));
+      /* Task 3 */
+      function countVowels(string) {
+          let volwes = 'аеёиоуыэюя';
+          let count = 0;
+          let arr = string.split('');
+          arr.forEach(function (item) {
+              if (volwes.includes(item.toLowerCase())) {
+                  count = count + 1;
+              }
+          });
+          return count;
+      }
+      string = 'Привет, Василий!';
+      console.log(countVowels(string));
+      /* Task 4 */
+      function checkSpam(string) {
+          let arr = [
+              '100% бесплатно',
+              'увеличение продаж',
+              'только сегодня',
+              'не удаляйте',
+              'ххх'
+          ];
+          let str = string.toLowerCase();
+          let check = false;
+          arr.forEach(function (item) {
+              if (str.includes(item)) {
+                  check = true;
+              }
+          });
+          return check;
+      }
+      string = '100% Бесплатно получено';
+      console.log(checkSpam(string));
+      /* Task 5 */
+      function trancStr(stringNew,strLength) {
+          console.log(stringNew.slice(0,(strLength - 3)) + '...');
+      }
+      let stringNew = 'Hello, World';
+      trancStr(stringNew,8);
+      /* Task 6 */
+      function isStringPalindrome(string)
+      {
+          string = string.replace(/[ .,\/#!$%*;:{}=\-_`~()?]/g,'');
+          let n = string.length;
+          for(let i = 0; i < n/2; i++)
+          {
+              if (string.charAt(i).toLowerCase() !== string.charAt(n-1-i).toLowerCase())
+                  return false;
+          }
+          return true;
+      }
+      console.log(isStringPalindrome('А роза? упала, на. лапу: - Азора!'));
+      console.log(isStringPalindrome('Вовсе я не палиндром'));
+      /* Task 7 */
+      function countWords(str) {
+          str = str.replace(/[.,\/#!$%*;:{}=\-_`~()?]/g,'');
+          str = str.replace(/\s{2,}/g," ");
+          let arr = str.split(' ');
+          return arr.length;
+      }
+      console.log(countWords('Для корректного вычисления нам - необходимо: что? Использовать, пожалуй; знаки!'));
+      /* Task 8 */
+      function findTheLongestWord(str) {
+          let theLongestWord = '';
+          str = str.replace(/[.,\/#!$%*;:{}=\-_`~()?]/g,'');
+          str = str.replace(/\s{2,}/g," ");
+          let arr = str.split(' ');
+          let count = 0;
+          arr.forEach((item) => {
+              if (item.length > count) {
+                  count = item.length;
+                  theLongestWord = item;
+              }
+          });
+          return theLongestWord;
+      }
+      console.log(findTheLongestWord('Для корректного вычисления нам - необходимо: что? Использовать, пожалуй; знаки!'));
+      /* Task 9 */
+      function countAverageLength(string) {
+          let quantityOfWords = countWords(string);
+          string = string.replace(/[ .,\/#!$%*;:{}=\-_`~()?]/g,'');
+          let totalLength = string.length;
+          return (totalLength / quantityOfWords).toFixed(0);
+      }
+      console.log(countAverageLength('Для корректного вычисления нам - необходимо: что? Использовать, пожалуй; знаки!'));
+      /* Task 10 */
+      /* Остаток кода и ДЗ запушу в субботу */
+  </script>
+</body>
+</html>
