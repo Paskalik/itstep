@@ -72,7 +72,7 @@
       function printTextByTemplate(template, ...params) {
           let index = 1;
           for (let param of params) {
-              template = template.replace('%' + index,params[index - 1]);
+              template = template.replace('%' + index,param);
               index++;
           }
           return template;
