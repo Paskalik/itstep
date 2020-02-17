@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      function showFullString(str, ...rest) {
+          return str + rest.join(' ');
+      }
+      console.log(showFullString('Первая, ', 'вторая,', 'третья,', 'четвертая', 'и пятая строка!'));
+      /* Task 2 */
+      function calculator(str) {
+          let operations = {
+              '-': (a, b) => a - b,
+              '+': (a, b) => a + b,
+              '*': (a, b) => a * b,
+              '/': (a, b) => a / b
+          };
+          let parts = str.split(' ');
+          let a = +parts[0];
+          let oper = parts[1];
+          let b = +parts[2];
+          if (!operations[oper] || isNaN(a) || isNaN(b)) {
+              return 'Некорректное выражение';
+          }
+          return operations[oper](a, b);
+      }
+      console.log(calculator('123 + 45'));
+      /* Task 3 */
+      function spellUrl(str) {
+          if (str.includes('://')) {
+
+              let parts = str.split('://');
+              let protocol = parts[0];
+              parts = parts[1].split('/');
+              let domen = parts[0];
+              delete parts[0];
+              let path = parts.join('/');
+              if (!protocol || !domen) {
+                  return 'Введенная строка не является адресом';
+              }
+              return 'Протокол: ' + protocol + ', домен: ' + domen + ', путь: ' + path;
+          } else {
+              return 'Введенная строка не является адресом';
+          }
+      }
+      console.log(spellUrl('https://mystat.com/login/index'));
+      /* Task 4 */
+      function splitString(str,delimiter) {
+          if ((!str) || !delimiter) {
+              return false;
+          }
+          else {
+              let arr = [];
+              let indexOfDelimiter = str.indexOf(delimiter);
+              let start = 0;
+              while (indexOfDelimiter !== -1) {
+                  arr.push(str.slice(start, indexOfDelimiter));
+                  start = indexOfDelimiter + 1;
+                  indexOfDelimiter = str.indexOf(delimiter, start);
+              }
+              arr.push(str.slice(start, str.length));
+              return arr;
+          }
+      }
+      console.log(splitString('10/20/2020','/'));
+      /* Task 5 */
+      function printTextByTemplate(template, ...params) {
+          let index = 1;
+          for (let param of params) {
+              template = template.replace('%' + index,params[index - 1]);
+              index++;
+          }
+          return template;
+      }
+      console.log(printTextByTemplate('Today is %1 %2.%3.%4', 'Monday', 10, 8, 2020));
+  </script>
+</body>
+</html>
