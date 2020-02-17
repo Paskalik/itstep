@@ -13,7 +13,7 @@
       function getFromStart(array, n) {
           if (array === null) return 'Отсутствует массив';
           if (n === null) return array[0];
-          if (n <= 0) return array;
+          if (Math.abs(n) > array.length) return array;
           return array.slice(0, n);
       }
       console.log(getFromStart(array,null));
