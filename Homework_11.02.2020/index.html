@@ -22,9 +22,10 @@
       /* Task 3 */
       clearInterval(showTimeEverySecond);
       /* Task 4 */
-      function showProgressBar() {
+      /* setInterval */
+      function showProgressBarOne() {
           let val = 0;
-          let timerId = setInterval(updateProgress, 1000);
+          let timerId = setInterval(updateProgress, 500);
           function updateProgress() {
               console.log(`${val}%`);
               if (val === 100) {
@@ -33,9 +34,25 @@
               val = val + 10;
           }
       }
-      showProgressBar();
+      showProgressBarOne();
+      /* setTimeout */
+      function showProgressBarTwo() {
+          let val = 0;
+          setTimeout(function updateProgress() {
+              console.log(`${val}%`);
+              if (val < 100) {
+                  setTimeout(updateProgress,500);
+              }
+              val = val + 10;
+          }, 500);
+      }
+      showProgressBarTwo();
       /* Task 5 */
-      /*Выкачу в четверг*/
+      let date = new Date('1983-12-14T05:30:00');
+      console.log(date);
+      /* Добавление к дате n дней */
+      /* Вычитание из даты n дней */
+      /* Вывод дня недели */
   </script>
 </body>
 </html>
