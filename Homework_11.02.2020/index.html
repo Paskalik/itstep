@@ -48,11 +48,36 @@
       }
       showProgressBarTwo();
       /* Task 5 */
-      let date = new Date('1983-12-14T05:30:00');
+      let date = new Date('1983-12-14');
       console.log(date);
       /* Добавление к дате n дней */
+      function addDaysToDate(date,n) {
+          if ((typeof(n) !== 'number') || !date ) {
+              return false;
+          }
+          else {
+              date.setDate(date.getDate() + n);
+              return date;
+          }
+      }
+      console.log(addDaysToDate(date,20));
       /* Вычитание из даты n дней */
+      function subtractDaysFromDate(date,n) {
+          if ((typeof(n) !== 'number') || !date ) {
+              return false;
+          }
+          else {
+              date.setDate(date.getDate() - n);
+              return date;
+          }
+      }
+      console.log(subtractDaysFromDate(date,20));
       /* Вывод дня недели */
+      function getWeekDay(date) {
+          let days = ['Вскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+          return days[date.getDay()];
+      }
+      console.log(getWeekDay(date));
   </script>
 </body>
 </html>
