@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      function textWithInterval(text,sec) {
+          const showText = setInterval(() => console.log(text),sec);
+          setTimeout(() => { clearInterval(showText); console.log('stop'); }, 10000);
+      }
+      textWithInterval('Hello, world',2000);
+      /* Task 2 */
+      let showTime = () => {
+          const time = new Date();
+          console.log(time.toTimeString());
+      };
+      let showTimeEverySecond = setInterval(() => showTime(),1000);
+      /* Task 3 */
+      clearInterval(showTimeEverySecond);
+      /* Task 4 */
+      function showProgressBar() {
+          let val = 0;
+          let timerId = setInterval(updateProgress, 1000);
+          function updateProgress() {
+              console.log(`${val}%`);
+              if (val === 100) {
+                  clearInterval(timerId);
+              }
+              val = val + 10;
+          }
+      }
+      showProgressBar();
+      /* Task 5 */
+      /*Выкачу в четверг*/
+  </script>
+</body>
+</html>
