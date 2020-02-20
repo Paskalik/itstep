@@ -50,6 +50,15 @@
       /* Task 5 */
       let date = new Date('1983-12-14');
       console.log(date);
+      /* Формат даты */
+      function formatDate(date) {
+          let dd = date.getDate();
+          if (dd < 10) dd = '0' + dd;
+          let mm = date.getMonth() + 1;
+          if (mm < 10) mm = '0' + mm;
+          let yyyy = date.getFullYear();
+          return dd + '.' + mm + '.' + yyyy;
+      }
       /* Добавление к дате n дней */
       function addDaysToDate(date,n) {
           if ((typeof(n) !== 'number') || !date ) {
@@ -57,7 +66,7 @@
           }
           else {
               date.setDate(date.getDate() + n);
-              return date;
+              return formatDate(date);
           }
       }
       console.log(addDaysToDate(date,20));
@@ -68,7 +77,7 @@
           }
           else {
               date.setDate(date.getDate() - n);
-              return date;
+              return formatDate(date);
           }
       }
       console.log(subtractDaysFromDate(date,20));
