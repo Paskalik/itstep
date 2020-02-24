@@ -10,7 +10,7 @@
       /* Task 1 */
       function textWithInterval(text,sec) {
           const showText = setInterval(() => console.log(text),sec);
-          setTimeout(() => { clearInterval(showText); console.log('stop'); }, 10000);
+          setTimeout(() => {clearInterval(showText); console.log('stop');}, 10000);
       }
       textWithInterval('Hello, world',2000);
       /* Task 2 */
@@ -83,7 +83,7 @@
       console.log(subtractDaysFromDate(date,20));
       /* Вывод дня недели */
       function getWeekDay(date) {
-          let days = ['Вскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+          let days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
           return days[date.getDay()];
       }
       console.log(getWeekDay(date));
