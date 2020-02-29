@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+  <script type="text/javascript">
+      'use strict';
+      /* Task 1 */
+      class Circle {
+          constructor(radius) {
+              this.radius = radius;
+          }
+          get radius () {
+              return this._radius;
+          }
+          set radius (radius) {
+              if (typeof radius !== 'number' || radius <= 0) {
+                  console.error('Указан неверный радиус!');
+                  return;
+              }
+              this._radius = radius;
+          }
+          get diameter () {
+              return this._radius * 2;
+          }
+          getSquare () {
+              return Math.pow(this.diameter,2) * Math.PI;
+          }
+          getLength () {
+              return Math.PI * this.diameter;
+          }
+      }
+      let myCircle = new Circle(4);
+      console.log('radius = ' + myCircle.radius);
+      myCircle.radius = 6;
+      console.log('new radius = ' + myCircle.radius);
+      console.log('diameter = ' + myCircle.diameter);
+      console.log('square = ' + myCircle.getSquare());
+      console.log('length = ' + myCircle.getLength());
+      /* Task 2 */
+      class Children {
+          constructor(name, surname, age) {
+              this.name = name;
+              this.surname = surname;
+              this.age = age;
+          }
+          setInfo(name, surname, age) {
+              this.name = name;
+              this.surname = surname;
+              this.age = age;
+          }
+          getInfo() {
+              return console.log('Ребенка зовут ' + this.name +
+                                 ', фамилия ребенка ' + this.surname +
+                                 ', возраст ребенка ' + this.age);
+          }
+      }
+      let girl = new Children();
+      let boy = new Children();
+      girl.setInfo('Оля', 'Иванова', 8);
+      girl.getInfo();
+      boy.setInfo('Николай', 'Остапенко', 12);
+      boy.getInfo();
+      /* Task 3 */
+      class CssClass {
+          constructor(name) {
+              this.name = name;
+          }
+          styles = [
+              'color: navy',
+              'margin-left: 20px',
+              'padding-left: 15px',
+              'border-left: 1px solid navy'
+          ];
+          setStyle(style) {
+              this.styles.push(style);
+          }
+          removeStyle(index) {
+              this.styles.splice(index,1);
+          }
+          getCss() {
+              return this.name + ' {' + this.styles.join('; ') + '}';
+          }
+      }
+      let myClass = new CssClass('myClass');
+      console.log(myClass.getCss());
+      myClass.removeStyle(2);
+      myClass.setStyle('padding-right: 20px');
+      console.log(myClass.getCss());
+  </script>
+</body>
+</html>
