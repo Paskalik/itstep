@@ -47,22 +47,23 @@
               this.age = age;
           }
           setInfo(name, surname, age) {
-              this.name = name;
-              this.surname = surname;
-              this.age = age;
+              if (typeof name !== 'string' || typeof surname !== 'string' || typeof age !== 'number') {
+                  console.error('Wrong type of data!');
+              }
+              this._name = name;
+              this._surname = surname;
+              this._age = age;
           }
           getInfo() {
-              return console.log('Ребенка зовут ' + this.name +
-                                 ', фамилия ребенка ' + this.surname +
-                                 ', возраст ребенка ' + this.age);
+              return 'Ребенка зовут ' + this._name + ', фамилия ребенка ' + this._surname + ', возраст ребенка ' + this._age;
           }
       }
       let girl = new Children();
       let boy = new Children();
       girl.setInfo('Оля', 'Иванова', 8);
-      girl.getInfo();
+      console.log(girl.getInfo());
       boy.setInfo('Николай', 'Остапенко', 12);
-      boy.getInfo();
+      console.log(boy.getInfo());
       /* Task 3 */
       class CssClass {
           constructor(name) {
