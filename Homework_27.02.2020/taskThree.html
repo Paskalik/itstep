@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<style>
+    .btn {
+        background-color: #dadada;
+        height: 160px;
+        width: 80px;
+        border-radius: 10px;
+        margin-left: 20px;
+    }
+    .wrapper {
+        float: left;
+        width: 475px;
+        height: 160px;
+        border-radius: 10px;
+        font-size: 70px;
+        padding: 1px 0;
+        border: 2px solid grey;
+
+    }
+    .circle {
+        display: inline-block;
+        background:#666;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-left: 10px;
+    }
+    ul {
+        list-style-type: none;
+        margin-top: 20px;
+        padding-left: 20px;
+    }
+</style>
+<body>
+    <div class="wrapper">
+        <ul>
+            <li class="circle" id = "red"></li>
+            <li class="circle" id = "yellow"></li>
+            <li class="circle" id="green"></li>
+        </ul>
+    </div>
+    <button class="btn" onclick="changeColor()">NEXT</button>
+    <script type="text/javascript">
+        'use strict';
+        let i = -1;
+        function changeColor () {
+            i++;
+            let arr = ['#f00','#ff0','#0f0'];
+            let circle = document.querySelectorAll('.circle');
+            if (circle[i]) {
+                if (i === 0) {
+                    circle[i].style.backgroundColor = arr[i];
+                    circle[arr.length - 1].style.backgroundColor = "#666";
+
+                } else {
+                    if (i === arr.length - 1) {
+                        circle[i].style.backgroundColor = arr[i];
+                        circle[i - 1].style.backgroundColor = "#666";
+                        i = -1;
+                    } else {
+                        circle[i].style.backgroundColor = arr[i];
+                        circle[i - 1].style.backgroundColor = "#666";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

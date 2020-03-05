@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<style>
+    .show {
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    dialog {
+        top: 10%;
+        margin-left: 15px;
+        border: none;
+        width: 500px;
+        font-size: 12px;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-bottom: 15px;
+        text-align: center;
+        background-color: #c7ffd9;
+    }
+    .close {
+        width: inherit;
+        margin-top: 10px;
+    }
+    .
+</style>
+<body>
+    <dialog>
+        <h1>Hello from Modal Window!</h1>
+        <button id="close" class="close" onclick="closeModal()">Close</button>
+    </dialog>
+    <button id="show" class="show" onclick="showModal()">Open modal</button>
+    <script type="text/javascript">
+        'use strict';
+        let dialog =  document.querySelector("dialog");
+        function showModal () {
+            dialog.showModal();
+        }
+        function closeModal () {
+            dialog.close();
+        }
+    </script>
+</body>
+</html>
