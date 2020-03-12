@@ -44,7 +44,7 @@
             tooltipElem.style.left = left + 'px';
             tooltipElem.style.top = top + 'px';
         };
-        document.onmouseout = function(e) {
+        document.onmouseout = function() {
             if (tooltipElem) {
                 tooltipElem.remove();
                 tooltipElem = null;
