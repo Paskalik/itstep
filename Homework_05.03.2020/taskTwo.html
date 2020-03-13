@@ -7,7 +7,21 @@
 <body>
     <script type="text/javascript">
         'use strict';
-
+        let preferredLanguages = navigator.languages;
+        let nativeLanguage = navigator.language;
+        let list = '<ul>';
+        window.onload = () => {
+            preferredLanguages.forEach((item,index) => {
+                if (preferredLanguages[index] === nativeLanguage) {
+                    list += '<li>' + preferredLanguages[index].bold() + '</li>';
+                }
+                else {
+                    list += '<li>' + preferredLanguages[index] + '</li>';
+                }
+            });
+            list += '</ul>';
+            document.write(list);
+        }
     </script>
 </body>
 </html>
