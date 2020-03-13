@@ -5,9 +5,13 @@
     <title>JS</title>
 </head>
 <body>
+    <button id="btn">History</button>
+    <p id="p"></p>
     <script>
         'use strict';
-
+        btn.onclick = () => {
+            p.innerText = history.length;
+        }
     </script>
 </body>
 </html>
