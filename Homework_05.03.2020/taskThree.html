@@ -10,7 +10,8 @@
     <script>
         'use strict';
         btn.onclick = () => {
-            p.innerText = history.length;
+            let history = window.history.length;
+            p.innerHTML = `History contains ${history} entry(ies)`;
         }
     </script>
 </body>
