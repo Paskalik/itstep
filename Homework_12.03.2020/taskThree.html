@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+    <style>
+        div {
+            background-color: #e7d4cb;
+            width: 48vw;
+        }
+        ul {
+            list-style-type: decimal;
+            padding: 10px 10px 10px 25px;
+        }
+        .selected {
+            background: #e78a67;
+        }
+
+        li {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul id="ul">
+        <li>"JavaScript for Kids: A Playful Introduction to Programming" by Nick Morgan</li>
+        <li>"Eloquent JavaScript: A Modern Introduction to Programming" by Marijn Haverbeke</li>
+        <li>"JavaScript: The Good Parts" by Douglas Crockford</li>
+        <li>"Programming JavaScript Applications: Robust Web Architecture with Node, HTML5, and
+            Modern JS Libraries" by Eric Elliott</li>
+        <li>"Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript" by David Herman</li>
+        <li>"JavaScript: The Definitive Guide" by David Flanagan</li>
+        <li>"You Don't Know JS" by Kyle Simpson</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    'use strict';
+    let ul = document.querySelector('ul');
+    let lastClickedElement = null;
+    ul.onclick = function(event) {
+        if (event.target.tagName !== "LI") return;
+        if (event.ctrlKey) {
+            selectSomeElement(event.target);
+        } else {
+            if (event.shiftKey) {
+                selectShiftElement(event.target);
+            } else {
+                selectElement(event.target);
+            }
+        }
+        lastClickedElement = event.target;
+    };
+    ul.onmousedown = function() {
+        return false;
+    };
+    function selectSomeElement(li) {
+        li.classList.toggle('selected');
+    }
+    function selectElement(li) {
+        let selected = ul.querySelectorAll('.selected');
+        for(let elem of selected) {
+            elem.classList.remove('selected');
+        }
+        li.classList.add('selected');
+    }
+    function selectShiftElement(li) {
+        let startElement = lastClickedElement || ul.children[0];
+        let isLastClickedBefore = startElement.compareDocumentPosition(li) & 4;
+        if (isLastClickedBefore) {
+            for (let elem = startElement; elem !== li; elem = elem.nextElementSibling) {
+                elem.classList.add('selected');
+            }
+        } else {
+            for (let elem = startElement; elem !== li; elem = elem.previousElementSibling) {
+                elem.classList.add('selected');
+            }
+        }
+        li.classList.add('selected');
+    }
+</script>
+</body>
+</html>
