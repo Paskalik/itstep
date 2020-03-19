@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+    <style>
+        div {
+            background-color: #e7d4cb;
+            width: 15vw;
+        }
+        ul {
+            padding: 10px 10px 10px 25px;
+        }
+        li {
+            cursor: pointer;
+        }
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+        .a {
+            border-bottom: 1px dashed blue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul id="ul">
+            <li><a href="index.html">index.html</a></li>
+            <li><a href="http://google.com">http://google.com</a></li>
+            <li><a href="https://itstep.org">https://itstep.org</a></li>
+            <li><a href="https://mystat.itstep.org">https://mystat.itstep.org</a></li>
+            <li><a href="/images/cat.jpg">/images/cat.jpg</a></li>
+            <li><a href="local/path">local/path</a></li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+        for (let e of Array.from(document.links)) {
+            if (e.href.match(/^https?:/i))
+                e.classList.add("a")
+        }
+    </script>
+</body>
+</html>
