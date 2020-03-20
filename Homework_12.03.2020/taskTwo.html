@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+    <style>
+        span:hover {
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><span onclick="view('pc')">This PC</span>
+            <ul id = "pc">
+                <li><span onclick="view('discC')">Local Disk (C:)</span>
+                    <ul id="discC">
+                        <li>Program Files</li>
+                        <li>Users</li>
+                        <li>Windows</li>
+                    </ul>
+                </li>
+                <li><span onclick="view('diskD')">Local Disk (D:)</span>
+                    <ul id="diskD">
+                        <li>New Folder 1</li>
+                        <li>New Folder 2</li>
+                        <li>New Folder 3</li>
+                    </ul>
+                </li>
+                <li><span>Local Disk (E:)</span></li>
+            </ul>
+        </li>
+    </ul>
+    <script type="text/javascript">
+        'use strict';
+        function view(n) {
+            let elem = document.getElementById(n);
+            elem.style.display = (elem.style.display === 'none') ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
