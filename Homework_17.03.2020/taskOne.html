@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+    <style>
+        img {
+            width: 500px;
+            height: 300px;
+            padding-left: 50px;
+        }
+        .disabled {
+            color: #999999;
+        }
+        div{
+            width: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        i{
+            position: absolute;
+            top: 150px;
+            cursor: pointer;
+            font-size: 30px;
+        }
+
+        .left{
+            left: 15px;
+        }
+
+        .right{
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="img/1.jpg" id="img" alt="">
+        <i id="bck" class="disabled left" onClick="bck()">&lArr;</i>
+        <i id="frw" class="right" onClick="frw()">&rArr;</i>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+        let current = 1;
+        let images = [];
+        images[0] = new Image();
+        images[1] = new Image();
+        images[2] = new Image();
+        images[3] = new Image();
+        images[4] = new Image();
+        let count = images.length;
+        images[0].src="img/1.jpg";
+        images[1].src="img/2.jpg";
+        images[2].src="img/3.jpg";
+        images[3].src="img/4.jpg";
+        images[4].src="img/5.jpg";
+        let frwd = document.getElementById('frw');
+        let bckd = document.getElementById('bck');
+        function frw(){
+            if (current < count) {
+                current++;
+                document.images['img'].src=images[current-1].src;
+                frwd.classList.remove('disabled');
+                bckd.classList.remove('disabled');
+            }
+            if (current === count) {
+                    frwd.classList.add('disabled');
+                }
+        }
+        function bck(){
+            if (current > 1) {
+                current--;
+                document.images['img'].src=images[current-1].src;
+                bckd.classList.remove('disabled');
+                frwd.classList.remove('disabled');
+            }
+            if (current === 1) {
+                bckd.classList.add('disabled');
+            }
+        }
+    </script>
+</body>
+</html>

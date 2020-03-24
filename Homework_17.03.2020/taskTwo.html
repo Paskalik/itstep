@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Information</title>
+    <style>
+        .info {
+            width: 50vw;
+            border: 2px solid #2b66ab;
+        }
+        .header {
+            background-color: #003366;
+            color: white;
+            margin-top: 0;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+        .text {
+            background-color: #99ceff;
+            margin-top: 0;
+            margin-bottom: 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h4 id="header1" class="header" onclick="hideAll()">TAG</h4>
+        <p class="text">
+            In information systems, a tag is a keyword or term assigned to a piece of information
+            (such as an Internet bookmark, digital image, database record, or computer file).
+            This kind of metadata helps describe an item and allows it to be found again by browsing or searching.
+            Tags are generally chosen informally and personally by the item's creator or by its viewer,
+            depending on the system, although they may also be chosen from a controlled vocabulary.
+        </p>
+    </div>
+    <div class="info">
+        <h4 id="header2" class="header">ATTRIBUTE</h4>
+        <p class="text">
+            HTML attributes are special words used inside the opening tag to control the element's behaviour.
+            HTML attributes are a modifier of an HTML element type. An attribute either modifies the default
+            functionality of an element type or provides functionality to certain element types unable to function
+            correctly without them. In HTML syntax, an attribute is added to an HTML start tag.
+        </p>
+    </div>
+    <div class="info">
+        <h4 id="header3" class="header">ELEMENT</h4>
+        <p class="text">
+            An HTML element is an individual component of an HTML (Hypertext Markup Language) document or web page.
+            HTML is composed of a tree of HTML nodes, such as text nodes. Each node can have HTML attributes specified.
+            Nodes can also have content, including other nodes and text. Many HTML nodes represent semantics,
+            or meaning. For example, the &lt;title&gt; node represents the title of the document.
+        </p>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+        function hideAll() {
+            let element = document.querySelectorAll('.text');
+            element.forEach(el => {
+                el.style.display = 'none';
+            });
+        }
+        let header = document.querySelectorAll('.header');
+        header.forEach(el => {
+            el.onclick = function () {
+                hideAll();
+                el.closest('.info').querySelector('.text').style.display = 'block';
+            }
+        })
+    </script>
+</body>
+</html>
