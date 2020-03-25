@@ -48,12 +48,10 @@
             let windowHeight = window.innerHeight;
             let y = yOffset + windowHeight;
             if (y >= heightB) {
-                
                 count++;
                 if (count <= blockNews.length) {
                     block.innerHTML = block.innerHTML + '<h1>News ' + count + '</h1>' + '<p>' + blockNews[count-1] + '</p>';
                 }
-
         }
         })
     </script>
