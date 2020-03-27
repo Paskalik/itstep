@@ -2,13 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>News</title>
+    <title>Form</title>
+    <style>
+        form {
+            width: 280px;
+            background-color: rgba(224, 224, 224, 0.91);
+            margin-left: 20vw;
+            padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+        }
+        input {
+            width: 256px;
+            margin-bottom: 10px;
+            height: 35px;
+            font-size: 35px;
+            padding: 10px;
+            text-align: right;
+        }
+        button {
+            width: 70px;
+            height: 70px;
+            margin: 0;
+            padding: 0;
+            font-size: 35px;
+        }
+        button[type = "submit"] {
+            width: 140px;
+        }
+    </style>
 </head>
 <body>
-<p>Не удаляй, пожалуйста, я в пятницу догружу</p>
+    <form>
+        <label>
+            <input id="input" value='0'>
+        </label>
+        <button>7</button><button>8</button><button>9</button><button>+</button>
+        <button>4</button><button>5</button><button>6</button><button>-</button>
+        <button>1</button><button>2</button><button>3</button><button>*</button>
+        <button>0</button><button type="submit">=</button><button>/</button>
+    </form>
     <script type="text/javascript">
         'use strict';
-
+        let input = document.getElementById('input');
+        document.querySelectorAll("button").forEach(function (button) {
+            button.onclick = onButtonClick;
+        });
+        function onButtonClick() {
+            if (this.innerText === '=') {
+                input.value += '=' + eval(input.value);
+            }
+            else if (input.value === '0') {
+                input.value = this.innerText;
+            }
+            else {
+                input.value += this.innerText;
+            }
+            return false;
+        }        
     </script>
 </body>
 </html>
