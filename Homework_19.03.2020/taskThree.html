@@ -5,27 +5,39 @@
     <title>Form</title>
     <style>
         button {
-            background-color: #3d70ff;
+            background-color: #369bff;
             border: none;
-            border-radius: 5px;
-            width: 120px;
-            height: 40px;
-            color: white;
+            border-radius: 10px;
+            width: 130px;
+            height: 50px;
             font-size: 20px;
+            cursor: pointer;
+
         }
         img {
-            width: 20px;
-            height: 25px;
-            : white;
+            width: 35px;
+            height: 35px;
+            vertical-align: middle;
+        }
+        span {
+            color: white;
         }
     </style>
 </head>
 <body>
-    <button><img src="https://img.icons8.com/dotty/80/000000/facebook-like.png"/>Like</button>
-    <p>Не удаляй, пожалуйста, я в пятницу догружу</p>
+    <button id="btn">
+        <img src="Like.png" alt="">
+        <span id="count">Like</span>
+    </button>
     <script type="text/javascript">
         'use strict';
-
+        let btn = document.getElementById("btn");
+        let span = document.getElementById("count");
+        let counter = 0;
+        btn.onclick = function () {
+            counter++;
+            span.innerHTML = 'Like ' + counter;
+        }
     </script>
 </body>
 </html>
