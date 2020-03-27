@@ -4,11 +4,108 @@
     <meta charset="UTF-8">
     <title>Form</title>
 </head>
+<style>
+    form {
+        height: auto;
+        width: 60vw;
+        background-color: rgba(224, 224, 224, 0.91);
+        margin-left: 20vw;
+        padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+    }
+    input {
+        width: 20rem;
+    }
+    textarea {
+        width: 99%;
+        height: 5rem;
+    }
+    button {
+        width: 100%;
+        line-height: 2em;
+        border: 1px solid rgba(0,0,0,.4);
+        border-top-color: rgba(0,0,0,.3);
+        border-radius: 2px;
+        background: linear-gradient(rgb(224, 224, 224), rgb(194, 194, 194));
+        transition: 2s ease-in-out;
+    }
+    .date {
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+    p {
+        margin-top: 0;
+    }
+    h4 {
+        margin-bottom: 5px;
+    }
+</style>
 <body>
-<p>Не удаляй, пожалуйста, я в пятницу догружу</p>
+<form>
+    <div>
+        <h3>What is Lorem Ipsum?</h3>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Arcu dictum varius duis at consectetur lorem. Consectetur purus ut faucibus pulvinar
+            elementum integer enim neque. Consequat nisl vel pretium lectus quam id leo in vitae. Integer feugiat
+            scelerisque varius morbi enim nunc faucibus. Urna neque viverra justo nec ultrices dui sapien eget. Mattis
+            nunc sed blandit libero volutpat sed. A scelerisque purus semper eget duis at tellus. Eu sem integer vitae
+            justo eget magna fermentum iaculis. Netus et malesuada fames ac turpis egestas. Nisl nunc mi ipsum faucibus
+            vitae aliquet nec ullamcorper sit. Donec enim diam vulputate ut pharetra sit. Cras adipiscing enim eu
+            turpis egestas pretium aenean pharetra.
+        </p>
+        <hr>
+    </div>
+    <div id="comment">
+        <h4>Antoine</h4>
+        <p class="date">23.08.2018</p>
+        <p>Best comments from Antoine</p>
+        <hr>
+    </div>
+    <div>
+        <h5>Leave you comment</h5>
+        <label>Name:
+            <input id="name">
+        </label><br>
+        <label>Comment:
+            <textarea id="text"></textarea>
+        </label>
+        <button id="add">Add comment</button>
+    </div>
+</form>
 <script type="text/javascript">
     'use strict';
-
+    function getDate() {
+        let date = new Date();
+        let dd = date.getDate();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        let mm = date.getMonth() + 1;
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        let yyyy = date.getFullYear();
+        return dd + '.' + mm + '.' + yyyy;
+    }
+    function addComment(){
+        let name = document.createElement('h4');
+        name.innerHTML = document.getElementById('name').value;
+        let text = document.createElement('p');
+        text.innerHTML = document.getElementById('text').value;
+        let date = document.createElement('p');
+        date.className = 'date';
+        date.innerHTML = getDate();
+        let sep = document.createElement('hr');
+        if ((name.innerHTML === "") || (text.innerHTML === "")) {
+            return;
+        } else {
+            document.getElementById('comment').append(name,date,text,sep);
+            document.getElementById('name').value = "";
+            document.getElementById('text').value = "";
+        }
+        return false;
+    }
+    document.getElementById('add').onclick = addComment;
 </script>
 </body>
 </html>
