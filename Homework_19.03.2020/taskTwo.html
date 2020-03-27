@@ -38,6 +38,11 @@
     h4 {
         margin-bottom: 5px;
     }
+    .fail {
+        border: 2px red solid;
+        color: red;
+
+    }
 </style>
 <body>
 <form>
@@ -74,6 +79,20 @@
 </form>
 <script type="text/javascript">
     'use strict';
+    let input = document.getElementById('name');
+    let textarea = document.getElementById('text');
+    input.onfocus = function () {
+        if (this.classList.contains('fail')) {
+            this.classList.remove('fail');
+            this.value= "";
+        }
+    };
+    textarea.onfocus = function () {
+        if (this.classList.contains('fail')) {
+            this.classList.remove('fail');
+            this.value= "";
+        }
+    };
     function getDate() {
         let date = new Date();
         let dd = date.getDate();
@@ -89,19 +108,28 @@
     }
     function addComment(){
         let name = document.createElement('h4');
-        name.innerHTML = document.getElementById('name').value;
+        name.innerHTML = input.value;
         let text = document.createElement('p');
-        text.innerHTML = document.getElementById('text').value;
+        text.innerHTML = textarea.value;
         let date = document.createElement('p');
         date.className = 'date';
         date.innerHTML = getDate();
         let sep = document.createElement('hr');
-        if ((name.innerHTML === "") || (text.innerHTML === "")) {
-            return;
-        } else {
-            document.getElementById('comment').append(name,date,text,sep);
-            document.getElementById('name').value = "";
-            document.getElementById('text').value = "";
+        if (name.innerHTML === "") {
+            input.className = 'fail';
+            input.value = "The field is required!";
+        }
+        if (text.innerHTML === "") {
+            textarea.className = 'fail';
+            textarea.value = "The field is required!";
+        }
+        if (document.getElementsByClassName('fail').length > 0) {
+            return false;
+        }
+        else {
+                document.getElementById('comment').append(name,date,text,sep);
+                input.value = "";
+                textarea.value = "";
         }
         return false;
     }
