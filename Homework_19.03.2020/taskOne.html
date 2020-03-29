@@ -34,6 +34,9 @@
                 }
             }
             div.innerHTML = text;
+            if (document.querySelector("input").value === "") {
+                div.innerHTML = "";
+            }
             p.forEach(el => {
                 el.onclick = function () {
                     document.querySelector("input").value = el.innerText;
