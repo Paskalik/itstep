@@ -25,10 +25,12 @@
     </style>
 </head>
 <body>
-    <button id="btn">
-        <img src="Like.png" alt="">
-        <span id="count">Like</span>
-    </button>
+    <form>
+        <button id="btn">
+            <img src="Like.png" alt="">
+            <span id="count">Like</span>
+        </button>
+    </form>
     <script type="text/javascript">
         'use strict';
         let btn = document.getElementById("btn");
@@ -37,6 +39,7 @@
         btn.onclick = function () {
             counter++;
             span.innerHTML = 'Like ' + counter;
+            return false;
         }
     </script>
 </body>
