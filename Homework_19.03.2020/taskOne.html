@@ -28,7 +28,7 @@
             let p = document.querySelectorAll("p");
             let count = 0;
             for (let i = 0; i < arr.length; i++) {
-                if (sim.test(arr[i]) && count < 10) {
+                if (sim.test(arr[i].toLowerCase()) && count < 10) {
                     text += "<p>" + arr[i] + "</p>";
                     count++;
                 }
