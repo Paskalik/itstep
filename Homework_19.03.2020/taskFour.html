@@ -47,11 +47,19 @@
             button.onclick = onButtonClick;
         });
         function onButtonClick() {
-            if (this.innerText === '=') {
-                input.value += '=' + eval(input.value);
+            if ((input.value === '0') || (input.value.includes('='))) {
+                if (
+                    (this.innerText !== '*')
+                    && (this.innerText !== '/')
+                    && (this.innerText !== '-')
+                    && (this.innerText !== '+')
+                    && (this.innerText !== '=')
+                ) {
+                    input.value = this.innerText;
+                }
             }
-            else if (input.value === '0') {
-                input.value = this.innerText;
+            else if (this.innerText === '=') {
+                input.value += '=' + eval(input.value);
             }
             else {
                 input.value += this.innerText;
