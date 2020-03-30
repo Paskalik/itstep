@@ -7,7 +7,132 @@
 <body>
   <script type="text/javascript">
       'use strict';
+      class Figure {
+          constructor(...sides) {
+              this.sides = [...sides];
+          }
+          nameFigure;
+          get name() {
+              return this.nameFigure;
+          };
+          getInfo() {
+              let info = '';
+              for (let i = 0; i < this.sides.length; i++) {
+                  info += 'Side' + (i + 1) + ' = ' + this.sides[i] + ' ';
+              }
+              return info;
+          };
+          getSquare() {
+              let square = 0;
+              if (this.sides.length === 4) {
+                  square = this.sides[0]*this.sides[1];
+              }
+              else if (this.sides.length === 3) {
+                  let p = this.getPerimeter() / 2;
+                  let result = p;
+                  for (let i = 0; i < this.sides.length; i++) {
+                      result = result * (p - this.sides[i]);
+                  }
+                  square = Math.sqrt(result).toFixed(2);
+              }
+              return square;
+          };
+          getPerimeter() {
+              let perimeter = 0;
+              for (let i = 0; i < this.sides.length; i++) {
+                  perimeter += this.sides[i];
+              }
+              return perimeter;
+          }
+      }
+      class Square extends Figure {
+          constructor(side) {
+              super(side,side,side,side);
+          }
+          nameFigure = "Square";
+          name() {
+              return super.name;
+          }
+          getInfo() {
+              return super.getInfo();
+          }
+          getSquare() {
+              return super.getSquare();
+          }
+          getPerimeter() {
+              return super.getPerimeter();
+          }
+      }
+      class Rectangle extends Figure {
+          constructor(sideA,sideB) {
+              super(sideA,sideB,sideA,sideB);
+          }
+          nameFigure = "Rectangle";
+          name() {
+              return super.name;
+          }
+          getInfo() {
+              return super.getInfo();
+          }
 
+          getSquare() {
+              return super.getSquare();
+          }
+          getPerimeter() {
+              return super.getPerimeter();
+          }
+      }
+      class Triangle extends Figure {
+          constructor(sideA,sideB,sideC) {
+              super(sideA,sideB,sideC);
+          }
+          nameFigure = "Triangle";
+          name() {
+              return super.name;
+          }
+          sidesSort = this.sides.sort();
+          isTriangle() {
+              return (this.sidesSort[0] + this.sides[1] > this.sidesSort[2]) && (this.sidesSort[0] > 0);
+          }
+          getInfo() {
+              if (this.isTriangle()) {
+                  return super.getInfo();
+              }
+              else {
+                  return "The triangle doesn't exist!";
+              }
+          }
+          getSquare() {
+              if (this.isTriangle()) {
+                  return super.getSquare();
+              }
+              else {
+                  return "The triangle doesn't exist!";
+              }
+          }
+          getPerimeter() {
+              if (this.isTriangle()) {
+                return super.getPerimeter();
+          }
+          else {
+          return "The triangle doesn't exist!";
+      }
+          }
+      }
+      function example() {
+          let arr = [
+              new Square(13),
+              new Rectangle(9,12),
+              new Triangle(3,5,7)
+          ];
+          arr.forEach(el => {
+              console.log(el.name());
+              console.log(el.getInfo());
+              console.log(el.getSquare());
+              console.log(el.getPerimeter())
+          });
+      }
+      example();
   </script>
 </body>
 </html>
