@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style>
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        #inform {
+            color: red;
+        }
+        span {
+            font-size: 20px;
+        }
+        button {
+            width: 120px;
+            height:30px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h3 id="question">1) How many letters are there in the word "Hello"?</h3>
+        <ul>
+            <li>
+                <label id="answerOne" class="correct">
+                    <input type="radio" name="answer">
+                    <span >5</span>
+                </label>
+            </li>
+            <li>
+                <label id="answerTwo" class="incorrect">
+                    <input type="radio" name="answer">
+                    <span>2</span>
+                </label>
+            </li>
+        </ul>
+        <button id="btn">Next</button>
+        <h3 id="inform"></h3>
+    </form>
+    <script type="text/javascript">
+        'use strict';
+        let questionsList = [
+            'How many letters are there in the word "World"?',
+            'How many letters are there in the word "Birthday"?'
+        ];
+        let answersList = [
+            ['incorrect', 4, 'correct', 5],
+            ['correct', 8, 'incorrect', 7]
+        ];
+        let question = document.getElementById('question');
+        let count = 1;
+        let btn = document.getElementById('btn');
+        let info = document.getElementById('inform');
+        let answerOne = document.getElementById('answerOne');
+        let answerTwo = document.getElementById('answerTwo');
+        function getCheck() {
+            return ((answerOne.firstElementChild.checked) || (answerTwo.firstElementChild.checked));
+        }
+        function getCorrect() {
+            return (((answerOne.firstElementChild.checked) && (answerOne.className === 'correct'))
+            || ((answerTwo.firstElementChild.checked) && (answerTwo.className === 'correct')));
+        }
+        let correctAnswers = 0;
+        btn.onclick = function () {
+            if (!getCheck()) {
+                info.innerText = 'You need to choose the answer!'
+            } else {
+                info.innerText = "";
+                if (getCorrect()) {
+                    correctAnswers++;
+                }
+                if (btn.innerText === 'Next') {
+                    question.innerText = (count + 1) + ') ' + questionsList[0];
+                    answerOne.className = answersList[0][0];
+                    answerOne.lastElementChild.innerText = answersList[0][1];
+                    answerTwo.className = answersList[0][2];
+                    answerTwo.lastElementChild.innerText = answersList[0][3];
+                    answerOne.firstElementChild.checked = false;
+                    answerTwo.firstElementChild.checked = false;
+                    if (questionsList.length === 1) {
+                        btn.innerText = 'Finish';
+                    }
+                    else {
+                        questionsList = questionsList.slice(1);
+                        answersList = answersList.slice(1);
+                    }
+                    count++;
+                }
+                else if (btn.innerText === 'Finish') {
+                    info.innerText = 'Result: ' + correctAnswers + ' correct answers to ' + (count) + ' questions!';
+                }
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
