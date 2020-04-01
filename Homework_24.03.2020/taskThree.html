@@ -4,16 +4,167 @@
     <meta charset="UTF-8">
     <title>Form</title>
     <style>
+        div {
+            display: inline-block;
+            width: 16vw;
+            height: 85vh;
+            float: left;
+            margin-left: 20px;
+            margin-top: 20px;
+            border: 2px solid rgb(149, 149, 149);
+            border-radius: 15px;
+            padding: 10px;
+            text-align: center;
+        }
+        span {
 
+            text-align: left;
+            font-weight: bold;
+            height: 10vh;
+        }
+        img {
+            width: 15vw;
+            height: 60vh;
+            top: 0;
+        }
+        button,input {
+            width: 100%;
+        }
+        #order {
+            width: 25vw;
+            display: none;
+        }
+        #title {
+            background-color: #F0F0F0;
+            cursor: default;
+        }
+        #info {
+            color: red;
+        }
+        textarea {
+            width: 99%;
+        }
+        table {
+            width: 25vw;
+        }
+        table td:first-child {
+            text-align: left;
+        }
+        table td:nth-child(2) {
+            text-align: right;
+        }
     </style>
 </head>
 <body>
     <form>
-        <h1>Не удаляй, пожалуйста, я в среду до кноца дня выкачу</h1>
+        <div class="book">
+            <img src="1.jpg" alt="">
+            <span class="title">Learning JavaScript/ JavaScript Essentials for Modern Application Development</span>
+            <span class="author">Ethan Brown</span>
+            <span class="price">16$</span>
+            <button>Select</button>
+        </div>
+        <div class="book">
+            <img src="2.jpg" alt="">
+            <span class="title">You Don't Know JS. Scope & Closures</span>
+            <span class="author">Kyle Simpson</span>
+            <span class="price">20$</span>
+            <button>Select</button>
+        </div>
+        <div class="book">
+            <img src="3.jpg" alt="">
+            <span class="title">JavaScript and JQuery. Interactive Front-End Web Development</span>
+            <span class="author">Jon Duckett</span>
+            <span class="price">22$</span>
+            <button>Select</button>
+        </div>
+        <div id="order">
+            <table>
+                <tr>
+                    <td>
+                        <label for="title">Book:</label>
+                    </td>
+                    <td>
+                        <input id="title" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="count">Quantity:</label>
+                    </td>
+                    <td>
+                        <input id="count">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="name">Name:</label>
+                    </td>
+                    <td>
+                        <input id="name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="address">Delivery address:</label>
+                    </td>
+                    <td>
+                        <textarea id="address"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="date">Delivery date:</label>
+                    </td>
+                    <td>
+                        <input type="date" id="date">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="comment">Comment:</label>
+                    </td>
+                    <td>
+                        <textarea id="comment"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <button id="buy">Buy</button>
+            <p id="info"></p>
+        </div>
     </form>
     <script type="text/javascript">
         'use strict';
-
+        let order = document.getElementById('order');
+        let btn = document.querySelectorAll('.book button');
+        let title = document.getElementById('title');
+        let name = document.getElementById('name');
+        let count = document.getElementById('count');
+        let date = document.getElementById('date');
+        let today = new Date().toDateString();
+        let address = document.getElementById('address');
+        let buy = document.getElementById('buy');
+        let info = document.getElementById('info');
+        btn.forEach(function (el) {
+            el.onclick = function () {
+                order.style.display = 'inline-block';
+                let div = el.parentElement;
+                let titleIn = div.querySelector('.title');
+                title.value = titleIn.innerText;
+                return false;
+                }
+            });
+        buy.onclick = function () {
+            let dateDelivery = new Date(date.value).toDateString();
+            if ((name.value === "") || (count.value === "") || (address.value === "") || (date.value === "") || (dateDelivery < today)) {
+                info.innerText = 'Не заполнены обязательные поля!'
+            }
+            else {
+                info.innerText = "";
+                alert(name.value + ', спасибо за заказ. Книга "' + title.value + '" будет доставлена ' + date.value + ' по адресу ' + address.value + '.');
+            }
+            return false;
+        }
     </script>
 </body>
 </html>
