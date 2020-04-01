@@ -8,6 +8,10 @@
     div {
         width: 40vw;
     }
+    .inputs {
+        white-space: normal;
+        text-align-last: justify;
+    }
     textarea {
         display: block;
         width: 100%;
@@ -22,30 +26,32 @@
 <body>
     <form>
         <div>
-            <label>
-                <input type="checkbox" id="weight">
-                Bold
-            </label>
-            <label>
-                <input type="checkbox" id="decoration">
-                Underline
-            </label>
-            <label>
-                <input type="checkbox" id="style">
-                Italics
-            </label>
-            <label>
-                <input type="radio" name="align">
-                Left
-            </label>
-            <label>
-                <input type="radio" name="align">
-                Right
-            </label>
-            <label>
-                <input type="radio" name="align">
-                Justify
-            </label>
+            <div class="inputs">
+                <label>
+                    <input type="checkbox" id="weight">
+                    Bold
+                </label>
+                <label>
+                    <input type="checkbox" id="decoration">
+                    Underline
+                </label>
+                <label>
+                    <input type="checkbox" id="style">
+                    Italics
+                </label>
+                <label>
+                    <input type="radio" name="align">
+                    Left
+                </label>
+                <label>
+                    <input type="radio" name="align">
+                    Right
+                </label>
+                <label>
+                    <input type="radio" name="align">
+                    Justify
+                </label>
+            </div>
             <label>
                 <textarea id="textIn"></textarea>
             </label>
