@@ -5,15 +5,102 @@
     <title>Form</title>
 </head>
 <style>
-
+    div {
+        width: 40vw;
+    }
+    textarea {
+        display: block;
+        width: 100%;
+        white-space: normal;
+        min-height: 15vh;
+        overflow: hidden;
+    }
+    #result {
+        display: none;
+    }
 </style>
 <body>
     <form>
-        <h1>Не удаляй, пожалуйста, я в среду до кноца дня выкачу</h1>
+        <div>
+            <label>
+                <input type="checkbox" id="weight">
+                Bold
+            </label>
+            <label>
+                <input type="checkbox" id="decoration">
+                Underline
+            </label>
+            <label>
+                <input type="checkbox" id="style">
+                Italics
+            </label>
+            <label>
+                <input type="radio" name="align">
+                Left
+            </label>
+            <label>
+                <input type="radio" name="align">
+                Right
+            </label>
+            <label>
+                <input type="radio" name="align">
+                Justify
+            </label>
+            <label>
+                <textarea id="textIn"></textarea>
+            </label>
+            <button id="btn">Show text</button>
+        </div>
+        <div id="result">
+            <label>
+                <h4>Result:</h4>
+                <textarea id="textOut"></textarea>
+            </label>
+        </div>
     </form>
     <script type="text/javascript">
         'use strict';
-
+        let btn = document.getElementById('btn');
+        let textIn = document.getElementById('textIn');
+        let result = document.getElementById('result');
+        let textOut = document.getElementById('textOut');
+        textIn.addEventListener('keyup', function () {
+            if (this.scrollTop > 0) {
+                this.style.height = this.scrollHeight + 'px';
+            }
+        });
+        btn.onclick = function () {
+            let weight = document.getElementById('weight');
+            let style = document.getElementById('style');
+            let decoration = document.getElementById('decoration');
+            let align = document.getElementsByName('align');
+            if (textIn.value === "") {
+                textIn.placeholder = 'Enter some text before!';
+            }
+            else {
+                result.style.display = 'block';
+                textOut.value = textIn.value;
+                textOut.style.height = textOut.scrollHeight + 'px';
+                if (weight.checked) {
+                    textOut.style.fontWeight = 'bold';
+                }
+                if (style.checked) {
+                    textOut.style.fontStyle = 'italic';
+                }
+                if (decoration.checked) {
+                    textOut.style.textDecoration = 'underline';
+                }
+                align.forEach(function (el) {
+                    if (el.checked) {
+                        textOut.style.textAlign = el.parentElement.innerText;
+                    }
+                    if (textOut.style.textAlign === 'justify') {
+                        textOut.style.textAlignLast = 'justify';
+                    }
+                });
+            }
+            return false;
+        }
     </script>
 </body>
 </html>
