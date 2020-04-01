@@ -203,7 +203,7 @@
         buy.onclick = function () {
             let dateDelivery = new Date(date.value);
             if ((name.value === "") || (count.value === "") || (address.value === "") || (date.value === "") || (!getDateCompare(today,dateDelivery))) {
-                info.innerText = 'Не заполнены обязательные поля!'
+                info.innerText = 'Не заполнены или заполены некорректно обязательные поля!'
             }
             else {
                 alert(name.value + ', спасибо за заказ. Книга "' + title.value + '" будет доставлена ' + date.value + ' по адресу ' + address.value + '.');
