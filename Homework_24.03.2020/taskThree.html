@@ -35,14 +35,15 @@
         }
         #info {
             color: red;
+            margin-top: 0;
         }
         #address {
             width: 99%;
-            min-height: 15vh;
+            min-height: 12vh;
         }
         #comment {
             width: 99%;
-            min-height: 20vh;
+            min-height: 16vh;
         }
         table {
             width: 25vw;
@@ -202,7 +203,8 @@
         }
         buy.onclick = function () {
             let dateDelivery = new Date(date.value);
-            if ((name.value === "") || (count.value === "") || (address.value === "") || (date.value === "") || (!getDateCompare(today,dateDelivery))) {
+            if ((name.value === "") || (count.value === "") || (address.value === "") || (date.value === "") ||
+                (!getDateCompare(today,dateDelivery)) || (!(/^[\d]+$/g).test(count.value))) {
                 info.innerText = 'Не заполнены или заполены некорректно обязательные поля!'
             }
             else {
