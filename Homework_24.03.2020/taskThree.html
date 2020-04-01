@@ -143,6 +143,7 @@
         let date = document.getElementById('date');
         let today = new Date().toDateString();
         let address = document.getElementById('address');
+        let comment = document.getElementById('comment');
         let buy = document.getElementById('buy');
         let info = document.getElementById('info');
         btn.forEach(function (el) {
@@ -160,6 +161,13 @@
                 info.innerText = 'Не заполнены обязательные поля!'
             }
             else {
+                order.style.display = 'none';
+                name.value = "";
+                count.value = "";
+                title.value = "";
+                address.value = "";
+                date.value = "";
+                comment.value = "";
                 info.innerText = "";
                 alert(name.value + ', спасибо за заказ. Книга "' + title.value + '" будет доставлена ' + date.value + ' по адресу ' + address.value + '.');
             }
