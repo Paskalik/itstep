@@ -6,8 +6,8 @@
     <style>
         div {
             display: inline-block;
-            width: 16vw;
-            height: 85vh;
+            width: 17vw;
+            height: 60vh;
             float: left;
             margin-left: 20px;
             margin-top: 20px;
@@ -15,13 +15,14 @@
             border-radius: 15px;
             padding: 10px;
             text-align: center;
+            position: relative;
         }
         img {
             width: 15vw;
-            height: 60vh;
+            height: 40vh;
             top: 0;
         }
-        button,input {
+        input {
             width: 100%;
         }
         #order {
@@ -35,8 +36,13 @@
         #info {
             color: red;
         }
-        textarea {
+        #address {
             width: 99%;
+            min-height: 15vh;
+        }
+        #comment {
+            width: 99%;
+            min-height: 20vh;
         }
         table {
             width: 25vw;
@@ -51,6 +57,26 @@
             font-weight: bold;
             display: block;
             text-align: left;
+            padding-left: 5%;
+        }
+        .author {
+            font-size: 12px;
+            text-align: left;
+            display: block;
+            padding-left: 5%;
+        }
+        .price {
+            font-weight: bold;
+            font-size: 20px;
+            right: 5%;
+            bottom: 45px;
+            position: absolute;
+        }
+        button {
+            position: absolute;
+            bottom: 20px;
+            left: 5%;
+            width: 90%;
         }
     </style>
 </head>
@@ -150,7 +176,8 @@
                 order.style.display = 'inline-block';
                 let div = el.parentElement;
                 let titleIn = div.querySelector('.title');
-                title.value = titleIn.innerText;
+                let author = div.querySelector('.author');
+                title.value = titleIn.innerText + ' by ' + author.innerText;
                 return false;
                 }
             });
