@@ -7,7 +7,48 @@
 <body>
   <script type="text/javascript">
       'use strict';
-      
+      /* Task 1 */
+      class Marker {
+          constructor(color, per) {
+              this.color = color;
+              this.per = per;
+          }
+          print(doc) {
+              let content = document.createElement('p');
+              document.body.append(content);
+              document.body.setAttribute("style", "font-size: 20px; text-align: center;");
+              for (let i = 0; i < doc.length; i++) {
+                  if (this.per !== 0) {
+                      if (doc[i] === " ") {
+                          this.per += 0.5;
+                      }
+                      content.innerHTML += doc[i];
+                      content.style.color = this.color;
+                      this.per -= 0.5;
+                  } else {
+                      document.write('Marker is over');
+                      break;
+                  }
+              }
+          }
+      }
+      class FillMarker extends Marker {
+          fill(per) {
+              if (per > 100) {
+                  per = 100;
+              } else {
+                  this.per += per;
+              }
+              return per;
+          }
+      }
+      let marker = new FillMarker("red", 2);
+      marker.fill(42);
+      const line = 'Some text for printer: London is the capital of Great Britian';
+      marker.print(line);
+      /* Task 2 */
+
+      /* Task 3 */
   </script>
 </body>
 </html>

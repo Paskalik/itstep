@@ -187,6 +187,7 @@
                 info.innerText = 'Не заполнены обязательные поля!'
             }
             else {
+                alert(name.value + ', спасибо за заказ. Книга "' + title.value + '" будет доставлена ' + date.value + ' по адресу ' + address.value + '.');
                 order.style.display = 'none';
                 name.value = "";
                 count.value = "";
@@ -195,7 +196,6 @@
                 date.value = "";
                 comment.value = "";
                 info.innerText = "";
-                alert(name.value + ', спасибо за заказ. Книга "' + title.value + '" будет доставлена ' + date.value + ' по адресу ' + address.value + '.');
             }
             return false;
         }
