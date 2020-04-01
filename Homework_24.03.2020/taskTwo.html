@@ -5,22 +5,37 @@
     <title>Form</title>
 </head>
 <style>
-    div {
-        width: 40vw;
+    form {
+        width: 35vw;
     }
     .inputs {
         white-space: normal;
         text-align-last: justify;
+        margin-bottom: 5px;
     }
     textarea {
         display: block;
-        width: 100%;
-        white-space: normal;
+        width: 99%;
         min-height: 15vh;
         overflow: hidden;
+        border-radius: 5px;
     }
     #result {
         display: none;
+    }
+    button {
+        width: 100%;
+        margin-top: 15px;
+    }
+    h4 {
+        margin: 20px 0 5px 0;
+    }
+    .border {
+        border: 1px solid rgb(169, 169, 169);
+        border-radius: 5px;
+        min-height: 15vh;
+        margin-top: 0;
+        font-family: monospace;
     }
 </style>
 <body>
@@ -60,7 +75,7 @@
         <div id="result">
             <label>
                 <h4>Result:</h4>
-                <textarea id="textOut"></textarea>
+                <p id="textOut"></p>
             </label>
         </div>
     </form>
@@ -85,8 +100,8 @@
             }
             else {
                 result.style.display = 'block';
-                textOut.value = textIn.value;
-                textOut.style.height = textOut.scrollHeight + 'px';
+                textOut.innerText = textIn.value;
+                textOut.className = 'border';
                 if (weight.checked) {
                     textOut.style.fontWeight = 'bold';
                 }
@@ -102,6 +117,9 @@
                     }
                     if (textOut.style.textAlign === 'justify') {
                         textOut.style.textAlignLast = 'justify';
+                    }
+                    else {
+                        textOut.style.textAlignLast = 'auto';
                     }
                 });
             }
