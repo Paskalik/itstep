@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style>
+        form {
+            width: 90vw;
+            position: relative;        }
+        div {
+            margin: 0 auto;
+            width: 30%;
+        }
+        h4 {
+            text-align: center;
+        }
+        p {
+            margin: 0;
+            background-color: white;
+            opacity: 0.5;
+            height: 30%;
+        }
+        p:first-child {
+            padding-top: 5%;
+        }
+        p:last-child {
+            font-weight: bold;
+        }
+        select,button {
+            width: 100%;
+            min-height: 2rem;
+            margin-bottom: 1rem;
+        }
+        input {
+            width: 99%;
+            min-height: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        #save {
+            margin-top: 1rem;
+        }
+        #colorBlock {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 25vh;
+        }
+        .block {
+            text-align: center;
+            width: 65%;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h4>Create new color</h4>
+        <div>
+            <label>
+                Color:
+                <input id="name">
+            </label>
+            <label>
+                Type:
+                <select id="type">
+                    <option>RGB</option>
+                    <option>RGBA</option>
+                    <option>HEX</option>
+                </select>
+            </label>
+            <label>
+                Code:
+                <input id="code">
+            </label>
+            <button id="save">Save</button>
+        </div>
+        <h4>All colors</h4>
+        <div id="colorBlock"></div>
+    </form>
+    <script type="text/javascript">
+        'use strict';
+        let colors = [
+            {
+                "name": "YELLOWGREEN",
+                "type": "RGB",
+                "code": "154,205,50"
+            },
+            {
+                "name": "DARKCYAN",
+                "type": "RGBA",
+                "code": "0,139,139,1"
+            },
+            {
+                "name": "ORANGERED",
+                "type": "HEX",
+                "code": "#FF4500"
+            }
+        ];
+        let colorBlock = document.getElementById('colorBlock');
+        function setColors() {
+            for (let i = 0; i < colors.length; i++) {
+                let color = document.createElement('div');
+                color.style.padding = '8% 15% 8% 15%';
+                color.className = 'block';
+                if (colors[i].type === 'HEX') {
+                    color.style.backgroundColor = colors[i].code;
+                }
+                else {
+                    color.style.backgroundColor = colors[i].type + '(' + colors[i].code + ')';
+                }
+                for (let j in colors[i]) {
+                    if (colors[i].hasOwnProperty(j)) {
+                        color.innerHTML += '<p>' + colors[i][j] + '</p>';
+                    }
+                }
+                colorBlock.appendChild(color);
+            }
+        }
+        window.onload = function (){
+            setColors();
+        };
+        let save = document.getElementById('save');
+        save.onclick = function () {
+            let name = document.getElementById('name');
+            let type = document.getElementById('type');
+            let code = document.getElementById('code');
+        }
+    </script>
+</body>
+</html>
