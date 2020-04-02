@@ -24,7 +24,7 @@
         'use strict';
         let div = document.querySelector("div");
         document.querySelector("input").oninput = function() {
-            let sim = new RegExp(this.value), text = "";
+            let sim = new RegExp(this.value.toLowerCase()), text = "";
             let p = document.querySelectorAll("p");
             let count = 0;
             for (let i = 0; i < arr.length; i++) {
