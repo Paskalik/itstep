@@ -123,6 +123,10 @@
             let name = document.getElementById('name');
             let type = document.getElementById('type');
             let code = document.getElementById('code');
+            if (!((/[A-zА-яЁё]+$/i).test(name.value))) {
+                name.value = 'fail';
+            }
+            return false;
         }
     </script>
 </body>
