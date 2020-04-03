@@ -53,6 +53,7 @@
         .block {
             text-align: center;
             width: 65%;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
@@ -121,6 +122,7 @@
                 }
                 colorBlock.appendChild(color);
             }
+            colors = [];
         }
         window.onload = function (){
             setColors();
@@ -138,11 +140,13 @@
             let name = document.getElementById('name');
             let type = document.getElementsByTagName('option');
             let code = document.getElementById('code');
+            let typeName;
             if (!((/[a-zа-яё]+$/i).test(name.value))) {
                 error[0].innerHTML = 'Color can only contain letters';
             }
             else {
                 error[0].innerHTML = "";
+
             }
             let regexp = [
                 /(\s*((?:[0-2]?[0-5])?[0-5])\s*,){2}\s*((?:[0-2]?[0-5])?[0-5])\s*$/,
@@ -159,6 +163,20 @@
                 if ((type[i].selected) && !((regexp[i]).test(code.value))) {
                     error[1].innerHTML = errorText[i];
                 }
+                else if (type[i].selected) {
+                    typeName = type[i].value;
+                }
+            }
+            if ((error[0].innerHTML === "") && (error[1].innerHTML === "")) {
+                let newColor = {};
+                newColor['name'] = name.value.toUpperCase();
+                newColor['type'] = typeName;
+                newColor['code'] = code.value;
+                colors.push(newColor);
+                setColors();
+                name.value = "";
+                code.value = "";
+
             }
         }
     </script>
