@@ -104,8 +104,9 @@
             }
         ];
         let colorBlock = document.getElementById('colorBlock');
-        function setColors() {
-            for (let i = 0; i < colors.length; i++) {
+        let count = colors.length;
+        function setColors(count) {
+            for (let i = count; i < colors.length; i++) {
                 let color = document.createElement('div');
                 color.style.padding = '8% 15% 8% 15%';
                 color.className = 'block';
@@ -122,10 +123,10 @@
                 }
                 colorBlock.appendChild(color);
             }
-            colors = [];
+            return colors.length;
         }
         window.onload = function (){
-            setColors();
+            setColors(0);
         };
         let error = document.getElementsByClassName('error');
         let input = document.getElementsByTagName('input');
@@ -173,7 +174,7 @@
                 newColor['type'] = typeName;
                 newColor['code'] = code.value;
                 colors.push(newColor);
-                setColors();
+                count = setColors(count);
                 name.value = "";
                 code.value = "";
             }
