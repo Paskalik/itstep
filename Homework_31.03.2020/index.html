@@ -1,10 +1,9 @@
-﻿/*Не удаляй, пожалуйста, до конца среды выкачу код*/
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Form</title>
+    /*Не удаляй, пожалуйста, до конца среду выкачу*/
     <style>
         form {
             width: 90vw;
@@ -106,15 +105,19 @@
             }
         ];
         let colorBlock = document.getElementById('colorBlock');
-        let count = colors.length;
+        let text = [];
         function setCookies(name,type,code) {
             let expDate = new Date();
             expDate.setTime((new Date()).getTime() + 3600*3*1000);
             document.cookie = 'name=' + name + '; expires=' + expDate + '; path=/';
             document.cookie = 'type=' + type + '; expires=' + expDate + '; path=/';
             document.cookie = 'code=' + code + '; expires=' + expDate + '; path=/';
+            for (let i = 0; i < text.length; i++) {
+                document.cookie = text[i];
+            }
         }
         function getCookies() {
+            debugger;
             if (document.cookie) {
                 let savedCookies = document.cookie.split(';');
                 let oneColor = {};
@@ -122,7 +125,7 @@
                     let savedOneColorName = savedCookies[i].split('=');
                     let savedOneColorType = savedCookies[i+1].split('=');
                     let savedOneColorCode = savedCookies[i+2].split('=');
-                    if (savedOneColorName[0] === 'name') {
+                    if ((savedOneColorName[0] === 'name') || (savedOneColorName[0] === ' name')) {
                         oneColor["name"] = savedOneColorName[1];
                         oneColor["type"] = savedOneColorType[1];
                         oneColor["code"] = savedOneColorCode[1];
@@ -164,6 +167,7 @@
             };
         }
         let save = document.getElementById('save');
+        let count = colors.length;
         save.onclick = function () {
             let name = document.getElementById('name');
             let type = document.getElementsByTagName('option');
@@ -205,6 +209,7 @@
                 name.value = "";
                 code.value = "";
                 setCookies(newColor['name'],newColor['type'],newColor['code']);
+                text = document.cookie.split(';');
             }
         }
     </script>
