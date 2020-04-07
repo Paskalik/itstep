@@ -1,7 +1,5 @@
 ﻿/*Не удаляй, пожалуйста, до конца среды выкачу код*/
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,7 +107,30 @@
         ];
         let colorBlock = document.getElementById('colorBlock');
         let count = colors.length;
-
+        function setCookies(name,type,code) {
+            let expDate = new Date();
+            expDate.setTime((new Date()).getTime() + 3600*3*1000);
+            document.cookie = 'name=' + name + '; expires=' + expDate + '; path=/';
+            document.cookie = 'type=' + type + '; expires=' + expDate + '; path=/';
+            document.cookie = 'code=' + code + '; expires=' + expDate + '; path=/';
+        }
+        function getCookies() {
+            if (document.cookie) {
+                let savedCookies = document.cookie.split(';');
+                let oneColor = {};
+                for (let i = 0; (i+2) < savedCookies.length; i++) {
+                    let savedOneColorName = savedCookies[i].split('=');
+                    let savedOneColorType = savedCookies[i+1].split('=');
+                    let savedOneColorCode = savedCookies[i+2].split('=');
+                    if (savedOneColorName[0] === 'name') {
+                        oneColor["name"] = savedOneColorName[1];
+                        oneColor["type"] = savedOneColorType[1];
+                        oneColor["code"] = savedOneColorCode[1];
+                        colors.push(oneColor);
+                    }
+                }
+            }
+        }
         function setColors(count) {
             for (let i = count; i < colors.length; i++) {
                 let color = document.createElement('div');
@@ -131,7 +152,7 @@
             return colors.length;
         }
         window.onload = function (){
-
+            getCookies();
             setColors(0);
         };
         let error = document.getElementsByClassName('error');
@@ -183,7 +204,7 @@
                 count = setColors(count);
                 name.value = "";
                 code.value = "";
-
+                setCookies(newColor['name'],newColor['type'],newColor['code']);
             }
         }
     </script>
