@@ -1,0 +1,191 @@
+﻿/*Не удаляй, пожалуйста, до конца среды выкачу код*/
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style>
+        form {
+            width: 90vw;
+            position: relative;        }
+        div {
+            margin: 0 auto;
+            width: 30%;
+        }
+        h4 {
+            text-align: center;
+        }
+        p {
+            margin: 0;
+            background-color: white;
+            opacity: 0.5;
+            height: 30%;
+        }
+        p:first-child {
+            padding-top: 5%;
+        }
+        p:last-child {
+            font-weight: bold;
+        }
+        select,button {
+            width: 100%;
+            min-height: 2rem;
+            margin-bottom: 1rem;
+        }
+        input {
+            width: 99%;
+            min-height: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .error {
+            float: right;
+            color: red;
+            text-align: right;
+        }
+        #save {
+            margin-top: 1rem;
+        }
+        #colorBlock {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 25vh;
+        }
+        .block {
+            text-align: center;
+            width: 65%;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="return false;">
+        <h4>Create new color</h4>
+        <div>
+            <label>
+                <span>Color:</span>
+                <span class="error"></span>
+                <input id="name">
+            </label>
+            <label>
+                <span>Type:</span>
+                <select>
+                    <option>RGB</option>
+                    <option>RGBA</option>
+                    <option>HEX</option>
+                </select>
+            </label>
+            <label>
+                <span>Code:</span>
+                <span class="error"></span>
+                <input id="code">
+            </label>
+            <button id="save">Save</button>
+        </div>
+        <h4>All colors</h4>
+        <div id="colorBlock"></div>
+    </form>
+    <script type="text/javascript">
+        'use strict';
+        let colors = [
+            {
+                "name": "YELLOWGREEN",
+                "type": "RGB",
+                "code": "154,205,50"
+            },
+            {
+                "name": "DARKCYAN",
+                "type": "RGBA",
+                "code": "0,139,139,1"
+            },
+            {
+                "name": "ORANGERED",
+                "type": "HEX",
+                "code": "#FF4500"
+            }
+        ];
+        let colorBlock = document.getElementById('colorBlock');
+        let count = colors.length;
+
+        function setColors(count) {
+            for (let i = count; i < colors.length; i++) {
+                let color = document.createElement('div');
+                color.style.padding = '8% 15% 8% 15%';
+                color.className = 'block';
+                if (colors[i].type === 'HEX') {
+                    color.style.backgroundColor = colors[i].code;
+                }
+                else {
+                    color.style.backgroundColor = colors[i].type + '(' + colors[i].code + ')';
+                }
+                for (let j in colors[i]) {
+                    if (colors[i].hasOwnProperty(j)) {
+                        color.innerHTML += '<p>' + colors[i][j] + '</p>';
+                    }
+                }
+                colorBlock.appendChild(color);
+            }
+            return colors.length;
+        }
+        window.onload = function (){
+
+            setColors(0);
+        };
+        let error = document.getElementsByClassName('error');
+        let input = document.getElementsByTagName('input');
+        for (let i = 0; i < input.length; i++) {
+            input[i].onfocus = function (){
+                let error = this.parentElement.getElementsByClassName('error');
+                error[0].innerHTML = "";
+            };
+        }
+        let save = document.getElementById('save');
+        save.onclick = function () {
+            let name = document.getElementById('name');
+            let type = document.getElementsByTagName('option');
+            let code = document.getElementById('code');
+            let typeName;
+            if (!((/[a-zа-яё]+$/i).test(name.value))) {
+                error[0].innerHTML = 'Color can only contain letters';
+            }
+            else {
+                error[0].innerHTML = "";
+
+            }
+            let regexp = [
+                /(\s*((?:[0-2]?[0-5])?[0-5])\s*,){2}\s*((?:[0-2]?[0-5])?[0-5])\s*$/,
+                /(\s*((?:[0-2]?[0-5])?[0-5])\s*,){3}\s*((?:[0-2]?[0-5])?[0-5])\s*$/,
+                /#[a-f0-9]{6}/gi
+            ];
+            let errorText = [
+                'RGB code must match the pattern<br>[0-255],[0-255],[0-255]',
+                'RGBA code must match the pattern<br>[0-255],[0-255],[0-255],[0-255]',
+                'HEX code must match the pattern<br>#[a-f0-9]{6}'
+
+            ];
+            for (let i = 0; i < type.length; i++) {
+                if ((type[i].selected) && !((regexp[i]).test(code.value))) {
+                    error[1].innerHTML = errorText[i];
+                }
+                else if (type[i].selected) {
+                    typeName = type[i].value;
+                }
+            }
+            if ((error[0].innerHTML === "") && (error[1].innerHTML === "")) {
+                let newColor = {};
+                newColor['name'] = name.value.toUpperCase();
+                newColor['type'] = typeName;
+                newColor['code'] = code.value;
+                colors.push(newColor);
+                count = setColors(count);
+                name.value = "";
+                code.value = "";
+
+            }
+        }
+    </script>
+</body>
+</html>
