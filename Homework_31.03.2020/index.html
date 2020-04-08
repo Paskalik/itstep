@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Form</title>
-    /*Не удаляй, пожалуйста, до конца среду выкачу*/
     <style>
         form {
             width: 90vw;
@@ -105,32 +104,25 @@
             }
         ];
         let colorBlock = document.getElementById('colorBlock');
-        let text = [];
         function setCookies(name,type,code) {
             let expDate = new Date();
             expDate.setTime((new Date()).getTime() + 3600*3*1000);
-            document.cookie = 'name=' + name + '; expires=' + expDate + '; path=/';
-            document.cookie = 'type=' + type + '; expires=' + expDate + '; path=/';
-            document.cookie = 'code=' + code + '; expires=' + expDate + '; path=/';
-            for (let i = 0; i < text.length; i++) {
-                document.cookie = text[i];
+            for (let i = 0; i < colors.length; i++) {
+                let value = type + ' ' + code;
+                document.cookie = name + '=' + value + '; expires=' + expDate + '; path=/';
             }
         }
         function getCookies() {
-            debugger;
             if (document.cookie) {
                 let savedCookies = document.cookie.split(';');
-                let oneColor = {};
-                for (let i = 0; (i+2) < savedCookies.length; i++) {
-                    let savedOneColorName = savedCookies[i].split('=');
-                    let savedOneColorType = savedCookies[i+1].split('=');
-                    let savedOneColorCode = savedCookies[i+2].split('=');
-                    if ((savedOneColorName[0] === 'name') || (savedOneColorName[0] === ' name')) {
-                        oneColor["name"] = savedOneColorName[1];
-                        oneColor["type"] = savedOneColorType[1];
-                        oneColor["code"] = savedOneColorCode[1];
-                        colors.push(oneColor);
-                    }
+                for (let i = 0; i < savedCookies.length; i++) {
+                    let oneColor = {};
+                    let colorData = savedCookies[i].split('=');
+                    let colorValues = colorData[1].split(' ');
+                    oneColor['name'] = colorData[0];
+                    oneColor['type'] = colorValues[0];
+                    oneColor['code'] = colorValues[1];
+                    colors.push(oneColor);
                 }
             }
         }
@@ -209,7 +201,6 @@
                 name.value = "";
                 code.value = "";
                 setCookies(newColor['name'],newColor['type'],newColor['code']);
-                text = document.cookie.split(';');
             }
         }
     </script>
