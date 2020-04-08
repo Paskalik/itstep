@@ -5,13 +5,210 @@
     <title>Canvas</title>
 </head>
 <style>
-
+    form {
+        background-color: rgba(246, 195, 192, 0.58);
+        padding: 10px 10px 40px 10px;
+        width: 1000px;
+    }
+    h4 {
+        text-align: center;
+    }
+    div {
+        display: inline-block;
+        vertical-align: baseline;
+    }
+    .head {
+        width: 100%;
+        height: 60px;
+    }
+    label {
+        margin-right: 10%;
+    }
+    label, input {
+        vertical-align: super;
+    }
+    table {
+        border-collapse: collapse;
+    }
+    td {
+        width: 25px;
+        height: 25px;
+        border: 2px solid gray;
+        cursor: pointer;
+    }
 </style>
 <body>
-/*Не удаляй, пожалуйста, до конца среды выкачу код*/
+    <form>
+        <h4>PAINT</h4>
+        <hr>
+        <div class="head">
+            <label>
+                <input type="radio" name="figure" id="square">
+                <canvas id="sq" width="36" height="36"></canvas>
+            </label>
+            <label>
+                <input type="radio" name="figure" id="circle">
+                <canvas id="crc" width="36" height="36"></canvas>
+            </label>
+            <label>
+                <input type="radio" name="figure" id="rhombus">
+                <canvas id="rh" width="36" height="36"></canvas>
+            </label>
+            <label>
+                <input type="radio" name="figure" id="triangle">
+                <canvas id="tr" width="36" height="36"></canvas>
+            </label>
+            <div>
+                <table>
+                    <tr>
+                        <td style="background-color: white"></td>
+                        <td style="background-color: lightslategray"></td>
+                        <td style="background-color: yellow"></td>
+                        <td style="background-color: lightskyblue"></td>
+                        <td  style="background-color: pink"></td>
+                        <td  style="background-color: greenyellow"></td>
+                        <td style="background-color: mediumpurple"></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: black"></td>
+                        <td style="background-color: dimgray"></td>
+                        <td style="background-color: orange"></td>
+                        <td style="background-color: blue"></td>
+                        <td style="background-color: red"></td>
+                        <td style="background-color: darkgreen"></td>
+                        <td style="background-color: purple"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <canvas id="canvas" width="1000" height="400"></canvas>
+        <hr>
+    </form>
     <script type="text/javascript">
         'use strict';
-
+        let figures = document.getElementsByName('figure');
+        let td = document.getElementsByTagName('td');
+        for (let i = 0; i < figures.length; i++) {
+            let can = figures[i].nextElementSibling;
+            let ctx_r = can.getContext('2d');
+            ctx_r.fillStyle = '#9C9C9C';
+            switch (can.id) {
+                case "sq":
+                    ctx_r.fillRect(0, 0, 36, 36);
+                    break;
+                case "crc":
+                    ctx_r.beginPath();
+                    ctx_r.arc(18,18,18,0,Math.PI*2,true);
+                    ctx_r.fill();
+                    break;
+                case "rh":
+                    ctx_r.beginPath();
+                    ctx_r.moveTo(18,0);
+                    ctx_r.lineTo(36,18);
+                    ctx_r.lineTo(18,36);
+                    ctx_r.lineTo(0,18);
+                    ctx_r.lineTo(18,0);
+                    ctx_r.fill();
+                    break;
+                case "tr":
+                    ctx_r.beginPath();
+                    ctx_r.moveTo(0,0);
+                    ctx_r.lineTo(0,36);
+                    ctx_r.lineTo(36,36);
+                    ctx_r.fill();
+                    break;
+            }
+        }
+        for (let i = 0; i < td.length; i++) {
+            td[i].onclick = function() {
+                ctx.fillStyle = td[i].style.backgroundColor;
+            };
+        }
+        let canvas = document.getElementById('canvas');
+        let ctx = canvas.getContext('2d');
+        let xStart, yStart, xEnd, yEnd;
+        canvas.onmousedown = function(event) {
+            xStart = event.offsetX;
+            yStart = event.offsetY;
+        };
+        canvas.onmouseup = function(event) {
+            xEnd = event.offsetX;
+            yEnd = event.offsetY;
+        };
+        canvas.onclick = function() {
+            let x = xStart;
+            let y = yStart;
+            if ((xStart === xEnd) && (yStart === yEnd)) {
+                for (let i = 0; i < figures.length; i++) {
+                    if (figures[i].checked) {
+                        switch (figures[i].id) {
+                            case "square":
+                                ctx.fillRect(x, y, 50, 50);
+                                break;
+                            case "circle":
+                                ctx.beginPath();
+                                ctx.arc(x,y + 25,25,0,Math.PI*2,true);
+                                ctx.fill();
+                                break;
+                            case  "rhombus":
+                                ctx.beginPath();
+                                ctx.moveTo(x,y);
+                                ctx.lineTo(x + 25,y + 25);
+                                ctx.lineTo(x,y + 50);
+                                ctx.lineTo(x - 25,y + 25);
+                                ctx.lineTo(x,y);
+                                ctx.fill();
+                                break;
+                            case "triangle":
+                                ctx.beginPath();
+                                ctx.moveTo(x,y);
+                                ctx.lineTo(x,y + 50);
+                                ctx.lineTo(x + 50,y + 50);
+                                ctx.fill();
+                                break;
+                        }
+                    }
+                }
+            }
+            else {
+                let value = Math.abs(yEnd - yStart);
+                let halfValue = value / 2;
+                if (yEnd < yStart) {
+                    y = yEnd;
+                }
+                for (let i = 0; i < figures.length; i++) {
+                    if (figures[i].checked) {
+                        switch (figures[i].id) {
+                            case "square":
+                                ctx.fillRect(x, y, value, value);
+                                break;
+                            case "circle":
+                                ctx.beginPath();
+                                ctx.arc(x,y + halfValue,halfValue,0,Math.PI*2,true);
+                                ctx.fill();
+                                break;
+                            case  "rhombus":
+                                ctx.beginPath();
+                                ctx.moveTo(x,y);
+                                ctx.lineTo(x + halfValue,y + halfValue);
+                                ctx.lineTo(x,y + value);
+                                ctx.lineTo(x - halfValue,y + halfValue);
+                                ctx.lineTo(x,y);
+                                ctx.fill();
+                                break;
+                            case "triangle":
+                                ctx.beginPath();
+                                ctx.moveTo(x,y);
+                                ctx.lineTo(x,y + value);
+                                ctx.lineTo(x + value,y + value);
+                                ctx.fill();
+                                break;
+                        }
+                    }
+                }
+            }
+        }
     </script>
 </body>
 </html>
