@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Form</title>
     <style>
+        #exit {
+            text-align: right;
+        }
         form {
             width: 30vw;
             background-color: rgba(246, 195, 192, 0.58);
@@ -11,7 +14,7 @@
             margin: 20vh auto;
         }
         input {
-            width: 100%;
+            width: 97%;
         }
         button {
             width: 100%;
@@ -20,63 +23,189 @@
         h4 {
             text-align: center;
         }
+        .wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 6%;
+        }
+        .error {
+            float: right;
+            color: red;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
     <form onsubmit="return false;">
-        <p>Не удаляй, пожалуйста, я до конца пятницу выкачу код</p>
-        <div>Hello? John!</div>
+        <div id="exit">
+            <span>Hello, </span>
+            <a href="index.html">Exit</a>
+        </div>
         <hr>
         <h4>User info</h4>
-        <table>
-            <tr>
-                <td>
-                    <label>
-                        First Name:
-                        <input>
-                    </label>
-                </td>
-                <td>
-                    <label>
-                        Last Name:
-                        <input>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        Year of birth:
-                        <input>
-                    </label>
-                </td>
-                <td>
-                    <label>
-                        Gender:
-                        <input>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        Phone number:
-                        <input>
-                    </label>
-                </td>
-                <td>
-                    <label>
-                        Skype:
-                        <input>
-                    </label>
-                </td>
-            </tr>
-        </table>
-        <button>Save</button>
+        <div class="wrapper">
+            <div>
+                <label>
+                    <span>First Name:</span>
+                    <span class="error"></span>
+                    <input id="first" maxlength="20">
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>Last Name:</span>
+                    <span class="error"></span>
+                    <input id="last" maxlength="20">
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>Year of birth:</span>
+                    <span class="error"></span>
+                    <input id="birth" type="number">
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>Gender:</span>
+                    <select id="sex">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>Phone number:</span>
+                    <span class="error"></span>
+                    <input id="phone">
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>Skype:</span>
+                    <span class="error"></span>
+                    <input id="skype">
+                </label>
+            </div>
+        </div>
+        <button id="save">Save</button>
     </form>
     <script type="text/javascript">
         'use strict';
-        
+        let email;
+        let gender  = document.getElementById('sex');
+        let input = document.getElementsByTagName('input');
+        let error = document.getElementsByClassName('error');
+        let save = document.getElementById('save');
+        let exit = document.getElementById('exit');
+        let exitBtn = exit.lastElementChild;
+        function setCookies(name,value) {
+            let expDate = new Date();
+            expDate.setTime((new Date()).getTime() + 3600*1000);
+            document.cookie = name + '=' + value + ';path=/;expires=' + expDate + ';';
+        }
+        function getCookies() {
+            if (document.cookie !== "") {
+                let savedCookies = document.cookie.split('; ');
+                let infoData = {};
+                for (let i = 0; i < savedCookies.length; i++) {
+                    let info = savedCookies[i].split('=');
+                    infoData[info[0]] = info[1];
+                }
+                return infoData;
+            }
+        }
+        function deleteCookies() {
+            let cookies = document.cookie.split('; ');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i];
+                let position = cookie.indexOf("=");
+                let name = position > -1 ? cookie.substr(0, position) : cookie;
+                document.cookie = name + '=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            }
+        }
+        window.onload = function () {
+            let infoData = getCookies();
+            let span = exit.firstElementChild;
+            if ((document.cookie === "") || ((infoData.hasOwnProperty("email") && infoData.hasOwnProperty("password")) === false)) {
+                window.location.href = "index.html";
+            }
+            else {
+                email = infoData["email"];
+                span.innerText += email + '!';
+                for (let j = 0; j < input.length; j++) {
+                    if (infoData.hasOwnProperty(input[j].id)) {
+                        input[j].value = infoData[input[j].id];
+                    }
+                }
+                if (infoData.hasOwnProperty("sex")) {
+                    gender.value = infoData["sex"];
+                }
+            }
+        };
+        for (let i = 0; i < input.length; i++) {
+            input[i].onfocus = function (){
+                let errorIn = this.parentElement.getElementsByClassName('error');
+                errorIn[0].innerHTML = "";
+            };
+        }
+        function validation() {
+            let first = document.getElementById('first');
+            let last = document.getElementById('last');
+            let birth = document.getElementById('birth');
+            let phone = document.getElementById('phone');
+            let skype = document.getElementById('skype');
+            let regName = /^[A-zА-я]/;
+            let regBirth = /^(19\d{2})|(200\d|201\d|2020)$/;
+            let regPhone = /^[0-9() \-]{10,12}$/;
+            let regSkype = /^[A-z0-9.-]/;
+            let count = 0;
+            if (regName.test(first.value)) {
+                count++;
+            }
+            else {
+                error[0].innerHTML = "Incorrect first name";
+            }
+            if (regName.test(last.value)) {
+                count++;
+            }
+            else {
+                error[1].innerHTML = "Incorrect last name";
+            }
+            if (regBirth.test(birth.value)) {
+                count++;
+            }
+            else {
+                error[2].innerHTML = "Incorrect year of birth";
+            }
+            if ((regPhone.test(phone.value)) || (phone.value === "")) {
+                count++;
+            }
+            else {
+                error[3].innerHTML = "Incorrect phone number";
+            }
+            if ((regSkype.test(skype.value)) || (skype.value === "")) {
+                count++;
+            }
+            else {
+                error[4].innerHTML = "Incorrect name";
+            }
+            return count === 5;
+        }
+        save.onclick = function () {
+            if (validation()) {
+                for (let i = 0; i < input.length; i++) {
+                    if (input[i].value !== "") {
+                        setCookies(input[i].id,input[i].value);
+                    }
+                }
+                setCookies("sex",gender.value);
+            }
+        };
+        exitBtn.onclick = function () {
+            deleteCookies();
+        }
     </script>
 </body>
 </html>

@@ -57,7 +57,7 @@
         function setCookies(name,value) {
             let expDate = new Date();
             expDate.setTime((new Date()).getTime() + 3600*1000);
-            document.cookie = name + '=' + value + ';expires=' + expDate + ';path=/';
+            document.cookie = name + '=' + value + ';path=/;expires=' + expDate + ';';
         }
         function getCookies() {
             if (document.cookie === "") {
