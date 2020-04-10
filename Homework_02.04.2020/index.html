@@ -57,20 +57,20 @@
         function setCookies(name,value) {
             let expDate = new Date();
             expDate.setTime((new Date()).getTime() + 3600*1000);
-            document.cookie = name + '=' + value + '; expires=' + expDate + '; path=/';
+            document.cookie = name + '=' + value + ';expires=' + expDate + ';path=/';
         }
         function getCookies() {
             if (document.cookie === "") {
                 return false;
             }
             else {
-                let savedCookies = document.cookie.split(';');
                 let infoData = {};
+                let savedCookies = document.cookie.split('; ');
                 for (let i = 0; i < savedCookies.length; i++) {
                     let info = savedCookies[i].split('=');
                     infoData[info[0]] = info[1];
                 }
-                return ((typeof infoData["email"]) && (typeof  infoData["password"]));
+                return (infoData.hasOwnProperty("email") && infoData.hasOwnProperty("password"));
             }
         }
         function validateEmail() {
