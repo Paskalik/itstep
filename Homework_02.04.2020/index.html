@@ -104,7 +104,7 @@
         }
         window.onload = function() {
             if (getCookies()) {
-                window.open("registr.html");
+                window.location.href = "registr.html";
             }
         };
         let input = document.getElementsByTagName('input');
@@ -128,7 +128,7 @@
             if (count === 3) {
                 setCookies("email",email.value);
                 setCookies("password",password.value);
-                window.open("registr.html");
+                window.location.href = "registr.html";
             }
         }
     </script>
