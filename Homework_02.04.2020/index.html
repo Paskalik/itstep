@@ -4,7 +4,22 @@
     <meta charset="UTF-8">
     <title>Form</title>
     <style>
-        
+        form {
+            width: 30vw;
+            background-color: rgba(246, 195, 192, 0.58);
+            padding: 5px 20px 20px 20px;
+            margin: 20vh auto;
+        }
+        input {
+            width: 99%;
+        }
+        button {
+            width: 100%;
+            margin-top: 10px;
+        }
+        h4 {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -12,15 +27,18 @@
         <p>Не удаляй, пожалуйста, я до конца пятницу выкачу код</p>
         <h4>Registration</h4>
         <label>
-            <input>
+            Email:
+            <input type="email">
         </label>
         <label>
-            <input>
+            Password:
+            <input type="password">
         </label>
         <label>
-            <input>
+            Repeat:
+            <input type="password">
         </label>
-        <button></button>
+        <button>Sign Up</button>
     </form>
     <script type="text/javascript">
         'use strict';
