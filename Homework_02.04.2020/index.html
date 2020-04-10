@@ -29,7 +29,6 @@
 </head>
 <body>
     <form onsubmit="return false;">
-        <p>Не удаляй, пожалуйста, я до конца пятницу выкачу код</p>
         <h4>Registration</h4>
         <label>
             <span>Email:</span>
@@ -55,7 +54,6 @@
         let repeat = document.getElementById('repeat');
         let error = document.getElementsByClassName('error');
         let sign = document.getElementById('sign');
-        let count = 0;
         function setCookies(name,value) {
             let expDate = new Date();
             expDate.setTime((new Date()).getTime() + 3600*1000);
@@ -72,7 +70,7 @@
                     let info = savedCookies[i].split('=');
                     infoData[info[0]] = info[1];
                 }
-                return (infoData.hasOwnProperty("email") && infoData.hasOwnProperty("password"));
+                return ((typeof infoData["email"]) && (typeof  infoData["password"]));
             }
         }
         function validateEmail() {
@@ -82,24 +80,21 @@
                 return false;
             }
             else {
-                count++;
                 return true;
             }
         }
         function validatePassword() {
-            let reg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]){6,}/;
+            let reg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
             if (reg.test(password.value) === false) {
                 error[1].innerHTML = "Wrong password";
                 return false;
             }
             else {
-                count++;
                 return true;
             }
         }
         function validateRepeat() {
             if (repeat.value === password.value) {
-                count++;
                 return true;
             }
             else {
@@ -109,7 +104,7 @@
         }
         window.onload = function() {
             if (getCookies()) {
-                window.open("../registr.html");
+                window.open("registr.html");
             }
         };
         let input = document.getElementsByTagName('input');
@@ -120,9 +115,16 @@
             };
         }
         sign.onclick = function () {
-            validateEmail();
-            validatePassword();
-            validateRepeat();
+            let count = 0;
+            if (validateEmail()) {
+                count++
+            }
+            if (validatePassword()) {
+                count++;
+            }
+            if (validateRepeat()) {
+                count++;
+            }
             if (count === 3) {
                 setCookies("email",email.value);
                 setCookies("password",password.value);
