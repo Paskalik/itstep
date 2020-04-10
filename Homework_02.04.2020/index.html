@@ -20,29 +20,115 @@
         h4 {
             text-align: center;
         }
+        .error {
+            float: right;
+            color: red;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
-    <form>
+    <form onsubmit="return false;">
         <p>Не удаляй, пожалуйста, я до конца пятницу выкачу код</p>
         <h4>Registration</h4>
         <label>
-            Email:
-            <input type="email">
+            <span>Email:</span>
+            <span class="error"></span>
+            <input type="text" id="email">
         </label>
         <label>
-            Password:
-            <input type="password">
+            <span>Password:</span>
+            <span class="error"></span>
+            <input type="password" id="password">
         </label>
         <label>
-            Repeat:
-            <input type="password">
+            <span>Repeat:</span>
+            <span class="error"></span>
+            <input type="password" id="repeat">
         </label>
-        <button>Sign Up</button>
+        <button id="sign">Sign Up</button>
     </form>
     <script type="text/javascript">
         'use strict';
-        
+        let email = document.getElementById('email');
+        let password = document.getElementById('password');
+        let repeat = document.getElementById('repeat');
+        let error = document.getElementsByClassName('error');
+        let sign = document.getElementById('sign');
+        let count = 0;
+        function setCookies(name,value) {
+            let expDate = new Date();
+            expDate.setTime((new Date()).getTime() + 3600*1000);
+            document.cookie = name + '=' + value + '; expires=' + expDate + '; path=/';
+        }
+        function getCookies() {
+            if (document.cookie === "") {
+                return false;
+            }
+            else {
+                let savedCookies = document.cookie.split(';');
+                let infoData = {};
+                for (let i = 0; i < savedCookies.length; i++) {
+                    let info = savedCookies[i].split('=');
+                    infoData[info[0]] = info[1];
+                }
+                return (infoData.hasOwnProperty("email") && infoData.hasOwnProperty("password"));
+            }
+        }
+        function validateEmail() {
+            let reg = /^([A-Za-z0-9_\-.]{3,})+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
+            if (reg.test(email.value) === false) {
+                error[0].innerHTML = "Wrong email address";
+                return false;
+            }
+            else {
+                count++;
+                return true;
+            }
+        }
+        function validatePassword() {
+            let reg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]){6,}/;
+            if (reg.test(password.value) === false) {
+                error[1].innerHTML = "Wrong password";
+                return false;
+            }
+            else {
+                count++;
+                return true;
+            }
+        }
+        function validateRepeat() {
+            if (repeat.value === password.value) {
+                count++;
+                return true;
+            }
+            else {
+                error[2].innerHTML = "Password must match";
+                return false;
+            }
+        }
+        window.onload = function() {
+            if (getCookies()) {
+                window.open("../registr.html");
+            }
+        };
+        let input = document.getElementsByTagName('input');
+        for (let i = 0; i < input.length; i++) {
+            input[i].onfocus = function (){
+                let errorIn = this.parentElement.getElementsByClassName('error');
+                errorIn[0].innerHTML = "";
+            };
+        }
+        sign.onclick = function () {
+            validateEmail();
+            validatePassword();
+            validateRepeat();
+            if (count === 3) {
+                setCookies("email",email.value);
+                setCookies("password",password.value);
+                window.open("registr.html");
+            }
+        }
     </script>
 </body>
 </html>
