@@ -6,12 +6,11 @@
     <style>
         form {
             width: 70vw;
-
             margin: 0 auto;
             background-color: rgba(246, 195, 192, 0.58);
             padding: 5px 20px 30px 20px;
         }
-        h4 {
+        h4,h5 {
             text-align: center;
         }
         label {
@@ -19,7 +18,7 @@
             text-align-last: justify;
             margin-bottom: 20px;
         }
-        input,button,.search,.film {
+        input,button,.search,.film,.movieDetail,.page {
             border-radius: 5px;
             border-width: 1px;
             border-style: solid;
@@ -50,7 +49,7 @@
             width: 60%;
             cursor: pointer;
         }
-        .film {
+        .film,.movieDetail {
             margin: 10px 5px 5px 5px;
             padding: 10px;
         }
@@ -58,7 +57,15 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
         }
-        img {
+        .movieDetail {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+        .movieInfo {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+        .smallPoster {
             width: 30%;
             height: 100%;
             margin-right: 10px;
@@ -69,10 +76,26 @@
             text-align: center;
             font-weight: bold;
         }
+        .posterFull {
+            width: 15vw;
+            height: 40vh;
+            margin-right: 10px;
+            float: left;
+        }
+        .page {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            text-align: center;
+            padding: 1px;
+        }
+        .paginator {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <p>Не удаляй, пожалуйста. До конца среды выкачу код.</p>
     <form onsubmit="return false;" id="form">
         <h4>Search</h4>
         <div class="search">
@@ -99,56 +122,214 @@
         let title = document.getElementById('title');
         let type = document.getElementById('type');
         let btn = document.getElementById('btn');
+        let search = document.getElementsByClassName('search');
         let error = document.getElementById('error');
         let div = document.createElement('div');
+        let detail = document.querySelectorAll('.detail');
+        let info = document.createElement('div');
+        let countPag = document.getElementsByClassName('paginator');
+        let count;
+        let number;
+        let json;
+        let jsonFull;
+        let min = 1;
+        let max = 5;
+        let test;
         div.className = 'wrapper';
         btn.onclick = () => {
-            xhr.open('GET','http://www.omdbapi.com/?i=tt3896198&apikey=c2fc6e8c&s=' + title.value + '&type=' + type.value);
+            mainFill(1);
+        };
+        function mainFill(page) {
+            xhr.open('GET','http://www.omdbapi.com/?i=tt3896198&apikey=c2fc6e8c&s=' + title.value + '&type=' + type.value + '&page=' + page);
             xhr.send();
             xhr.onload = () => {
                 if (xhr.status === 200) {
                     error.innerText = "";
-                    let json = JSON.parse(xhr.response);
+                    json = JSON.parse(xhr.response);
+                    count = +json.totalResults;
                     if (json.Search) {
+                        div.innerHTML = "";
+                        info.innerHTML = "";
                         for (let i = 0; i < json.Search.length; i++) {
                             let movie = json.Search[i];
                             fillData(movie);
                         }
-                        form.appendChild(div);
+                        search[0].after(div);
+                        paginator();
+                        detail = document.querySelectorAll('.detail');
+                        detail.forEach(function (el,i) {
+                            el.onclick = function() {
+                                xhr.open('GET', 'http://www.omdbapi.com/?i=tt3896198&apikey=c2fc6e8c&t=' + json.Search[i].Title + '&y=' + json.Search[i].Year);
+                                xhr.send();
+                                xhr.onload = () => {
+                                    if (xhr.status === 200) {
+                                        jsonFull = JSON.parse(xhr.response);
+                                        fillDetailedData(jsonFull);
+                                    }
+                                }
+                            }
+                        });
                     }
                     else {
                         if (title.value) {
+                            div.innerHTML = "";
+                            info.innerHTML = "";
+                            if (countPag.length === 1) {
+                                countPag[0].innerHTML = "";
+                            }
                             error.innerText = 'Movie not found!';
                         }
                         else {
+                            div.innerHTML = "";
+                            info.innerHTML = "";
+                            if (countPag.length === 1) {
+                                countPag[0].innerHTML = "";
+                            }
                             error.innerText = 'Fill search criteria, please!';
                         }
                     }
                 }
             };
-            function fillData(json) {
-                let film = document.createElement('div');
-                film.className = 'film';
-                let filmPoster = document.createElement('img');
-                let filmType = document.createElement('p');
-                filmType.style.marginTop = '0';
-                let filmTitle = document.createElement('p');
-                filmTitle.style.fontWeight = 'bold';
-                let filmYear = document.createElement('p');
-                let detail = document.createElement('button');
-                detail.className = 'detail';
-                detail.innerText = 'Detail';
-                film.appendChild(filmPoster);
-                film.appendChild(filmType);
-                film.appendChild(filmTitle);
-                film.appendChild(filmYear);
-                film.appendChild(detail);
-                div.appendChild(film);
-                filmPoster.src = json.Poster;
-                filmType.innerText = json.Type;
-                filmTitle.innerText = json.Title;
-                filmYear.innerText = json.Year;
+            return count;
+        }
+        function paginator() {
+            let pages;
+            if (count%10 !== 0) {
+                pages = Math.trunc(count/10) + 1;
             }
+            else {
+                pages = Math.trunc(count/10);
+            }
+            let pagination = document.createElement('div');
+            pagination.className = 'paginator';
+            let left = document.createElement('button');
+            left.innerHTML = '<<<';
+            left.id = 'left';
+            pagination.appendChild(left);
+            if (pages < 5) {
+                max = pages;
+            }
+            for (let i = 0; i < max; i++) {
+                let pageNumber = document.createElement('button');
+                pageNumber.className = 'page';
+                pageNumber.innerHTML = (i + 1);
+                pagination.appendChild(pageNumber);
+            }
+            let right = document.createElement('button');
+            right.id = 'right';
+            right.innerHTML = '>>>';
+            number = 1;
+            pagination.appendChild(right);
+            countPag = document.getElementsByClassName('paginator');
+            if (countPag.length === 0) {
+                form.appendChild(pagination);
+            }
+            let pageBtn = document.querySelectorAll('.page');
+            pageBtn.forEach(function (el) {
+                el.onclick = function () {
+                    info.innerHTML = "";
+                     number = el.innerHTML;
+                    mainFill(number);
+                }
+            })
+            let rightBtn = document.getElementById('right');
+            let leftBtn = document.getElementById('left');
+            leftBtn.onclick = function () {
+                if (min > 1) {
+                    for (let i = 0; i < 5; i++) {
+                        pageBtn[i].innerHTML = +pageBtn[i].innerHTML - 1;
+                    }
+                    min = +pageBtn[0].innerHTML;
+                    max = +pageBtn[4].innerHTML;
+                }
+            };
+            rightBtn.onclick = function () {
+                if (max < pages) {
+                    for (let i = 0; i < 5; i++) {
+                        pageBtn[i].innerHTML = +pageBtn[i].innerHTML + 1;
+                    }
+                    min = +pageBtn[0].innerHTML;
+                    max = +pageBtn[4].innerHTML;
+                }
+            };
+        }
+        function fillData(json) {
+            let film = document.createElement('div');
+            film.className = 'film';
+            let filmPoster = document.createElement('img');
+            filmPoster.className = 'smallPoster';
+            let filmType = document.createElement('p');
+            filmType.style.marginTop = '0';
+            let filmTitle = document.createElement('p');
+            filmTitle.style.fontWeight = 'bold';
+            let filmYear = document.createElement('p');
+            let detail = document.createElement('button');
+            detail.className = 'detail';
+            detail.innerText = 'Detail';
+            if (json.Poster === 'N/A') {
+                filmPoster.src = 'images.png'
+            }
+            else {
+                filmPoster.src = json.Poster;
+            }
+            filmType.innerText = json.Type;
+            filmTitle.innerText = json.Title;
+            filmYear.innerText = json.Year;
+            film.appendChild(filmPoster);
+            film.appendChild(filmType);
+            film.appendChild(filmTitle);
+            film.appendChild(filmYear);
+            film.appendChild(detail);
+            div.appendChild(film);
+        }
+        function fillDetailedData(json) {
+            let check = document.getElementsByClassName('movieDetail');
+            let movieDetail;
+            if (check.length > 0) {
+                movieDetail = check[0];
+                movieDetail.innerHTML = "";
+            }
+            else {
+                movieDetail = document.createElement('div');
+            }
+            movieDetail.className = 'movieDetail';
+            let h5 = document.createElement('h5');
+            h5.innerText = 'Film info:';
+            let imgDiv = document.createElement('div');
+            let filmPoster = document.createElement('img');
+            filmPoster.className = 'posterFull';
+            if (json.Poster === 'N/A') {
+                filmPoster.src = 'images.png';
+            }
+            else {
+                filmPoster.src = json.Poster;
+            }
+            let movieInfo = document.createElement('div');
+            movieInfo.className = 'movieInfo';
+            let obj = {
+                'Title:': json.Title,
+                'Released:': json.Released,
+                'Genre:': json.Genre,
+                'Country:': json.Country,
+                'Director:': json.Director,
+                'Writer:': json.Writer,
+                'Actors:': json.Actors,
+                'Awards:': json.Awards
+            };
+            for (let key in obj) {
+                let divName = document.createElement('div');
+                let divValue = document.createElement('div');
+                divName.innerHTML = key;
+                divValue.innerHTML = obj[key];
+                movieInfo.appendChild(divName);
+                movieInfo.appendChild(divValue);
+            }
+            imgDiv.appendChild(filmPoster);
+            movieDetail.appendChild(imgDiv);
+            movieDetail.appendChild(movieInfo);
+            info.appendChild(h5);
+            info.appendChild(movieDetail);
+            form.appendChild(info);
         }
     </script>
 </body>
