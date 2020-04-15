@@ -2,16 +2,154 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Form</title>
+    <title>AJAX</title>
     <style>
+        form {
+            width: 70vw;
 
+            margin: 0 auto;
+            background-color: rgba(246, 195, 192, 0.58);
+            padding: 5px 20px 30px 20px;
+        }
+        h4 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            text-align-last: justify;
+            margin-bottom: 20px;
+        }
+        input,button,.search,.film {
+            border-radius: 5px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(169, 169, 169);
+        }
+        .search {
+            padding: 20px 15px 15px 15px;
+            width: 40%;
+            margin: 0 auto;
+        }
+        input {
+            width: 70%;
+            height: 23px;
+        }
+        select {
+            width: 71%;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-radius: 5px;
+        }
+        #btn {
+            width: 100%;
+            height: 29px;
+            cursor: pointer;
+            background-color: #dddddd;
+        }
+        .detail {
+            width: 60%;
+            cursor: pointer;
+        }
+        .film {
+            margin: 10px 5px 5px 5px;
+            padding: 10px;
+        }
+        .wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        img {
+            width: 30%;
+            height: 100%;
+            margin-right: 10px;
+            float: left;
+        }
+        #error {
+            color: red;
+            text-align: center;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <p>Не удаляй, пожалуйста. До конца среды выкачу код.</p>
+    <form onsubmit="return false;" id="form">
+        <h4>Search</h4>
+        <div class="search">
+            <label>
+                <b>Title:</b>
+                <input id="title">
+            </label>
+            <label>
+                <b>Type:</b>
+                <select id="type">
+                    <option>Movie</option>
+                    <option>Series</option>
+                    <option>Episode</option>
+                </select>
+            </label>
+            <button id = "btn">Search</button>
+        </div>
+        <p id="error"></p>
+    </form>
     <script type="text/javascript">
         'use strict';
-
+        let xhr = new XMLHttpRequest();
+        let form = document.getElementById('form');
+        let title = document.getElementById('title');
+        let type = document.getElementById('type');
+        let btn = document.getElementById('btn');
+        let error = document.getElementById('error');
+        let div = document.createElement('div');
+        div.className = 'wrapper';
+        btn.onclick = () => {
+            xhr.open('GET','http://www.omdbapi.com/?i=tt3896198&apikey=c2fc6e8c&s=' + title.value + '&type=' + type.value);
+            xhr.send();
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    error.innerText = "";
+                    let json = JSON.parse(xhr.response);
+                    if (json.Search) {
+                        for (let i = 0; i < json.Search.length; i++) {
+                            let movie = json.Search[i];
+                            fillData(movie);
+                        }
+                        form.appendChild(div);
+                    }
+                    else {
+                        if (title.value) {
+                            error.innerText = 'Movie not found!';
+                        }
+                        else {
+                            error.innerText = 'Fill search criteria, please!';
+                        }
+                    }
+                }
+            };
+            function fillData(json) {
+                let film = document.createElement('div');
+                film.className = 'film';
+                let filmPoster = document.createElement('img');
+                let filmType = document.createElement('p');
+                filmType.style.marginTop = '0';
+                let filmTitle = document.createElement('p');
+                filmTitle.style.fontWeight = 'bold';
+                let filmYear = document.createElement('p');
+                let detail = document.createElement('button');
+                detail.className = 'detail';
+                detail.innerText = 'Detail';
+                film.appendChild(filmPoster);
+                film.appendChild(filmType);
+                film.appendChild(filmTitle);
+                film.appendChild(filmYear);
+                film.appendChild(detail);
+                div.appendChild(film);
+                filmPoster.src = json.Poster;
+                filmType.innerText = json.Type;
+                filmTitle.innerText = json.Title;
+                filmYear.innerText = json.Year;
+            }
+        }
     </script>
 </body>
 </html>
