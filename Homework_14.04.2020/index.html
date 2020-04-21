@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Catalog</title>
+    <style>
+        form {
+            width: 80vw;
+            margin: 0 auto;
+            background-color: rgba(246, 195, 192, 0.58);
+            padding: 10px 20px 15px 20px;
+        }
+        p {
+            text-align: center;
+        }
+        #wrapper {
+            display: grid;
+            grid-column-gap: 5%;
+            grid-row-gap: 10px;
+            grid-template-columns: repeat(3, 30%);
+        }
+        .user {
+            border: 1px solid black;
+            height: 40px;
+            line-height: 40px;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="return false;">
+        <p>All users:</p>
+        <div id="wrapper"></div>
+    </form>
+    <script type="text/javascript">
+        'use strict';
+        let xhr = new XMLHttpRequest();
+        let json;
+        let users = [];
+        let wrapper = document.getElementById('wrapper');
+        function User(json) {
+            this.name = json.name;
+            this.username = json.username;
+            this.address = json.address;
+            this.email = json.email;
+            this.phone = json.phone;
+            this.website = json.website;
+        }
+        xhr.open('GET','https://jsonplaceholder.typicode.com/users');
+        xhr.send();
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                json = JSON.parse(xhr.response);
+                if (json) {
+                    for (let i = 0; i < json.length; i++) {
+                        let user = new User(json[i]);
+                        users.push(user);
+                        let div = document.createElement('div');
+                        div.className = 'user';
+                        div.innerHTML = user.name;
+                        wrapper.appendChild(div);
+                    }
+                }
+            }
+        };
+        let userAll = document.querySelectorAll('user');
+        userAll.forEach(function (el) {
+            el.onclick = () => {
+                
+            }
+        })
+    </script>
+</body>
+</html>
