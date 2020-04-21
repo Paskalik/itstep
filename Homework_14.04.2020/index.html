@@ -26,15 +26,32 @@
             padding: 10px;
             cursor: pointer;
         }
+        .info {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            border: 1px solid black;
+        }
+        .info div {
+            border: 1px solid black;
+            height: 30px;
+            line-height: 30px;
+            padding-left: 5px;
+        }
+        button {
+            margin-top: 10px;
+            width: 100%;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <form onsubmit="return false;">
+    <form onsubmit="return false;" id="form">
         <p>All users:</p>
         <div id="wrapper"></div>
     </form>
     <script type="text/javascript">
         'use strict';
+        let form = document.getElementById('form');
         let xhr = new XMLHttpRequest();
         let json;
         let users = [];
@@ -60,16 +77,53 @@
                         div.className = 'user';
                         div.innerHTML = user.name;
                         wrapper.appendChild(div);
+                        div.onclick = () => {
+                            div.style.fontWeight = 'bold';
+                            getInfo(user,i);
+                        }
                     }
                 }
             }
         };
-        let userAll = document.querySelectorAll('user');
-        userAll.forEach(function (el) {
-            el.onclick = () => {
-                
+        function getInfo(user,i) {
+            let div = document.createElement('div');
+            let p = document.createElement('p');
+            p.innerText = 'User info:';
+            div.append(p);
+            let info = document.createElement('div');
+            info.className = 'info';
+            for (let el in user) {
+                if (user.hasOwnProperty(el)) {
+                    let html = '<div>' + el + '</div><div>'+ user[el] +'</div>';
+                    info.innerHTML += html;
+                }
             }
-        })
+            let btn = document.createElement('button');
+            btn.innerHTML = 'Show posts';
+            btn.onclick = () => {
+              getPosts(i);
+            };
+            div.append(info);
+            div.append(btn);
+            form.append(div);
+        }
+        function getPosts(i) {
+            xhr.open('GET','https://jsonplaceholder.typicode.com/posts?userId=' + (i + 1));
+            xhr.send();
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    json = JSON.parse(xhr.response);
+                    if (json) {
+                        for (let i = 0; i < json.length; i++) {
+                            let post = json[i];
+                            let div = document.createElement('div');
+                            div.innerHTML = post;
+                            form.append(div);
+                        }
+                    }
+                }
+            };
+        }
     </script>
 </body>
 </html>
