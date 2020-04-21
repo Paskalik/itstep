@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style>
+        div {
+            float: left;
+        }
+        textarea {
+            min-height: 70vh;
+            min-width: 30vw;
+            text-align: left;
+            text-align-last: left;
+        }
+        button {
+            min-height: 71vh;
+            min-width: 2vw;
+            margin: 50px 10px 0 10px;
+            cursor: pointer;
+
+        }
+        #error {
+            color: red;
+            float: right;
+        }
+        .arrow{
+            width: 0;
+            height: 0;
+            border: 1vw solid transparent;
+            border-top-color: #515151;
+            margin: 0;
+            padding: 0;
+            float: left;
+            transform: rotate(270deg) translate(0, 0.5vw);
+        }
+        #result {
+            resize: none;
+        }
+        p {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="return false;" id="form">
+        <div>
+            <label>
+                <p>
+                    Enter JSON data:
+                    <span id="error"></span>
+                </p>
+                <textarea id="text"></textarea>
+            </label>
+        </div>
+        <div>
+            <button id="btn">
+                <i class="arrow"></i>
+            </button>
+        </div>
+        <div>
+            <label>
+                <p>Formatted JSON data:</p>
+                <textarea id="result" readonly></textarea>
+            </label>
+        </div>
+    </form>
+    <script type="text/javascript">
+        'use strict';
+        let form = document.getElementById('form');
+        let btn = document.getElementById('btn');
+        let text = document.getElementById('text');
+        let result = document.getElementById('result');
+        let error = document.getElementById('error');
+        btn.onclick = function () {
+            try {
+                let json = JSON.parse(text.value);
+                error.innerText = "";
+                result.value = JSON.stringify(json, null, 4);
+            } catch (e) {
+                error.innerText = '[format error]';
+                result.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
