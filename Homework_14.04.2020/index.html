@@ -98,6 +98,7 @@
             }
         };
         function getInfo(user,i) {
+            checkForm();
             let div = document.createElement('div');
             let p = document.createElement('p');
             p.innerText = 'User info:';
@@ -139,6 +140,13 @@
                     }
                 }
             };
+        }
+        function checkForm() {
+            if (form.hasChildNodes()) {
+                while (form.children.length > 2) {
+                    form.removeChild(form.lastChild);
+                }
+            }
         }
     </script>
 </body>
