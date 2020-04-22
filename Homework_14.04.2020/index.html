@@ -90,6 +90,8 @@
                         div.innerHTML = user.name;
                         wrapper.appendChild(div);
                         div.onclick = () => {
+                            let bold = document.querySelectorAll('.user');
+                            bold.forEach(el => el.style.fontWeight = 'normal');
                             div.style.fontWeight = 'bold';
                             getInfo(user,i);
                         }
