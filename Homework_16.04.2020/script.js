@@ -8,6 +8,7 @@ function Movie(json) {
     }
     this.title = json.Title;
     this.year = json.Year;
+    this.movieId = json.imdbID;
 }
 function MovieDetail(json) {
     if (json.Poster === 'N/A') {
@@ -47,11 +48,11 @@ class MovieService {
         })
     }
     async search(title,type,page) {
-        const xhr = 'http://www.omdbapi.com/?i=tt3896198&apikey=c2fc6e8c&s=' + title + '&type=' + type + '&page=' + page;
+        const xhr = 'http://www.omdbapi.com/?apikey=c2fc6e8c&s=' + title + '&type=' + type + '&page=' + page;
         return await this.request(xhr);
     }
-    async getMovie(title,year) {
-        const xhr = 'http://www.omdbapi.com/?i=tt3896198&apikey=c2fc6e8c&t=' + title + '&y=' + year;
+    async getMovie(movieId) {
+        const xhr = 'http://www.omdbapi.com/?apikey=c2fc6e8c&i=' + movieId;
         return await this.request(xhr);
     }
 }
@@ -64,33 +65,48 @@ let search = document.getElementsByClassName('search');
 let error = document.getElementById('error');
 let div = document.createElement('div');
 let header = document.createElement('h5');
-let detail = document.querySelectorAll('.detail');
 let info = document.createElement('div');
-let countPages;
+let countFilms;
 let number;
 let json;
 let jsonFull;
-let count = 0;
+let count;
+let movieId = [];
+let movieService = new MovieService();
+let modal = document.createElement('div');
+modal.id = 'myModal';
+modal.className = 'modal';
+let modalContent = document.createElement('div');
+modalContent.className = 'modal_content';
+let close = document.createElement('span');
+close.className = 'close';
+close.innerText = '×';
+modalContent.appendChild(close);
+modal.appendChild(modalContent);
 let preloader = document.createElement('div');
 preloader.className = 'preloader';
 more.id = 'more';
 more.innerHTML = 'More';
 div.className = 'wrapper';
 btn.onclick = async () => {
+    let countMore = document.getElementById('more');
+    if (countMore) {
+        form.removeChild(countMore);
+    }
+    count = 1;
     error.innerText = "";
     header.innerText = "";
     div.innerHTML = "";
     info.innerHTML = "";
     form.appendChild(preloader);
-    let movieService = new MovieService();
-    let response = movieService.search(title.value, type.value, 1);
+    let response = movieService.search(title.value, type.value, count);
     if (title.value === "") {
         form.removeChild(preloader);
         error.innerText = 'Fill search criteria, please!';
     }
     else {
         json = JSON.parse(await response);
-        countPages = +json.totalResults;
+        countFilms = +json.totalResults;
         form.removeChild(preloader);
         if (json.Error) {
             error.innerText = 'Movie not found!';
@@ -98,32 +114,56 @@ btn.onclick = async () => {
         else {
             for (let i = 0; i < json.Search.length; i++) {
                 let movie = new Movie(json.Search[i]);
+                movieId.push(movie.movieId);
                 fillData(movie);
             }
+            count++;
             search[0].after(header);
             header.after(div);
             div.after(more);
-            detail = document.querySelectorAll('.detail');
-            detail.forEach(function (el, i) {
-                el.onclick = async function () {
-                    form.appendChild(preloader);
-                    let responseFull = movieService.getMovie(json.Search[i].Title, json.Search[i].Year);
-                    if (responseFull) {
-                        form.removeChild(preloader);
-                        jsonFull = JSON.parse(await responseFull);
-                        let movieDetail = new MovieDetail(jsonFull);
-                        fillDetailedData(movieDetail);
-                    }
-                }
-            })
+            getDetail();
         }
     }
-    return countPages;
+    return countFilms;
 }
-more.onclick = () => {
+function getDetail() {
+    let detail = document.querySelectorAll('.detail');
+    detail.forEach((el, i) => {
+        el.onclick = async () => {
+            close.after(preloader);
+            form.appendChild(modal);
+            let responseFull = movieService.getMovie(movieId[i]);
+            if (responseFull) {
+                jsonFull = JSON.parse(await responseFull);
+                modalContent.removeChild(preloader);
+                let movieDetail = new MovieDetail(jsonFull);
+                fillDetailedData(movieDetail);
+            }
+        }
+    })
+    close.onclick = function () {
+        info.innerHTML = "";
+        modalContent.removeChild(info);
+        form.removeChild(modal);
+    }
+}
+more.onclick = async () => {
     more.before(preloader);
-    more.className = 'disabled'
     more.disabled = true;
+    let response = movieService.search(title.value, type.value, count);
+    let jsonNext = JSON.parse(await response);
+    for (let i = 0; i < jsonNext.Search.length; i++) {
+        let movie = new Movie(jsonNext.Search[i]);
+        movieId.push(movie.movieId);
+        fillData(movie);
+    }
+    form.removeChild(preloader);
+    more.before(div);
+    getDetail();
+    if ((count * 10) < countFilms) {
+        more.disabled = false;
+    }
+    count++;
 }
 function fillData(movie) {
     header.innerText = 'Films:';
@@ -147,15 +187,7 @@ function fillData(movie) {
     div.appendChild(film);
 }
 function fillDetailedData(movieDetail) {
-    let check = document.getElementsByClassName('movieDetail');
-    let movieDetailed;
-    if (check.length > 0) {
-        movieDetailed = check[0];
-        movieDetailed.innerHTML = "";
-    }
-    else {
-        movieDetailed = document.createElement('div');
-    }
+    let movieDetailed = document.createElement('div');
     movieDetailed.className = 'movieDetail';
     let h5 = document.createElement('h5');
     h5.innerText = 'Film info:';
@@ -188,5 +220,5 @@ function fillDetailedData(movieDetail) {
     movieDetailed.appendChild(movieInfo);
     info.appendChild(h5);
     info.appendChild(movieDetailed);
-    form.appendChild(info);
+    modalContent.appendChild(info);
 }
