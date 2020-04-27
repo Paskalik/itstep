@@ -47,7 +47,75 @@
       const line = 'Some text for printer: London is the capital of Great Britian';
       marker.print(line);
       /* Task 2 */
-
+      class ExtendedDate extends Date {
+          day = this.getDate();
+          month = this.getMonth();
+          year = this.getFullYear();
+          today = new Date();
+          nextDate = this;
+          dayInText(day) {
+              const values = ['первое', 'второе', 'третье', 'четвертое', 'пятое', 'шестое', 'седьмое', 'восьмое', 'девятое', 'десятое', 'один', 'две', 'три', 'четыр', 'пят', 'шест', 'сем', 'восем', 'девят'];
+              if (day < 0 || day >= 32 || day === null || day === undefined) {
+                  return 'Некорректное число';
+              }
+              if (day >= 1 && day <= 10) {
+                  return values[day - 1];
+              }
+              if (day > 10 && day <= 19) {
+                  return values[day - 1] + 'надцатое';
+              }
+              if (day === 20) {
+                  return 'двадцатое';
+              }
+              if (day > 20 && day <= 29) {
+                  return 'двадцать ' + values[day - 21];
+              }
+              if (day === 30) {
+                  return 'тридцатое';
+              }
+              if (day === 31) {
+                  return 'тридцать первое';
+              }
+          }
+          monthInText(month) {
+              const values = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+              if (month < 0 || month >= 13 || month === null || month === undefined) {
+                  return 'Некорректное число';
+              } else {
+                  return values[month];
+              }
+          }
+          getDateAndMonth() {
+              return this.dayInText(this.day) + ' ' + this.monthInText(this.month);
+          }
+          checkDate() {
+              if (this.toLocaleDateString() < this.today.toLocaleDateString()) {
+                  return false;
+              }
+              else {
+                  if (this.toLocaleDateString() >= this.today.toLocaleDateString()) {
+                      return true;
+                  }
+              }
+          }
+          checkLeapYear() {
+              if (((this.year % 4 === 0) && (this.year % 100 !== 0)) || (this.year % 400 === 0)) {
+                  return 'Год високосный'
+              }
+              else {
+                  return 'Год не високосный';
+              }
+          }
+          getNextDate() {
+              this.nextDate.setDate(this.nextDate.getDate() + 1);
+              return this.nextDate;
+          }
+      }
+      let extendedDate = new ExtendedDate('11.02.2012');
+      console.log(extendedDate.getDateAndMonth());
+      console.log(extendedDate.checkDate());
+      console.log(extendedDate.checkLeapYear());
+      console.log(extendedDate.getNextDate());
       /* Task 3 */
   </script>
 </body>
