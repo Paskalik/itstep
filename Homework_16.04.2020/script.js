@@ -34,7 +34,7 @@ class MovieService {
                 if (xhr.status === 200) {
                     setTimeout( () => {
                         resolve(xhr.response)
-                    }, 5000);
+                    }, 1000);
                 }
                 else {
                     reject(xhr.status);
