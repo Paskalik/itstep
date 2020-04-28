@@ -16,7 +16,7 @@
           print(doc) {
               let content = document.createElement('p');
               document.body.append(content);
-              document.body.setAttribute("style", "font-size: 20px; text-align: center;");
+              content.setAttribute("style", "font-size: 20px; text-align: center;");
               for (let i = 0; i < doc.length; i++) {
                   if (this.per !== 0) {
                       if (doc[i] === " ") {
@@ -44,7 +44,7 @@
       }
       let marker = new FillMarker("red", 2);
       marker.fill(42);
-      const line = 'Some text for printer: London is the capital of Great Britian';
+      const line = 'Some text for printer: London is the capital of Great Britain';
       marker.print(line);
       /* Task 2 */
       class ExtendedDate extends Date {
@@ -52,7 +52,6 @@
           month = this.getMonth();
           year = this.getFullYear();
           today = new Date();
-          nextDate = this;
           dayInText(day) {
               const values = ['первое', 'второе', 'третье', 'четвертое', 'пятое', 'шестое', 'седьмое', 'восьмое', 'девятое', 'десятое', 'один', 'две', 'три', 'четыр', 'пят', 'шест', 'сем', 'восем', 'девят'];
               if (day < 0 || day >= 32 || day === null || day === undefined) {
@@ -107,8 +106,9 @@
               }
           }
           getNextDate() {
-              this.nextDate.setDate(this.nextDate.getDate() + 1);
-              return this.nextDate;
+              let nextDate = this;
+              nextDate.setDate(nextDate.getDate() + 1);
+              return nextDate;
           }
       }
       let extendedDate = new ExtendedDate('11.02.2012');
@@ -117,6 +117,95 @@
       console.log(extendedDate.checkLeapYear());
       console.log(extendedDate.getNextDate());
       /* Task 3 */
+      class News {
+          news = [
+              {
+                  title: "Title1",
+                  content: "Content1",
+                  author: "Author1",
+                  date: "11.02.2019",
+                  tag: "#bestlife"
+              },
+              {
+                  title: "Title2",
+                  content: "Content2",
+                  author: "Author2",
+                  date: "12.12.2019",
+                  tag: "#bestlife #happynewyear"
+              },
+              {
+                  title: "Title3",
+                  content: "Content3",
+                  author: "Author3",
+                  date: "03.10.2018",
+                  tag: "#autumn"
+              },
+              {
+                  title: "Title4",
+                  content: "Content4",
+                  author: "Author4",
+                  date: "01.01.2020",
+                  tag: "#happynewyear"
+              },
+              {
+                  title: "Title5",
+                  content: "Content5",
+                  author: "Author5",
+                  date: "01.04.2020",
+                  tag: "#humor"
+              }
+          ];
+          get news() {
+              return this.news.length;
+          }
+          getNewsInfo() {
+              let newsInfo = document.createElement('div');
+              newsInfo.style.width = "50vw";
+              for (let i = 0; i < this.news.length; i++) {
+                  newsInfo.innerHTML += '<h5>' + this.news[i].title + '</h5>';
+                  newsInfo.innerHTML += '<p>' + this.news[i].content + '</p>';
+                  newsInfo.innerHTML += '<p> Author:' + this.news[i].author + '</p>';
+                  newsInfo.innerHTML += '<span>' + this.news[i].date + '&nbsp;&nbsp;&nbsp;' + this.news[i].tag + '</span>';
+              }
+              document.body.append(newsInfo);
+          }
+          addNews(title,content,author,tag = null) {
+              let myNews = {
+                  title: title,
+                  content: content,
+                  author: author,
+                  date: new Date().toLocaleDateString(),
+                  tag: tag
+              };
+              this.news.push(myNews);
+          }
+          removeNews(id) {
+              this.news.splice((id - 1), 1);
+          }
+          sortNews() {
+              return this.news.sort(function(a, b){
+                  let dateA= new Date(a.date), dateB= new Date(b.date);
+                  return dateB - dateA;
+              })
+          }
+          filterNews(tag) {
+              return this.news.filter(el => {
+                  if (el.tag) {
+                      return el.tag.match(tag);
+                  }
+              });
+          }
+      }
+      let news = new News();
+      news.getNewsInfo();
+      news.addNews('newTitle','newContent','The best author');
+      console.log(news);
+      news.addNews('newTitle','newContent','The best author','#mynews');
+      console.log(news);
+      news.removeNews(7);
+      console.log(news);
+      console.log(news.sortNews());
+      console.log(news.filterNews('happy'));
   </script>
 </body>
 </html>
