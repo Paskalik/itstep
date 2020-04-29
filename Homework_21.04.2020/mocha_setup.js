@@ -160,10 +160,10 @@ describe('myDate, nextDay()', function () {
         let res = myDate.nextDay();
         assert.equal(res, '29/2/2020');
     });
-    it('new MyDate(28, 6, 2019).nextDay() => 1/3/2020', function () {
-        let myDate = new MyDate(28, 6, 2019);
+    it('new MyDate(28, 2, 2019).nextDay() => 1/3/2019', function () {
+        let myDate = new MyDate(28, 2, 2019);
         let res = myDate.nextDay();
-        assert.notEqual(res, '1/3/2020');
+        assert.equal(res, '1/3/2019');
     });
     it('new MyDate(31, 12, 2020).nextDay() => 1/1/2021', function () {
         let myDate = new MyDate(31, 12, 2020);
