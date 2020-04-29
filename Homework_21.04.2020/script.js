@@ -1,20 +1,46 @@
 'use strict';
 /* Task 1 */
-class extendedString extends String {
+class MyString extends String {
     remove(index) {
-
+        let string = this;
+        if ((typeof(index) === 'number') && (index >= 0) && (index < string.length)) {
+            string = (string.substr(0,index) + string.substr(++index));
+        }
+        return string;
     }
     insert(index,sign) {
-
+        let string = this;
+        if (sign) {
+            if (index < 0) {
+                string = sign + string;
+            }
+            if (index >= string.length) {
+                string = string + sign;
+            }
+            if ((typeof (index) === 'number') && (index >= 0) && (index < string.length)) {
+                string = (string.substr(0, index) + sign + string.substr(++index));
+            }
+        }
+        return string;
     }
     trimSign() {
-
+        return this.replace((/(.)\1+/g), "$1");
     }
     toggle() {
-
+        let string = "";
+        for (let i = 0; i < this.length; i++) {
+            if (this[i] === this[i].toUpperCase()) {
+                string += this[i].toLowerCase()
+            }
+            else {
+                string += this[i].toUpperCase()
+            }
+        }
+        return string;
     }
     counter(sign) {
-
+        let regexp = new RegExp(sign, 'gi');
+        return this.match(regexp).length;
     }
 }
 /* Task 2 */

@@ -2,6 +2,110 @@ mocha.setup('bdd');
 const assert = chai.assert;
 
 /* Task 1 */
+describe('myString, remove()', function () {
+    it('new MyString("qwerty").remove(0) => werty', function() {
+        let myString = new MyString("qwerty");
+        let res = myString.remove(0);
+        assert.equal(res,'werty');
+    });
+    it('new MyString("qwerty").remove(2) => qwrty', function() {
+        let myString = new MyString("qwerty");
+        let res = myString.remove(2);
+        assert.equal(res,'qwrty');
+    });
+    it('new MyString("qwerty").remove(10) => qwerty', function() {
+        let myString = new MyString("qwerty");
+        let res = myString.remove(10);
+        assert.equal(res,'qwerty');
+    });
+    it('new MyString("qwerty").remove(-4) => qwerty', function() {
+        let myString = new MyString("qwerty");
+        let res = myString.remove(-4);
+        assert.equal(res,'qwerty');
+    });
+})
+
+describe('myString, insert()', function () {
+    it('new MyString("qwerty").insert(0, X) => Xwerty', function() {
+        let myString = new MyString("qwerty");
+        let res = myString.insert(0, 'X');
+        assert.equal(res,'Xwerty');
+    });
+    it('new MyString("qwerty").insert(2, X) => qwXrty', function() {
+        let myString = new MyString("qwerty");
+        let res = myString.insert(2, 'X');
+        assert.equal(res,'qwXrty');
+    });
+    it('new MyString("qwerty").insert(10, X) => qwertyX', function() {
+        let myString = new MyString("qwerty");
+        let res = myString.insert(10, 'X');
+        assert.equal(res,'qwertyX');
+    });
+    it('new MyString("qwerty").insert(-4, X) => Xqwerty', function() {
+        let myString = new MyString("qwerty");
+        let res = myString.insert(-4, 'X');
+        assert.equal(res,'Xqwerty');
+    });
+})
+
+describe('myString, trimSign()', function () {
+    it('new MyString("qwerty").trimSign() => qwerty', function() {
+        let myString = new MyString("qwerty");
+        let res = myString.trimSign();
+        assert.equal(res,'qwerty');
+    });
+    it('new MyString("qweeeerty").trimSign() => qwerty', function() {
+        let myString = new MyString("qweeeerty");
+        let res = myString.trimSign();
+        assert.equal(res,'qwerty');
+    });
+    it('new MyString("qweeertttty").trimSign() => qwerty', function() {
+        let myString = new MyString("qweeertttty");
+        let res = myString.trimSign();
+        assert.equal(res,'qwerty');
+    });
+    it('new MyString("qwe....rty").trimSign() => qwe.rty', function() {
+        let myString = new MyString("qwe....rty");
+        let res = myString.trimSign();
+        assert.equal(res,'qwe.rty');
+    });
+})
+
+describe('myString, toggle()', function () {
+    it('new MyString("qwerty").toggle() => QWERTY', function() {
+        let myString = new MyString("qwerty");
+        let res = myString.toggle();
+        assert.equal(res,'QWERTY');
+    });
+    it('new MyString("QWERTY").toggle() => qwerty', function() {
+        let myString = new MyString("QWERTY");
+        let res = myString.toggle();
+        assert.equal(res,'qwerty');
+    });
+    it('new MyString("qweRTY").toggle() => QWErty', function() {
+        let myString = new MyString("qweRTY");
+        let res = myString.toggle();
+        assert.equal(res,'QWErty');
+    });
+})
+
+describe('myString, counter()', function () {
+    it('new MyString("qwerty").counter(\'e\') => 1', function() {
+        let myString = new MyString("qwerty");
+        let res = myString.counter('e');
+        assert.equal(res,1);
+    });
+    it('new MyString("apple").counter(\'p\') => 2', function() {
+        let myString = new MyString("apple");
+        let res = myString.counter('p');
+        assert.equal(res,2);
+    });
+    it('new MyString("avokado").counter(\'a\') => 2', function() {
+        let myString = new MyString("avokado");
+        let res = myString.counter('a');
+        assert.equal(res,2);
+    });
+})
 
 /* Task 2 */
 describe('myDate, showDate()', function () {
