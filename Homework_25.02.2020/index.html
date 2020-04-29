@@ -48,9 +48,12 @@
       marker.print(line);
       /* Task 2 */
       class ExtendedDate extends Date {
-          day = this.getDate();
-          month = this.getMonth();
-          year = this.getFullYear();
+          constructor(day, month, year) {
+              super(year, month - 1, day);
+              this.day = day;
+              this.month = month - 1;
+              this.year = year;
+          }
           today = new Date();
           dayInText(day) {
               const values = ['первое', 'второе', 'третье', 'четвертое', 'пятое', 'шестое', 'седьмое', 'восьмое', 'девятое', 'десятое', 'один', 'две', 'три', 'четыр', 'пят', 'шест', 'сем', 'восем', 'девят'];
@@ -88,7 +91,7 @@
               return this.dayInText(this.day) + ' ' + this.monthInText(this.month);
           }
           checkDate() {
-              if (this.toLocaleDateString() < this.today.toLocaleDateString()) {
+              if (this < this.today) {
                   return false;
               }
               else {
@@ -111,7 +114,7 @@
               return nextDate;
           }
       }
-      let extendedDate = new ExtendedDate('11.02.2012');
+      let extendedDate = new ExtendedDate(11, 2, 2012);
       console.log(extendedDate.getDateAndMonth());
       console.log(extendedDate.checkDate());
       console.log(extendedDate.checkLeapYear());
