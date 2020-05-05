@@ -1,0 +1,42 @@
+body {
+    width: 60vw;
+    margin: 0 auto;
+    background-color: #b5a2a2;
+    text-align: center;
+    font-family: arial, serif;
+}
+
+#search * {
+    width: 150px;
+    height: 25px;
+    margin: 20px;
+    box-sizing: border-box;
+}
+
+#list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.product {
+    height: fit-content;
+    width: fit-content;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 15px;
+}
+
+.product p {
+    margin: 10px 15px;
+}
+
+.number {
+    font-size: small;
+}
+
+.bold{
+    font-weight: bold;
+}

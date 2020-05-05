@@ -10,7 +10,7 @@ class Element {
     }
     addClass(cssClass) {
         if (cssClass) {
-            this.element.className = cssClass;
+            this.element.classList.add(cssClass);
         }
     }
     setContent(text) {
@@ -58,6 +58,6 @@ class DomBuilder {
     }
 }
 
-let p1 = new DomBuilder().create('p').withId('p1').withClass('text').withContent('Hello,').result;
+let p1 = new DomBuilder().create('p').withId('p1').withClass('text').withClass('newtext').withContent('Hello,').result;
 let p2 = new DomBuilder().create('p').withId('p2').withClass('text').withContent('world!').result;
 let div = new DomBuilder().create('div').withId('main').withClass('container').withChild(p1).withChild(p2).result;
