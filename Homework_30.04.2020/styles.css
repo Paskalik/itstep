@@ -1,0 +1,71 @@
+body {
+    width: 30%;
+    margin: 20px auto;
+    background-color: lightgrey;
+    font-family: arial, serif;
+}
+
+.infouser {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.info {
+    width: 240px;
+    height: 45px;
+    margin: 5px 0;
+
+}
+
+.skills {
+    width: 100%;
+}
+
+.skills * {
+    margin: 10px 0;
+
+}
+
+input[type='text'], input[type='submit'], select {
+    width: 100%;
+    height: 25px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.radio {
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#results {
+    display: none;
+    margin: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr {
+    height: 32px;
+    line-height: 32px;
+    vertical-align: middle;
+}
+
+td {
+    padding-left: 20px;
+    border: 1px solid gray;
+}
+
+td.label {
+    width: 30%;
+}
+
+td.data {
+    width: 70%;
+}
