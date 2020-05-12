@@ -1,8 +1,12 @@
 body {
-    width: 30%;
-    margin: 20px auto;
-    background-color: lightgrey;
     font-family: arial, serif;
+}
+
+form {
+    width: 30%;
+    margin: 0 auto;
+    padding: 2%;
+    background-color: #e0b5b5;
 }
 
 .infouser {
