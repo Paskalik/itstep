@@ -3,7 +3,7 @@ body {
 }
 
 form {
-    width: 30%;
+    width: 40%;
     margin: 0 auto;
     padding: 2%;
     background-color: #e0b5b5;
@@ -17,8 +17,8 @@ form {
 }
 
 .info {
-    width: 240px;
-    height: 45px;
+    width: 45%;
+    height: 5%;
     margin: 5px 0;
 
 }
@@ -34,14 +34,15 @@ form {
 
 input[type='text'], input[type='submit'], select {
     width: 100%;
-    height: 25px;
+    height: 40%;
     border: 1px solid gray;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
 .radio {
-    line-height: 40px;
+    line-height: 100%;
+    margin-top: 2%;
     vertical-align: middle;
 }
 
@@ -56,13 +57,13 @@ table {
 }
 
 tr {
-    height: 32px;
-    line-height: 32px;
+    height: 120%;
+    line-height: 100%;
     vertical-align: middle;
 }
 
 td {
-    padding-left: 20px;
+    padding: 5px 5px 5px 15px;
     border: 1px solid gray;
 }
 
