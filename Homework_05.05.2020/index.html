@@ -3,11 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>JQuery</title>
+    <link rel="stylesheet" href="./styles.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./script.js"></script>
 </head>
 <body>
- <form>
- <h1>Не удаляй, пожалуйста, я в среду выкачу код. Света не было(</h1>
+ <form onsubmit="return false">
+     <h4>Random String Generator</h4>
+     <p>
+         String should be
+         <label>
+             <input type="text" id="quantity" pattern="[0-9]*">
+         </label>
+         characters long.
+     </p>
+     <p>Which characters are allowed to occur in the string?</p>
+    <ul>
+        <li>
+            <label>
+                <input type="checkbox">
+                Numeric digits (0-9)
+            </label>
+        </li>
+        <li>
+            <label>
+                <input type="checkbox">
+                Uppercase letters (A-Z)
+            </label>
+        </li>
+        <li>
+            <label>
+                <input type="checkbox">
+                Lowercase (a-z)
+            </label>
+        </li>
+    </ul>
+     <input type="submit" value="Generate" id="gen">
+     <hr>
+     <b>Result:</b>
+     <label>
+         <input type="text" id="result" readonly>
+     </label>
  </form>
 </body>
 </html>

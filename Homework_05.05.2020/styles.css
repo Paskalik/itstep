@@ -1,0 +1,19 @@
+form {
+    width: 40%;
+    margin: 0 auto;
+    padding: 1% 2%;
+    background-color: #e0b5b5;
+}
+#gen {
+    cursor: pointer;
+}
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+#quantity {
+    width: 25px;
+}
+#result {
+    width: 80%;
+}
