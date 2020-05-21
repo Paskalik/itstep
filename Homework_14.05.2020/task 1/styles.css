@@ -1,0 +1,41 @@
+ul {
+    list-style-type: none;
+    font-size: 22px;
+    width: 320px;
+    position: fixed;
+    margin: 0;
+    top: 0;
+    height: 100%;
+    left: -240px;
+    direction: rtl;
+    transition-duration: 1s;
+    cursor: pointer;
+}
+.full {
+    left: 0;
+    position: fixed;
+    margin: 0;
+    top: 0;
+    padding-left: 0;
+    direction: ltr;
+}
+li:first-child {
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-right: 10px;
+    height: 10%;
+}
+img {
+    height: 80px;
+    width: 80px;
+    vertical-align: middle;
+}
+a {
+    text-decoration: none;
+    color: white;
+    display: inherit;
+}
+li {
+    background-color: gray;
+    height: 18%;
+}
