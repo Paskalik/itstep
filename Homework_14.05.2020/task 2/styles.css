@@ -1,0 +1,42 @@
+.main {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+.colors {
+    display: grid;
+    grid-template-columns: repeat(5, 100px);
+    grid-column-gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.color {
+    padding: 5px;
+    cursor: pointer;
+}
+.red {
+    background-color: red;
+}
+.green {
+    background-color: green;
+}
+.orange {
+    background-color: orange;
+}
+.yellow {
+    background-color: yellow;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    justify-content: center;
+}
+.wrapper > div {
+    padding: 20px;
+}
+.shadow {
+    box-shadow: 0 0 10px 5px rgb(162, 162, 162);
+}
