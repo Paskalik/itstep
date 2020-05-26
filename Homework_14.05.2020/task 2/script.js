@@ -1,48 +1,52 @@
-const $red = $('#red')
-const $green = $('#green')
-const $orange = $('#orange')
-const $yellow = $('#yellow')
+'use strict';
 
-const $redAll = $('.red')
-const $greenAll = $('.green')
-const $orangeAll = $('.orange')
-const $yellowAll = $('.yellow')
+$(document).ready(() => {
+    const $red = $('#red')
+    const $green = $('#green')
+    const $orange = $('#orange')
+    const $yellow = $('#yellow')
 
-$red.click(function () {
-    $clearShadow()
-    $redAll.addClass('shadow')
-})
+    const $redAll = $('.red')
+    const $greenAll = $('.green')
+    const $orangeAll = $('.orange')
+    const $yellowAll = $('.yellow')
 
-$green.click(function () {
-    $clearShadow()
-    $greenAll.addClass('shadow')
-})
+    $red.click(function () {
+        $clearShadow()
+        $redAll.addClass('shadow')
+    })
 
-$orange.click(function () {
-    $clearShadow()
-    $orangeAll.addClass('shadow')
-})
+    $green.click(function () {
+        $clearShadow()
+        $greenAll.addClass('shadow')
+    })
 
-$yellow.click(function () {
-    $clearShadow()
-    $yellowAll.addClass('shadow')
-})
+    $orange.click(function () {
+        $clearShadow()
+        $orangeAll.addClass('shadow')
+    })
 
-$green.click(function () {
-    $greenAll.addClass('shadow')
-})
+    $yellow.click(function () {
+        $clearShadow()
+        $yellowAll.addClass('shadow')
+    })
 
-$orange.click(function () {
-    $orangeAll.addClass('shadow')
-})
+    $green.click(function () {
+        $greenAll.addClass('shadow')
+    })
 
-$yellow.click(function () {
-    $yellowAll.addClass('shadow')
-})
+    $orange.click(function () {
+        $orangeAll.addClass('shadow')
+    })
 
-function $clearShadow() {
-    const $shadow = $('.shadow');
-    if ($shadow) {
-        $shadow.removeClass('shadow')
+    $yellow.click(function () {
+        $yellowAll.addClass('shadow')
+    })
+
+    function $clearShadow() {
+        const $shadow = $('.shadow');
+        if ($shadow) {
+            $shadow.removeClass('shadow')
+        }
     }
-}
+})

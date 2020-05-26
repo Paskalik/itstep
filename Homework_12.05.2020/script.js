@@ -1,3 +1,5 @@
+'use strict';
+
 $(document).ready(() => {
     const $body = $('body');
     const $btnArrow = $('.arrow');
