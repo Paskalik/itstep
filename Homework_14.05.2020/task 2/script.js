@@ -1,48 +1,19 @@
-'use strict';
+'use strict'
 
 $(document).ready(() => {
-    const $red = $('#red')
-    const $green = $('#green')
-    const $orange = $('#orange')
-    const $yellow = $('#yellow')
-
-    const $redAll = $('.red')
-    const $greenAll = $('.green')
-    const $orangeAll = $('.orange')
-    const $yellowAll = $('.yellow')
-
-    $red.click(function () {
+    const $btnCol = $('.color')
+    const $fruits = $('.wrapper').find('div')
+    $btnCol.click(function () {
+        let myClass = $(this).attr('id')
         $clearShadow()
-        $redAll.addClass('shadow')
+        $(this).addClass('shadow')
+        /* Use 'each', because class 'shadow' is added to all 'fruits' without using it */
+        $fruits.each(function () {
+            if ($(this).hasClass(myClass)) {
+                $(this).addClass('shadow')
+            }
+        })
     })
-
-    $green.click(function () {
-        $clearShadow()
-        $greenAll.addClass('shadow')
-    })
-
-    $orange.click(function () {
-        $clearShadow()
-        $orangeAll.addClass('shadow')
-    })
-
-    $yellow.click(function () {
-        $clearShadow()
-        $yellowAll.addClass('shadow')
-    })
-
-    $green.click(function () {
-        $greenAll.addClass('shadow')
-    })
-
-    $orange.click(function () {
-        $orangeAll.addClass('shadow')
-    })
-
-    $yellow.click(function () {
-        $yellowAll.addClass('shadow')
-    })
-
     function $clearShadow() {
         const $shadow = $('.shadow');
         if ($shadow) {
