@@ -16,6 +16,7 @@ let $slideCount = $pics.length
 let $index = 0
 let $gallery = $('#gallery')
 let $resize = $('#resize')
+let $playStop = $('#plStBtn')
 
 $(document).ready(function() {
         $showNavBtns()
@@ -57,11 +58,19 @@ $(document).ready(function() {
         }
     })
 
-    $('#plStBtn').click(() => {
-        $slider()
+    $playStop.click(function() {
+        if (!$(this).hasClass('notAllowed')) {
+            if ($(this).attr('data-stop') === "true")
+            {
+                $playSlider()
+            }
+            else {
+                $stopSlider()
+            }
+        }
     })
 
-    $('#resize').click(() => {
+    $resize.click(() => {
         $resized()
     })
 
@@ -79,7 +88,6 @@ function $backgroundImg(){
 function $showSlide(i) {
     let url = 'url(' + $pics[i] + ')'
     $('.slideImg').css('backgroundImage', url)
-    //$('.slideImg').attr('src', $pics[i])
     $checkNavBtns(i)
     $checkPlayBtns(i)
 
@@ -113,45 +121,79 @@ function $checkPlayBtns(i) {
         $('#firstBtn').removeClass('notAllowed')
         $('#prevBtn').removeClass('notAllowed')
     }
-    if (i === 9) {
+    if (i === ($slideCount - 1)) {
         $('#nextBtn').addClass('notAllowed')
         $('#lastBtn').addClass('notAllowed')
+        $playStop.addClass('notAllowed')
     }
     else {
         $('#nextBtn').removeClass('notAllowed')
         $('#lastBtn').removeClass('notAllowed')
+        $playStop.removeClass('notAllowed')
     }
 }
 
 function $resized() {
     if ($resize.attr('data-size') === 'true') {
-        $gallery.width($(window).width()/2)
-        $gallery.height($(window).height()/2)
+        $gallery.width(500)
+        $gallery.height(500)
         $resize.empty()
         $resize.html('<img src="https://img.icons8.com/color/20/000000/expand.png"/>')
         $resize.attr('data-size', 'false')
     }
     else {
-        $gallery.width($(window).width())
-        $gallery.height($(window).height())
+        $gallery.width($('body').width())
+        $gallery.height($('body').height())
         $resize.empty()
         $resize.html('<img src="https://img.icons8.com/color/20/000000/collapse.png"/>')
         $resize.attr('data-size', 'true')
     }
 }
 
-function $slider() {
+function $playSlider() {
     let slideImg = $('.slideImg')
+    $blockAll()
+    $playStop.empty()
+    $playStop.html('<img src= "https://img.icons8.com/color/20/000000/stop.png"/>')
+    $playStop.attr('data-stop', 'false')
     slideImg.animate({ opacity: 1 }, 1000,"linear", function(){
             $index++;
-            if($index > $slideCount - 1){
-                $index = 0;
+            if($index === $slideCount){
+                slideImg.stop()
+                $playStop.empty()
+                $playStop.html('<img src= "https://img.icons8.com/color/20/000000/play.png"/>')
+                $unblockAll()
+                $checkPlayBtns($slideCount - 1)
+            } else {
+                slideImg.css("background-image", "url("+$pics[$index]+")");
+                $checkNavBtns($index)
+                slideImg.animate({ opacity: 1 }, 1000,function(){
+                    //  setTimeout($slider,1000);
+                    $playSlider()
+                })
             }
-            slideImg.css("background-image", "url("+$pics[$index]+")");
-            $checkNavBtns($index)
-            slideImg.animate({ opacity: 1 }, 1000,function(){
-              //  setTimeout($slider,1000);
-                $slider()
-            });
-    });
+    })
+}
+
+function $stopSlider() {
+    $('.slideImg').stop()
+    $playStop.empty()
+    $playStop.html('<img src= "https://img.icons8.com/color/20/000000/play.png"/>')
+    $playStop.attr('data-stop', 'true')
+    $unblockAll()
+    $checkPlayBtns($index)
+}
+
+function $blockAll() {
+    $('#firstBtn').addClass('notAllowed')
+    $('#prevBtn').addClass('notAllowed')
+    $('#nextBtn').addClass('notAllowed')
+    $('#lastBtn').addClass('notAllowed')
+}
+
+function $unblockAll() {
+    $('#firstBtn').removeClass('notAllowed')
+    $('#prevBtn').removeClass('notAllowed')
+    $('#nextBtn').removeClass('notAllowed')
+    $('#lastBtn').removeClass('notAllowed')
 }
