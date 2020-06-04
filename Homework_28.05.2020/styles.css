@@ -1,0 +1,20 @@
+.form {
+    width: 400px;
+    height: 100px;
+    background-color: #f6dddd;
+    text-align: center;
+    line-height: 100px;
+}
+
+.blockText {
+    font-size: 30px;
+    display: inline;
+    vertical-align: middle;
+}
+
+.block {
+    display: inline;
+    font-size: 50px;
+    vertical-align: middle;
+    cursor: pointer;
+}
