@@ -142,8 +142,8 @@ function $resized() {
         $resize.attr('data-size', 'false')
     }
     else {
-        $gallery.width($('body').width())
-        $gallery.height($('body').height())
+        $gallery.width($(document).width())
+        $gallery.height($(document).height())
         $resize.empty()
         $resize.html('<img src="https://img.icons8.com/color/20/000000/collapse.png"/>')
         $resize.attr('data-size', 'true')
