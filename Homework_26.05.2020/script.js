@@ -24,9 +24,11 @@ $(document).ready(function() {
     $showSlide(0)
 
     $('.navBtn').click(function() {
-        let $ind = $('.navBtn').index($(this))
-        $showSlide($ind)
-        $index = $ind
+        if (!$(this).hasClass('notAllowed')) {
+            let $ind = $('.navBtn').index($(this))
+            $showSlide($ind)
+            $index = $ind
+        }
     })
 
     $('#firstBtn').click(function() {
@@ -181,6 +183,7 @@ function $blockAll() {
     $('#prevBtn').addClass('notAllowed')
     $('#nextBtn').addClass('notAllowed')
     $('#lastBtn').addClass('notAllowed')
+    $('.navBtn').addClass('notAllowed')
 }
 
 function $unblockAll() {
@@ -188,4 +191,5 @@ function $unblockAll() {
     $('#prevBtn').removeClass('notAllowed')
     $('#nextBtn').removeClass('notAllowed')
     $('#lastBtn').removeClass('notAllowed')
+    $('.navBtn').removeClass('notAllowed')
 }
