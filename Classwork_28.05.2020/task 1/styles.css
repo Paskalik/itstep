@@ -1,0 +1,46 @@
+.fruits {
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#description {
+    padding: 10px;
+    background-color: #f5e6e6;
+    border: #2e8b8b 3px solid;
+}
+
+#title {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+#title div:first-child {
+    background-color: #2d7d7d;
+}
+
+#title div {
+    padding: 10px 20px;
+    background-color: #2e8b8b;
+    cursor: pointer;
+    color: white;
+}
+
+h4 {
+    margin-top: 0;
+}
+
+span {
+    text-align: left;
+    margin-left: 5px;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+}
+
+.wrapper {
+    display: flex;
+}
