@@ -22,12 +22,11 @@ $(document).ready(function() {
         $showNavBtns()
 
     $showSlide(0)
-    $backgroundImg()
 
     $('.navBtn').click(function() {
-        let ind = $('.navBtn').index($(this))
-        $showSlide(ind)
-        $index = ind
+        let $ind = $('.navBtn').index($(this))
+        $showSlide($ind)
+        $index = $ind
     })
 
     $('#firstBtn').click(function() {
@@ -76,18 +75,11 @@ $(document).ready(function() {
 
 })
 
-function $backgroundImg(){
-    let slide = $('.slideImg')
-    slide.height(slide.width());
-
-    $(window).resize(function(){
-        slide.height(slide.width());
-    });
-}
-
 function $showSlide(i) {
-    let url = 'url(' + $pics[i] + ')'
-    $('.slideImg').css('backgroundImage', url)
+    let $slide = $('.slideImg')
+    let $url = '<img src="' + $pics[i] + '" alt="">'
+    $slide.empty()
+    $slide.append($url)
     $checkNavBtns(i)
     $checkPlayBtns(i)
 
@@ -95,14 +87,14 @@ function $showSlide(i) {
 
 function $showNavBtns() {
     for (let i = 0; i < $slideCount; i++) {
-        let btn = '<div class="navBtn"></div>'
-        $('#navBtns').append(btn)
+        let $btn = '<div class="navBtn"></div>'
+        $('#navBtns').append($btn)
     }
 }
 
 function $checkNavBtns(i) {
-    let navBtn = $('.navBtn')
-    navBtn.each((index, element) => {
+    let $navBtn = $('.navBtn')
+    $navBtn.each((index, element) => {
         if (index === i) {
             $(element).css('backgroundColor', 'gray')
         }
@@ -135,39 +127,39 @@ function $checkPlayBtns(i) {
 
 function $resized() {
     if ($resize.attr('data-size') === 'true') {
-        $gallery.width(500)
-        $gallery.height(500)
+        $gallery.removeClass('fullScreen').addClass('standardScreen')
         $resize.empty()
-        $resize.html('<img src="https://img.icons8.com/color/20/000000/expand.png"/>')
+        $resize.html('<img src="https://img.icons8.com/color/20/000000/expand.png" alt="expand"/>')
         $resize.attr('data-size', 'false')
     }
     else {
-        $gallery.width($(document).width())
-        $gallery.height($(document).height())
+        $gallery.removeClass('standardScreen').addClass('fullScreen')
         $resize.empty()
-        $resize.html('<img src="https://img.icons8.com/color/20/000000/collapse.png"/>')
+        $resize.html('<img src="https://img.icons8.com/color/20/000000/collapse.png" alt="collapse"/>')
         $resize.attr('data-size', 'true')
     }
 }
 
 function $playSlider() {
-    let slideImg = $('.slideImg')
+    let $slideImg = $('.slideImg')
     $blockAll()
     $playStop.empty()
-    $playStop.html('<img src= "https://img.icons8.com/color/20/000000/stop.png"/>')
+    $playStop.html('<img src= "https://img.icons8.com/color/20/000000/stop.png" alt="stop"/>')
     $playStop.attr('data-stop', 'false')
-    slideImg.animate({ opacity: 1 }, 1000,"linear", function(){
+    $slideImg.animate({ opacity: 1 }, 1000,"linear", function(){
             $index++;
             if($index === $slideCount){
-                slideImg.stop()
+                $slideImg.stop()
                 $playStop.empty()
-                $playStop.html('<img src= "https://img.icons8.com/color/20/000000/play.png"/>')
+                $playStop.html('<img src= "https://img.icons8.com/color/20/000000/play.png" alt="play"/>')
                 $unblockAll()
                 $checkPlayBtns($slideCount - 1)
             } else {
-                slideImg.css("background-image", "url("+$pics[$index]+")");
+                let $url = '<img src="' + $pics[$index] + '" alt="">'
+                $slideImg.empty()
+                $slideImg.append($url)
                 $checkNavBtns($index)
-                slideImg.animate({ opacity: 1 }, 1000,function(){
+                $slideImg.animate({ opacity: 1 }, 1000,function(){
                     //  setTimeout($slider,1000);
                     $playSlider()
                 })
@@ -178,7 +170,7 @@ function $playSlider() {
 function $stopSlider() {
     $('.slideImg').stop()
     $playStop.empty()
-    $playStop.html('<img src= "https://img.icons8.com/color/20/000000/play.png"/>')
+    $playStop.html('<img src= "https://img.icons8.com/color/20/000000/play.png" alt="play"/>')
     $playStop.attr('data-stop', 'true')
     $unblockAll()
     $checkPlayBtns($index)
