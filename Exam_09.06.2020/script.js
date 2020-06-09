@@ -133,7 +133,9 @@ $(document).ready(function($) {
     localStorage.setItem("books", JSON.stringify($book));
     localStorage.setItem("visitors", JSON.stringify($visitor));
     localStorage.setItem("cards", JSON.stringify($card));
+
     $fillPageBooks()
+
     $links.click(function () {
         let $activePage = $('.nav-item.active')
         $links.removeClass('active')
@@ -151,6 +153,7 @@ $(document).ready(function($) {
         else if ($(this).text() === 'Statistics(current)' && ($activePage.text() !== 'Statistics(current)')) {
         }
     })
+
     $sort.click(() => {
     })
 
@@ -167,22 +170,22 @@ $(document).ready(function($) {
     })
 
     $('#save').click(function() {
-            $('#fade').fadeOut();
-            return false;
-        })
+        $('#fade').fadeOut();
+        return false;
+    })
 
     $(document).keydown(function(e) {
-            if (e.keyCode === 27) {
-                e.stopPropagation();
-                $('#fade').fadeOut();
-            }
-        });
+        if (e.keyCode === 27) {
+            e.stopPropagation();
+            $('#fade').fadeOut();
+        }
+    });
 
     $('#fade').click(function(e) {
-            if ($(e.target).closest('#popup').length === 0) {
-                $(this).fadeOut();
-            }
-        })
+        if ($(e.target).closest('#popup').length === 0) {
+            $(this).fadeOut();
+        }
+    })
 })
 
 function $fillPageBooks() {
