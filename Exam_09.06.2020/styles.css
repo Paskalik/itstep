@@ -48,3 +48,7 @@ select {
 #popup input {
     width: 100%;
 }
+
+table {
+    text-align: center;
+}
