@@ -226,8 +226,8 @@ function $fillBooks() {
         $htmlBook += '<td>' + $books[i].publisher + '</td>'
         $htmlBook += '<td>' + $books[i].pages + '</td>'
         $htmlBook += '<td>' + $books[i].instances + '</td>'
-        $htmlBook += '<td>' + '</td>'
-        $htmlBook += '<td>' + '</td>'
+        $htmlBook += '<td><img src="https://img.icons8.com/small/20/000000/multi-edit.png"/></td>'
+        $htmlBook += '<td><img src="https://img.icons8.com/material/20/000000/delete-forever--v2.png"/></td>'
         $trBook.append($htmlBook)
     }
     $select.append('<option>Title</option><option>Author</option><option>Instances</option>')
@@ -243,7 +243,7 @@ function $fillVisitors() {
         let $htmlVisitor = '<td>' + $visitors[i].id + '</td>'
         $htmlVisitor += '<td>' + $visitors[i].name + '</td>'
         $htmlVisitor += '<td>' + $visitors[i].phone + '</td>'
-        $htmlVisitor += '<td>' + '</td>'
+        $htmlVisitor += '<td><img src="https://img.icons8.com/small/20/000000/multi-edit.png"/></td>'
         $trVisitor.append($htmlVisitor)
     }
 }
