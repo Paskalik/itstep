@@ -246,6 +246,7 @@ function $fillVisitors() {
         $htmlVisitor += '<td><img src="https://img.icons8.com/small/20/000000/multi-edit.png"/></td>'
         $trVisitor.append($htmlVisitor)
     }
+    $select.append('<option>Id</option><option>Name</option>')
 }
 
 function $fillCards() {
@@ -275,6 +276,7 @@ function $fillCards() {
         $htmlCard += '<td>' + $card[i].date_to + '</td>'
         $trCard.append($htmlCard)
     }
+    $select.append('<option>Borrow Date</option><option>Return Date</option>')
 }
 
 function $fillStatistics() {
