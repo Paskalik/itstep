@@ -44,3 +44,7 @@ select {
 #save {
     width: 100%;
 }
+
+#popup input {
+    width: 100%;
+}

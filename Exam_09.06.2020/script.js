@@ -155,11 +155,13 @@ $(document).ready(function($) {
     })
 
     $new.click(function () {
+        $popup.empty()
         let $page = $('.nav-item.active')
         if ($page.text() === 'Books(current)') {
-            let $newBook = '<h5>New book^</h5><label>Title<input></label><label>Author<input></label>' +
+            let $newBook = '<h5>New book:</h5><label>Title<input></label><label>Author<input></label>' +
                 '<label>Year<input></label><label>Publisher<input></label><label>Pages<input></label>' +
-                '<label>Instances<input></label>'
+                '<label>Instances<input></label><button id="save">Save</button>'
+            $popup.append($newBook)
         }
         $('#fade').fadeIn();
     })
