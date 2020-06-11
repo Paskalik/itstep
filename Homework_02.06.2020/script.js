@@ -59,6 +59,7 @@ $(document).ready(function($) {
             $('#tablo').css('display', 'flex')
             let $now = new Date()
             $('#cityA').text(city + ', ' + sessionStorage.getItem("country"))
+            $('#time').text($actDate($now))
             let $imgURL = "https://openweathermap.org/img/w/" + data["current"].weather[0]["icon"] + ".png"
             $('#tmp').attr("src", $imgURL)
             $('#desc').html(data["current"].weather[0]["main"])
@@ -151,9 +152,18 @@ $(document).ready(function($) {
 
     function $formatDate(date, count) {
         let $d = date.getDate() + count
-        let $m = date.getMonth()
+        let $m = date.getMonth() + 1
         let $y = date.getFullYear()
         return ($d + '.' + $m + '.' + $y)
+    }
+
+    function $actDate(date) {
+        let $d = date.getDate()
+        let $m = date.getMonth() + 1
+        let $y = date.getFullYear()
+        let $hour = date.getHours()
+        let $min = date.getMinutes()
+        return ($hour + ':' + $min + ' ' + $d + '.' + $m + '.' + $y)
     }
 
     function $averageTemp(temp) {
