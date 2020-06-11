@@ -163,6 +163,9 @@ $(document).ready(function($) {
         let $y = date.getFullYear()
         let $hour = date.getHours()
         let $min = date.getMinutes()
+        if ($min < 10) {
+            $min = '0' + $min
+        }
         return ($hour + ':' + $min + ' ' + $d + '.' + $m + '.' + $y)
     }
 
