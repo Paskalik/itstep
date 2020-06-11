@@ -8,7 +8,70 @@
 </head>
 <body>
     <div class="form">
-        <p>Не удаляй, пожалуйста, я до обеда четверга выкачу</p>
+        <div id="overlay">
+            <div class="cv-spinner">
+                <span class="spinner"></span>
+            </div>
+        </div>
+        <h3>Введите название города</h3>
+        <p>Например:
+            <span style="color:green; font-size:16px;">Kharkiv, Kyiv, Dnipro etc.</span>
+        </p>
+        <label>
+            <input type="text" id="city" placeholder="Введите название города (англ.)..."/>
+        </label>
+        <button id="cityB">OK</button>
+        <div id="cityC"></div>
+        <div id="current">
+            <h2 id="cityA"></h2>
+            <div id="cloud">
+                <img id="tmp" lt="cloud" src=""/>
+                <p id="desc"></p>
+            </div>
+            <p id="temp"></p>
+            <div id="date"></div>
+            <div id="vars">
+                <p id="wind"></p>
+                <p id="precip"></p>
+                <p id="pressure"></p>
+            </div>
+        </div>
+        <div id="tablo">
+            <div class="day">
+                <p id="day1"></p>
+                <div id="date1"></div>
+                <img id="tmp4" alt="weather" src=""/>
+                <div id="temp1"></div>
+            </div>
+
+            <div class="day">
+                <p id="day2"></p>
+                <div id="date2"></div>
+                <img id="tmp5" alt="weather" src=""/>
+                <div id="temp2"></div>
+            </div>
+
+            <div class="day">
+                <p id="day3"></p>
+                <div id="date3"></div>
+                <img id="tmp6" alt="weather" src=""/>
+                <div id="temp3"></div>
+            </div>
+
+            <div class="day">
+                <p id="day4"></p>
+                <div id="date4"></div>
+                <img id="tmp7" alt="weather" src=""/>
+                <div id="temp4"></div>
+            </div>
+
+            <div class="day">
+                <p id="day5"></p>
+                <div id="date5"></div>
+                <img id="tmp8" alt="weather" src=""/>
+                <div id="temp5"></div>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
