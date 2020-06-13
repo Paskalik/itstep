@@ -30,7 +30,7 @@ $(document).ready(function($) {
         let $apiURI1 = function () {
             let lat = sessionStorage.getItem("lat")
             let lon = sessionStorage.getItem("lon")
-            return 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=minutely,hourly&appid=5b95c78fbeccd9c3e4d8472f16428c63'
+            return 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&units=metric&exclude=minutely,hourly&appid=5b95c78fbeccd9c3e4d8472f16428c63'
         }
 
         function $get2() {
@@ -63,33 +63,33 @@ $(document).ready(function($) {
             let $imgURL = "https://openweathermap.org/img/w/" + data["current"].weather[0]["icon"] + ".png"
             $('#tmp').attr("src", $imgURL)
             $('#desc').html(data["current"].weather[0]["main"])
-            $('#temp').html(Math.floor((data["current"].temp) - 273, 15) + "°C")
+            $('#temp').html(Math.floor(data["current"].temp) + "°C")
             $('#wind').text('Wind: ' + data["current"].wind_speed * 3.6 + 'kph')
             $('#precip').text('Precip: ' + data["current"].wind_speed + 'mm')
             $('#pressure').text('Pressure: ' + data["current"].pressure + 'mb')
 
             $("#date1").html($formatDate($now, 1))
-            $("#temp1").html(Math.floor($averageTemp(data["daily"][0].temp) - 273, 15) + "°C")
+            $("#temp1").html(Math.floor($averageTemp(data["daily"][0].temp)) + "°C")
             $imgURL = "https://openweathermap.org/img/w/" + data["daily"][0].weather[0]["icon"] + ".png"
             $("#tmp4").attr("src", $imgURL)
 
             $("#date2").html($formatDate($now, 2))
-            $("#temp2").html(Math.floor($averageTemp(data["daily"][1].temp) - 273, 15) + "°C")
+            $("#temp2").html(Math.floor($averageTemp(data["daily"][1].temp)) + "°C")
             $imgURL = "https://openweathermap.org/img/w/" + data["daily"][1].weather[0]["icon"] + ".png"
             $("#tmp5").attr("src", $imgURL)
 
             $("#date3").html($formatDate($now, 3))
-            $("#temp3").html(Math.floor($averageTemp(data["daily"][2].temp) - 273, 15) + "°C")
+            $("#temp3").html(Math.floor($averageTemp(data["daily"][2].temp)) + "°C")
             $imgURL = "https://openweathermap.org/img/w/" + data["daily"][2].weather[0]["icon"] + ".png"
             $("#tmp6").attr("src", $imgURL)
 
             $("#date4").html($formatDate($now, 4))
-            $("#temp4").html(Math.floor($averageTemp(data["daily"][3].temp) - 273, 15) + "°C")
+            $("#temp4").html(Math.floor($averageTemp(data["daily"][3].temp)) + "°C")
             $imgURL = "https://openweathermap.org/img/w/" + data["daily"][3].weather[0]["icon"] + ".png"
             $("#tmp7").attr("src", $imgURL)
 
             $("#date5").html($formatDate($now, 5))
-            $("#temp5").html(Math.floor($averageTemp(data["daily"][4].temp) - 273, 15) + "°C")
+            $("#temp5").html(Math.floor($averageTemp(data["daily"][4].temp)) + "°C")
             $imgURL = "https://openweathermap.org/img/w/" + data["daily"][4].weather[0]["icon"] + ".png"
             $("#tmp8").attr("src", $imgURL)
         }
