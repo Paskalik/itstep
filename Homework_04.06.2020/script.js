@@ -1,68 +1,55 @@
 'use strict';
 
+import {$registerForm, $saveRegisterInfo, $showRegisterResult} from './registerForm.js'
+import {$userInfo} from "./userInfo.js";
 //Не доделана
 
-let $header = $('#header')
 let $form = $('#form')
-let $data
 
 $(document).ready(function($) {
     $form.parsley()
-    $registerForm()
+    window.Parsley.addValidator('usernameFill', {
+            validateString: function(value) {
+                return (value !== 'admin') && (value !== 'user') && (value !== 'test');
+            },
+            messages: {
+                en: 'Username ‘admin’ or ‘user’ or ‘test’ is not allowed'
+            }
+        });
+    $registerForm($form)
     let $input = $('input')
+
+    $('#register').click(() => {
+        $input.each(function () {
+            $errorMessage($(this))
+        })
+    })
+
     $input.each(function () {
         $validateField($(this))
     })
-    $('button').click(() => {
-        $input.each(function () {
-            $formatError($(this))
-        })
-        if ($('.parsley-error').length === 0) {
-            $data = $saveInfo()
-            $showRegisterResult()
+
+    window.Parsley.on('form:success', function() {
+        if (($form.attr('data-form-name') === 'register') && ($('#next').length === 0)) {
+            let $register = $('#register')
+            let $dataRegister = $saveRegisterInfo()
+            $showRegisterResult($form,$dataRegister)
+            $input.prop('disabled',true)
+            $register.prop('disabled',true)
+            $register.css('cursor','default')
+            $form.append('<input type="button" id="next" value="Next">')
         }
+        /*else if ($form.prop('id') === 'info') {
+
+        }*/
+    })
+    let $next = $('#next')
+    $next.click(function () {
+        $userInfo($form)
     })
 })
 
-function $registerForm() {
-    $header.text('Register form')
-    $form.append('<label for="username" class="name">Username:</label><input id="username" class="name">')
-    $('.name').wrapAll('<div class="row">')
-    let $username = $('#username')
-    $username.attr('data-parsley-minlength','4')
-    $username.attr('data-parsley-maxlength','20')
-    $form.append('<label for="email" type="email" class="email">Email:</label><input id="email" class="email" type="email">')
-    $('.email').wrapAll('<div class="row">')
-    $form.append('<label for="password" class="pass">Password:</label><input id="password" class="pass" type="password">')
-    $('.pass').wrapAll('<div class="row">')
-    let $password = $('#password')
-    $password.attr('data-parsley-minlength','6')
-    $password.attr('data-parsley-maxlength','30')
-    $form.append('<label for="repeat" class="repeat">Repeat:</label><input id="repeat" class="repeat" type="password">')
-    $('.repeat').wrapAll('<div class="row">')
-    let $repeat = $('#repeat')
-    $repeat.attr('data-parsley-equalto','#password')
-    $form.append('<button type="submit">Register</button>')
-    let $input = $('input')
-    $input.attr('data-parsley-trigger','focusout')
-    $input.attr('data-parsley-required','true')
-    $input.wrap('<div class="col-75">')
-    $('label').wrap('<div class="col-25">')
-}
-
-function $saveInfo() {
-    return [$('#username').val(), $('#email').val(), $('#password').val()]
-}
-
-function $showRegisterResult() {
-    $form.append('<h4>Result</h4>')
-    let $table = $form.append('<table>')
-    $table.append('<tr><td>Username</td><td>' + $data[0] + '</td></tr>')
-    $table.append('<tr><td>Email</td><td>' + $data[1] + '</td></tr>')
-    $table.append('<tr><td>Password</td><td>' + $data[2] + '</td></tr>')
-}
-
-function $formatError(input) {
+function $errorMessage(input) {
     let $label = $('label[for="' + input.prop('id') + '"]').text()
     let $text = $label.substring(0, $label.length - 1)
     let $min = input.attr('data-parsley-minlength')
@@ -80,6 +67,6 @@ function $validateField(input) {
     })
 
     input.focusout(function () {
-        $formatError(input)
+        $errorMessage(input)
     })
 }
