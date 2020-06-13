@@ -1,3 +1,5 @@
+import {$validateField} from './validate.js'
+
 function $registerForm(form) {
     form.attr('data-form-name','register')
     form.append('<h3>Register form</h3>')
@@ -24,6 +26,10 @@ function $registerForm(form) {
     $input.attr('data-parsley-required','true')
     $input.wrap('<div class="col-75">')
     $('label').wrap('<div class="col-25">')
+
+    $input.each(function () {
+        $validateField($(this))
+    })
 }
 
 function $saveRegisterInfo() {

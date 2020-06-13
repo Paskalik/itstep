@@ -2,6 +2,7 @@
 
 import {$registerForm, $saveRegisterInfo, $showRegisterResult} from './registerForm.js'
 import {$userInfo} from "./userInfo.js";
+import {$errorMessage} from "./validate.js";
 //Не доделана
 
 let $form = $('#form')
@@ -9,13 +10,29 @@ let $form = $('#form')
 $(document).ready(function($) {
     $form.parsley()
     window.Parsley.addValidator('usernameFill', {
-            validateString: function(value) {
-                return (value !== 'admin') && (value !== 'user') && (value !== 'test');
+        validateString: function(value) {
+            return (value !== 'admin') && (value !== 'user') && (value !== 'test');
             },
-            messages: {
-                en: 'Username ‘admin’ or ‘user’ or ‘test’ is not allowed'
+        messages: {
+            en: 'Username ‘admin’ or ‘user’ or ‘test’ is not allowed'
+        }
+    });
+
+    window.Parsley.addValidator('birthValidate', {
+        validateDate: function(value) {
+            let reqs = value.split("/")
+            if (reqs[2] < 1900) {
+                return false;
             }
-        });
+            else {
+                return true;
+            }
+        },
+        messages: {
+            en: 'Min birthday is 01/01/1900'
+        }
+    })
+
     $registerForm($form)
     let $input = $('input')
 
@@ -23,10 +40,6 @@ $(document).ready(function($) {
         $input.each(function () {
             $errorMessage($(this))
         })
-    })
-
-    $input.each(function () {
-        $validateField($(this))
     })
 
     window.Parsley.on('form:success', function() {
@@ -49,25 +62,3 @@ $(document).ready(function($) {
         }*/
     })
 })
-
-function $errorMessage(input) {
-    let $label = $('label[for="' + input.prop('id') + '"]').text()
-    let $text = $label.substring(0, $label.length - 1)
-    let $min = input.attr('data-parsley-minlength')
-    let $max = input.attr('data-parsley-maxlength')
-    input.attr('data-parsley-required-message', $text + ' is required')
-    input.attr('data-parsley-minlength-message', 'Min length is ' + $min + ' characters')
-    input.attr('data-parsley-maxlength-message', 'Max length is ' + $max + ' characters')
-    input.attr('data-parsley-type-message', 'Enter a valid email address')
-    input.attr('data-parsley-equalto-message', 'The password must match')
-}
-
-function $validateField(input) {
-    input.focus(function () {
-        input.parsley()
-    })
-
-    input.focusout(function () {
-        $errorMessage(input)
-    })
-}

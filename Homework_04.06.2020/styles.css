@@ -19,10 +19,18 @@ input {
     resize: vertical;
 }
 
+input.gender {
+    width: 15px;
+}
+
 label {
-    position: relative;
     padding: 12px 12px 12px 0;
     display: inline-block;
+}
+
+input.subscribe {
+    width: 20px;
+    margin-top: 15px;
 }
 
 .col-25 {
