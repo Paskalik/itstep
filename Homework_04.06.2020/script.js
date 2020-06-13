@@ -38,14 +38,15 @@ $(document).ready(function($) {
             $register.prop('disabled',true)
             $register.css('cursor','default')
             $form.append('<input type="button" id="next" value="Next">')
+
+            $('#next').click(function () {
+                $form.empty()
+                $userInfo($form)
+            })
         }
         /*else if ($form.prop('id') === 'info') {
 
         }*/
-    })
-    let $next = $('#next')
-    $next.click(function () {
-        $userInfo($form)
     })
 })
 

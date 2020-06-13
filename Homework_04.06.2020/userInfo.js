@@ -1,5 +1,4 @@
 function $userInfo(form) {
-    form.empty()
     form.attr('data-form-name','info')
     form.append('<h3>User info</h3>')
     form.append('<label for="name" class="name">Full name:</label><input id="name" class="name">')
@@ -36,6 +35,11 @@ function $userInfo(form) {
     //$username.attr('data-parsley-maxlength','20')
     //$username.attr('data-parsley-username-fill','')
     form.append('<button type="submit" id="register">Save</button>')
+    let $input = $('input')
+    $input.attr('data-parsley-trigger','focusout')
+    $input.attr('data-parsley-required','true')
+    $input.wrap('<div class="col-75">')
+    $('label').wrap('<div class="col-25">')
 }
 
 export {$userInfo}
