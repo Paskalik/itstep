@@ -33,21 +33,21 @@ function $registerForm(form) {
 }
 
 function $saveRegisterInfo() {
-
-    return [$('#username').val(), $('#email').val(), $('#password').val()]
-}
-
-function $showRegisterResult(form,data) {
-    form.append('<h4>Result</h4>')
-    let $table = form.append('<table>')
-    let $passIncode = data[2]
+    let $passIncode = $('#password').val()
     let $passDecode = String()
     for (let i = 0; i < $passIncode.length; i++) {
         $passDecode += '*'
     }
+    return [$('#username').val(), $('#email').val(), $passDecode]
+}
+
+function $showRegisterResult(form,data) {
+    form.append('<h4>Result</h4>')
+    form.append('<table></table>')
+    let $table = $('table')
     $table.append('<tr><td>Username</td><td>' + data[0] + '</td></tr>')
     $table.append('<tr><td>Email</td><td>' + data[1] + '</td></tr>')
-    $table.append('<tr><td>Password</td><td>' + $passDecode + '</td></tr>')
+    $table.append('<tr><td>Password</td><td>' + data[2] + '</td></tr>')
 }
 
 export {$registerForm, $saveRegisterInfo, $showRegisterResult}

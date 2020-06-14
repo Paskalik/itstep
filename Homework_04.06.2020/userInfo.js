@@ -10,16 +10,14 @@ function $userInfo(form) {
     $fullName.attr('data-parsley-maxlength','50')
     form.append('<label for="avatar" class="avatar label">Avatar:</label><input id="avatar" class="avatar input" type="file">')
     $('.avatar').wrapAll('<div class="row">')
-    let $avatar = $('#avatar')
     form.append('<label for="birth" class="birth label">Birthday:</label>')
-    form.append('<input id="birth" class="birth input" placeholder="dd/mm/yyyy" pattern="/^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$/i">')
+    form.append('<input id="birth" class="birth input" type="date">')
     $('.birth').wrapAll('<div class="row">')
-    let $birth = $('#birth')
-    $birth.attr('data-parsley-birth-validate','')
+    $('#birth').attr('data-parsley-birth-validate','')
     form.append('<label for="gender" class="gender label">Gender:</label>')
-    form.append('<input id="male" class="gender gen" name="gender" type="radio">')
+    form.append('<input id="male" class="gender gen" name="gender" type="radio" value="male">')
     form.append('<label for="male" class="gender gen">Male</label>')
-    form.append('<input id="female" class="gender gen" name="gender" type="radio">')
+    form.append('<input id="female" class="gender gen" name="gender" type="radio" value="female">')
     form.append('<label for="female" class="gender gen">Female</label>')
     $('.gender').wrapAll('<div class="row">')
     $('.gen').wrapAll('<div class="col-75">')
@@ -43,4 +41,26 @@ function $userInfo(form) {
     })
 }
 
-export {$userInfo}
+function $saveUserInfo() {
+    let $gender = $('input[name="radio"]:checked')
+    let $subscribe
+    if ($('#subscribe').is(':checked')){
+        $subscribe = 'Yes';
+    } else {
+        $subscribe = 'No';
+    }
+    return [$('#name').val(), $('#avatar').val(), $('#birth').val(), $gender.val(), $subscribe]
+}
+
+function $showSaveResult(form,data) {
+    form.append('<h4>Result</h4>')
+    form.append('<table>')
+    let $table = $('table')
+    $table.append('<tr><td>Full name</td><td>' + data[0] + '</td></tr>')
+    $table.append('<tr><td>Avatar</td><td>' + data[1] + '</td></tr>')
+    $table.append('<tr><td>Birthday</td><td>' + data[2] + '</td></tr>')
+    $table.append('<tr><td>Gender</td><td>' + data[3] + '</td></tr>')
+    $table.append('<tr><td>Subscribe</td><td>' + data[4] + '</td></tr>')
+}
+
+export {$userInfo, $saveUserInfo, $showSaveResult}

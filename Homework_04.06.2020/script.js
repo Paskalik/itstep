@@ -1,7 +1,7 @@
 'use strict';
 
 import {$registerForm, $saveRegisterInfo, $showRegisterResult} from './registerForm.js'
-import {$userInfo} from "./userInfo.js";
+import {$userInfo, $saveUserInfo, $showSaveResult} from "./userInfo.js";
 import {$errorMessage} from "./validate.js";
 //Не доделана
 
@@ -20,13 +20,8 @@ $(document).ready(function($) {
 
     window.Parsley.addValidator('birthValidate', {
         validateDate: function(value) {
-            let reqs = value.split("/")
-            if (reqs[2] < 1900) {
-                return false;
-            }
-            else {
-                return true;
-            }
+            let year = value.getFullYear()
+            return year >= 1900;
         },
         messages: {
             en: 'Min birthday is 01/01/1900'
@@ -43,8 +38,8 @@ $(document).ready(function($) {
     })
 
     window.Parsley.on('form:success', function() {
+        let $register = $('#register')
         if (($form.attr('data-form-name') === 'register') && ($('#next').length === 0)) {
-            let $register = $('#register')
             let $dataRegister = $saveRegisterInfo()
             $showRegisterResult($form,$dataRegister)
             $input.prop('disabled',true)
@@ -57,8 +52,12 @@ $(document).ready(function($) {
                 $userInfo($form)
             })
         }
-        /*else if ($form.prop('id') === 'info') {
-
-        }*/
+        else if ($form.attr('data-form-name') === 'info') {
+            let $dataSave = $saveUserInfo()
+            $showSaveResult($form,$dataSave)
+            $input.prop('disabled',true)
+            $register.prop('disabled',true)
+            $register.css('cursor','default')
+        }
     })
 })
