@@ -38,7 +38,22 @@ function $saveRegisterInfo() {
     for (let i = 0; i < $passIncode.length; i++) {
         $passDecode += '*'
     }
-    return [$('#username').val(), $('#email').val(), $passDecode]
+    let $secureText
+    if ((/^\d*$/).test($passIncode) || (/^[a-z]*$/).test($passIncode) || (/^[A-Z]*$/).test($passIncode)) {
+        $secureText = '(Very easy)'
+    }
+    else if ((/^[A-Z0-9]*$/).test($passIncode) || (/^[a-z0-9]*$/).test($passIncode)) {
+        $secureText = '(Easy)'
+    }
+    else if ((/^[A-z0-9]*$/).test($passIncode)) {
+        $secureText = '(Normal)'
+    }
+    else if ((/[#$-/:-?{-~!"^_`\[\]]*[A-z0-9]*$/).test($passIncode)) {
+        $secureText = '(Hard)'
+    }
+    if ($secureText) {
+        return [$('#username').val(), $('#email').val(), $passDecode, $secureText]
+    }
 }
 
 function $showRegisterResult(form,data) {
@@ -47,7 +62,7 @@ function $showRegisterResult(form,data) {
     let $table = $('table')
     $table.append('<tr><td>Username</td><td>' + data[0] + '</td></tr>')
     $table.append('<tr><td>Email</td><td>' + data[1] + '</td></tr>')
-    $table.append('<tr><td>Password</td><td>' + data[2] + '</td></tr>')
+    $table.append('<tr><td>Password</td><td>' + data[2] + ' ' + data[3] + '</td></tr>')
 }
 
 export {$registerForm, $saveRegisterInfo, $showRegisterResult}
