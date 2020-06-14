@@ -39,21 +39,19 @@ function $saveRegisterInfo() {
         $passDecode += '*'
     }
     let $secureText
-    if ((/^\d*$/).test($passIncode) || (/^[a-z]*$/).test($passIncode) || (/^[A-Z]*$/).test($passIncode)) {
+    if ((/^\d+$/).test($passIncode) || (/^[a-z]+$/).test($passIncode) || (/^[A-Z]+$/).test($passIncode)) {
         $secureText = '(Very easy)'
     }
-    else if ((/^[A-Z0-9]*$/).test($passIncode) || (/^[a-z0-9]*$/).test($passIncode)) {
+    else if ((/^[A-Z0-9]+$/).test($passIncode) || (/^[a-z0-9]+$/).test($passIncode)) {
         $secureText = '(Easy)'
     }
-    else if ((/^[A-z0-9]*$/).test($passIncode)) {
+    else if ((/^[A-z0-9]+$/).test($passIncode)) {
         $secureText = '(Normal)'
     }
-    else if ((/[#$-/:-?{-~!"^_`\[\]]*[A-z0-9]*$/).test($passIncode)) {
+    else if ((/^[#$-/:-?{-~!"^_`\[\]A-z0-9]+$/).test($passIncode)) {
         $secureText = '(Hard)'
     }
-    if ($secureText) {
-        return [$('#username').val(), $('#email').val(), $passDecode, $secureText]
-    }
+    return [$('#username').val(), $('#email').val(), $passDecode, $secureText]
 }
 
 function $showRegisterResult(form,data) {
