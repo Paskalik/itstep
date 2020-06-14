@@ -40,6 +40,7 @@ $(document).ready(function($) {
     window.Parsley.on('form:success', function() {
         let $register = $('#register')
         if (($form.attr('data-form-name') === 'register') && ($('#next').length === 0)) {
+            $input = $('input')
             let $dataRegister = $saveRegisterInfo()
             $showRegisterResult($form,$dataRegister)
             $input.prop('disabled',true)
@@ -53,6 +54,7 @@ $(document).ready(function($) {
             })
         }
         else if ($form.attr('data-form-name') === 'info') {
+            $input = $('input')
             let $dataSave = $saveUserInfo()
             $showSaveResult($form,$dataSave)
             $input.prop('disabled',true)
