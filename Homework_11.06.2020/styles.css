@@ -1,0 +1,35 @@
+.wrapper {
+    width: 100%;
+    max-width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.circle {
+    display: inline-block;
+    width: 300px;
+    margin-left: 20px;
+}
+
+.circle__el {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+}
+
+.circle__el span {
+    position: absolute;
+    display: block;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.circle__fill {
+    border: none;
+}
