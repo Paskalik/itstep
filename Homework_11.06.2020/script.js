@@ -1,26 +1,42 @@
 'use strict';
 
 /* в процессе */
-import * as $DOMBuilder from './DOMBuilder.js'
+import {$fillBlocks} from './DOMBuilder.js'
 
 $(document).ready(function() {
-    $DOMBuilder.$fillBlocks()
-    click()
+    $fillBlocks()
+    $clickBlock()
+    $clickBack()
 })
 
 let $indexRegion, $indexSchool
 
-function click() {
+function $clickBlock() {
     $('.block').click(function () {
         if ($(this).attr('data-school')) {
             $indexRegion = $(this).attr('data-region')
             $indexSchool = $(this).attr('data-school')
-            $DOMBuilder.$fillBlocks($indexRegion, $indexSchool)
+            $fillBlocks($indexRegion, $indexSchool)
         }
         else if ($(this).attr('data-region')) {
             $indexRegion = $(this).attr('data-region')
-            $DOMBuilder.$fillBlocks($indexRegion)
+            $fillBlocks($indexRegion)
         }
-        click()
+        $clickBlock()
+    })
+
+}
+
+function $clickBack() {
+    $('#back').click(function () {
+        let $blocks =$('.blocks')
+        if ($blocks.attr('data-region')) {
+            $indexRegion = $blocks.attr('data-region')
+            $fillBlocks($indexRegion)
+        }
+        else {
+            $fillBlocks()
+        }
+        $clickBlock()
     })
 }

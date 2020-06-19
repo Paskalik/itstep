@@ -4,9 +4,10 @@ let $name = $('h4')
 let $back = $('#back')
 let $blocks = $('.blocks')
 
-function $fillBlocks(indexRegion = null,indexSchool = null) {
+export function $fillBlocks(indexRegion = null,indexSchool = null) {
     $blocks.empty()
     if (indexSchool) {
+        $blocks.attr('data-region',indexRegion)
         let $region = $data.regions[indexRegion]
         let $school = $region.schools[indexSchool]
         let $classes = $school.classes
@@ -17,6 +18,7 @@ function $fillBlocks(indexRegion = null,indexSchool = null) {
         })
     }
     else if (indexRegion) {
+        $blocks.removeAttr('data-region')
         let $region = $data.regions[indexRegion]
         let $schools = $region.schools
         $name.text('CITY: ' + $data.cityName.toUpperCase() + ' -> REGION: ' +
@@ -27,6 +29,7 @@ function $fillBlocks(indexRegion = null,indexSchool = null) {
         $back.css('display', 'block')
     }
     else {
+        $blocks.removeAttr('data-region')
         let $regions = $data.regions
         $name.text('CITY: ' + $data.cityName.toUpperCase())
         $regions.forEach((el, index) => {
@@ -35,30 +38,6 @@ function $fillBlocks(indexRegion = null,indexSchool = null) {
         $back.css('display', 'none')
     }
 }
-
-/*function $createRegion(indexRegion) {
-    $blocks.empty()
-    let $region = $data.regions[indexRegion]
-    let $schools = $region.schools
-    $name.text('CITY: ' + $data.cityName.toUpperCase() + ' -> REGION: ' +
-        $region.regionName.toUpperCase())
-    $schools.forEach((el, index) => {
-        $createBlock(el.schoolName, el.allPlaces, el.filledPlaces, indexRegion, index)
-    })
-    $back.css('display', 'block')
-}*/
-
-/*function $createSchool(indexRegion, indexSchool) {
-    $blocks.empty()
-    let $region = $data.regions[indexRegion]
-    let $school = $region.schools[indexSchool]
-    let $classes = $school.classes
-    $name.text('CITY: ' + $data.cityName.toUpperCase() + ' -> REGION: ' +
-        $region.regionName.toUpperCase() + ' -> ' + $school.schoolName)
-    $classes.forEach((el) => {
-        $createBlock(el.className, el.allPlaces, el.filledPlaces)
-    })
-}*/
 
 function $createBlock(name,all,filled,region = null, school = null) {
     let $block
@@ -88,4 +67,3 @@ function $createBlock(name,all,filled,region = null, school = null) {
         }
     )
 }
-export {$fillBlocks}
