@@ -9,6 +9,8 @@
     position: absolute;
     top: 0;
     left: 0;
+    display: none;
+    cursor: pointer;
 }
 
 .blocks {
@@ -46,6 +48,7 @@
     border: 1px solid black;
     margin-bottom: 20px;
     margin-right: 20px;
+    cursor: pointer;
 }
 
 .block > div {

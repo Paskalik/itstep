@@ -14,12 +14,12 @@ export let $data = {
                         {
                             "className": "First Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 70
+                            "filledPlaces": 65
                         },
                         {
                             "className": "Second Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 96
+                            "filledPlaces": 86
                         },
                         {
                             "className": "Third Grades",
@@ -29,7 +29,7 @@ export let $data = {
                         {
                             "className": "Fourth Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 120
+                            "filledPlaces": 110
                         }
                         ]
                 },
@@ -122,7 +122,7 @@ export let $data = {
                         {
                             "className": "First Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 122
+                            "filledPlaces": 102
                         },
                         {
                             "className": "Second Grades",
@@ -183,22 +183,22 @@ export let $data = {
                         {
                             "className": "First Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 122
+                            "filledPlaces": 28
                         },
                         {
                             "className": "Second Grades",
-                            "allPlaces": 123,
-                            "filledPlaces": 104
+                            "allPlaces": 125,
+                            "filledPlaces": 46
                         },
                         {
                             "className": "Third Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 117
+                            "filledPlaces": 61
                         },
                         {
                             "className": "Fourth Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 107
+                            "filledPlaces": 52
                         }
                         ]
                 },
@@ -210,22 +210,22 @@ export let $data = {
                         {
                             "className": "First Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 102
+                            "filledPlaces": 39
                         },
                         {
                             "className": "Second Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 120
+                            "filledPlaces": 42
                         },
                         {
                             "className": "Third Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 99
+                            "filledPlaces": 56
                         },
                         {
                             "className": "Fourth Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 71
+                            "filledPlaces": 58
                         }
                         ]
                 },
@@ -237,17 +237,17 @@ export let $data = {
                         {
                             "className": "First Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 117
+                            "filledPlaces": 26
                         },
                         {
                             "className": "Second Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 120
+                            "filledPlaces": 35
                         },
                         {
                             "className": "Third Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 121
+                            "filledPlaces": 49
                         },
                         {
                             "className": "Fourth Grades",
@@ -264,22 +264,22 @@ export let $data = {
                         {
                             "className": "First Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 101
+                            "filledPlaces": 43
                         },
                         {
                             "className": "Second Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 84
+                            "filledPlaces": 57
                         },
                         {
                             "className": "Third Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 97
+                            "filledPlaces": 60
                         },
                         {
                             "className": "Fourth Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 109
+                            "filledPlaces": 72
                         }
                         ]
                 },
@@ -291,22 +291,22 @@ export let $data = {
                         {
                             "className": "First Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 105
+                            "filledPlaces": 34
                         },
                         {
                             "className": "Second Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 114
+                            "filledPlaces": 71
                         },
                         {
                             "className": "Third Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 123
+                            "filledPlaces": 52
                         },
                         {
                             "className": "Fourth Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 120
+                            "filledPlaces": 29
                         }
                         ]
                 },
@@ -318,22 +318,22 @@ export let $data = {
                         {
                             "className": "First Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 116
+                            "filledPlaces": 49
                         },
                         {
                             "className": "Second Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 120
+                            "filledPlaces": 38
                         },
                         {
                             "className": "Third Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 121
+                            "filledPlaces": 42
                         },
                         {
                             "className": "Fourth Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 120
+                            "filledPlaces": 53
                         }
                         ]
                 }
@@ -361,7 +361,7 @@ export let $data = {
                         },
                         {
                             "className": "Third Grades",
-                            "allPlaces": 123,
+                            "allPlaces": 131,
                             "filledPlaces": 97
                         },
                         {
@@ -530,7 +530,7 @@ export let $data = {
                         },
                         {
                             "className": "Third Grades",
-                            "allPlaces": 123,
+                            "allPlaces": 128,
                             "filledPlaces": 107
                         },
                         {
@@ -744,17 +744,17 @@ export let $data = {
                         {
                             "className": "First Grades",
                             "allPlaces": 123,
-                            "filledPlaces": 115
+                            "filledPlaces": 105
                         },
                         {
                             "className": "Second Grades",
                             "allPlaces": 142,
-                            "filledPlaces": 95
+                            "filledPlaces": 85
                         },
                         {
                             "className": "Third Grades",
                             "allPlaces": 120,
-                            "filledPlaces": 100
+                            "filledPlaces": 95
                         },
                         {
                             "className": "Fourth Grades",
@@ -771,12 +771,12 @@ export let $data = {
                         {
                             "className": "First Grades",
                             "allPlaces": 154,
-                            "filledPlaces": 137
+                            "filledPlaces": 117
                         },
                         {
                             "className": "Second Grades",
                             "allPlaces": 100,
-                            "filledPlaces": 92
+                            "filledPlaces": 82
                         },
                         {
                             "className": "Third Grades",
@@ -798,7 +798,7 @@ export let $data = {
                         {
                             "className": "First Grades",
                             "allPlaces": 100,
-                            "filledPlaces": 98
+                            "filledPlaces": 88
                         },
                         {
                             "className": "Second Grades",
@@ -808,12 +808,12 @@ export let $data = {
                         {
                             "className": "Third Grades",
                             "allPlaces": 115,
-                            "filledPlaces": 94
+                            "filledPlaces": 87
                         },
                         {
                             "className": "Fourth Grades",
                             "allPlaces": 142,
-                            "filledPlaces": 127
+                            "filledPlaces": 105
                         }
                         ]
                 },
@@ -825,7 +825,7 @@ export let $data = {
                         {
                             "className": "First Grades",
                             "allPlaces": 120,
-                            "filledPlaces": 119
+                            "filledPlaces": 95
                         },
                         {
                             "className": "Second Grades",
@@ -840,7 +840,7 @@ export let $data = {
                         {
                             "className": "Fourth Grades",
                             "allPlaces": 170,
-                            "filledPlaces": 100
+                            "filledPlaces": 90
                         }
                         ]
                 }
@@ -874,3 +874,24 @@ function $countPlaces() {
 }
 
 $countPlaces()
+
+export function $countPer(all, filled) {
+    let $per = (filled * 100) / all
+    let $color
+    if (($per > 0) && ($per <= 20)) {
+        $color = 'darkseagreen'
+    }
+    else if (($per > 20) && ($per <= 40)) {
+        $color = 'darkcyan'
+    }
+    else if (($per > 40) && ($per <= 60)) {
+        $color = 'darksalmon'
+    }
+    else if (($per > 60) && ($per <= 80)) {
+        $color = 'darkorange'
+    }
+    else if (($per > 80) && ($per <= 100)) {
+        $color = 'darkred'
+    }
+    return {$per, $color}
+}
