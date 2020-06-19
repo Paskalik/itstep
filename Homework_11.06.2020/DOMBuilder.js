@@ -4,29 +4,51 @@ let $name = $('h4')
 let $back = $('#back')
 let $blocks = $('.blocks')
 
-function createCity() {
+function $fillBlocks(indexRegion = null,indexSchool = null) {
     $blocks.empty()
-    let $regions = $data.regions
-    $name.text('CITY: ' + $data.cityName.toUpperCase())
-    $regions.forEach((el, index) => {
-        createBlock(el.regionName, el.allPlaces, el.filledPlaces, index)
-    })
-    $back.css('display', 'none')
+    if (indexSchool) {
+        let $region = $data.regions[indexRegion]
+        let $school = $region.schools[indexSchool]
+        let $classes = $school.classes
+        $name.text('CITY: ' + $data.cityName.toUpperCase() + ' -> REGION: ' +
+            $region.regionName.toUpperCase() + ' -> ' + $school.schoolName)
+        $classes.forEach((el) => {
+            $createBlock(el.className, el.allPlaces, el.filledPlaces)
+        })
+    }
+    else if (indexRegion) {
+        let $region = $data.regions[indexRegion]
+        let $schools = $region.schools
+        $name.text('CITY: ' + $data.cityName.toUpperCase() + ' -> REGION: ' +
+            $region.regionName.toUpperCase())
+        $schools.forEach((el, index) => {
+            $createBlock(el.schoolName, el.allPlaces, el.filledPlaces, indexRegion, index)
+        })
+        $back.css('display', 'block')
+    }
+    else {
+        let $regions = $data.regions
+        $name.text('CITY: ' + $data.cityName.toUpperCase())
+        $regions.forEach((el, index) => {
+            $createBlock(el.regionName, el.allPlaces, el.filledPlaces, index)
+        })
+        $back.css('display', 'none')
+    }
 }
 
-function createRegion(indexRegion) {
+/*function $createRegion(indexRegion) {
     $blocks.empty()
     let $region = $data.regions[indexRegion]
     let $schools = $region.schools
     $name.text('CITY: ' + $data.cityName.toUpperCase() + ' -> REGION: ' +
         $region.regionName.toUpperCase())
     $schools.forEach((el, index) => {
-        createBlock(el.schoolName, el.allPlaces, el.filledPlaces, indexRegion, index)
+        $createBlock(el.schoolName, el.allPlaces, el.filledPlaces, indexRegion, index)
     })
     $back.css('display', 'block')
-}
+}*/
 
-function createSchool(indexRegion, indexSchool) {
+/*function $createSchool(indexRegion, indexSchool) {
     $blocks.empty()
     let $region = $data.regions[indexRegion]
     let $school = $region.schools[indexSchool]
@@ -34,11 +56,11 @@ function createSchool(indexRegion, indexSchool) {
     $name.text('CITY: ' + $data.cityName.toUpperCase() + ' -> REGION: ' +
         $region.regionName.toUpperCase() + ' -> ' + $school.schoolName)
     $classes.forEach((el) => {
-        createBlock(el.className, el.allPlaces, el.filledPlaces)
+        $createBlock(el.className, el.allPlaces, el.filledPlaces)
     })
-}
+}*/
 
-function createBlock(name,all,filled,region = null, school = null) {
+function $createBlock(name,all,filled,region = null, school = null) {
     let $block
     if (school !== null) {
         $block = $('<div class="block" data-region = ' + region + ' data-school = ' + school + '></div>')
@@ -59,5 +81,11 @@ function createBlock(name,all,filled,region = null, school = null) {
         '<div>out of places available<br>' + all + '</div></div>'
     )
     $blocks.append($block)
+
+    $('.circle').circle(
+        {
+            graduation: 10
+        }
+    )
 }
-export {createCity, createRegion, createSchool}
+export {$fillBlocks}
