@@ -1,6 +1,10 @@
-.wrapper {
+.container {
     width: 100%;
     max-width: 100%;
+}
+
+.blocks {
+    display: inline-flex;
 }
 
 * {
@@ -32,4 +36,12 @@
 }
 .circle__fill {
     border: none;
+}
+
+.block {
+    border: 1px solid black;
+}
+
+.header, .circle {
+    border-bottom: 1px solid black;
 }
