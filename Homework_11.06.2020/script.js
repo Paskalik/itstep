@@ -1,6 +1,5 @@
 'use strict';
 
-/* в процессе */
 import {$fillBlocks} from './DOMBuilder.js'
 
 $(document).ready(function() {
