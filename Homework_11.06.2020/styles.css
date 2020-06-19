@@ -1,20 +1,24 @@
 .container {
-    width: 100%;
-    max-width: 100%;
+    width: 70%;
+    text-align: center;
+    position: relative;
+    margin: 15px auto;
+}
+
+#back {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .blocks {
     display: inline-flex;
-}
-
-* {
-    box-sizing: border-box;
+    flex-wrap: wrap;
 }
 
 .circle {
     display: inline-block;
-    width: 300px;
-    margin-left: 20px;
+    width: 90%;
 }
 
 .circle__el {
@@ -40,8 +44,27 @@
 
 .block {
     border: 1px solid black;
+    margin-bottom: 20px;
+    margin-right: 20px;
 }
 
-.header, .circle {
+.block > div {
+    padding: 10px;
+}
+
+.header {
     border-bottom: 1px solid black;
+}
+
+.footer {
+    border-top: 1px solid black;
+}
+
+.footer > div {
+    display: inline-flex;
+    padding: 5px;
+}
+
+.footer > div:first-child {
+    border-right: 1px solid black;
 }
