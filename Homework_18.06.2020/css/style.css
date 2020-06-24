@@ -1,0 +1,107 @@
+/*common style*/
+body {
+    margin: 0;
+    padding: 0;
+}
+h2 {
+    text-align: center;
+}
+/*navigation*/
+nav {
+    background-color: #600000;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+nav span {
+    height: 40px;
+    padding: 20px;
+}
+nav span:hover {
+    color: #E5E5E5;
+    cursor: pointer;
+}
+.active {
+    background-color: #340000;
+}
+/*products page*/
+.products {
+    width: 700px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+    text-align: center;
+}
+.products div {
+    border: 1px solid grey;
+    padding-bottom: 10px;
+}
+.icon {
+    width: 100px;
+    height: 100px;
+}
+.counter, .quantity input {
+    width: 35px;
+}
+.price:after {
+    content: "$";
+}
+.invalid {
+    border: 1px solid red;
+}
+input[value="Buy"]:hover {
+    cursor: pointer;
+}
+/*basket page*/
+.result {
+    width: 700px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr 2fr;
+    border: 1px solid grey;
+}
+.result h3, .info h3 {
+    margin: 0;
+}
+.result h3, .result div, .info h3, .info div {
+    border: 1px solid grey;
+    padding: 10px;
+}
+.price, .prices {
+    text-align: center;
+}
+.quantity span {
+    margin-left: 5px;
+}
+.total {
+    text-align: right;
+    grid-column: 1/4;
+}
+.info {
+    width: 700px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 2fr 1fr 1fr 1fr 1fr;
+    border: 1px solid grey;
+}
+.iconAdmin {
+    width: 25px;
+    height: 25px;
+}
+.info img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.edit, .remove {
+    cursor: pointer;
+}
+.newProduct {
+    margin: 10px auto;
+    width: 700px;
+}
+#new {
+    width: 100%;
+    cursor: pointer;
+}

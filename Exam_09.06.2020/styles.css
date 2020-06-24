@@ -45,10 +45,14 @@ select {
     width: 100%;
 }
 
-#popup input {
+#popup label, #popup input {
     width: 100%;
 }
 
 table {
     text-align: center;
+}
+
+#popup label {
+    text-align: left;
 }

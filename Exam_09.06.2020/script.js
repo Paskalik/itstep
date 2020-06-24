@@ -161,17 +161,39 @@ $(document).ready(function($) {
         $popup.empty()
         let $page = $('.nav-item.active')
         if ($page.text() === 'Books(current)') {
-            let $newBook = '<h5>New book:</h5><label>Title<input></label><label>Author<input></label>' +
-                '<label>Year<input></label><label>Publisher<input></label><label>Pages<input></label>' +
-                '<label>Instances<input></label><button id="save">Save</button>'
-            $popup.append($newBook)
+            $popupBook()
+            $('#save').click(function() {
+                    if ($saveBook()) {
+                        $('#fade').fadeOut();
+                        $books = localStorage.getItem('books') ? JSON.parse(localStorage.getItem('books')) : []
+                        $fillPageBooks()
+                        return false;
+                    }
+            })
+        }
+        else if ($page.text() === 'Visitors(current)') {
+            $popupVisitor()
+            $('#save').click(function() {
+                if ($saveVisitor()) {
+                    $('#fade').fadeOut();
+                    $visitors = localStorage.getItem('visitors') ? JSON.parse(localStorage.getItem('visitors')) : []
+                    $fillPageVisitors()
+                    return false;
+                }
+            })
+        }
+        else if ($page.text() === 'Cards(current)') {
+            $popupCard()
+            $('#save').click(function() {
+                if ($saveCard()) {
+                    $('#fade').fadeOut();
+                    $cards = localStorage.getItem('cards') ? JSON.parse(localStorage.getItem('cards')) : []
+                    $fillPageCards()
+                    return false;
+                }
+            })
         }
         $('#fade').fadeIn();
-    })
-
-    $('#save').click(function() {
-        $('#fade').fadeOut();
-        return false;
     })
 
     $(document).keydown(function(e) {
@@ -226,8 +248,8 @@ function $fillBooks() {
         $htmlBook += '<td>' + $books[i].publisher + '</td>'
         $htmlBook += '<td>' + $books[i].pages + '</td>'
         $htmlBook += '<td>' + $books[i].instances + '</td>'
-        $htmlBook += '<td><img src="https://img.icons8.com/small/20/000000/multi-edit.png"/></td>'
-        $htmlBook += '<td><img src="https://img.icons8.com/material/20/000000/delete-forever--v2.png"/></td>'
+        $htmlBook += '<td><img src="https://img.icons8.com/small/20/000000/multi-edit.png" alt="edit"/></td>'
+        $htmlBook += '<td><img src="https://img.icons8.com/material/20/000000/delete-forever--v2.png" alt="delete"/></td>'
         $trBook.append($htmlBook)
     }
     $select.append('<option>Title</option><option>Author</option><option>Instances</option>')
@@ -243,7 +265,7 @@ function $fillVisitors() {
         let $htmlVisitor = '<td>' + $visitors[i].id + '</td>'
         $htmlVisitor += '<td>' + $visitors[i].name + '</td>'
         $htmlVisitor += '<td>' + $visitors[i].phone + '</td>'
-        $htmlVisitor += '<td><img src="https://img.icons8.com/small/20/000000/multi-edit.png"/></td>'
+        $htmlVisitor += '<td><img src="https://img.icons8.com/small/20/000000/multi-edit.png" alt="edit"/></td>'
         $trVisitor.append($htmlVisitor)
     }
     $select.append('<option>Id</option><option>Name</option>')
@@ -281,4 +303,105 @@ function $fillCards() {
 
 function $fillStatistics() {
 
+}
+
+function $popupBook() {
+    let $newBook = '<h5>New book:</h5><label>Title<input type="text"><span class="error"></span></label>' +
+        '<label>Author<input type="text"><span class="error"></span></label><label>Year<input type="number">' +
+        '<span class="error"></span></label><label>Publisher<input type="text"><span class="error"></span></label>' +
+        '<label>Pages<input type="number"><span class="error"></span></label><label>Instances<input type="number">' +
+        '<span class="error"></span></label><button id="save">Save</button>'
+    $popup.append($newBook)
+}
+
+function $popupVisitor() {
+    let $newVisitor = '<h5>New visitor:</h5><label>Full name<input type="text"><span class="error"></span></label>' +
+        '<label>Phone number<input type="text" class="phone"><span class="error"></span></label><button id="save">Save</button>'
+    $popup.append($newVisitor)
+}
+
+function $popupCard() {
+    let $newCard = '<h5>New card:</h5><label>Visitor<select></select><span class="error"></span></label>' +
+        '<label>Book<select></select><span class="error"></span></label><button id="save">Save</button>'
+    $popup.append($newCard)
+
+}
+
+function $saveBook() {
+    let $inputBook = $('#popup').find('input')
+    let $newId = JSON.parse(localStorage.getItem('books')).length + 1
+    if ($validateData($inputBook)) {
+        let $newBook = {
+            "id": $newId,
+            "title": $inputBook[0].value,
+            "author": $inputBook[1].value,
+            "year": $inputBook[2].value,
+            "publisher": $inputBook[3].value,
+            "pages": $inputBook[4].value,
+            "instances": $inputBook[5].value
+        }
+        let $item = JSON.parse(localStorage.getItem("books"))
+        $item.push($newBook)
+        delete localStorage["books"]
+        localStorage["books"] = JSON.stringify($item)
+        return true;
+    }
+    else return false;
+}
+
+function $saveVisitor() {
+    let $inputVisitor = $('#popup').find('input')
+    let $newId = JSON.parse(localStorage.getItem('visitors')).length + 1
+    if ($validateData($inputVisitor)) {
+        let $newVisitor = {
+            "id": $newId,
+            "name": $inputVisitor[0].value,
+            "phone": $inputVisitor[1].value
+        }
+        let $item = JSON.parse(localStorage.getItem("visitors"))
+        $item.push($newVisitor)
+        delete localStorage["visitors"]
+        localStorage["visitors"] = JSON.stringify($item)
+        return true;
+    }
+    else return false;
+}
+
+function $saveCard() {
+    let $inputCard = $('#popup').find('input')
+    let $newId = JSON.parse(localStorage.getItem('cards')).length + 1
+    if ($validateData($inputCard)) {
+        let $newCard = {
+            "id": $newId,
+            "name": $inputCard[0].value,
+            "phone": $inputCard[1].value
+        }
+        let $item = JSON.parse(localStorage.getItem("cards"))
+        $item.push($newCard)
+        delete localStorage["cards"]
+        localStorage["cards"] = JSON.stringify($item)
+        return true;
+    }
+    else return false;
+}
+
+function $validateData($inputArr) {
+    let $error = $('.error')
+    let $count = 0
+    $error.css('color','red')
+    let $result
+    for (let i = 0; i < $inputArr.length; i++) {
+        if ($inputArr[i].value === "") {
+            $error[i].textContent = 'Field required!'
+        } else if (($inputArr[i].type === 'number') && ($inputArr[i].value < 0)) {
+            $error[i].textContent =  'Only positive!'
+        } else if (($inputArr[i].className === 'phone')&& (!$inputArr[i].value.match(/^[\d\s\-]{2,}$/g))) {
+            $error[i].textContent =  'Incorrect phone number!'
+        } else {
+            $error[i].textContent = ""
+            $count++
+        }
+    }
+    $result = $count === $inputArr.length;
+    return $result;
 }
