@@ -17,10 +17,10 @@ function $userInfo(form) {
             <div>Gender:</div>
             <div>
             <label class="gender gen">
-            <input id="male" class="gender gen" name="gender" type="radio" value="male">
+            <input id="male" class="gender gen" name="gender" type="radio" value="Male">
             Male</label>
             <label class="gender gen">
-            <input id="female" class="gender gen" name="gender" type="radio" value="female">
+            <input id="female" class="gender gen" name="gender" type="radio" value="Female">
             Female</label>
             </div>
             <div class="error-gen"></div>
@@ -54,7 +54,7 @@ function $userInfo(form) {
 }
 
 function $saveUserInfo() {
-    let $gender = $('input[name="radio"]:checked')
+    let $gender = $('input[type="radio"]:checked')
     let $subscribe
     if ($('#subscribe').is(':checked')){
         $subscribe = 'Yes';
