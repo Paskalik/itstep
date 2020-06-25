@@ -5,7 +5,6 @@ import Admin from "./Admin.js";
 
 (function($) {
     $(document).ready(() => {
-        localStorage.clear()
         const $products = new Products;
         const $basket = new Basket;
         const $db = new DataBase;
@@ -125,7 +124,6 @@ import Admin from "./Admin.js";
         
         function setAdminPage() {
             let $data = $db.getData()
-            console.log($data)
             let $index = 0, $type
             $admin.setTitle($section)
             $admin.setTableHeader()
@@ -164,16 +162,6 @@ import Admin from "./Admin.js";
                         }
                     }
                 })
-                /*if ($elCount.val() === '') {
-                    $elCount.addClass('invalid')
-                    $count++
-                }
-                else {
-                    if (($elCount.type = 'number') && ($elCount.val() < 0)) {
-                        $elCount.addClass('invalid')
-                        $count++
-                    }
-                }*/
                 if ($count === 0) {
                     let $newFruit = $admin.newItem()
                     if ($type === 'edit') {
