@@ -42,7 +42,7 @@ export default class Admin {
             <div id="fade"><div id="popup"></div></div>
         `)
         $('#popup').append(`
-            <h3></h3>
+            <h3 id="header"></h3>
             <div class="popup">
                 <label for="title">Title:</label><input id="title">
                 <label for="icon">Icon url:</label><input id="icon">
@@ -53,19 +53,13 @@ export default class Admin {
             </div>
         `)
     }
-    setInfoPopup(title, icon, country, quantity, price) {
+    setInfoPopup(header, title = null, icon = null, country = null, quantity = null, price = null) {
+        $('#header').text(header)
         $('#title').val(title)
         $('#icon').val(icon)
         $('#country').val(country)
         $('#quantity').val(quantity)
         $('#price').val(price)
-    }
-    clearInfoPopUp() {
-        $('#title').val('').removeClass('invalid')
-        $('#icon').val('').removeClass('invalid')
-        $('#country').val('').removeClass('invalid')
-        $('#quantity').val('').removeClass('invalid')
-        $('#price').val('').removeClass('invalid')
     }
     newItem() {
         return {

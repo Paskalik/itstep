@@ -139,7 +139,7 @@ import Admin from "./Admin.js";
                 $('#fade').fadeIn()
                 $data.forEach((el) => {
                     if (el['title'] === $(this).data('name')) {
-                        $admin.setInfoPopup(el.title,el.image,el.country,el.count,el.price)
+                        $admin.setInfoPopup('Edit product:',el.title,el.image,el.country,el.count,el.price)
                         $index = $data.indexOf(el)
                     }
                 })
@@ -194,7 +194,7 @@ import Admin from "./Admin.js";
 
             $('#new').click(function () {
                 $('#fade').fadeIn()
-                $admin.clearInfoPopUp()
+                $admin.setInfoPopup('Add product:')
                 $type = 'add'
             })
 
