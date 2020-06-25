@@ -13,35 +13,37 @@ import Admin from "./Admin.js";
 
         //listen the nav button "Products"
         $('.product').click(function () {
-            setActiveButton($(this));
-            setProductPage();
+            let $check = setActiveButton($(this));
+            if ($check) setProductPage();
         });
 
         //listen the nav button "Basket"
         $('.basket').click(function () {
-            setActiveButton($(this));
-            setBasketPage();
+            let $check = setActiveButton($(this));
+            if ($check) setBasketPage();
         });
 
         //listen the nav button "Admin page"
         $('.admin').click(function () {
-
-            setActiveButton($(this));
-            setAdminPage();
+            let $check = setActiveButton($(this));
+            if ($check) setAdminPage();
         });
 
 
         function setActiveButton(element) {
-
             //check if current button is active
-            if(element.hasClass('active')) return;
+            if(element.hasClass('active')) {
+                return false;
+            }
+            else {
+                //clear active button
+                $('.active').removeClass('active');
 
-            //clear active button
-            $('.active').removeClass('active');
-
-            //set new active button
-            element.addClass('active');
-            $section.empty();
+                //set new active button
+                element.addClass('active');
+                $section.empty();
+                return true;
+            }
         }
 
         function setBasketPage() {
