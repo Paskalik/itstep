@@ -2,30 +2,40 @@ import {$validateField} from './validate.js'
 
 function $registerForm(form) {
     form.attr('data-form-name','register')
-    form.append('<h3>Register form</h3>')
-    form.append('<label for="username" class="name">Username:</label><input id="username" autocomplete="username" class="name">')
-    $('.name').wrapAll('<div class="row">')
+    form.append(`
+        <h3>Register form</h3>
+        <div id="inputs">
+            <label for="username" class="name">Username:</label>
+            <input id="username" autocomplete="username" class="name">
+            <div class="error-name"></div>
+            <label for="email" type="email" class="email">Email:</label>
+            <input id="email" class="email" type="email">
+            <div class="error-email"></div>
+            <label for="password" class="pass">Password:</label>
+            <input id="password" autocomplete="new-password" class="pass" type="password">
+            <div class="error-pass"></div>
+            <label for="repeat" class="repeat">Repeat:</label>
+            <input id="repeat" autocomplete="new-password" class="repeat" type="password">
+            <div class="error-re"></div>
+        </div>
+        <button type="submit" id="register">Register</button>
+    `)
     let $username = $('#username')
     $username.attr('data-parsley-minlength','4')
     $username.attr('data-parsley-maxlength','20')
     $username.attr('data-parsley-username-fill','')
-    form.append('<label for="email" type="email" class="email">Email:</label><input id="email" class="email" type="email">')
-    $('.email').wrapAll('<div class="row">')
-    form.append('<label for="password" class="pass">Password:</label><input id="password" autocomplete="new-password" class="pass" type="password">')
-    $('.pass').wrapAll('<div class="row">')
+    $username.attr('data-parsley-errors-container', '.error-name')
+    $('#email').attr('data-parsley-errors-container', '.error-email')
     let $password = $('#password')
     $password.attr('data-parsley-minlength','6')
     $password.attr('data-parsley-maxlength','30')
-    form.append('<label for="repeat" class="repeat">Repeat:</label><input id="repeat" autocomplete="new-password" class="repeat" type="password">')
-    $('.repeat').wrapAll('<div class="row">')
+    $password.attr('data-parsley-errors-container', '.error-pass')
     let $repeat = $('#repeat')
     $repeat.attr('data-parsley-equalto','#password')
-    form.append('<button type="submit" id="register">Register</button>')
+    $repeat.attr('data-parsley-errors-container', '.error-re')
     let $input = $('input')
     $input.attr('data-parsley-trigger','focusout')
     $input.attr('data-parsley-required','true')
-    $input.wrap('<div class="col-75">')
-    $('label').wrap('<div class="col-25">')
 
     $input.each(function () {
         $validateField($(this))

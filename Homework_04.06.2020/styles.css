@@ -1,5 +1,5 @@
 #form {
-    width: 50%;
+    width: 70%;
     margin: 5% auto;
     background-color: #f6e2e2;
     padding: 20px;
@@ -8,15 +8,20 @@
 h3 {
     text-align: center;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 10px;
 }
 
 h4 {
     text-align: center;
 }
 
+#inputs {
+    display: grid;
+    grid-template-columns: 1fr 3fr auto;
+    grid-row-gap: 10px;
+}
+
 input {
-    width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -28,32 +33,12 @@ input.gender {
 }
 
 label {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
+    text-align: left;
+    justify-content: center;
 }
 
 input.subscribe {
     width: 20px;
-    margin-top: 15px;
-}
-
-.col-25 {
-    float: left;
-    width: 18%;
-    margin-top: 20px;
-}
-
-.col-75 {
-    float: left;
-    width: 75%;
-    margin-top: 20px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
 }
 
 button {

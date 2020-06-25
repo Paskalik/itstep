@@ -3,7 +3,6 @@
 import {$registerForm, $saveRegisterInfo, $showRegisterResult} from './registerForm.js'
 import {$userInfo, $saveUserInfo, $showSaveResult} from "./userInfo.js";
 import {$errorMessage} from "./validate.js";
-//Не доделана
 
 let $form = $('#form')
 
