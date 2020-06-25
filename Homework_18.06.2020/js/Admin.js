@@ -28,13 +28,52 @@ export default class Admin {
             <div>${country}</div>
             <div>${quantity} kg</div>
             <div>${price} $</div>
-            <div class="edit"><img src="https://img.icons8.com/metro/20/000000/edit.png"/></div>
-            <div class="remove"><img src="https://img.icons8.com/fluent/20/000000/delete-sign.png"/></div>
+            <div class="edit" data-name="${title}"><img src="https://img.icons8.com/metro/20/000000/edit.png" alt="edit"/></div>
+            <div class="remove" data-name="${title}"><img src="https://img.icons8.com/fluent/20/000000/delete-sign.png" alt="Delete"/></div>
         `);
     }
     setButton(wrapper) {
         wrapper.append(`
             <div class="newProduct"><input type="button" value="New product" id="new"></div>
         `)
+    }
+    setPopup(wrapper) {
+        wrapper.append(`
+            <div id="fade"><div id="popup"></div></div>
+        `)
+        $('#popup').append(`
+            <h3></h3>
+            <div class="popup">
+                <label for="title">Title:</label><input id="title" type="text">
+                <label for="icon">Icon url:</label><input id="icon" type="text">
+                <label for="country">Country:</label><input id="country" type="text">
+                <label for="quantity">Quantity:</label><input id="quantity" type="number">
+                <label for="price">Price:</label><input id="price" type="number">
+                <label for="save"></label><input type="button" id="save" value="Save">
+            </div>
+        `)
+    }
+    setInfoPopup(title, icon, country, quantity, price) {
+        $('#title').val(title)
+        $('#icon').val(icon)
+        $('#country').val(country)
+        $('#quantity').val(quantity)
+        $('#price').val(price)
+    }
+    clearInfoPopUp() {
+        $('#title').val('').removeClass('invalid')
+        $('#icon').val('').removeClass('invalid')
+        $('#country').val('').removeClass('invalid')
+        $('#quantity').val('').removeClass('invalid')
+        $('#price').val('').removeClass('invalid')
+    }
+    newItem() {
+        return {
+            "title": $('#title').val(),
+            "image": $('#icon').val(),
+            "country": $('#country').val(),
+            "count": $('#quantity').val(),
+            "price": $('#price').val()
+        }
     }
 }

@@ -12,9 +12,6 @@ import Admin from "./Admin.js";
         const $admin = new Admin;
         const $section = $('section');
 
-        //fulfill localStorage
-        $db.setData()
-
         //listen the nav button "Products"
         $('.product').click(function () {
             setActiveButton($(this));
@@ -50,19 +47,20 @@ import Admin from "./Admin.js";
 
         function setBasketPage() {
             $basket.setTitle($section);
-            if(localStorage.length === 0) return;
+            if(localStorage.length === 1) return;
             $basket.setTableHeader($section);
-            let $arr, $totalSum = 0;
+            let $arr, $acc = 1, $totalSum = 0;
             for(let i = 0; i < localStorage.length; i++){
                 if (localStorage.key(i) !== 'products') {
                     $arr = localStorage.getItem(localStorage.key(i)).split(',');
                     $basket.setItems(
-                        i + 1, //item row number
+                        $acc, //item row number
                         `${$arr[0]}(${$arr[1]})`, //title and country
                         $arr[2], //price
                         $arr[3], //current quantity
                         $arr[4] //max quantity
                     );
+                    $acc++;
                     $totalSum = $totalSum + (+$arr[3] * (+$arr[2]));
                     if (i === localStorage.length - 1) $basket.setTotal($totalSum);
                 }
@@ -126,14 +124,95 @@ import Admin from "./Admin.js";
         }
         
         function setAdminPage() {
+            let $data = $db.getData()
+            console.log($data)
+            let $index = 0, $type
             $admin.setTitle($section)
             $admin.setTableHeader()
-            $db.getData().forEach((e, id)=>{
+            $data.forEach((e, id) => {
                 if(e.count > 0) $admin.setItems(id + 1, e.title, e.image, e.country, e.count, e.price);
             });
             $admin.setButton($section)
-            
+            $admin.setPopup($section)
+
+            $('.edit').click(function () {
+                $('#fade').fadeIn()
+                $data.forEach((el) => {
+                    if (el['title'] === $(this).data('name')) {
+                        $admin.setInfoPopup(el.title,el.image,el.country,el.count,el.price)
+                        $index = $data.indexOf(el)
+                    }
+                })
+                $type = 'edit'
+            })
+
+            $('#save').click(() => {
+                let $elCount = $('.popup input')
+                let $count = 0
+                $elCount.focus(function () {
+                    $(this).removeClass('invalid')
+                })
+                for (let i = 0; i < $elCount.length - 1; i++) {
+                    if (($elCount[i].type = 'text') && ($elCount[i].value === '')) {
+                        $elCount[i].classList.add('invalid')
+                        $count++
+                    }
+                    else {
+                        if (($elCount[i].type = 'number') && ($elCount[i].value < 0)) {
+                            $elCount[i].classList.add('invalid')
+                            $count++
+                        }
+                    }
+                }
+                if ($count === 0) {
+                    let $newFruit = $admin.newItem()
+                    if ($type === 'edit') {
+                        $data[$index] = $newFruit
+                    }
+                    else if ($type === 'add') {
+                        $data.push($newFruit)
+                    }
+                    localStorage.setItem('products', JSON.stringify($data))
+                    $('#fade').fadeOut()
+                    $section.empty()
+                    setAdminPage()
+                }
+            })
+
+            $('.remove').click(function () {
+                $data.forEach((el) => {
+                    if (el['title'] === $(this).data('name')) {
+                        $index = $data.indexOf(el)
+                    }
+                })
+                $data.splice($index,1)
+                localStorage.setItem('products',JSON.stringify($data))
+                $section.empty()
+                setAdminPage()
+
+            })
+
+            $('#new').click(function () {
+                $('#fade').fadeIn()
+                $type = 'add'
+            })
+
+            $(document).keydown(function(e) {
+                if (e.keyCode === 27) {
+                    e.stopPropagation();
+                    $('#fade').fadeOut($admin.clearInfoPopUp());
+                }
+            });
+
+            $('#fade').click(function(e) {
+                if ($(e.target).closest('#popup').length === 0) {
+                    $(this).fadeOut($admin.clearInfoPopUp());
+                }
+            })
         }
+
+        //fulfill localStorage
+        $db.setData()
 
         //set start page
         setProductPage();
