@@ -44,9 +44,9 @@ export default class Admin {
         $('#popup').append(`
             <h3></h3>
             <div class="popup">
-                <label for="title">Title:</label><input id="title" type="text">
-                <label for="icon">Icon url:</label><input id="icon" type="text">
-                <label for="country">Country:</label><input id="country" type="text">
+                <label for="title">Title:</label><input id="title">
+                <label for="icon">Icon url:</label><input id="icon">
+                <label for="country">Country:</label><input id="country">
                 <label for="quantity">Quantity:</label><input id="quantity" type="number">
                 <label for="price">Price:</label><input id="price" type="number">
                 <label for="save"></label><input type="button" id="save" value="Save">

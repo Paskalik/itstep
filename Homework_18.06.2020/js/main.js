@@ -152,27 +152,37 @@ import Admin from "./Admin.js";
                 $elCount.focus(function () {
                     $(this).removeClass('invalid')
                 })
-                for (let i = 0; i < $elCount.length - 1; i++) {
-                    if (($elCount[i].type = 'text') && ($elCount[i].value === '')) {
-                        $elCount[i].classList.add('invalid')
+                $elCount.each(function () {
+                    if ($(this).val() === '') {
+                        $(this).addClass('invalid')
                         $count++
                     }
                     else {
-                        if (($elCount[i].type = 'number') && ($elCount[i].value < 0)) {
-                            $elCount[i].classList.add('invalid')
+                        if (($(this).type = 'number') && ($(this).val() < 0)) {
+                            $(this).addClass('invalid')
                             $count++
                         }
                     }
+                })
+                /*if ($elCount.val() === '') {
+                    $elCount.addClass('invalid')
+                    $count++
                 }
+                else {
+                    if (($elCount.type = 'number') && ($elCount.val() < 0)) {
+                        $elCount.addClass('invalid')
+                        $count++
+                    }
+                }*/
                 if ($count === 0) {
                     let $newFruit = $admin.newItem()
                     if ($type === 'edit') {
                         $data[$index] = $newFruit
                     }
-                    else if ($type === 'add') {
+                if ($type === 'add') {
                         $data.push($newFruit)
                     }
-                    localStorage.setItem('products', JSON.stringify($data))
+                localStorage.setItem('products', JSON.stringify($data))
                     $('#fade').fadeOut()
                     $section.empty()
                     setAdminPage()
@@ -194,19 +204,20 @@ import Admin from "./Admin.js";
 
             $('#new').click(function () {
                 $('#fade').fadeIn()
+                $admin.clearInfoPopUp()
                 $type = 'add'
             })
 
             $(document).keydown(function(e) {
                 if (e.keyCode === 27) {
                     e.stopPropagation();
-                    $('#fade').fadeOut($admin.clearInfoPopUp());
+                    $('#fade').fadeOut();
                 }
             });
 
             $('#fade').click(function(e) {
                 if ($(e.target).closest('#popup').length === 0) {
-                    $(this).fadeOut($admin.clearInfoPopUp());
+                    $(this).fadeOut();
                 }
             })
         }
