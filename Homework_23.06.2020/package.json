@@ -1,0 +1,10 @@
+{
+  "name": "Homework_23.06.2020",
+  "version": "1.0.0",
+  "dependencies": {
+    
+  },
+  "scripts": {
+    "start": "node test.js 2 + 5"
+  }
+}
