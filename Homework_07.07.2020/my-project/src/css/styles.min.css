@@ -1,0 +1,1 @@
+.cardsbox{width:60%}#card{display:grid;grid-template-columns:repeat(5,1fr);grid-gap:30px}.card{font-size:80px;height:170px;width:150px;text-align:center;padding-top:45px;border-radius:25px;border:gray 1px solid}.hidden{background-image:url(../images/playcard.png);background-size:contain;font-size:0;cursor:pointer}.show{background-image:none;font-size:80px;cursor:default}
