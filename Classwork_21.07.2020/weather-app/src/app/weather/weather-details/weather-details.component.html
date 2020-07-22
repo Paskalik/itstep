@@ -1,0 +1,38 @@
+<div class="forecast">
+  <div class="forecast-data">
+    <div class="forecast-row">
+      <span class="forecast-row__title">Состояние: </span>
+      <span class="forecast-row__description">{{ forecast.conditions }}</span>
+    </div>
+    <div class="forecast-row">
+      <span class="forecast-row__title">Температура: </span>
+      <div class="forecast-subrow">
+        <span class="forecast-subrow__title">День: </span>
+        <span class="forecast-subrow__description">
+          {{ forecast.temperature.day.min }}&deg;C - {{ forecast.temperature.day.max }}&deg;C
+        </span>
+      </div>
+      <div class="forecast-subrow">
+        <span class="forecast-subrow__title">Ночь: </span>
+        <span class="forecast-subrow__description">
+          {{ forecast.temperature.night.min }}&deg;C - {{ forecast.temperature.night.max }}&deg;C
+        </span>
+      </div>
+    </div>
+    <div class="forecast-row">
+      <span class="forecast-row__title">Ветер: </span>
+      <div class="forecast-subrow">
+        <span class="forecast-subrow__title">Направление: </span>
+        <span class="forecast-subrow__description">
+          {{ forecast.wind.direction }}
+        </span>
+      </div>
+      <div class="forecast-subrow">
+        <span class="forecast-subrow__title">Скорость: </span>
+        <span class="forecast-subrow__description">
+          {{ forecast.wind.speed }} м/с
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
