@@ -1,0 +1,15 @@
+{
+  "name": "schoolattendance",
+  "version": "1.0.2",
+  "description": "School attendance data",
+  "main": "DOMBuilder.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Paskalik/itstep/tree/master/Homework_11.06.2020"
+  },
+  "author": "Pascal",
+  "license": "ISC"
+}
