@@ -9,9 +9,8 @@ import {userInfo} from "../interfaces/user-info";
 export class UserContactsComponent implements OnInit {
 
   userInfo: userInfo = {
-    surname: 'Паскал',
-    name: 'Андрей',
-    patronymic: 'Константинович',
+    surname: 'Pascal',
+    name: 'Andrey',
     phone: '0989999999',
     email: 'Paskalik1983@gmail.com',
     city: 'Dnipro'

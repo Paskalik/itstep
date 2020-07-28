@@ -1,0 +1,12 @@
+<div>
+  <h3>Work experience:</h3>
+    <ul *ngFor="let experience of userExperience; let i = index;">
+      <li><b>Period:</b> {{ experience.dateFrom }} - {{ experience.dateTo }}</li>
+      <li><b>Position:</b> {{ experience.position }}</li>
+      <li><b>Organization:</b> {{ experience.organization }}</li>
+      <li><b>City:</b> {{ experience.city }}</li>
+      <li><b>Type of business:</b> {{ experience.type }}</li>
+      <li><b>Duties:</b></li>
+      <li *ngFor="let duty of experience.duties; let i = index;">{{ duty }}</li>
+    </ul>
+</div>

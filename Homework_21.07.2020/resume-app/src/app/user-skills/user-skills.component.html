@@ -1,0 +1,14 @@
+<div>
+  <h3>Skills:</h3>
+  <ul>
+    <li *ngFor="let skill of skills.skill; let i = index;">{{ skill }}</li>
+  </ul>
+  <h3>Languages:</h3>
+  <ul>
+    <li *ngFor="let language of skills.language; let i = index;">{{ language }}</li>
+  </ul>
+  <h3>Knowledge:</h3>
+  <ul>
+    <li *ngFor="let knowledge of skills.knowledge; let i = index;">{{ knowledge }}</li>
+  </ul>
+</div>
