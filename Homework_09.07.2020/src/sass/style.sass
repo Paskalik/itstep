@@ -1,0 +1,115 @@
+$var1: #e8ffe8
+$var2: #070707
+$var3: #FF66FF
+$var4: #0768f0
+$var5: #68bcff
+$var6: #ffffff
+
+.form
+  width: 60%
+  margin: 0 auto
+
+.day
+  border-radius: 4px
+  box-shadow: 0 0 10px rgba(0,0,0,0.5)
+  text-align: center
+  padding: 20px
+  margin-bottom: 20px
+  width: 12%
+  background-image: linear-gradient(141deg, #9fb8ad 0%, #6600FF 45%, #6600CC 75%)
+
+#current
+  display: none
+
+#tablo
+  display: none
+  flex-flow: row wrap
+  align-items: stretch
+  justify-content: space-between
+
+#day1, #day2, #day3, #day4, #day5
+  font-size: 1.8em
+  color: $var1
+  text-shadow: 0 0 5px $var2
+
+#date1, #date2, #date3, #date4, #date5
+  font-size: .8em
+  color: $var3
+
+#temp1, #temp2, #temp3, #temp4, #temp5
+  font-size: 1.3em
+  color: $var4
+
+input
+  font-size: 12px
+  font-weight: bold
+  font-style: italic
+  border: solid 2px $var5
+  outline: 0
+  width: 30%
+  height: 18px
+  border-top-left-radius: 50px
+  border-bottom-left-radius: 50px
+  padding-left: 40px
+  margin: 10px 0
+  z-index: 9999999
+
+#cityB
+  height: 24px
+  width: 32px
+  border: solid 2px $var5
+  border-left: none
+  outline: 0
+  border-top-right-radius: 50px
+  border-bottom-right-radius: 50px
+  padding-right: 5px
+  margin-left: -6px
+  background: $var5
+  color: $var6
+  cursor: pointer
+
+#cityC
+  font-size: 26px
+  padding: 10px
+
+#current
+  border-radius: 4px
+  box-shadow: 0 0 10px rgba(0,0,0,0.5)
+  padding: 20px
+  margin-bottom: 20px
+  width: auto
+  background-image: linear-gradient(141deg, #9fb8ad 0%, #6600FF 45%, #6600CC 75%)
+  flex-flow: row wrap
+  align-items: stretch
+  justify-content: space-between
+
+#overlay
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 1
+  width: 100%
+  height: 100%
+  display: none
+  background: rgba(0,0,0,0.6)
+
+.cv-spinner
+  height: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+
+.spinner
+  width: 40px
+  height: 40px
+  border: 4px #ddd solid
+  border-top: 4px #2e93e6 solid
+  border-radius: 50%
+  animation: sp-anime 0.8s infinite linear
+
+keyframes sp-anime
+  transform: rotate(360deg)
+
+#temp
+  font-size: 28px
+
