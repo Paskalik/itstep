@@ -1,11 +1,11 @@
 <div class="user-contacts">
   <ul>
     <li>
-      <h2>{{ userInfo.surname }}&nbsp;{{ userInfo.name }}</h2>
+      <h2>{{ userInfo.surname}}&nbsp;{{ userInfo.name}}</h2>
     </li>
     <li>
       <div class="photo">
-        <img src="./assets/IMG_20200219_152227.jpg">
+        <img src="./assets/IMG_20200219_152227.jpg" alt="photo">
       </div>
     </li>
     <li>
@@ -18,7 +18,7 @@
     </li>
     <li>
       <h4>City:</h4>
-      <span> {{ userInfo.city }}</span>
+      <span> {{ userInfo.city | uppercase}}</span>
     </li>
   </ul>
 </div>

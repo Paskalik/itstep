@@ -7,8 +7,12 @@
   <ul>
     <li *ngFor="let language of skills.language; let i = index;">{{ language }}</li>
   </ul>
-  <h3>Knowledge:</h3>
-  <ul>
+  <h3 *ngIf="skills.knowledge">Knowledge:</h3>
+  <ul *ngIf="skills.knowledge">
     <li *ngFor="let knowledge of skills.knowledge; let i = index;">{{ knowledge }}</li>
+  </ul>
+  <h3 *ngIf="skills.certificate">Certificate:</h3>
+  <ul *ngIf="skills.certificate">
+    <li *ngFor="let certificate of skills.certificate; let i = index;">{{ certificate }}</li>
   </ul>
 </div>

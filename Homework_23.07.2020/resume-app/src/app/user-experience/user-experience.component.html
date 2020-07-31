@@ -4,7 +4,7 @@
     <li><b>Period:</b> {{ experience.dateFrom | customDate}} - {{ experience.dateTo | customDate}}</li>
     <li><b>Position:</b> {{ experience.position }}</li>
     <li><b>Organization:</b> {{ experience.organization }}</li>
-    <li><b>City:</b> {{ experience.city }}</li>
+    <li><b>City:</b> {{ experience.city | uppercase}}</li>
     <li><b>Type of business:</b> {{ experience.type }}</li>
     <li><b>Duties:</b></li>
     <li *ngFor="let duty of experience.duties; let i = index;">{{ duty }}</li>
