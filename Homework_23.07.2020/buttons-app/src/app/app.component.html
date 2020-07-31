@@ -1,0 +1,10 @@
+<div class="button">
+  <button (click)="setType('car')">Автомобиль</button>
+  <button (click)="setType('plane')">Самолет</button>
+  <button (click)="setType('ship')">Корабль</button>
+</div>
+<div [ngSwitch]="type">
+  <app-car *ngSwitchCase="'car'"></app-car>
+  <app-plane *ngSwitchCase="'plane'"></app-plane>
+  <app-ship *ngSwitchCase="'ship'"></app-ship>
+</div>

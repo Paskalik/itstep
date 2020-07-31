@@ -1,0 +1,17 @@
+<div class="header">
+  <h3>Самый большой на планете корабль</h3>
+  <img src="assets/ship.jpg" alt="ship">
+</div>
+<div>
+  <p><b>Название:</b> {{ ship.name | uppercase }}</p>
+  <p><b>Производитель:</b> {{ ship.manufacturer }}</p>
+  <p><b>Класс:</b> {{ ship.class }}</p>
+  <p><b>Год выпуска:</b> {{ ship.year | date: 'y' }}</p>
+  <p><b>Характеристики:</b></p>
+  <ul>
+    <li>Длина: {{ ship.dimensions.length | customSize }}</li>
+    <li>Ширина: {{ ship.dimensions.width | customSize }}</li>
+    <li>Высота: {{ ship.dimensions.height | customSize }}</li>
+  </ul>
+  <p><b>Описание:</b> {{ ship.description }}</p>
+</div>

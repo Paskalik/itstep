@@ -1,0 +1,11 @@
+<div class="header">
+  <h3>Самый большой на планете самолет</h3>
+  <img src="assets/plane.jpg" alt="plane">
+</div>
+<div>
+  <p><b>Название:</b> {{ plane.name | uppercase }}</p>
+  <p><b>Производитель:</b> {{ plane.manufacturer }}</p>
+  <p><b>Класс:</b> {{ plane.class }}</p>
+  <p><b>Год выпуска:</b> {{ plane.year | date: 'y' }}</p>
+  <p><b>Описание:</b> {{ plane.description }}</p>
+</div>

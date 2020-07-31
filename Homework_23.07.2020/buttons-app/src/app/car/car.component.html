@@ -1,0 +1,17 @@
+<div class="header">
+  <h3>Самый большой на планете автомобиль</h3>
+  <img src="assets/car.jpg" alt="car">
+</div>
+<div>
+  <p><b>Название:</b> {{ car.name | uppercase }}</p>
+  <p><b>Производитель:</b> {{ car.manufacturer }}</p>
+  <p><b>Класс:</b> {{ car.class }}</p>
+  <p><b>Год выпуска:</b> {{ car.year | date: 'y' }}</p>
+  <p><b>Характеристики:</b></p>
+  <ul>
+    <li>Длина: {{ car.dimensions.length | customSize }}</li>
+    <li>Ширина: {{ car.dimensions.width | customSize }}</li>
+    <li>Высота: {{ car.dimensions.height | customSize }}</li>
+  </ul>
+  <p><b>Описание:</b> {{ car.description }}</p>
+</div>
