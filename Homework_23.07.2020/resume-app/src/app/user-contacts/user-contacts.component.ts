@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {userInfo} from "../interfaces/user-info";
+import {userInfo} from '../interfaces/user-info';
 
 @Component({
   selector: 'app-user-contacts',
@@ -14,7 +14,7 @@ export class UserContactsComponent implements OnInit {
     phone: '0989999999',
     email: 'Paskalik1983@gmail.com',
     city: 'Dnipro'
-  }
+  };
 
   constructor() { }
 

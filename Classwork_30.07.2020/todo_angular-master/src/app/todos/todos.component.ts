@@ -26,20 +26,20 @@ export class TodosComponent implements OnInit {
       todoName: this.newTodo,
       completed: false
     });
-    this.storageService.addData(this.newTodo, false)
+    this.storageService.addData(this.newTodo, false);
     this.newTodo = '';
   }
 
   deleteTodo(index: number): void {
     this.todos.splice(index++, 1);
-    this.storageService.removeData(index++)
+    this.storageService.removeData(index++);
   }
 
   checkTodo(index: number, name: string, bool: boolean): void {
     if (!bool) {
-      this.storageService.checkData(name, true, index++)
+      this.storageService.checkData(name, true, index++);
     } else {
-      this.storageService.checkData(name, false, index++)
+      this.storageService.checkData(name, false, index++);
     }
   }
 

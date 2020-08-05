@@ -1,0 +1,21 @@
+<button *ngIf="ind === 0" (click)="setIndex(1)">Start Quiz</button>
+<div *ngIf="(ind > 0) && (ind <= count)">
+  <div *ngFor="let question of questions; let i = ind;">
+      <div *ngIf="question.id === ind">
+        <h3>Question № {{ question.id }}</h3>
+        <p>{{ question.text }}</p>
+        <label *ngFor="let variant of question.variants; let i = index;">
+          <input type="radio" name="var" (change)="setResult(variant.bool)">
+          {{variant.text}}
+        </label>
+      </div>
+  </div>
+</div>
+<button *ngIf="(ind > 0) && (ind < count) && checked" (click)="saveResult(); setIndex(ind+1)">Next</button>
+<button *ngIf="(ind === count) && checked" (click)="saveResult(); getResults()">Finish Quiz</button>
+<div *ngIf="ind === -1">
+  <p>Количество вопросов: {{ count }}</p>
+  <p>Количество правильных ответов: {{ correct }}</p>
+  <p>Количество неправильных ответов: {{ incorrect }}</p>
+  <button (click)="clearResults()">Restart</button>
+</div>
