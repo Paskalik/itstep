@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Classwork_21.07.2020/weather-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Classwork_21.07.2020/weather-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classwork_30.07.2020/todo_angular-master/src/app/todos/todos.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Classwork_30.07.2020/todo_angular-master/src/app/todos/todos.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework_23.07.2020/resume-app/src/app/user-contacts/user-contacts.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_23.07.2020/resume-app/src/app/user-contacts/user-contacts.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Homework_28.07.2020/quiz-app/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_28.07.2020/quiz-app/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Homework_28.07.2020/quiz-app/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_28.07.2020/quiz-app/src/app/app.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Homework_28.07.2020/quiz-app/src/app/quiz/quiz.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_28.07.2020/quiz-app/src/app/quiz/quiz.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Homework_28.07.2020/quiz-app/src/app/quiz/quiz.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_28.07.2020/quiz-app/src/app/quiz/quiz.component.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +60,7 @@
       <workItem from="1596564612651" duration="278000" />
       <workItem from="1596564911978" duration="1686000" />
       <workItem from="1596624002940" duration="1015000" />
-      <workItem from="1596629354346" duration="15154000" />
+      <workItem from="1596629354346" duration="16800000" />
     </task>
     <servers />
   </component>
