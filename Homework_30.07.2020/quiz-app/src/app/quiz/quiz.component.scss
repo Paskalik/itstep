@@ -1,0 +1,30 @@
+label {
+  display: block;
+  text-align: left;
+}
+
+.res, .time {
+  text-align: left;
+}
+
+.res > p:first-child {
+  color: #0768f0;
+}
+
+.res > p:nth-child(2) {
+  color: #1ba28d;
+}
+
+.res > p:nth-child(3) {
+  color: red;
+}
+
+input {
+  margin-bottom: 5px;
+}
+
+.btn {
+  width: 50%;
+  margin-top: 10px;
+  padding: 5px;
+}
