@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Homework_30.07.2020/quiz-app/src/app/questions.mock.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +30,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="tsconfig.json" />
         <option value="TypeScript File" />
       </list>
     </option>
@@ -45,6 +45,7 @@
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
@@ -57,6 +58,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/assets" />
       <recent name="$PROJECT_DIR$/Homework_30.07.2020/quiz-app/src/app" />
       <recent name="$PROJECT_DIR$/Homework_28.07.2020/quiz-app/src/app/services" />
       <recent name="$PROJECT_DIR$/Homework_28.07.2020/quiz-app/src/app/interfaces" />
@@ -77,7 +79,9 @@
       <workItem from="1596564911978" duration="1686000" />
       <workItem from="1596624002940" duration="1015000" />
       <workItem from="1596629354346" duration="16964000" />
-      <workItem from="1596719575761" duration="7066000" />
+      <workItem from="1596719575761" duration="7387000" />
+      <workItem from="1596730547434" duration="272000" />
+      <workItem from="1597140182167" duration="18424000" />
     </task>
     <servers />
   </component>
@@ -94,8 +98,13 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="332" y="121" key="#Intentions" timestamp="1597175352607">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state x="332" y="121" key="#Intentions/0.23.1440.826@0.23.1440.826" timestamp="1597175352607" />
     <state width="1379" height="201" key="GridCell.Tab.0.bottom" timestamp="1596646460499">
       <screen x="0" y="23" width="1440" height="827" />
     </state>
@@ -112,5 +121,9 @@
       <screen x="0" y="23" width="1440" height="827" />
     </state>
     <state width="1379" height="201" key="GridCell.Tab.0.right/0.23.1440.827@0.23.1440.827" timestamp="1596646460498" />
+    <state x="397" y="173" width="670" height="676" key="search.everywhere.popup" timestamp="1597163436443">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state x="397" y="173" width="670" height="676" key="search.everywhere.popup/0.23.1440.826@0.23.1440.826" timestamp="1597163436443" />
   </component>
 </project>
