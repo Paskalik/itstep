@@ -1,6 +1,13 @@
-<p><b>Title:</b> {{ poem?.title }}</p>
-<p><b>Author:</b> {{ poem?.author }}</p>
-<p><b>Text</b></p>
-<ul>
-  <li *ngFor="let line of poem?.lines" >{{ line }}</li>
-</ul>
+<div class="container">
+  <div>
+    <p><b>Title:</b> {{ poem?.title }}</p>
+    <p><b>Author:</b> {{ poem?.author }}</p>
+    <p><b>Text</b></p>
+    <ul>
+      <li *ngFor="let line of poem?.lines" >{{ line }}</li>
+    </ul>
+  </div>
+  <div>
+    <app-settings></app-settings>
+  </div>
+</div>

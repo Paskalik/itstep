@@ -1,0 +1,51 @@
+<table>
+  <tr>
+    <td>
+      <label for="lang">App language</label>
+    </td>
+    <td>
+      <select id="lang">
+        <option ng-selected="selected">Select...</option>
+        <option *ngFor="let lang of arrLangs" [value]="lang">
+          {{lang}}
+        </option>
+      </select>
+    </td>
+    <td>
+      <label for="appColor">App color</label>
+    </td>
+    <td>
+      <select id="appColor">
+        <option ng-selected="selected">Select...</option>
+        <option *ngFor="let color of arrAppColors" [value]="color">
+          {{color}}
+        </option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="interval">Interval</label>
+    </td>
+    <td>
+      <select id="interval">
+        <option ng-selected="selected">Select...</option>
+        <option *ngFor="let interval of arrIntervals" [value]="interval">
+          {{interval}}
+        </option>
+      </select>
+    </td>
+    <td>
+      <label for="fontColor">Text color</label>
+    </td>
+    <td>
+      <select id="fontColor">
+        <option ng-selected="selected">Select...</option>
+        <option *ngFor="let color of arrFontColors" [value]="color">
+          {{color}}
+        </option>
+      </select>
+    </td>
+  </tr>
+</table>
+
