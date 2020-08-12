@@ -1,0 +1,9 @@
+{
+  "title": "Random Poem",
+  "select": {
+    "lang": "App language",
+    "interval": "Interval",
+    "appColor": "App color",
+    "fontColor": "Text color"
+  }
+}

@@ -1,18 +1,15 @@
 <table>
   <tr>
     <td>
-      <label for="lang">App language</label>
+      <label for="lang">{{ "select.lang" | translate }}</label>
     </td>
     <td>
-      <select id="lang">
-        <option ng-selected="selected">Select...</option>
-        <option *ngFor="let lang of arrLangs" [value]="lang">
-          {{lang}}
-        </option>
+      <select id="lang" #langSelect (change)="translate.use(langSelect.value)">
+        <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.defaultLang">{{ lang }}</option>
       </select>
     </td>
     <td>
-      <label for="appColor">App color</label>
+      <label for="appColor">{{ "select.appColor" | translate }}</label>
     </td>
     <td>
       <select id="appColor">
@@ -25,7 +22,7 @@
   </tr>
   <tr>
     <td>
-      <label for="interval">Interval</label>
+      <label for="interval">{{ "select.interval" | translate }}</label>
     </td>
     <td>
       <select id="interval">
@@ -36,7 +33,7 @@
       </select>
     </td>
     <td>
-      <label for="fontColor">Text color</label>
+      <label for="fontColor">{{ "select.fontColor" | translate }}</label>
     </td>
     <td>
       <select id="fontColor">
