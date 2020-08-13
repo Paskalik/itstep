@@ -26,37 +26,28 @@ export class PoemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.authorData = this.getAuthors();
     this.getPoem();
     this.interval = mainInterval;
     this.intId = setInterval(() => {this.getPoem(); }, this.interval);
     }
 
-  setCustomInterval(interval): void {
+  setCustomInterval(interval: number): void {
     this.interval = interval;
     clearInterval(this.intId);
     this.intId = setInterval(() => {this.getPoem(); }, this.interval);
   }
 
-  getAuthors(): any {
-    return this.apiService.getAuthors().subscribe( (data: []) => {
+  getPoem(): void {
+     this.apiService.getAuthors().subscribe( (data: []) => {
       this.authors = data[`authors`];
       this.randomAuthorIndex = Math.floor((Math.random() * this.authors.length) + 1);
-      return this.authors[this.randomAuthorIndex];
-    });
-  }
-
-  getPoem(): void {
-    // this.authorData = this.apiService.getAuthors().subscribe( (data: []) => {
-    //  this.authors = data[`authors`];
-    //  this.randomAuthorIndex = Math.floor((Math.random() * this.authors.length) + 1);
-    //  return this.authors[this.randomAuthorIndex];
-    //  this.authorData = this.authors[this.randomAuthorIndex];
-   // });
-      this.apiService.getRandomPoem(this.authorData).subscribe((data: Poems[]) => {
-      this.poems = data;
-      this.randomPoemIndex = Math.floor((Math.random() * this.poems.length) + 1);
-      this.poem = this.poems[this.randomPoemIndex];
-    });
+      this.authorData = this.authors[this.randomAuthorIndex];
+      console.log(this.authorData);
+      this.apiService.getRandomPoem(this.authorData).subscribe((dataPoem: Poems[]) => {
+        this.poems = dataPoem;
+        this.randomPoemIndex = Math.floor((Math.random() * this.poems.length) + 1);
+        this.poem = this.poems[this.randomPoemIndex];
+      });
+     });
   }
 }

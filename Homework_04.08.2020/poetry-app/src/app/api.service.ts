@@ -8,8 +8,6 @@ import {Observable} from 'rxjs';
 
 export class ApiService {
 
-  authors: [];
-
   constructor(
     private httpClient: HttpClient
   ) { }
@@ -19,7 +17,7 @@ export class ApiService {
     return this.httpClient.get(this.URL);
   }
 
-  public getRandomPoem(author): Observable<object> {
+  public getRandomPoem(author: string): Observable<object> {
     return this.httpClient.get(`${this.URL}/${author}`);
   }
 }
