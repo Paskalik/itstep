@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import { ApiService } from '../api.service';
 import { Poems } from '../poems';
 import { Subscription } from 'rxjs';
@@ -10,29 +10,39 @@ import { mainInterval } from '../../environments/environment.time';
   styleUrls: ['./poem.component.scss']
 })
 
+@Injectable()
 export class PoemComponent implements OnInit {
   authors: [];
-  author: string;
   authorData: Subscription;
   poems: Poems[];
   poem: Poems;
   randomAuthorIndex: number;
   randomPoemIndex: number;
+  color: string;
+  interval: number;
+  intId: number;
 
   constructor(
     private apiService: ApiService
   ) { }
 
-  ngOnInit(): any {
+  ngOnInit(): void {
     this.getPoem();
-    setInterval(() => {this.getPoem(); }, mainInterval);
+    this.interval = mainInterval;
+    this.intId = setInterval(() => {this.getPoem(); }, this.interval);
     }
 
-  getPoem(): any {
+  setCustomInterval(interval): void {
+    this.interval = interval;
+    clearInterval(this.intId);
+    this.intId = setInterval(() => {this.getPoem(); }, this.interval);
+  }
+
+  getPoem(): void {
     this.authorData = this.apiService.getAuthors().subscribe( (data: []) => {
       this.authors = data[`authors`];
       this.randomAuthorIndex = Math.floor((Math.random() * this.authors.length) + 1);
-      return this.author = this.authors[this.randomAuthorIndex];
+      return this.authors[this.randomAuthorIndex];
     });
     this.apiService.getRandomPoem(this.authorData).subscribe((data: Poems[]) => {
       this.poems = data;
@@ -40,5 +50,4 @@ export class PoemComponent implements OnInit {
       this.poem = this.poems[this.randomPoemIndex];
     });
   }
-
 }

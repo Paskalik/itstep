@@ -10,7 +10,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 export function HttpLoaderFactory(http: HttpClient): any {
-  return new TranslateHttpLoader(http, './assets/locale/', '.json');
+  return new TranslateHttpLoader(http, './assets/locale/i18n/', '.json');
 }
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ export function HttpLoaderFactory(http: HttpClient): any {
       useDefaultLang: false
     })
   ],
-  providers: [],
+  providers: [SettingsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

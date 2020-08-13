@@ -1,10 +1,6 @@
-export const mainInterval = 4000;
+export const mainInterval = 7500;
 
-export const arrIntervals = [1000, 2000, 3000, 4000, 5000];
+export const arrIntervals = [2500, 5000, 7500, 10000];
 
-export const arrLangs = ['UA', 'EN', 'RU'];
-
-export const arrAppColors = ['red', 'green', 'yellow', 'blue', 'white', 'black'];
-
-export const arrFontColors = ['red', 'green', 'yellow', 'blue', 'white', 'black'];
+export const arrColors = ['red', 'green', 'yellow', 'blue', 'white', 'black'];
 

@@ -8,6 +8,8 @@ import {Observable} from 'rxjs';
 
 export class ApiService {
 
+  authors: [];
+
   constructor(
     private httpClient: HttpClient
   ) { }

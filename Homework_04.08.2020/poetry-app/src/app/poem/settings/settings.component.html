@@ -1,7 +1,7 @@
 <table>
   <tr>
     <td>
-      <label for="lang">{{ "select.lang" | translate }}</label>
+      <label for="lang">{{ "names.lang" | translate }}</label>
     </td>
     <td>
       <select id="lang" #langSelect (change)="translate.use(langSelect.value)">
@@ -9,37 +9,37 @@
       </select>
     </td>
     <td>
-      <label for="appColor">{{ "select.appColor" | translate }}</label>
+      <label for="appColor">{{ "names.appColor" | translate }}</label>
     </td>
     <td>
-      <select id="appColor">
-        <option ng-selected="selected">Select...</option>
-        <option *ngFor="let color of arrAppColors" [value]="color">
-          {{color}}
+      <select id="appColor" #appColorSelect (change)="app.setAppColor(appColorSelect.value)">
+        <option ng-selected="selected">{{ "select" | translate }}</option>
+        <option *ngFor="let color of arrColors" [value]="color">
+          {{"color." + color | translate}}
         </option>
       </select>
     </td>
   </tr>
   <tr>
     <td>
-      <label for="interval">{{ "select.interval" | translate }}</label>
+      <label for="interval">{{ "names.interval" | translate }}</label>
     </td>
     <td>
-      <select id="interval">
-        <option ng-selected="selected">Select...</option>
+      <select id="interval" #interval (change)="poem.setCustomInterval(interval.value)">
+        <option ng-selected="selected">{{ "select" | translate }}</option>
         <option *ngFor="let interval of arrIntervals" [value]="interval">
-          {{interval}}
+          {{interval/1000 + ' c'}}
         </option>
       </select>
     </td>
     <td>
-      <label for="fontColor">{{ "select.fontColor" | translate }}</label>
+      <label for="fontColor">{{ "names.fontColor" | translate }}</label>
     </td>
     <td>
-      <select id="fontColor">
-        <option ng-selected="selected">Select...</option>
-        <option *ngFor="let color of arrFontColors" [value]="color">
-          {{color}}
+      <select id="fontColor" #fontColorSelect (change)="app.setFontColor(fontColorSelect.value)">
+        <option ng-selected="selected">{{ "select" | translate }}</option>
+        <option *ngFor="let color of arrColors" [value]="color">
+          {{"color." + color | translate}}
         </option>
       </select>
     </td>
