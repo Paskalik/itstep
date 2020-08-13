@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/poem/poem.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/poem/poem.component.ts" afterDir="false" />
-    </list>
+    <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,7 +80,7 @@
       <workItem from="1596719575761" duration="7387000" />
       <workItem from="1596730547434" duration="272000" />
       <workItem from="1597140182167" duration="28582000" />
-      <workItem from="1597257211285" duration="18973000" />
+      <workItem from="1597257211285" duration="19046000" />
     </task>
     <servers />
   </component>
