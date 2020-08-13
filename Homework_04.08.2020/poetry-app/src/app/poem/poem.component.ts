@@ -31,8 +31,8 @@ export class PoemComponent implements OnInit {
     this.intId = setInterval(() => {this.getPoem(); }, this.interval);
     }
 
-  setCustomInterval(interval: number): void {
-    this.interval = interval;
+  setCustomInterval(interval: string): void {
+    this.interval = Number(interval);
     clearInterval(this.intId);
     this.intId = setInterval(() => {this.getPoem(); }, this.interval);
   }
