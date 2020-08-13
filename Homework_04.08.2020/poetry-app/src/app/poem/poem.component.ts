@@ -1,7 +1,6 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import { ApiService } from '../api.service';
 import { Poems } from '../poems';
-import { Subscription } from 'rxjs';
 import { mainInterval } from '../../environments/environment.time';
 
 @Component({
@@ -13,7 +12,7 @@ import { mainInterval } from '../../environments/environment.time';
 @Injectable()
 export class PoemComponent implements OnInit {
   authors: [];
-  authorData: Subscription;
+  authorData: string;
   poems: Poems[];
   poem: Poems;
   randomAuthorIndex: number;
@@ -27,6 +26,7 @@ export class PoemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.authorData = this.getAuthors();
     this.getPoem();
     this.interval = mainInterval;
     this.intId = setInterval(() => {this.getPoem(); }, this.interval);
@@ -38,13 +38,22 @@ export class PoemComponent implements OnInit {
     this.intId = setInterval(() => {this.getPoem(); }, this.interval);
   }
 
-  getPoem(): void {
-    this.authorData = this.apiService.getAuthors().subscribe( (data: []) => {
+  getAuthors(): any {
+    return this.apiService.getAuthors().subscribe( (data: []) => {
       this.authors = data[`authors`];
       this.randomAuthorIndex = Math.floor((Math.random() * this.authors.length) + 1);
       return this.authors[this.randomAuthorIndex];
     });
-    this.apiService.getRandomPoem(this.authorData).subscribe((data: Poems[]) => {
+  }
+
+  getPoem(): void {
+    // this.authorData = this.apiService.getAuthors().subscribe( (data: []) => {
+    //  this.authors = data[`authors`];
+    //  this.randomAuthorIndex = Math.floor((Math.random() * this.authors.length) + 1);
+    //  return this.authors[this.randomAuthorIndex];
+    //  this.authorData = this.authors[this.randomAuthorIndex];
+   // });
+      this.apiService.getRandomPoem(this.authorData).subscribe((data: Poems[]) => {
       this.poems = data;
       this.randomPoemIndex = Math.floor((Math.random() * this.poems.length) + 1);
       this.poem = this.poems[this.randomPoemIndex];

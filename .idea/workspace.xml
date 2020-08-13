@@ -20,21 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/api.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/app.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/poem/poem.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/poem/poem.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/poem/settings/settings.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/poem/settings/settings.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/poem/settings/settings.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/app/poem/settings/settings.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/assets/locale/i18n/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/assets/locale/i18n/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/assets/locale/i18n/ru.json" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/assets/locale/i18n/ru.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/assets/locale/i18n/ua.json" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/assets/locale/i18n/ua.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/environments/environment.time.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/environments/environment.time.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/styles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +83,7 @@
       <workItem from="1596719575761" duration="7387000" />
       <workItem from="1596730547434" duration="272000" />
       <workItem from="1597140182167" duration="28582000" />
-      <workItem from="1597257211285" duration="17649000" />
+      <workItem from="1597257211285" duration="18973000" />
     </task>
     <servers />
   </component>
