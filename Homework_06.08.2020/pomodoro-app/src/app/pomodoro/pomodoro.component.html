@@ -1,0 +1,7 @@
+<h1>Not finished</h1>
+<button (click)='startTimer()'>Start Timer</button>
+<button (click)='pauseTimer()'>Pause</button>
+
+<div id="timer">
+  <div id="time">{{(timeLeft * 1000) | date: 'mm:ss'}}</div>
+</div>
