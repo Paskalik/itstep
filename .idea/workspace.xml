@@ -21,6 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Homework_06.08.2020/pomodoro-app/src/app/pomodoro/pomodoro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_06.08.2020/pomodoro-app/src/app/pomodoro/pomodoro.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Homework_06.08.2020/pomodoro-app/src/environments/environment.interval.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_06.08.2020/pomodoro-app/src/environments/environment.interval.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +88,7 @@
       <workItem from="1597329399691" duration="4928000" />
       <workItem from="1597343609642" duration="911000" />
       <workItem from="1597345434747" duration="58000" />
-      <workItem from="1597513738196" duration="2240000" />
+      <workItem from="1597513738196" duration="3461000" />
     </task>
     <servers />
   </component>
