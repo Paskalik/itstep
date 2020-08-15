@@ -1,7 +1,22 @@
 <h1>Not finished</h1>
 <button (click)='startTimer()'>Start Timer</button>
 <button (click)='pauseTimer()'>Pause</button>
-
-<div id="timer">
+<label>Set interval:
+  <select #intervalSelect (change)="chooseInterval(intervalSelect.value)">
+    <option ng-selected="selected">{{ "select" }}</option>
+    <option *ngFor="let type of intervalType" [value]="type">
+      {{type}}
+    </option>
+  </select>
+</label>
+<label>Set color:
+  <select #colorSelect (change)="setColor(colorSelect.value)">
+    <option ng-selected="selected">{{ "select" }}</option>
+    <option *ngFor="let color of arrColors" [value]="color">
+      {{color}}
+    </option>
+  </select>
+</label>
+<div id="timer" [style.background-color]="color" [style.border-color]="color">
   <div id="time">{{(timeLeft * 1000) | date: 'mm:ss'}}</div>
 </div>
