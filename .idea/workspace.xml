@@ -21,6 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Homework_06.08.2020/pomodoro-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_06.08.2020/pomodoro-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Homework_06.08.2020/pomodoro-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_06.08.2020/pomodoro-app/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Homework_06.08.2020/pomodoro-app/src/app/pomodoro/pomodoro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_06.08.2020/pomodoro-app/src/app/pomodoro/pomodoro.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Homework_06.08.2020/pomodoro-app/src/app/pomodoro/pomodoro.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_06.08.2020/pomodoro-app/src/app/pomodoro/pomodoro.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Homework_06.08.2020/pomodoro-app/src/app/pomodoro/pomodoro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Homework_06.08.2020/pomodoro-app/src/app/pomodoro/pomodoro.component.ts" afterDir="false" />
@@ -90,6 +92,7 @@
       <workItem from="1597343609642" duration="911000" />
       <workItem from="1597345434747" duration="58000" />
       <workItem from="1597513738196" duration="5557000" />
+      <workItem from="1597563768690" duration="4245000" />
     </task>
     <servers />
   </component>

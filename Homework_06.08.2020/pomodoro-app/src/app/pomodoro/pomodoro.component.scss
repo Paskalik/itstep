@@ -18,3 +18,29 @@
   z-index : 1;
   position:relative;
 }
+
+.intervals {
+  display: inline-flex;
+}
+
+input {
+  width: 50px;
+}
+
+.mainBtn {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.mainBtn > button {
+  padding: 5px;
+  margin: 5px;
+}
+
+label {
+  margin-right: 15px;
+}
+
+#apply {
+  margin-right: 5px;
+}
