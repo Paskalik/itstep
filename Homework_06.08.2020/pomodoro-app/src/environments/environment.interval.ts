@@ -1,5 +1,5 @@
-export const pomodoro = 20; // 1500;
+export const pomodoro = 1500;
 
-export const short = 5;
+export const short = 300;
 
-export const long = 10;
+export const long = 1200;
