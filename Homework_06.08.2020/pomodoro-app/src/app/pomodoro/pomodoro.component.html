@@ -22,9 +22,10 @@
   </div>
 <div *ngIf="isChoice">
   <label  id="apply">
-    <input #inputNew>
+    <input type="time" value="00:00" required="" #inputNew>
   </label>
-  <button (click)="setInterval(inputNew.value, intervalSelect.value)">Apply</button>
+  <button (click)="setInterval(inputNew.value, intervalSelect.value); intervalSelect.selectedIndex=0">Apply</button>
+  <span class="error" *ngIf="isError">Input valid interval!</span>
 </div>
 </div>
 <div id="timer" [style.background-color]="color" [style.border-color]="color">

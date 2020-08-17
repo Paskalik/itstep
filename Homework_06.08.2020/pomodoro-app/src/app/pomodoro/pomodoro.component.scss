@@ -1,7 +1,7 @@
 #timer {
   color:black;
   font-size:50px;
-  margin:10px auto;
+  margin:50px auto;
   border : 5px solid;
   border-radius:50%;
   width:200px;
@@ -24,7 +24,7 @@
 }
 
 input {
-  width: 50px;
+  width: 70px;
 }
 
 .mainBtn {
@@ -43,4 +43,9 @@ label {
 
 #apply {
   margin-right: 5px;
+}
+
+.error {
+  color: red;
+  margin-left: 5px;
 }

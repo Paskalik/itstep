@@ -26,6 +26,7 @@ export class PomodoroComponent implements OnInit {
     'Long break'
   ];
   isChoice: boolean;
+  isError: boolean;
 
 
   constructor() { }
@@ -80,21 +81,30 @@ export class PomodoroComponent implements OnInit {
     this.color = color;
   }
 
-  setInterval(min: string, type: string): void {
-    const newTime = Number(min) * 60;
-    if (type === 'Pomodoro') {
-      this.timeLeftPomodoro = newTime;
-    } else {
-      if (type === 'Short break') {
-        this.timeLeftShort = newTime;
+  setInterval(time: string, type: string): void {
+    const timeString = time.split(':');
+    const min = timeString[0];
+    const sec = timeString[1];
+    const newTime = Number(min) * 60 + Number(sec);
+    if (newTime > 0) {
+      this.isError = false;
+      if (type === 'Pomodoro') {
+        this.timeLeftPomodoro = newTime;
       } else {
-        if (type === 'Long break') {
-          this.timeLeftLong = newTime;
+        if (type === 'Short break') {
+          this.timeLeftShort = newTime;
+        } else {
+          if (type === 'Long break') {
+            this.timeLeftLong = newTime;
+          }
         }
       }
+      clearInterval(this.interval);
+      this.timeLeft = this.timeLeftPomodoro;
+      this.isChoice = false;
+    } else {
+      this.isError = true;
     }
-    clearInterval(this.interval);
-    this.timeLeft = this.timeLeftPomodoro;
   }
 
   ngOnInit(): void {
