@@ -14,13 +14,13 @@ export class PomodoroComponent implements OnInit {
   interval: number;
   count = 0;
   color = 'red';
-  arrColors = [
+  arrColors: string[] = [
     'red',
     'yellow',
     'green',
     'pink'
   ];
-  intervalType = [
+  intervalType: string[] = [
     'Pomodoro',
     'Short break',
     'Long break'
