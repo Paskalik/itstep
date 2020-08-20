@@ -19,7 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="" />
+    <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,7 +50,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Homework_13.08.2020" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -87,6 +90,8 @@
       <workItem from="1597513738196" duration="5557000" />
       <workItem from="1597563768690" duration="8761000" />
       <workItem from="1597746769312" duration="699000" />
+      <workItem from="1597825482211" duration="809000" />
+      <workItem from="1597930804095" duration="305000" />
     </task>
     <servers />
   </component>
@@ -110,21 +115,29 @@
       <screen x="0" y="23" width="1440" height="826" />
     </state>
     <state x="332" y="121" key="#Intentions/0.23.1440.826@0.23.1440.826" timestamp="1597175352607" />
-    <state width="1379" height="201" key="GridCell.Tab.0.bottom" timestamp="1596646460499">
-      <screen x="0" y="23" width="1440" height="827" />
+    <state x="601" y="326" key="#TSLint" timestamp="1597851527370">
+      <screen x="0" y="23" width="1440" height="826" />
     </state>
+    <state x="601" y="326" key="#TSLint/0.23.1440.826@0.23.1440.826" timestamp="1597851527370" />
+    <state width="1379" height="191" key="GridCell.Tab.0.bottom" timestamp="1597851486645">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state width="1379" height="191" key="GridCell.Tab.0.bottom/0.23.1440.826@0.23.1440.826" timestamp="1597851486645" />
     <state width="1379" height="201" key="GridCell.Tab.0.bottom/0.23.1440.827@0.23.1440.827" timestamp="1596646460499" />
-    <state width="1379" height="201" key="GridCell.Tab.0.center" timestamp="1596646460498">
-      <screen x="0" y="23" width="1440" height="827" />
+    <state width="1379" height="191" key="GridCell.Tab.0.center" timestamp="1597851486644">
+      <screen x="0" y="23" width="1440" height="826" />
     </state>
+    <state width="1379" height="191" key="GridCell.Tab.0.center/0.23.1440.826@0.23.1440.826" timestamp="1597851486644" />
     <state width="1379" height="201" key="GridCell.Tab.0.center/0.23.1440.827@0.23.1440.827" timestamp="1596646460498" />
-    <state width="1379" height="201" key="GridCell.Tab.0.left" timestamp="1596646460497">
-      <screen x="0" y="23" width="1440" height="827" />
+    <state width="1379" height="191" key="GridCell.Tab.0.left" timestamp="1597851486644">
+      <screen x="0" y="23" width="1440" height="826" />
     </state>
+    <state width="1379" height="191" key="GridCell.Tab.0.left/0.23.1440.826@0.23.1440.826" timestamp="1597851486644" />
     <state width="1379" height="201" key="GridCell.Tab.0.left/0.23.1440.827@0.23.1440.827" timestamp="1596646460497" />
-    <state width="1379" height="201" key="GridCell.Tab.0.right" timestamp="1596646460498">
-      <screen x="0" y="23" width="1440" height="827" />
+    <state width="1379" height="191" key="GridCell.Tab.0.right" timestamp="1597851486645">
+      <screen x="0" y="23" width="1440" height="826" />
     </state>
+    <state width="1379" height="191" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1597851486645" />
     <state width="1379" height="201" key="GridCell.Tab.0.right/0.23.1440.827@0.23.1440.827" timestamp="1596646460498" />
     <state x="397" y="173" width="670" height="676" key="search.everywhere.popup" timestamp="1597163436443">
       <screen x="0" y="23" width="1440" height="826" />
