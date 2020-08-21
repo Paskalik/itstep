@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +57,9 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/Classwork_30.07.2020/todo_angular-master/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Homework_13.08.2020" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Homework_11.08.2020" />
       <recent name="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/assets/locale/i18n" />
@@ -91,7 +93,8 @@
       <workItem from="1597563768690" duration="8761000" />
       <workItem from="1597746769312" duration="699000" />
       <workItem from="1597825482211" duration="809000" />
-      <workItem from="1597930804095" duration="305000" />
+      <workItem from="1597930804095" duration="525000" />
+      <workItem from="1597990345172" duration="163000" />
     </task>
     <servers />
   </component>
