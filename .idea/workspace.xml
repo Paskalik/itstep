@@ -32,6 +32,7 @@
       <list>
         <option value="tsconfig.json" />
         <option value="TypeScript File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -95,6 +96,13 @@
       <workItem from="1597825482211" duration="809000" />
       <workItem from="1597930804095" duration="525000" />
       <workItem from="1597990345172" duration="163000" />
+      <workItem from="1598387057822" duration="134000" />
+      <workItem from="1598478647209" duration="16000" />
+      <workItem from="1598543345642" duration="124000" />
+      <workItem from="1598543491085" duration="42000" />
+      <workItem from="1598543682852" duration="7000" />
+      <workItem from="1598558306519" duration="2397000" />
+      <workItem from="1598583926347" duration="71000" />
     </task>
     <servers />
   </component>
