@@ -1,1 +1,8 @@
-https://codesandbox.io/s/homework22082020-8ww66
+Task1:
+https://codesandbox.io/s/homework22082020task1-8ww66
+
+Task2:
+https://codesandbox.io/s/homework22082020task2-0o6hc
+
+Task3:
+https://codesandbox.io/s/homework22082020task3-ij1tv
