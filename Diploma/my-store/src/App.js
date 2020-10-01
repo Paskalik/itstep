@@ -3,6 +3,10 @@ import './App.css';
 import Main from './store/Main';
 
 class App extends React.Component{
+    constructor(props) {
+        super(props);
+        this.storages = [];
+    }
 
     openDB() {
         let openRequest = indexedDB.open("store", 1);
@@ -22,9 +26,11 @@ class App extends React.Component{
             let storages = transactionStore.objectStore('storage');
             let categories = transactionCategory.objectStore('category');
             let storage = {
+                id: 1,
                 name: "Без места"
             };
             let category = {
+                id: 1,
                 name: "Без категории"
             };
             storages.add(storage);
@@ -32,8 +38,24 @@ class App extends React.Component{
         }
     }
 
+    loadData() {
+        let openRequest = indexedDB.open("store");
+        openRequest.onsuccess = function() {
+            let db = openRequest.result;
+            let transactionStore = db.transaction('storage', 'readonly');
+            let storage = transactionStore.objectStore('storage');
+            let getStorages = storage.getAll();
+            console.log(getStorages);
+            getStorages.onsuccess = function() {
+                this.storages = getStorages.result.name;
+                console.log(getStorages.result.name);
+            }
+        }
+    }
+
     componentDidMount() {
         this.openDB();
+        this.loadData();
     }
 
     render() {

@@ -50,7 +50,7 @@ export default class BottomButtons extends React.Component {
                                 >
                                     Отмена
                                 </button>
-                                <button className="button">Сохранить</button>
+                                <button className="button" onClick="addProduct">Сохранить</button>
                             </div>
                         </div>
                     )}

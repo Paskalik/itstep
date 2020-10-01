@@ -20,11 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Diploma/my-store/src/menu/Menu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/BottomButtons.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/store/BottomButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/BottomButtons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/store/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/Main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +120,9 @@
       <workItem from="1601550297970" duration="1823000" />
       <workItem from="1601552199571" duration="1532000" />
       <workItem from="1601554034714" duration="1775000" />
-      <workItem from="1601557358028" duration="1548000" />
+      <workItem from="1601557358028" duration="1882000" />
+      <workItem from="1601559442113" duration="1584000" />
+      <workItem from="1601561269321" duration="717000" />
     </task>
     <servers />
   </component>
