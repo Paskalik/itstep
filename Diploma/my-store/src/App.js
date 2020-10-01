@@ -5,7 +5,10 @@ import Main from './store/Main';
 class App extends React.Component{
     constructor(props) {
         super(props);
-        this.storages = [];
+        this.state = {
+            storages: {}
+        };
+        this.loadData = this.loadData.bind(this);
     }
 
     openDB() {
@@ -40,16 +43,17 @@ class App extends React.Component{
 
     loadData() {
         let openRequest = indexedDB.open("store");
-        openRequest.onsuccess = function() {
+        openRequest.onsuccess = () => {
             let db = openRequest.result;
             let transactionStore = db.transaction('storage', 'readonly');
             let storage = transactionStore.objectStore('storage');
-            let getStorages = storage.getAll();
-            console.log(getStorages);
-            getStorages.onsuccess = function() {
-                this.storages = getStorages.result.name;
-                console.log(getStorages.result.name);
+            let request = storage.getAll();
+            request.onsuccess = () => {
+                this.setState({
+                    storages: request.result
+                })
             }
+
         }
     }
 
@@ -59,9 +63,10 @@ class App extends React.Component{
     }
 
     render() {
+        console.log(this.state.storages);
         return (
             <div className="App">
-                <Main/>
+                <Main storages={this.state.storages}/>
             </div>
         );
     }
