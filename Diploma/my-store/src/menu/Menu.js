@@ -36,7 +36,7 @@ const StyledMenuItem = withStyles((theme) => ({
     },
 }))(MenuItem);
 
-export default function CustomMenu() {
+export default function CustomMenu(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -65,13 +65,13 @@ export default function CustomMenu() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <StyledMenuItem>
+                <StyledMenuItem onClick={() => {props.update('MainContent'); handleClose()}} >
                     <ListItemText primary="Главная" />
                 </StyledMenuItem>
-                <StyledMenuItem>
+                <StyledMenuItem onClick={() => {props.update('Catalog'); handleClose()}}>
                     <ListItemText primary="Каталог" />
                 </StyledMenuItem>
-                <StyledMenuItem>
+                <StyledMenuItem onClick={() => {props.update('Category'); handleClose()}}>
                     <ListItemText primary="Категории" />
                 </StyledMenuItem>
                 <StyledMenuItem>

@@ -2,16 +2,24 @@ import React from "react";
 import "../index.css";
 import CustomMenu from '../menu/Menu'
 import BottomButtons from './BottomButtons';
+import MainContent from '../menu/MainContent';
+import Catalog from '../menu/Catalog';
+import Category from '../menu/Category';
 
 export default class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             storages: {},
-            categories: {}
+            categories: {},
+            products: {},
+            comp: ""
         };
         this.getStorages = this.getStorages.bind(this);
         this.getCategories = this.getCategories.bind(this);
+        this.getProducts = this.getProducts.bind(this);
+        this.getComponent = this.getComponent.bind(this);
+        this.updateState = this.updateState.bind(this);
         this.openDB = this.openDB.bind(this);
     }
 
@@ -90,6 +98,45 @@ export default class Main extends React.Component {
         }
     }
 
+    getProducts() {
+        let db;
+        let openRequest = indexedDB.open('store');
+        openRequest.onsuccess = () => {
+            db = openRequest.result;
+            let transactionProduct = db.transaction('product', 'readonly');
+            let product = transactionProduct.objectStore('product');
+            let request = product.openCursor();
+            let allProducts = [];
+            request.onsuccess = () => {
+                let cursor = request.result;
+                if (cursor !== null) {
+                    allProducts.push(cursor.value.name);
+                    cursor.continue();
+                } else {
+                    this.setState({products: allProducts})
+                }
+            }
+            request.onerror = () => {
+                alert('error in cursor request ' + request.errorCode);
+            }
+        }
+    }
+
+    updateState(comp) {
+        this.setState({comp: comp})
+    }
+
+    getComponent() {
+        if (this.state.comp === "MainContent" || !this.state.comp) {
+            return <MainContent storages={this.state.storages}/>
+        } else
+        if (this.state.comp === "Catalog") {
+            return <Catalog products={this.state.products}/>
+        } else if (this.state.comp === "Category") {
+            return <Category categories={this.state.categories}/>
+        }
+    }
+
     componentDidMount() {
         this.openDB();
         this.getStorages();
@@ -97,23 +144,11 @@ export default class Main extends React.Component {
     }
 
     render() {
-        console.log(this.state.categories)
-        console.log(this.state.storages)
         return (
             <div>
-                <CustomMenu/>
-                <div>
-                    <ul className="listStore">
-                        {Object.keys(this.state.storages).map((val) => {
-                            return (
-                                <li key={val}>
-                                    {this.state.storages[val]}
-                                </li>
-                            )
-                        })}
-                    </ul>
-                </div>
-                <BottomButtons categories = {this.state.categories} storages = {this.state.storages}/>
+                <CustomMenu update={this.updateState}/>
+                {this.getComponent()}
+                <BottomButtons categories = {this.state.categories} storages = {this.state.storages} />
             </div>
         )
     }
