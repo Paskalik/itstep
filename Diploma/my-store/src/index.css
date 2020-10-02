@@ -149,4 +149,18 @@ label {
 .right {
   float: right;
   margin-right: 3vh;
+  cursor: pointer;
+}
+
+.listChoose {
+  text-align: left;
+  font-size: 2vh;
+}
+
+.listChoose > li {
+  display: block;
+  width: 90%;
+  cursor: pointer;
+  padding: 1vh;
+  background-color: #68bcff;
 }

@@ -19,6 +19,7 @@ export default class BottomButtons extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+        this.handleChoosePlace = this.handleChoosePlace.bind(this);
     }
 
     handleSubmit(event) {
@@ -28,6 +29,10 @@ export default class BottomButtons extends React.Component {
 
     handleCheckboxChange(event) {
         this.setState({ checked: event.target.checked })
+    }
+
+    handleChoosePlace(event) {
+
     }
 
     checkForm() {
@@ -93,6 +98,15 @@ export default class BottomButtons extends React.Component {
                                                     <FolderIcon color="secondary" className="right"/>
                                                 </div>
                                                 <div className="content">
+                                                    <ul className="listChoose">
+                                                        {Object.keys(this.props.storages).map((val) => {
+                                                            return (
+                                                                <li key={val} onClick={this.handleChoosePlace}>
+                                                                    {this.props.storages[val]}
+                                                                </li>
+                                                            )
+                                                        })}
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </form>
