@@ -18,6 +18,8 @@ export default class BottomButtons extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+        this.handleChangePlace = this.handleChangePlace.bind(this);
+        this.handleChangeCategory = this.handleChangeCategory.bind(this);
     }
 
     handleSubmit(event) {
@@ -27,6 +29,14 @@ export default class BottomButtons extends React.Component {
 
     handleCheckboxChange(event) {
         this.setState({ checked: event.target.checked })
+    }
+
+    handleChangePlace(event) {
+        event.preventDefault();
+    }
+
+    handleChangeCategory(event) {
+        event.preventDefault();
     }
 
     checkForm() {
@@ -55,6 +65,7 @@ export default class BottomButtons extends React.Component {
                             <div className="content">
                                 <input
                                 placeholder="Наименование продукта"
+                                required="required"
                                 />
                                 <ul className={this.state.checked ? "afterCheck" : "beforeCheck"}>
                                     <li>
@@ -68,14 +79,17 @@ export default class BottomButtons extends React.Component {
                                     <li><input placeholder="Дней" className="days"/></li>
                                     <li><input placeholder="Годен до" type="date"/></li>
                                 </ul>
+
                                 <input type="number"
                                        defaultValue="1"
+                                       min="1"
                                        className="counter"
+                                       required="required"
                                 />
-                                            <button>
+                                            <button onClick={this.handleChangePlace}>
                                                 {this.props.storages[0]}
                                             </button>
-                                <button>
+                                <button onClick={this.handleChangeCategory}>
                                                 {this.props.categories[0]}
                                 </button>
                                 <label>
