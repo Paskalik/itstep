@@ -145,3 +145,8 @@ label {
 .afterCheck {
   display: none;
 }
+
+.right {
+  float: right;
+  margin-right: 3vh;
+}
