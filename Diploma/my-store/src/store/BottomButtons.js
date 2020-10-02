@@ -7,6 +7,31 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
 export default class BottomButtons extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            checked: false,
+            start: new Date,
+            end: new Date
+        }
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        this.checkForm();
+    }
+
+    handleCheckboxChange(event) {
+        this.setState({ checked: event.target.checked })
+    }
+
+    checkForm() {
+        alert("Submit")
+    }
 
     render() {
         return (
@@ -20,26 +45,43 @@ export default class BottomButtons extends React.Component {
                     Add
                 </Button>} modal nested>
                     {close => (
+                        <form onSubmit={this.handleSubmit}>
                         <div className="modal">
+
                             <button className="close" onClick={close}>
                                 &times;
                             </button>
-                            <div className="header"> Новый продукт </div>
+                            <div className="header">Новый продукт</div>
                             <div className="content">
                                 <input
                                 placeholder="Наименование продукта"
                                 />
-                                <ul>
+                                <ul className={this.state.checked ? "afterCheck" : "beforeCheck"}>
                                     <li>
-                                        <input placeholder="Годен с"/>
+                                        <input
+                                            placeholder="Годен с"
+                                            type="date"
+                                            required={this.state.checked ? "" : "required"}
+                                            defaultValue={this.state.start.toISOString().split('T')[0]}
+                                        />
                                     </li>
                                     <li><input placeholder="Дней" className="days"/></li>
-                                    <li><input placeholder="Годен до"/></li>
+                                    <li><input placeholder="Годен до" type="date"/></li>
                                 </ul>
                                 <input type="number"
-                                       value="1"
+                                       defaultValue="1"
                                        className="counter"
                                 />
+                                            <button>
+                                                {this.props.storages[0]}
+                                            </button>
+                                <button>
+                                                {this.props.categories[0]}
+                                </button>
+                                <label>
+                                    <input type="checkbox" checked={this.state.checked} onChange={this.handleCheckboxChange}/>
+                                    Без срока годности
+                                </label>
                             </div>
                             <div className="actions">
                                 <button
@@ -50,9 +92,11 @@ export default class BottomButtons extends React.Component {
                                 >
                                     Отмена
                                 </button>
-                                <button className="button" onClick="addProduct">Сохранить</button>
+                                <button className="button" type="submit">Сохранить</button>
                             </div>
+
                         </div>
+                        </form>
                     )}
                 </Popup>
                 <Button

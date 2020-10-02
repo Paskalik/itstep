@@ -100,6 +100,7 @@ input {
   margin: 1vh;
   padding: 5px;
   float: right;
+  cursor: pointer;
 }
 
 ul {
@@ -108,4 +109,39 @@ ul {
 
 li {
   display: inline;
+}
+
+.listStore {
+  text-align: left;
+  font-size: 4vh;
+}
+
+.listStore > li {
+  display: block;
+  width: 90vw;
+  cursor: pointer;
+  border: 1px solid black;
+  padding: 2vh;
+}
+
+select, .content > button {
+  width: 90%;
+  padding: 1vh;
+  font-size: 3vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  cursor: pointer;
+}
+
+label {
+  display: block;
+  text-align: left;
+}
+
+.beforeCheck {
+  display: block;
+}
+
+.afterCheck {
+  display: none;
 }
