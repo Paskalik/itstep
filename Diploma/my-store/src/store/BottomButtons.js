@@ -3,9 +3,10 @@ import "../index.css";
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
-import FolderIcon from '@material-ui/icons/Folder';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import AddNewStore from './AddNewStore';
+import AddNewCategory from './AddNewCategory';
 
 export default class BottomButtons extends React.Component {
     constructor(props) {
@@ -20,6 +21,7 @@ export default class BottomButtons extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
         this.handleChoosePlace = this.handleChoosePlace.bind(this);
+        this.handleChooseCategory = this.handleChooseCategory.bind(this);
     }
 
     handleSubmit(event) {
@@ -31,8 +33,12 @@ export default class BottomButtons extends React.Component {
         this.setState({ checked: event.target.checked })
     }
 
-    handleChoosePlace(event) {
+    handleChoosePlace() {
+        alert("Place choose")
+    }
 
+    handleChooseCategory() {
+        alert("Category choose")
     }
 
     checkForm() {
@@ -95,7 +101,7 @@ export default class BottomButtons extends React.Component {
                                                 </button>
                                                 <div className="header">
                                                     Выберите место хранения
-                                                    <FolderIcon color="secondary" className="right"/>
+                                                    <AddNewStore/>
                                                 </div>
                                                 <div className="content">
                                                     <ul className="listChoose">
@@ -112,9 +118,37 @@ export default class BottomButtons extends React.Component {
                                         </form>
                                     )}
                                 </Popup>
+                                <Popup trigger={
                                 <Button variant="outlined">
                                                 {this.props.categories[0]}
                                     </Button>
+                                } modal nested>
+                                    {close => (
+                                        <form onSubmit={this.handleSubmit}>
+                                            <div className="modal">
+
+                                                <button className="close" onClick={close}>
+                                                    &times;
+                                                </button>
+                                                <div className="header">
+                                                    Выберите категорию
+                                                    <AddNewCategory/>
+                                                </div>
+                                                <div className="content">
+                                                    <ul className="listChoose">
+                                                        {Object.keys(this.props.categories).map((val) => {
+                                                            return (
+                                                                <li key={val} onClick={this.handleChooseCategory}>
+                                                                    {this.props.categories[val]}
+                                                                </li>
+                                                            )
+                                                        })}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    )}
+                                </Popup>
                                 <label>
                                     <input type="checkbox" checked={this.state.checked} onChange={this.handleCheckboxChange}/>
                                     Без срока годности
