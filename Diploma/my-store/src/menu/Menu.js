@@ -27,7 +27,7 @@ const StyledMenu = withStyles({
 
 const StyledMenuItem = withStyles((theme) => ({
     root: {
-        '&:focus': {
+        '&:hover': {
             backgroundColor: theme.palette.primary.main,
             '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
                 color: theme.palette.common.white,
@@ -74,7 +74,7 @@ export default function CustomMenu(props) {
                 <StyledMenuItem onClick={() => {props.update('Category'); handleClose()}}>
                     <ListItemText primary="Категории" />
                 </StyledMenuItem>
-                <StyledMenuItem>
+                <StyledMenuItem onClick={() => {props.update('Store'); handleClose()}}>
                     <ListItemText primary="Места хранения" />
                 </StyledMenuItem>
                 <StyledMenuItem>

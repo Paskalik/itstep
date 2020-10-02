@@ -5,6 +5,8 @@ export default class Catalog extends React.Component {
 
     render() {
         return (
+            <div>
+            {(this.props.storages.length > 0) ? (
             <ul className="listStore">
                 {Object.keys(this.props.storages).map((val) => {
                     return (
@@ -13,7 +15,9 @@ export default class Catalog extends React.Component {
                         </li>
                     )
                 })}
-            </ul>
+            </ul>) :
+                (<p>Отсутствуют места хранения</p>)}
+            </div>
         )
     }
 }

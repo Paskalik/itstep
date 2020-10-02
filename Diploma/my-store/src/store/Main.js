@@ -5,6 +5,7 @@ import BottomButtons from './BottomButtons';
 import MainContent from '../menu/MainContent';
 import Catalog from '../menu/Catalog';
 import Category from '../menu/Category';
+import Store from '../menu/Store';
 
 export default class Main extends React.Component {
     constructor(props) {
@@ -134,6 +135,8 @@ export default class Main extends React.Component {
             return <Catalog products={this.state.products}/>
         } else if (this.state.comp === "Category") {
             return <Category categories={this.state.categories}/>
+        } else if (this.state.comp === "Store") {
+            return <Store storages={this.state.storages}/>
         }
     }
 
