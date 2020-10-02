@@ -19,11 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/AddNewCategory.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/AddNewStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/store/BottomButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/BottomButtons.js" afterDir="false" />
-    </list>
+    <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -140,7 +136,7 @@
       <workItem from="1601642525906" duration="467000" />
       <workItem from="1601643513164" duration="2195000" />
       <workItem from="1601646266484" duration="1168000" />
-      <workItem from="1601648117090" duration="885000" />
+      <workItem from="1601648117090" duration="1100000" />
     </task>
     <servers />
   </component>
