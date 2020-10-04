@@ -90,7 +90,7 @@ export default class BottomButtons extends React.Component {
                                 />
                                 <Popup trigger={
                                             <Button variant="outlined">
-                                                {this.props.storages[0]}
+                                                {console.log(this.props.storages)}
                                             </Button>} modal nested>
                                     {close => (
                                         <form onSubmit={this.handleSubmit}>

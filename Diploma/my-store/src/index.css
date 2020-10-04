@@ -157,10 +157,10 @@ label {
   font-size: 2vh;
 }
 
-.listChoose > li {
+.listChoose li {
   display: block;
   width: 90%;
   cursor: pointer;
   padding: 1vh;
-  background-color: #68bcff;
+  border: 1px solid black;
 }

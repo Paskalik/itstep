@@ -7,11 +7,11 @@ export default class Catalog extends React.Component {
         return (
             <div>
             {(this.props.storages.length > 0) ? (
-            <ul className="listStore">
-                {Object.keys(this.props.storages).map((val) => {
+            <ul className="listStore" >
+                {this.props.storages.map((val,i) => {
                     return (
-                        <li key={val} >
-                            {this.props.storages[val]}
+                        <li key={i} style={{backgroundColor: val.color}}>
+                            {val.name}
                         </li>
                     )
                 })}

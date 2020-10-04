@@ -8,10 +8,10 @@ export default class Category extends React.Component {
             <div>
                 {(this.props.categories.length > 0) ? (
             <ul className="listStore">
-                {Object.keys(this.props.categories).map((val) => {
+                {this.props.categories.map((val,i) => {
                     return (
-                        <li key={val} >
-                            {this.props.categories[val]}
+                        <li key={i} >
+                            {val.name}
                         </li>
                     )
                 })}

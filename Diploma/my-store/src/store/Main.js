@@ -11,9 +11,9 @@ export default class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            storages: {},
-            categories: {},
-            products: {},
+            storages: [],
+            categories: [],
+            products: [],
             comp: ""
         };
         this.getStorages = this.getStorages.bind(this);
@@ -32,7 +32,8 @@ export default class Main extends React.Component {
             let storages = db.createObjectStore('storage', {keyPath: 'id', autoIncrement: true});
             storages.createIndex('store_idx', 'name', {'unique':true});
             let storage = {
-                name: "Без места"
+                name: "Без места",
+                color: "red"
             };
             storages.add(storage);
             let categories = db.createObjectStore('category', {keyPath: 'id', autoIncrement: true});
@@ -63,7 +64,7 @@ export default class Main extends React.Component {
             request.onsuccess = () => {
                 let cursor = request.result;
                 if (cursor !== null) {
-                    allStorages.push(cursor.value.name);
+                    allStorages.push(cursor.value);
                     cursor.continue();
                 } else {
                     this.setState({storages: allStorages})
@@ -87,7 +88,7 @@ export default class Main extends React.Component {
             request.onsuccess = () => {
                 let cursor = request.result;
                 if (cursor !== null) {
-                    allCategories.push(cursor.value.name);
+                    allCategories.push(cursor.value);
                     cursor.continue();
                 } else {
                     this.setState({categories: allCategories})
@@ -111,7 +112,7 @@ export default class Main extends React.Component {
             request.onsuccess = () => {
                 let cursor = request.result;
                 if (cursor !== null) {
-                    allProducts.push(cursor.value.name);
+                    allProducts.push(cursor.value);
                     cursor.continue();
                 } else {
                     this.setState({products: allProducts})

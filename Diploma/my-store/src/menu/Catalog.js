@@ -8,10 +8,10 @@ export default class Catalog extends React.Component {
             <div>
                 {(this.props.products.length > 0) ? (
             <ul className="listStore">
-                {Object.keys(this.props.products).map((val) => {
+                {this.props.products.map((val,i) => {
                     return (
-                        <li key={val} >
-                            {this.props.products[val]}
+                        <li key={i} >
+                            {val.name}
                         </li>
                     )
                 })}
