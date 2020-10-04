@@ -128,7 +128,7 @@ export default class BottomButtons extends React.Component {
                                                 </button>
                                                 <div className="header">
                                                     Выберите место хранения
-                                                    <AddNewStore/>
+                                                    <AddNewStore update={this.handleChoosePlace}/>
                                                 </div>
                                                 <div className="content">
                                                     <ul className="listChoose">
