@@ -21,11 +21,26 @@ export default class AddNewStore extends React.Component {
 
     handleSubmitStore(event) {
         event.preventDefault();
+        let db;
+        let openRequest = indexedDB.open('store', 1);
+        openRequest.onsuccess = () => {
+            db = openRequest.result;
+            let transaction = db.transaction('storage','readwrite');
+            let storage = transaction.objectStore('storage');
+            let newStore = {
+                name: this.state.name,
+                color: this.state.color
+            }
+            storage.add(newStore);
+        }
+        openRequest.onerror = () => {
+            alert('error opening database ' + openRequest.errorCode);
+        }
     }
 
     handleNewColor(color) {
         this.setState({
-            backgroundColor: color
+            color: color
         })
     }
 
@@ -41,7 +56,6 @@ export default class AddNewStore extends React.Component {
             <FolderIcon color="secondary" className="right"/>
             } modal nested>
                 {close => (
-                    <form onSubmit={this.handleSubmitStore}>
                         <div className="modal">
                             <button className="close" onClick={close}>
                                 &times;
@@ -62,10 +76,9 @@ export default class AddNewStore extends React.Component {
                                 >
                                     Отмена
                                 </button>
-                                <button className="button" type="submit">Сохранить</button>
+                                <button className="button" onClick={(event) => {this.handleSubmitStore(event); close()}}>Сохранить</button>
                             </div>
                         </div>
-                    </form>
                 )}
             </Popup>
         )

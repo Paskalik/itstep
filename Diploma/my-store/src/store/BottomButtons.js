@@ -22,6 +22,9 @@ export default class BottomButtons extends React.Component {
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
         this.handleChoosePlace = this.handleChoosePlace.bind(this);
         this.handleChooseCategory = this.handleChooseCategory.bind(this);
+        this.getFirstStorageName = this.getFirstStorageName.bind(this);
+        this.getFirstStorageColor = this.getFirstStorageColor.bind(this);
+        this.getFirstCategory = this.getFirstCategory.bind(this);
     }
 
     handleSubmit(event) {
@@ -39,6 +42,30 @@ export default class BottomButtons extends React.Component {
 
     handleChooseCategory() {
         alert("Category choose")
+    }
+
+    getFirstStorageName() {
+        let obj = this.props.storages[0];
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key) && (key === 'name')) {
+            return obj[key]
+        }}
+    }
+
+    getFirstStorageColor() {
+        let obj = this.props.storages[0];
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key) && (key === 'color')) {
+                return obj[key]
+            }}
+    }
+
+    getFirstCategory() {
+        let obj = this.props.categories[0];
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key) && (key === 'name')) {
+                return obj[key]
+            }}
     }
 
     checkForm() {
@@ -89,8 +116,8 @@ export default class BottomButtons extends React.Component {
                                        required="required"
                                 />
                                 <Popup trigger={
-                                            <Button variant="outlined">
-                                                {console.log(this.props.storages)}
+                                            <Button variant="outlined" style={{backgroundColor: this.getFirstStorageColor()}}>
+                                                {this.getFirstStorageName()}
                                             </Button>} modal nested>
                                     {close => (
                                         <form onSubmit={this.handleSubmit}>
@@ -105,10 +132,10 @@ export default class BottomButtons extends React.Component {
                                                 </div>
                                                 <div className="content">
                                                     <ul className="listChoose">
-                                                        {Object.keys(this.props.storages).map((val) => {
+                                                        {this.props.storages.map((val,i) => {
                                                             return (
-                                                                <li key={val} onClick={this.handleChoosePlace}>
-                                                                    {this.props.storages[val]}
+                                                                <li key={i} onClick={this.handleChoosePlace}>
+                                                                    {val.name}
                                                                 </li>
                                                             )
                                                         })}
@@ -120,7 +147,7 @@ export default class BottomButtons extends React.Component {
                                 </Popup>
                                 <Popup trigger={
                                 <Button variant="outlined">
-                                                {this.props.categories[0]}
+                                    {this.getFirstCategory()}
                                     </Button>
                                 } modal nested>
                                     {close => (
@@ -136,10 +163,10 @@ export default class BottomButtons extends React.Component {
                                                 </div>
                                                 <div className="content">
                                                     <ul className="listChoose">
-                                                        {Object.keys(this.props.categories).map((val) => {
+                                                        {this.props.categories.map((val,i) => {
                                                             return (
-                                                                <li key={val} onClick={this.handleChooseCategory}>
-                                                                    {this.props.categories[val]}
+                                                                <li key={i} onClick={this.handleChooseCategory}>
+                                                                    {val.name}
                                                                 </li>
                                                             )
                                                         })}
