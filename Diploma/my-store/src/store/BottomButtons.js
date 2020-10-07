@@ -5,7 +5,7 @@ import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import AddNewStore from './AddNewStore';
+import StoreList from './StoreList';
 import AddNewCategory from './AddNewCategory';
 
 export default class BottomButtons extends React.Component {
@@ -13,6 +13,9 @@ export default class BottomButtons extends React.Component {
         super(props);
 
         this.state = {
+            choosePlace: false,
+            place: "",
+            color: "",
             checked: false,
             start: new Date,
             end: new Date
@@ -20,10 +23,7 @@ export default class BottomButtons extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-        this.handleChoosePlace = this.handleChoosePlace.bind(this);
         this.handleChooseCategory = this.handleChooseCategory.bind(this);
-        this.getFirstStorageName = this.getFirstStorageName.bind(this);
-        this.getFirstStorageColor = this.getFirstStorageColor.bind(this);
         this.getFirstCategory = this.getFirstCategory.bind(this);
     }
 
@@ -36,28 +36,8 @@ export default class BottomButtons extends React.Component {
         this.setState({ checked: event.target.checked })
     }
 
-    handleChoosePlace() {
-        alert("Place choose")
-    }
-
     handleChooseCategory() {
         alert("Category choose")
-    }
-
-    getFirstStorageName() {
-        let obj = this.props.storages[0];
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key) && (key === 'name')) {
-            return obj[key]
-        }}
-    }
-
-    getFirstStorageColor() {
-        let obj = this.props.storages[0];
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key) && (key === 'color')) {
-                return obj[key]
-            }}
     }
 
     getFirstCategory() {
@@ -115,36 +95,7 @@ export default class BottomButtons extends React.Component {
                                        className="counter"
                                        required="required"
                                 />
-                                <Popup trigger={
-                                            <Button variant="outlined" style={{backgroundColor: this.getFirstStorageColor()}}>
-                                                {this.getFirstStorageName()}
-                                            </Button>} modal nested>
-                                    {close => (
-                                        <form onSubmit={this.handleSubmit}>
-                                            <div className="modal">
-
-                                                <button className="close" onClick={close}>
-                                                    &times;
-                                                </button>
-                                                <div className="header">
-                                                    Выберите место хранения
-                                                    <AddNewStore update={this.handleChoosePlace}/>
-                                                </div>
-                                                <div className="content">
-                                                    <ul className="listChoose">
-                                                        {this.props.storages.map((val,i) => {
-                                                            return (
-                                                                <li key={i} onClick={this.handleChoosePlace}>
-                                                                    {val.name}
-                                                                </li>
-                                                            )
-                                                        })}
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    )}
-                                </Popup>
+                                <StoreList categories = {this.props.categories} storages = {this.props.storages}/>
                                 <Popup trigger={
                                 <Button variant="outlined">
                                     {this.getFirstCategory()}

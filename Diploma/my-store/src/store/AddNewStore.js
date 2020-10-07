@@ -36,6 +36,7 @@ export default class AddNewStore extends React.Component {
         openRequest.onerror = () => {
             alert('error opening database ' + openRequest.errorCode);
         }
+        this.props.update(this.state.name, this.state.color);
     }
 
     handleNewColor(color) {

@@ -19,7 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="" />
+    <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/StoreList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/store/AddNewStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/AddNewStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/store/BottomButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/BottomButtons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/store/PlaceForm.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,14 +52,16 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Homework_13.08.2020" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/Classwork_30.07.2020/todo_angular-master/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -69,7 +77,10 @@
       <recent name="$PROJECT_DIR$/Homework_04.08.2020/poetry-app/src/assets" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="" />
@@ -153,11 +164,29 @@
       <workItem from="1601834073940" duration="1769000" />
       <workItem from="1601835884853" duration="141000" />
       <workItem from="1601836466349" duration="949000" />
+      <workItem from="1602092090539" duration="138000" />
+      <workItem from="1602092246603" duration="252000" />
+      <workItem from="1602092768206" duration="166000" />
+      <workItem from="1602093269926" duration="52000" />
+      <workItem from="1602093362270" duration="79000" />
+      <workItem from="1602093633003" duration="59000" />
+      <workItem from="1602093711124" duration="32000" />
+      <workItem from="1602093763338" duration="37000" />
+      <workItem from="1602094151036" duration="267000" />
+      <workItem from="1602094627167" duration="226000" />
+      <workItem from="1602094873134" duration="26000" />
+      <workItem from="1602095012850" duration="43000" />
+      <workItem from="1602095089970" duration="107000" />
+      <workItem from="1602095278420" duration="129000" />
+      <workItem from="1602096140628" duration="217000" />
+      <workItem from="1602096518898" duration="171000" />
+      <workItem from="1602096741073" duration="70000" />
+      <workItem from="1602097700628" duration="2388000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -180,6 +209,10 @@
       <screen x="0" y="23" width="1440" height="826" />
     </state>
     <state x="601" y="326" key="#TSLint/0.23.1440.826@0.23.1440.826" timestamp="1597851527370" />
+    <state x="405" y="145" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1602093311939">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="405" y="145" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1440.823@0.23.1440.823" timestamp="1602093311939" />
     <state x="478" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601574680699">
       <screen x="0" y="23" width="1440" height="825" />
     </state>
@@ -209,6 +242,10 @@
     <state width="1379" height="191" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1601647406526" />
     <state width="1379" height="191" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1597851486645" />
     <state width="1379" height="201" key="GridCell.Tab.0.right/0.23.1440.827@0.23.1440.827" timestamp="1596646460498" />
+    <state x="221" y="73" key="SettingsEditor" timestamp="1602096564236">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="221" y="73" key="SettingsEditor/0.23.1440.823@0.23.1440.823" timestamp="1602096564236" />
     <state x="397" y="172" width="670" height="674" key="search.everywhere.popup" timestamp="1601809779990">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
