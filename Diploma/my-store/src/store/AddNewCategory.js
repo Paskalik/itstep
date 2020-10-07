@@ -32,6 +32,7 @@ export default class AddNewCategory extends React.Component {
         openRequest.onerror = () => {
             alert('error opening database ' + openRequest.errorCode);
         }
+        this.props.update(this.state.name);
     }
 
     handleName(event) {

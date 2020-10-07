@@ -6,7 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import StoreList from './StoreList';
-import AddNewCategory from './AddNewCategory';
+import CategoryList from './CategoryList';
 
 export default class BottomButtons extends React.Component {
     constructor(props) {
@@ -23,8 +23,6 @@ export default class BottomButtons extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-        this.handleChooseCategory = this.handleChooseCategory.bind(this);
-        this.getFirstCategory = this.getFirstCategory.bind(this);
     }
 
     handleSubmit(event) {
@@ -34,18 +32,6 @@ export default class BottomButtons extends React.Component {
 
     handleCheckboxChange(event) {
         this.setState({ checked: event.target.checked })
-    }
-
-    handleChooseCategory() {
-        alert("Category choose")
-    }
-
-    getFirstCategory() {
-        let obj = this.props.categories[0];
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key) && (key === 'name')) {
-                return obj[key]
-            }}
     }
 
     checkForm() {
@@ -95,38 +81,8 @@ export default class BottomButtons extends React.Component {
                                        className="counter"
                                        required="required"
                                 />
-                                <StoreList categories = {this.props.categories} storages = {this.props.storages}/>
-                                <Popup trigger={
-                                <Button variant="outlined">
-                                    {this.getFirstCategory()}
-                                    </Button>
-                                } modal nested>
-                                    {close => (
-                                        <form onSubmit={this.handleSubmit}>
-                                            <div className="modal">
-
-                                                <button className="close" onClick={close}>
-                                                    &times;
-                                                </button>
-                                                <div className="header">
-                                                    Выберите категорию
-                                                    <AddNewCategory/>
-                                                </div>
-                                                <div className="content">
-                                                    <ul className="listChoose">
-                                                        {this.props.categories.map((val,i) => {
-                                                            return (
-                                                                <li key={i} onClick={this.handleChooseCategory}>
-                                                                    {val.name}
-                                                                </li>
-                                                            )
-                                                        })}
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    )}
-                                </Popup>
+                                <StoreList storages = {this.props.storages}/>
+                                <CategoryList categories = {this.props.categories}/>
                                 <label>
                                     <input type="checkbox" checked={this.state.checked} onChange={this.handleCheckboxChange}/>
                                     Без срока годности

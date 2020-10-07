@@ -38,7 +38,7 @@ export default class StoreList extends React.Component {
     }
 
     handleChoosePlace(name, color) {
-        this.setState({choosePlace: true,
+        this.setState({
             name: name,
             color: color})
     }
@@ -55,7 +55,6 @@ export default class StoreList extends React.Component {
                     {this.state.name}
                 </Button>} modal nested>
                 {close => (
-                    <form onSubmit={this.handleSubmit}>
                         <div className="modal">
 
                             <button className="close" onClick={close}>
@@ -63,7 +62,7 @@ export default class StoreList extends React.Component {
                             </button>
                             <div className="header">
                                 Выберите место хранения
-                                <AddNewStore update={this.handleChoosePlace}/>
+                                <AddNewStore update={(name,color) => {this.handleChoosePlace(name,color); close()}}/>
                             </div>
                             <div className="content">
                                 <ul className="listChoose">
@@ -77,7 +76,6 @@ export default class StoreList extends React.Component {
                                 </ul>
                             </div>
                         </div>
-                    </form>
                 )}
             </Popup>
         )
