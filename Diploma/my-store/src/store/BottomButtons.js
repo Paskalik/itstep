@@ -16,7 +16,6 @@ export default class BottomButtons extends React.Component {
         this.state = {
             name: "",
             place: "",
-            color: "",
             category: "",
             dateFrom: moment().format(),
             dateTo: moment().format(),
@@ -34,12 +33,36 @@ export default class BottomButtons extends React.Component {
         this.handleDays = this.handleDays.bind(this);
         this.handleTo = this.handleTo.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
+        this.getCategoryID = this.getCategoryID.bind(this);
+        this.getStoreID = this.getStoreID.bind(this);
+
+    }
+
+    getStoreID() {
+
+    }
+
+    getCategoryID() {
 
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        this.checkForm();
+      /*  let db;
+        let openRequest = indexedDB.open('store', 1);
+        openRequest.onsuccess = () => {
+            db = openRequest.result;
+            let transactionProduct = db.transaction('product','readwrite');
+            let product = transactionProduct.objectStore('product');
+            let newProduct = {
+                name: this.state.name
+            }
+            product.add(newProduct);
+        }
+        openRequest.onerror = () => {
+            alert('error opening database ' + openRequest.errorCode);
+        }*/
+
     }
 
     handleCheckboxChange(event) {
@@ -67,9 +90,8 @@ export default class BottomButtons extends React.Component {
             days: moment.duration(moment(event.target.value).diff(moment(this.state.dateFrom))).days()});
     }
 
-    handleStorage(name,color) {
-        this.setState({place: name,
-        color: color})
+    handleStorage(name) {
+        this.setState({place: name})
     }
 
     handleCategory(name) {
@@ -78,10 +100,6 @@ export default class BottomButtons extends React.Component {
 
     handleSearch() {
         this.props.update();
-    }
-
-    checkForm() {
-        alert("Submit")
     }
 
 

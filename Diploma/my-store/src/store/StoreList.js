@@ -24,7 +24,6 @@ export default class StoreList extends React.Component {
         for (let key in obj) {
             if (obj.hasOwnProperty(key) && (key === 'name')) {
                 this.setState({name: obj[key]})
-                //return obj[key]
             }}
     }
 
@@ -33,7 +32,6 @@ export default class StoreList extends React.Component {
         for (let key in obj) {
             if (obj.hasOwnProperty(key) && (key === 'color')) {
                 this.setState({color: obj[key]})
-                //return obj[key]
             }}
     }
 
@@ -41,7 +39,7 @@ export default class StoreList extends React.Component {
         this.setState({
             name: name,
             color: color});
-        this.props.update(this.state.name,this.state.color);
+        this.props.update(this.state.name);
     }
 
     componentDidMount() {

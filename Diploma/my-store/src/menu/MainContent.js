@@ -20,8 +20,8 @@ export default class Catalog extends React.Component {
         return (
             <div>
                 <div className="search">
-                {this.state.search &&
-                <input type="search" placeholder="Введите текст для поиска"/>}
+                    {this.state.search &&
+                    <input type="search" placeholder="Введите текст для поиска"/>}
                 </div>
             {(this.props.storages.length > 0) ? (
             <ul className="listStore" >
@@ -34,7 +34,7 @@ export default class Catalog extends React.Component {
                 })}
             </ul>) :
                 (<p>Отсутствуют места хранения</p>)}
-            <BottomButtons categories = {this.state.categories} storages = {this.state.storages} update={this.handleSearch} />
+            <BottomButtons categories = {this.props.categories} storages = {this.props.storages} update={this.handleSearch} />
             </div>
         )
     }
