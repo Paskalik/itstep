@@ -4,6 +4,7 @@ import FolderIcon from '@material-ui/icons/Folder';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Picker from './Picker';
+import {Service} from '../service/DBService';
 
 export default class AddNewStore extends React.Component {
     constructor(props) {
@@ -21,21 +22,11 @@ export default class AddNewStore extends React.Component {
 
     handleSubmitStore(event) {
         event.preventDefault();
-        let db;
-        let openRequest = indexedDB.open('store', 1);
-        openRequest.onsuccess = () => {
-            db = openRequest.result;
-            let transaction = db.transaction('storage','readwrite');
-            let storage = transaction.objectStore('storage');
-            let newStore = {
-                name: this.state.name,
-                color: this.state.color
-            }
-            storage.add(newStore);
+        let newStore = {
+            name: this.state.name,
+            color: this.state.color
         }
-        openRequest.onerror = () => {
-            alert('error opening database ' + openRequest.errorCode);
-        }
+        Service.put('storage',newStore);
         this.props.update(this.state.name, this.state.color);
     }
 

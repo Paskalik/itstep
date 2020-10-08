@@ -15,14 +15,12 @@ export default class Pots extends React.Component {
     }
 
     getPots() {
-        console.log(this.props)
         this.props.storeProduct.map((val) => {
             if (val.store === this.props.storage) {
                 if (!val.days) {
                     this.setState({excellent: this.state.excellent + 1});
                 } else {
                     let daysLeft = moment.duration(moment(val.date_expired).diff(moment())).days();
-                    console.log(daysLeft)
                     if (daysLeft > 5) {
                         this.setState({excellent: this.state.excellent + 1});
                     } else {
@@ -33,7 +31,9 @@ export default class Pots extends React.Component {
                     }
                 }
             }
-        })
+                return this.state;
+        }
+        )
     }
 
     componentDidMount() {
@@ -44,7 +44,7 @@ export default class Pots extends React.Component {
         return (
             <div className="counter">
                 {this.state.excellent > 0 &&
-                <span style={{border: "1px solid green", borderRadius: "50%"}}>{this.state.excellent}</span>}
+                <span style={{border: "1px solid green", borderRadius: "50%", padding: "5px", backgroundColor: "green"}}>{this.state.excellent}</span>}
                 {this.state.good > 0 &&
                 <span style={{border: "1px solid yellow", borderRadius: "50%"}}>{this.state.good}</span>}
                 {this.state.bad > 0 &&

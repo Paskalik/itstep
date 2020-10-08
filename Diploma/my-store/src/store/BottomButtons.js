@@ -8,6 +8,7 @@ import 'reactjs-popup/dist/index.css';
 import StoreList from './StoreList';
 import CategoryList from './CategoryList';
 import moment from 'moment';
+import {Service} from '../service/DBService';
 
 export default class BottomButtons extends React.Component {
     constructor(props) {
@@ -39,33 +40,20 @@ export default class BottomButtons extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log('save')
-        let db;
-        let openRequest = indexedDB.open('store', 1);
-        openRequest.onsuccess = () => {
-            db = openRequest.result;
-            let transactionProduct = db.transaction('product','readwrite');
-            let transactionStoreProduct = db.transaction('store_product','readwrite');
-            let product = transactionProduct.objectStore('product');
-            let storeProduct = transactionStoreProduct.objectStore('store_product');
-            let newProduct = {
-                name: this.state.name
-            };
-            let newStoreProduct = {
-                store: this.state.place,
-                category: this.state.category,
-                product: this.state.name,
-                quantity: this.state.count,
-                date_issued: !this.state.checked ? this.state.dateFrom : null,
-                date_expired: !this.state.checked ? this.state.dateTo : null,
-                days: !this.state.checked ? this.state.days : null
-            };
-            product.add(newProduct);
-            storeProduct.add(newStoreProduct);
-        }
-        openRequest.onerror = () => {
-            alert('error opening database ' + openRequest.errorCode);
-        }
+        let newProduct = {
+            name: this.state.name
+        };
+        let newStoreProduct = {
+            store: this.state.place,
+            category: this.state.category,
+            product: this.state.name,
+            quantity: this.state.count,
+            date_issued: !this.state.checked ? this.state.dateFrom : null,
+            date_expired: !this.state.checked ? this.state.dateTo : null,
+            days: !this.state.checked ? this.state.days : null
+        };
+        Service.put('product',newProduct);
+        Service.put('store_product',newStoreProduct);
         this.props.updateSave()
     }
 

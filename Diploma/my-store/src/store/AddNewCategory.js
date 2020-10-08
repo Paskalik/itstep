@@ -3,6 +3,7 @@ import "../index.css";
 import FolderIcon from '@material-ui/icons/Folder';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import {Service} from '../service/DBService';
 
 export default class AddNewCategory extends React.Component {
     constructor(props) {
@@ -18,20 +19,10 @@ export default class AddNewCategory extends React.Component {
 
     handleSubmitCategory(event) {
         event.preventDefault();
-        let db;
-        let openRequest = indexedDB.open('store', 1);
-        openRequest.onsuccess = () => {
-            db = openRequest.result;
-            let transaction = db.transaction('category','readwrite');
-            let category = transaction.objectStore('category');
-            let newCategory = {
-                name: this.state.name
-            }
-            category.add(newCategory);
+        let newCategory = {
+            name: this.state.name
         }
-        openRequest.onerror = () => {
-            alert('error opening database ' + openRequest.errorCode);
-        }
+        Service.put('category', newCategory);
         this.props.update(this.state.name);
     }
 
