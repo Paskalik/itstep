@@ -13,15 +13,22 @@ export default class Main extends React.Component {
             storages: [],
             categories: [],
             products: [],
-            comp: "",
-            search: false
+            storeProduct: [],
+            comp: ""
         };
         this.getStorages = this.getStorages.bind(this);
         this.getCategories = this.getCategories.bind(this);
         this.getProducts = this.getProducts.bind(this);
+        this.getStoreProduct = this.getStoreProduct.bind(this);
         this.getComponent = this.getComponent.bind(this);
+        this.getData = this.getData.bind(this);
         this.updateState = this.updateState.bind(this);
         this.openDB = this.openDB.bind(this);
+        this.handleSave = this.handleSave.bind(this);
+    }
+
+    handleSave() {
+        this.getData();
     }
 
     openDB() {
@@ -42,7 +49,6 @@ export default class Main extends React.Component {
                 name: "Без категории"
             };
             categories.add(category);
-            db.createObjectStore('category_product', {keyPath: 'id', autoIncrement: true});
             let product = db.createObjectStore('product', {keyPath: 'id', autoIncrement: true});
             product.createIndex('product_idx', 'name', {'unique':true});
             db.createObjectStore('store_product', {keyPath: 'id', autoIncrement: true});
@@ -124,28 +130,58 @@ export default class Main extends React.Component {
         }
     }
 
+    getStoreProduct() {
+        let db;
+        let openRequest = indexedDB.open('store');
+        openRequest.onsuccess = () => {
+            db = openRequest.result;
+            let transactionStoreProduct = db.transaction('store_product', 'readonly');
+            let storeProduct = transactionStoreProduct.objectStore('store_product');
+            let request = storeProduct.openCursor();
+            let allStoreProduct = [];
+            request.onsuccess = () => {
+                let cursor = request.result;
+                if (cursor !== null) {
+                    allStoreProduct.push(cursor.value);
+                    cursor.continue();
+                } else {
+                    this.setState({storeProduct: allStoreProduct})
+                }
+            }
+            request.onerror = () => {
+                alert('error in cursor request ' + request.errorCode);
+            }
+        }
+    }
+
+    getData() {
+        this.getCategories();
+        this.getStorages();
+        this.getProducts();
+        this.getStoreProduct();
+    }
+
     updateState(comp) {
         this.setState({comp: comp})
     }
 
     getComponent() {
         if (this.state.comp === "MainContent" || !this.state.comp) {
-            return (<MainContent storages={this.state.storages} categories = {this.state.categories} search={this.state.search}/>
+            return (<MainContent storages={this.state.storages} categories = {this.state.categories} update={this.handleSave}/>
             )
         } else
         if (this.state.comp === "Catalog") {
-            return <Catalog products={this.state.products} search={this.state.search}/>
+            return <Catalog products={this.state.products}/>
         } else if (this.state.comp === "Category") {
-            return <Category categories={this.state.categories} search={this.state.search}/>
+            return <Category categories={this.state.categories}/>
         } else if (this.state.comp === "Store") {
-            return <Store storages={this.state.storages} search={this.state.search}/>
+            return <Store storages={this.state.storages}/>
         }
     }
 
     componentDidMount() {
         this.openDB();
-        this.getStorages();
-        this.getCategories();
+        this.getData();
     }
 
     render() {

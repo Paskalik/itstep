@@ -15,54 +15,66 @@ export default class BottomButtons extends React.Component {
 
         this.state = {
             name: "",
-            place: "",
-            category: "",
+            place: "Без места",
+            category: "Без категории",
             dateFrom: moment().format(),
             dateTo: moment().format(),
-            days: 0,
-            count: 1,
+            days: "0",
+            count: "1",
             checked: false
-        }
+        };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
         this.handleName = this.handleName.bind(this);
         this.handleStorage = this.handleStorage.bind(this);
         this.handleCategory = this.handleCategory.bind(this);
+        this.handleCount = this.handleCount.bind(this);
         this.handleFrom = this.handleFrom.bind(this);
         this.handleDays = this.handleDays.bind(this);
         this.handleTo = this.handleTo.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
-        this.getCategoryID = this.getCategoryID.bind(this);
-        this.getStoreID = this.getStoreID.bind(this);
-
-    }
-
-    getStoreID() {
-
-    }
-
-    getCategoryID() {
 
     }
 
     handleSubmit(event) {
         event.preventDefault();
-      /*  let db;
+        console.log('save')
+        let db;
         let openRequest = indexedDB.open('store', 1);
         openRequest.onsuccess = () => {
             db = openRequest.result;
             let transactionProduct = db.transaction('product','readwrite');
+            let transactionStoreProduct = db.transaction('store_product','readwrite');
             let product = transactionProduct.objectStore('product');
+            let storeProduct = transactionStoreProduct.objectStore('store_product');
             let newProduct = {
                 name: this.state.name
-            }
+            };
+            let newStoreProduct = {
+                store: this.state.place,
+                category: this.state.category,
+                product: this.state.name,
+                quantity: this.state.count,
+                date_issued: !this.state.checked ? this.state.dateFrom : null,
+                date_expired: !this.state.checked ? this.state.dateTo : null,
+                days: !this.state.checked ? this.state.days : null
+            };
             product.add(newProduct);
+            storeProduct.add(newStoreProduct);
         }
         openRequest.onerror = () => {
             alert('error opening database ' + openRequest.errorCode);
-        }*/
-
+        }
+        this.setState({name: "",
+            place: "Без места",
+            category: "Без категории",
+            dateFrom: moment().format(),
+            dateTo: moment().format(),
+            days: "0",
+            count: "1",
+            checked: false});
+        this.props.updateSave()
     }
 
     handleCheckboxChange(event) {
@@ -72,6 +84,12 @@ export default class BottomButtons extends React.Component {
     handleName(event) {
         this.setState({
             name: event.target.value
+        })
+    }
+
+    handleCount(event) {
+        this.setState({
+            count: event.target.value
         })
     }
 
@@ -99,7 +117,7 @@ export default class BottomButtons extends React.Component {
     }
 
     handleSearch() {
-        this.props.update();
+        this.props.updateSearch();
     }
 
 
@@ -115,7 +133,7 @@ export default class BottomButtons extends React.Component {
                     Add
                 </Button>} modal nested>
                     {close => (
-                        <form onSubmit={this.handleSubmit}>
+                        <form onSubmit={(event) => {this.handleSubmit(event); close()}}>
                         <div className="modal">
 
                             <button className="close" onClick={close}>
@@ -166,6 +184,7 @@ export default class BottomButtons extends React.Component {
                                        min={1}
                                        className="counter"
                                        required="required"
+                                       onChange={this.handleCount}
                                 />
                                 <StoreList update={this.handleStorage} storages = {this.props.storages}/>
                                 <CategoryList update={this.handleCategory} categories = {this.props.categories}/>

@@ -10,10 +10,15 @@ export default class Catalog extends React.Component {
         };
 
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleSave = this.handleSave.bind(this);
     }
 
     handleSearch() {
         this.setState({search: true})
+    }
+
+    handleSave() {
+        this.props.update()
     }
 
     render() {
@@ -34,7 +39,7 @@ export default class Catalog extends React.Component {
                 })}
             </ul>) :
                 (<p>Отсутствуют места хранения</p>)}
-            <BottomButtons categories = {this.props.categories} storages = {this.props.storages} update={this.handleSearch} />
+            <BottomButtons categories = {this.props.categories} storages = {this.props.storages} updateSave={this.handleSave} updateSearch={this.handleSearch} />
             </div>
         )
     }
