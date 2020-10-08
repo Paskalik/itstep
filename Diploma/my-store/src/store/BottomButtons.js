@@ -33,6 +33,7 @@ export default class BottomButtons extends React.Component {
         this.handleFrom = this.handleFrom.bind(this);
         this.handleDays = this.handleDays.bind(this);
         this.handleTo = this.handleTo.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
 
     }
 
@@ -73,6 +74,10 @@ export default class BottomButtons extends React.Component {
 
     handleCategory(name) {
         this.setState({category: name})
+    }
+
+    handleSearch() {
+        this.props.update();
     }
 
     checkForm() {
@@ -171,7 +176,9 @@ export default class BottomButtons extends React.Component {
                     variant="outlined"
                     color="primary"
                     size="large"
+                    type="search"
                     startIcon={<SearchIcon />}
+                    onClick={this.handleSearch}
                 >
                     Search
                 </Button>

@@ -164,3 +164,19 @@ label {
   padding: 1vh;
   border: 1px solid black;
 }
+
+.search {
+  text-align: left;
+  padding-left: 40px;
+}
+
+input[type="search"] {
+  width: 30vw;
+  padding: 2vh;
+  font-size: 4vh;
+}
+
+input:focus,
+button:focus {
+  outline: none;
+}

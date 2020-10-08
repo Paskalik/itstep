@@ -12,6 +12,7 @@
     "react-color": "^2.18.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
+    "react-search": "^2.1.1",
     "react-select": "^3.1.0",
     "reactjs-popup": "^2.0.4"
   },

@@ -1,7 +1,6 @@
 import React from "react";
 import "../index.css";
 import CustomMenu from '../menu/Menu'
-import BottomButtons from './BottomButtons';
 import MainContent from '../menu/MainContent';
 import Catalog from '../menu/Catalog';
 import Category from '../menu/Category';
@@ -14,7 +13,8 @@ export default class Main extends React.Component {
             storages: [],
             categories: [],
             products: [],
-            comp: ""
+            comp: "",
+            search: false
         };
         this.getStorages = this.getStorages.bind(this);
         this.getCategories = this.getCategories.bind(this);
@@ -130,14 +130,15 @@ export default class Main extends React.Component {
 
     getComponent() {
         if (this.state.comp === "MainContent" || !this.state.comp) {
-            return <MainContent storages={this.state.storages}/>
+            return (<MainContent storages={this.state.storages} categories = {this.state.categories} search={this.state.search}/>
+            )
         } else
         if (this.state.comp === "Catalog") {
-            return <Catalog products={this.state.products}/>
+            return <Catalog products={this.state.products} search={this.state.search}/>
         } else if (this.state.comp === "Category") {
-            return <Category categories={this.state.categories}/>
+            return <Category categories={this.state.categories} search={this.state.search}/>
         } else if (this.state.comp === "Store") {
-            return <Store storages={this.state.storages}/>
+            return <Store storages={this.state.storages} search={this.state.search}/>
         }
     }
 
@@ -152,7 +153,6 @@ export default class Main extends React.Component {
             <div>
                 <CustomMenu update={this.updateState}/>
                 {this.getComponent()}
-                <BottomButtons categories = {this.state.categories} storages = {this.state.storages} />
             </div>
         )
     }
