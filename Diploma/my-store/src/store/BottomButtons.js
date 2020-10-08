@@ -66,14 +66,6 @@ export default class BottomButtons extends React.Component {
         openRequest.onerror = () => {
             alert('error opening database ' + openRequest.errorCode);
         }
-        this.setState({name: "",
-            place: "Без места",
-            category: "Без категории",
-            dateFrom: moment().format(),
-            dateTo: moment().format(),
-            days: "0",
-            count: "1",
-            checked: false});
         this.props.updateSave()
     }
 

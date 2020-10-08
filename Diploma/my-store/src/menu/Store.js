@@ -9,10 +9,10 @@ export default class Store extends React.Component {
             <div>
                 {(this.props.storages.length > 0) ? (
                         <ul className="listStore">
-                            {Object.keys(this.props.storages).map((val) => {
+                            {this.props.storages.map((val,i) => {
                                 return (
-                                    <li key={val} >
-                                        {this.props.storages[val]}
+                                    <li key={i} style={{backgroundColor: val.color}}>
+                                        {val.name}
                                     </li>
                                 )
                             })}

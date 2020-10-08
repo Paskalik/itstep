@@ -181,7 +181,10 @@ export default class Main extends React.Component {
 
     componentDidMount() {
         this.openDB();
-        this.getData();
+        this.getCategories();
+        this.getStorages();
+        this.getProducts();
+        this.getStoreProduct();
     }
 
     render() {
