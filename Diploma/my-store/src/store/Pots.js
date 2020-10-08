@@ -6,9 +6,9 @@ export default class Pots extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            excellent: 0,
-            good: 0,
-            bad: 0
+                excellent: 0,
+                good: 0,
+                bad: 0
         };
 
         this.getPots = this.getPots.bind(this);
@@ -25,9 +25,9 @@ export default class Pots extends React.Component {
                         this.setState({excellent: this.state.excellent + 1});
                     } else {
                         if (daysLeft >= 0) {
-                            this.setState({excellent: this.state.good + 1});
+                            this.setState({good: this.state.good + 1});
                         }
-                        else this.setState({excellent: this.state.bad + 1});
+                        else this.setState({bad: this.state.bad + 1});
                     }
                 }
             }
@@ -42,7 +42,7 @@ export default class Pots extends React.Component {
 
     render() {
         return (
-            <div className="counter">
+            <div className="right">
                 {this.state.excellent > 0 &&
                 <span style={{border: "1px solid green", borderRadius: "50%", padding: "5px", backgroundColor: "green"}}>{this.state.excellent}</span>}
                 {this.state.good > 0 &&

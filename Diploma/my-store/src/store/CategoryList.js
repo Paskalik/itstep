@@ -20,14 +20,17 @@ export default class CategoryList extends React.Component {
         let obj = this.props.categories[0];
         for (let key in obj) {
             if (obj.hasOwnProperty(key) && (key === 'name')) {
-                this.setState({name: obj[key]})
+                this.setState({name: obj[key]}, () => {
+                    this.props.update(this.state.name);
+                })
             }}
     }
 
     handleChooseCategory(name) {
         this.setState({
-            name: name});
-        this.props.update(this.state.name);
+            name: name}, () => {
+            this.props.update(this.state.name)
+        });
     }
 
     componentDidMount() {

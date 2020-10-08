@@ -23,7 +23,9 @@ export default class StoreList extends React.Component {
         let obj = this.props.storages[0];
         for (let key in obj) {
             if (obj.hasOwnProperty(key) && (key === 'name')) {
-                this.setState({name: obj[key]})
+                this.setState({name: obj[key]}, () => {
+                    this.props.update(this.state.name);
+                })
             }}
     }
 
@@ -38,8 +40,9 @@ export default class StoreList extends React.Component {
     handleChoosePlace(name, color) {
         this.setState({
             name: name,
-            color: color});
-        this.props.update(this.state.name);
+            color: color}, () => {
+            this.props.update(this.state.name)
+        });
     }
 
     componentDidMount() {

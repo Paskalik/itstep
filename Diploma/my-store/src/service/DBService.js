@@ -1,4 +1,3 @@
-import * as idb from 'idb';
 const db_name = 'store';
 const db_version = 1;
 let db;
@@ -54,7 +53,7 @@ class DBService {
         })
     }
 
-    put(tablespace, object, key = null) {
+    put(tablespace, object) {
         return new Promise((resolve,reject) => {
             let openRequest = indexedDB.open(db_name);
             openRequest.onsuccess = () => {
@@ -75,21 +74,26 @@ class DBService {
         })
     }
 
-   /* delete(tablespace, key) {
-        return dbPromise.then(db => {
-            return db.transaction(tablespace, 'readwrite').objectStore(tablespace).delete(key);
-        }).catch(error => {
-            alert('error in db: ' + error);
-        });
+    delete(tablespace, key) {
+        return new Promise((resolve,reject) => {
+            let openRequest = indexedDB.open(db_name);
+            openRequest.onsuccess = () => {
+                db = openRequest.result;
+                let trans = db.transaction(tablespace, 'readwrite');
+                let store = trans.objectStore(tablespace);
+                let request = store.delete(key);
+                request.onsuccess = () => {
+                    resolve(request.result)
+                }
+                request.onerror = () => {
+                    reject(request.error)
+                }
+            }
+            openRequest.onerror = () => {
+                alert('error opening database ' + openRequest.errorCode);
+            }
+        })
     }
-
-    deleteAll(tablespace) {
-        return dbPromise.then(db => {
-            return db.transaction(tablespace, 'readwrite').objectStore(tablespace).clear();
-        }).catch(error => {
-            alert('error in db: ' + error);
-        });
-    }*/
 }
 
 export const Service = new DBService()

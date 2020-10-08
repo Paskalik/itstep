@@ -16,8 +16,8 @@ export default class BottomButtons extends React.Component {
 
         this.state = {
             name: "",
-            place: "Без места",
-            category: "Без категории",
+            place: "",
+            category: "",
             dateFrom: moment().format(),
             dateTo: moment().format(),
             days: "0",

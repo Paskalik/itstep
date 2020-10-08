@@ -22,16 +22,19 @@ export default class Main extends React.Component {
         this.getCategories = this.getCategories.bind(this);
         this.getProducts = this.getProducts.bind(this);
         this.getStoreProduct = this.getStoreProduct.bind(this);
+        this.getData = this.getData.bind(this);
         this.getComponent = this.getComponent.bind(this);
         this.updateState = this.updateState.bind(this);
         this.handleSave = this.handleSave.bind(this);
+        this.handleCatalog = this.handleCatalog.bind(this);
     }
 
     handleSave() {
-        this.getStoreProduct();
-        this.getCategories();
-        this.getStorages();
-        this.getProducts();
+        this.getData();
+    }
+
+    handleCatalog() {
+        this.getData();
     }
 
     getStorages() {
@@ -58,6 +61,13 @@ export default class Main extends React.Component {
         })
     }
 
+    getData() {
+        this.getStoreProduct();
+        this.getCategories();
+        this.getStorages();
+        this.getProducts();
+    }
+
     updateState(comp) {
         this.setState({comp: comp})
     }
@@ -74,7 +84,7 @@ export default class Main extends React.Component {
             )
         } else
         if (this.state.comp === "Catalog") {
-            return <Catalog products={this.state.products}/>
+            return <Catalog products={this.state.products} update={this.handleCatalog}/>
         } else if (this.state.comp === "Category") {
             return <Category categories={this.state.categories}/>
         } else if (this.state.comp === "Store") {
@@ -83,10 +93,7 @@ export default class Main extends React.Component {
     }
 
     componentDidMount() {
-        this.getStoreProduct();
-        this.getCategories();
-        this.getStorages();
-        this.getProducts();
+        this.getData();
     }
 
     render() {
