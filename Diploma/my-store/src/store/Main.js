@@ -51,7 +51,8 @@ export default class Main extends React.Component {
             categories.add(category);
             let product = db.createObjectStore('product', {keyPath: 'id', autoIncrement: true});
             product.createIndex('product_idx', 'name', {'unique':true});
-            db.createObjectStore('store_product', {keyPath: 'id', autoIncrement: true});
+            let storeProduct = db.createObjectStore('store_product', {keyPath: 'id', autoIncrement: true});
+            storeProduct.createIndex('storeProduct_idx', 'store');
         };
         openRequest.onerror = () => {
             alert('error opening database ' + openRequest.errorCode);
@@ -167,7 +168,13 @@ export default class Main extends React.Component {
 
     getComponent() {
         if (this.state.comp === "MainContent" || !this.state.comp) {
-            return (<MainContent storages={this.state.storages} categories = {this.state.categories} update={this.handleSave}/>
+            return (
+                <MainContent
+                    storages={this.state.storages}
+                    categories = {this.state.categories}
+                    storeProduct = {this.state.storeProduct}
+                    update={this.handleSave}
+                />
             )
         } else
         if (this.state.comp === "Catalog") {
@@ -185,6 +192,7 @@ export default class Main extends React.Component {
         this.getStorages();
         this.getProducts();
         this.getStoreProduct();
+        console.log(this.state.storeProduct)
     }
 
     render() {

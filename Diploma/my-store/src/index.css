@@ -180,3 +180,7 @@ input:focus,
 button:focus {
   outline: none;
 }
+
+.counter {
+  float: right;
+}

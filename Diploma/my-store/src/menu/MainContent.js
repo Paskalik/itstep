@@ -1,6 +1,7 @@
 import React from "react";
 import "../index.css";
 import BottomButtons from "../store/BottomButtons";
+import Pots from '../store/Pots';
 
 export default class Catalog extends React.Component {
     constructor(props) {
@@ -34,6 +35,7 @@ export default class Catalog extends React.Component {
                     return (
                         <li key={i} style={{backgroundColor: val.color}}>
                             {val.name}
+                            <Pots storeProduct={this.props.storeProduct} storage={val.name}/>
                         </li>
                     )
                 })}
