@@ -31,18 +31,20 @@ export default class Catalog extends React.Component {
         let bad = 0;
         this.props.storeProduct.map((val) => {
                 if (val.store === name) {
-                    if (!val.days) {
-                        return excellent++;
-                    } else {
+                    if (val.days) {
                         let daysLeft = moment.duration(moment(val.date_expired).diff(moment())).days();
+                        console.log(val)
                         if (daysLeft > 5) {
                             return excellent++;
                         } else {
                             if (daysLeft >= 0) {
                                 return good++;
-                            }
-                            else return bad++;
+                            } else return bad++;
+                    }
+
                         }
+                else {
+                    return excellent++;
                     }
                 }
             }
