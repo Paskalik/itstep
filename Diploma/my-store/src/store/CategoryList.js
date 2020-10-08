@@ -26,7 +26,8 @@ export default class CategoryList extends React.Component {
 
     handleChooseCategory(name) {
         this.setState({
-            name: name})
+            name: name});
+        this.props.update(this.state.name);
     }
 
     componentDidMount() {

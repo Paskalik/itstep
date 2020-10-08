@@ -40,7 +40,8 @@ export default class StoreList extends React.Component {
     handleChoosePlace(name, color) {
         this.setState({
             name: name,
-            color: color})
+            color: color});
+        this.props.update(this.state.name,this.state.color);
     }
 
     componentDidMount() {
@@ -51,7 +52,7 @@ export default class StoreList extends React.Component {
     render() {
         return (
             <Popup trigger={
-                <Button id = "storage" variant="outlined" style={{backgroundColor: this.state.color}}>
+                <Button variant="outlined" style={{backgroundColor: this.state.color}}>
                     {this.state.name}
                 </Button>} modal nested>
                 {close => (
