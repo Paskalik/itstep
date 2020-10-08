@@ -156,10 +156,10 @@ export default class Main extends React.Component {
     }
 
     getData() {
+        this.getStoreProduct();
         this.getCategories();
         this.getStorages();
         this.getProducts();
-        this.getStoreProduct();
     }
 
     updateState(comp) {
@@ -188,11 +188,7 @@ export default class Main extends React.Component {
 
     componentDidMount() {
         this.openDB();
-        this.getCategories();
-        this.getStorages();
-        this.getProducts();
-        this.getStoreProduct();
-        console.log(this.state.storeProduct)
+        this.getData();
     }
 
     render() {

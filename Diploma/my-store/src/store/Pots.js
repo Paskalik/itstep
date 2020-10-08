@@ -15,9 +15,8 @@ export default class Pots extends React.Component {
     }
 
     getPots() {
-        console.log(this.props.storeProduct)
+        console.log(this.props)
         this.props.storeProduct.map((val) => {
-            console.log(val.store)
             if (val.store === this.props.storage) {
                 if (!val.days) {
                     this.setState({excellent: this.state.excellent + 1});
