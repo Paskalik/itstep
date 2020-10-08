@@ -121,6 +121,7 @@ export default class BottomButtons extends React.Component {
                                             placeholder="Дней"
                                             value={this.state.days}
                                             className="days"
+                                            min={0}
                                             onChange={this.handleDays}
                                             required={this.state.checked ? "" : "required"}
                                         />
@@ -138,8 +139,8 @@ export default class BottomButtons extends React.Component {
 
                                 <input type="number"
                                        placeholder="Количество"
-                                       defaultValue={this.state.count}
-                                       min="1"
+                                       value={this.state.count}
+                                       min={1}
                                        className="counter"
                                        required="required"
                                 />
