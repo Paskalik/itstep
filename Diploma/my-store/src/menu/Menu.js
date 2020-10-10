@@ -1,87 +1,79 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import React from "react";
+import "../index.css";
 import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemText from '@material-ui/core/ListItemText';
 
-const StyledMenu = withStyles({
-    paper: {
-        border: '1px solid #d3d4d5',
-    },
-})((props) => (
-    <Menu
-        elevation={0}
-        getContentAnchorEl={null}
-        anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-        }}
-        transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-        }}
-        {...props}
-    />
-));
+export default class CustomMenu extends React.Component {
+    constructor(props) {
+        super(props);
 
-const StyledMenuItem = withStyles((theme) => ({
-    root: {
-        '&:hover': {
-            backgroundColor: theme.palette.primary.main,
-            '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-                color: theme.palette.common.white,
-            },
-        },
-    },
-}))(MenuItem);
+        this.state = {
+            showMenu: false,
+        };
 
-export default function CustomMenu(props) {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+        this.showMenu = this.showMenu.bind(this);
+        this.closeMenu = this.closeMenu.bind(this);
+    }
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    showMenu(event) {
+        event.preventDefault();
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+        this.setState({ showMenu: true }, () => {
+            document.addEventListener('click', this.closeMenu);
+        });
+    }
 
-    return (
-        <div className="Menu">
-            <Button
-                aria-controls="customized-menu"
-                aria-haspopup="true"
-                variant="contained"
-                color="primary"
-                onClick={handleClick}
-            >
-                &#9776;
-            </Button>
-            <StyledMenu
-                id="customized-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-            >
-                <StyledMenuItem onClick={() => {props.update('MainContent'); handleClose()}} >
-                    <ListItemText primary="Главная" />
-                </StyledMenuItem>
-                <StyledMenuItem onClick={() => {props.update('Catalog'); handleClose()}}>
-                    <ListItemText primary="Каталог" />
-                </StyledMenuItem>
-                <StyledMenuItem onClick={() => {props.update('Category'); handleClose()}}>
-                    <ListItemText primary="Категории" />
-                </StyledMenuItem>
-                <StyledMenuItem onClick={() => {props.update('Store'); handleClose()}}>
-                    <ListItemText primary="Места хранения" />
-                </StyledMenuItem>
-                <StyledMenuItem>
-                    <ListItemText primary="Тема" />
-                </StyledMenuItem>
-            </StyledMenu>
-            <span>Мои продукты</span>
-        </div>
-    );
+    closeMenu(event) {
+
+        if (!this.dropdownMenu.contains(event.target)) {
+
+            this.setState({ showMenu: false }, () => {
+                document.removeEventListener('click', this.closeMenu);
+            });
+
+        } else {
+            this.props.update(event.target.id);
+            this.setState({ showMenu: false }, () => {
+                document.removeEventListener('click', this.closeMenu);
+            });
+        }
+
+
+    }
+
+    render() {
+        return (
+            <div className="Menu">
+                <Button onClick={this.showMenu}
+                        aria-controls="customized-menu"
+                        aria-haspopup="true"
+                        variant="contained"
+                        color="primary">
+                    &#9776;
+                </Button>
+
+                {
+                    this.state.showMenu
+                        ? (
+                            <div
+                                className="MenuItems"
+                                ref={(element) => {
+                                    this.dropdownMenu = element;
+                                }}
+                            >
+                                <button id='MainContent'> Главная </button>
+                                <button id = 'Catalog'> Каталог </button>
+                                <button id = 'Category'> Категории </button>
+                                <button id = 'Store'> Места хранения </button>
+                                <button id = 'Theme'> Тема </button>
+                            </div>
+                        )
+                        : null
+                }
+                <span>Мои продукты</span>
+            </div>
+        );
+    }
 }
+
+
+

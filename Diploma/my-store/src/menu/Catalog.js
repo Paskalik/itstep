@@ -8,17 +8,13 @@ export default class Catalog extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            up: false
-        }
-
         this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleDelete(key) {
         Service.delete('product',key);
-        console.log(key)
-        //this.setState({up: !this.state.up})
+        console.log(key);
+        this.props.updateComponent();
     }
 
     render() {

@@ -21,11 +21,12 @@
   <component name="ChangeListManager">
     <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/menu/Catalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/menu/Catalog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/menu/MainContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/menu/MainContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/menu/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/menu/Menu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/store/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/Main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/store/Pots.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,6 +187,7 @@
       <workItem from="1602152222855" duration="15225000" />
       <workItem from="1602171013207" duration="16218000" />
       <workItem from="1602309621034" duration="3612000" />
+      <workItem from="1602349370789" duration="5892000" />
     </task>
     <servers />
   </component>
