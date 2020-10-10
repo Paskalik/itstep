@@ -9,7 +9,7 @@ export default class Catalog extends React.Component {
         super(props);
 
         this.state = {
-            up: true
+            up: false
         }
 
         this.handleDelete = this.handleDelete.bind(this);
@@ -17,6 +17,8 @@ export default class Catalog extends React.Component {
 
     handleDelete(key) {
         Service.delete('product',key);
+        console.log(key)
+        //this.setState({up: !this.state.up})
     }
 
     render() {

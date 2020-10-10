@@ -26,14 +26,9 @@ export default class Main extends React.Component {
         this.getComponent = this.getComponent.bind(this);
         this.updateState = this.updateState.bind(this);
         this.handleSave = this.handleSave.bind(this);
-        this.handleCatalog = this.handleCatalog.bind(this);
     }
 
     handleSave() {
-        this.getData();
-    }
-
-    handleCatalog() {
         this.getData();
     }
 
@@ -84,7 +79,7 @@ export default class Main extends React.Component {
             )
         } else
         if (this.state.comp === "Catalog") {
-            return <Catalog products={this.state.products} update={this.handleCatalog}/>
+            return <Catalog products={this.state.products}/>
         } else if (this.state.comp === "Category") {
             return <Category categories={this.state.categories}/>
         } else if (this.state.comp === "Store") {
