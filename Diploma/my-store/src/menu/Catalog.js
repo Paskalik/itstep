@@ -13,7 +13,7 @@ export default class Catalog extends React.Component {
         this.state = {
             nameOld: "",
             nameNew: "",
-            list: []
+            exist: false
         }
 
         this.handleName = this.handleName.bind(this);
@@ -33,10 +33,7 @@ export default class Catalog extends React.Component {
             id: +event.target.id,
             name: this.state.nameNew
         };
-        Service.getByIndex('store_product', 'product', this.state.nameOld).//then(list => {
-        //    this.setState({list: list}, () => {console.log(this.state.list)});
-       // })
-            then(
+        Service.getByIndex('store_product', 'product', this.state.nameOld).then(
                 list => {
                     list.map((val) => {
                     val.product = this.state.nameNew;
@@ -48,7 +45,20 @@ export default class Catalog extends React.Component {
         this.props.update();
     }
 
-    handleDelete(event) {
+    handleDelete(event, name) {
+        Service.getByIndex('store_product', 'product', name).then(
+            list => {
+                if (list.length > 0) {
+                    const resultConfirm = window.confirm('Данный продукт добавлен в одно из мест хранений. Точно хотите его удалить?');
+                    alert(resultConfirm);
+                    if (resultConfirm) {
+                        list.map((val) => {
+                            Service.delete('store_product',+ val.id);
+                        })
+                    }
+                }
+            }
+        );
         Service.delete('product',+event.target.id);
         this.props.update();
     }
@@ -62,7 +72,7 @@ export default class Catalog extends React.Component {
                     return (
                         <li key={i} style={{cursor: "default"}}>
                             {val.name}
-                            <DeleteForeverOutlinedIcon className="right" id={val.id} onClick={this.handleDelete}/>
+                            <DeleteForeverOutlinedIcon className="right" id={val.id} onClick={(event) => {this.handleDelete(event, val.name)}}/>
                             <Popup trigger={
                             <EditIcon className="right" id={val.id}/>
                             } modal nested>
