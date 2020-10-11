@@ -80,11 +80,11 @@ export default class Main extends React.Component {
             )
         } else
         if (this.state.comp === "Catalog") {
-            return <Catalog products={this.state.products}/>
+            return <Catalog products={this.state.products} update={this.handleSave}/>
         } else if (this.state.comp === "Category") {
-            return <Category categories={this.state.categories}/>
+            return <Category categories={this.state.categories} update={this.handleSave}/>
         } else if (this.state.comp === "Store") {
-            return <Store storages={this.state.storages}/>
+            return <Store storages={this.state.storages} update={this.handleSave}/>
         }
     }
 

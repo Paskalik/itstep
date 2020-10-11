@@ -8,18 +8,12 @@ export default class Catalog extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            up: false
-        }
-
         this.handleDelete = this.handleDelete.bind(this);
     }
 
-    handleDelete(key) {
-        Service.delete('product',key);
-        console.log(key);
-        this.setState({up: !this.state.up})
-        //this.props.updateComponent();
+    handleDelete(event) {
+        Service.delete('product',+event.target.id);
+        this.props.update();
     }
 
     render() {
@@ -29,9 +23,9 @@ export default class Catalog extends React.Component {
             <ul className="listStore">
                 {this.props.products.map((val,i) => {
                     return (
-                        <li key={i} >
+                        <li key={i}>
                             {val.name}
-                            <DeleteForeverOutlinedIcon className="right" onClick={this.handleDelete(val.id)}/>
+                            <DeleteForeverOutlinedIcon className="right" id={val.id} onClick={this.handleDelete}/>
                         </li>
                     )
                 })}

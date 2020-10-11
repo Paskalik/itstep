@@ -1,7 +1,19 @@
 import React from "react";
 import "../index.css";
+import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
+import {Service} from '../service/DBService';
 
 export default class Category extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    handleDelete(event) {
+        Service.delete('product',+event.target.id);
+        this.props.update();
+    }
 
     render() {
         return (
@@ -12,6 +24,7 @@ export default class Category extends React.Component {
                     return (
                         <li key={i} >
                             {val.name}
+                            <DeleteForeverOutlinedIcon className="right" id={val.id} onClick={this.handleDelete}/>
                         </li>
                     )
                 })}
