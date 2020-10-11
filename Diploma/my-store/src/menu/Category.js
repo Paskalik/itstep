@@ -22,7 +22,7 @@ export default class Category extends React.Component {
             <ul className="listStore">
                 {this.props.categories.map((val,i) => {
                     return (
-                        <li key={i} >
+                        <li key={i}  style={{cursor: "default"}}>
                             {val.name}
                             <DeleteForeverOutlinedIcon className="right" id={val.id} onClick={this.handleDelete}/>
                         </li>

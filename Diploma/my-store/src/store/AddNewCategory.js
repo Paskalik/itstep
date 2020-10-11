@@ -22,7 +22,7 @@ export default class AddNewCategory extends React.Component {
         let newCategory = {
             name: this.state.name
         }
-        Service.put('category', newCategory);
+        Service.add('category', newCategory);
         this.props.update(this.state.name);
     }
 

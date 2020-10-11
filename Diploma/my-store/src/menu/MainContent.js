@@ -32,7 +32,6 @@ export default class Catalog extends React.Component {
                 if (val.store === name) {
                     if (val.days !== null) {
                         let daysLeft = moment.duration(moment(val.date_expired).diff(moment())).days();
-                        console.log(val)
                         if (daysLeft > 5) {
                             return excellent++;
                         } else {
@@ -49,7 +48,6 @@ export default class Catalog extends React.Component {
 
         )
         pots.push(excellent,good,bad)
-        console.log(pots)
         return pots;
     }
 

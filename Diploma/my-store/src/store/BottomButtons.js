@@ -52,8 +52,8 @@ export default class BottomButtons extends React.Component {
             date_expired: !this.state.checked ? this.state.dateTo : null,
             days: !this.state.checked ? this.state.days : null
         };
-        Service.put('product',newProduct);
-        Service.put('store_product',newStoreProduct);
+        Service.add('product',newProduct);
+        Service.add('store_product',newStoreProduct);
         this.props.updateSave()
     }
 

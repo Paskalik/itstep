@@ -26,7 +26,7 @@ export default class AddNewStore extends React.Component {
             name: this.state.name,
             color: this.state.color
         }
-        Service.put('storage',newStore);
+        Service.add('storage',newStore);
         this.props.update(this.state.name, this.state.color);
     }
 

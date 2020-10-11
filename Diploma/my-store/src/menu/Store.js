@@ -22,7 +22,7 @@ export default class Store extends React.Component {
                         <ul className="listStore">
                             {this.props.storages.map((val,i) => {
                                 return (
-                                    <li key={i} style={{backgroundColor: val.color}}>
+                                    <li key={i} style={{backgroundColor: val.color, cursor: "default"}}>
                                         {val.name}
                                         <DeleteForeverOutlinedIcon className="right" id={val.id} onClick={this.handleDelete}/>
                                     </li>
