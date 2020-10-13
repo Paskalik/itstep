@@ -100,6 +100,7 @@ li {
   width: 90vw;
   cursor: pointer;
   border: 1px solid black;
+  margin-bottom: 1vh;
   padding: 2vh;
 }
 
@@ -182,8 +183,16 @@ button:focus {
 .Pots > div {
   border: 1px solid;
   border-radius: 50%;
-  padding: 5px;
-  width: 30%;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.Pots > div:before { /* для IE8+ */
+  content: "";
+  display: inline-block;
+  min-height: inherit;
+  height: 100%;
+  vertical-align: middle;
 }
 
 .Menu {

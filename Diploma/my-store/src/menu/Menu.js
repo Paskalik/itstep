@@ -60,11 +60,10 @@ export default class CustomMenu extends React.Component {
                                     this.dropdownMenu = element;
                                 }}
                             >
-                                <button id='MainContent'> Главная </button>
+                                <button id = 'MainContent'> Главная </button>
                                 <button id = 'Catalog'> Каталог </button>
                                 <button id = 'Category'> Категории </button>
                                 <button id = 'Store'> Места хранения </button>
-                                <button id = 'Theme'> Тема </button>
                             </div>
                         )
                         : null

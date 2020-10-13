@@ -12,8 +12,7 @@ export default class Catalog extends React.Component {
 
         this.state = {
             nameOld: "",
-            nameNew: "",
-            exist: false
+            nameNew: ""
         }
 
         this.handleName = this.handleName.bind(this);
@@ -50,10 +49,10 @@ export default class Catalog extends React.Component {
             list => {
                 if (list.length > 0) {
                     const resultConfirm = window.confirm('Данный продукт добавлен в одно из мест хранений. Точно хотите его удалить?');
-                    alert(resultConfirm);
                     if (resultConfirm) {
                         list.map((val) => {
                             Service.delete('store_product',+ val.id);
+                            this.props.update();
                         })
                     }
                 }
