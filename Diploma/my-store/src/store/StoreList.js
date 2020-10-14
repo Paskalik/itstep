@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import AddNewStore from './AddNewStore';
+import FolderIcon from '@material-ui/icons/Folder';
 
 
 export default class StoreList extends React.Component {
@@ -12,11 +13,13 @@ export default class StoreList extends React.Component {
 
         this.state = {
             color: "default",
-            name: ""
+            name: "",
+            addStore: false
         }
         this.handleChoosePlace = this.handleChoosePlace.bind(this);
         this.getFirstStorageName = this.getFirstStorageName.bind(this);
         this.getFirstStorageColor = this.getFirstStorageColor.bind(this);
+        this.toggleAddStore = this.toggleAddStore.bind(this);
     }
 
     getFirstStorageName() {
@@ -45,6 +48,12 @@ export default class StoreList extends React.Component {
         });
     }
 
+    toggleAddStore() {
+        this.setState({
+            addStore: !this.state.addStore
+        })
+    }
+
     componentDidMount() {
         this.getFirstStorageColor();
         this.getFirstStorageName();
@@ -64,7 +73,8 @@ export default class StoreList extends React.Component {
                             </button>
                             <div className="header">
                                 Выберите место хранения
-                                <AddNewStore update={(name,color) => {this.handleChoosePlace(name,color); close()}}/>
+                                <FolderIcon color="secondary" className="right" onClick={() => {this.toggleAddStore()}}/>
+                                <AddNewStore open={this.state.addStore} toggle={this.toggleAddStore} update={(name,color) => {this.handleChoosePlace(name,color); close()}}/>
                             </div>
                             <div className="content">
                                 <ul className="listChoose">

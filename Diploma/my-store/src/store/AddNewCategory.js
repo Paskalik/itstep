@@ -1,6 +1,5 @@
 import React from "react";
 import "../index.css";
-import FolderIcon from '@material-ui/icons/Folder';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import {Service} from '../service/DBService';
@@ -23,7 +22,7 @@ export default class AddNewCategory extends React.Component {
             name: this.state.name
         }
         Service.add('category', newCategory);
-        this.props.update(this.state.name);
+            this.props.update(this.state.name);
     }
 
     handleName(event) {
@@ -34,12 +33,9 @@ export default class AddNewCategory extends React.Component {
 
     render() {
         return (
-            <Popup trigger={
-            <FolderIcon color="secondary" className="right"/>
-            } modal nested>
-                {close => (
+            <Popup open={this.props.open} modal nested>
                     <div className="modal">
-                        <button className="close" onClick={close}>
+                        <button className="close" onClick={this.props.toggle}>
                             &times;
                         </button>
                         <div className="header">
@@ -52,12 +48,12 @@ export default class AddNewCategory extends React.Component {
                             <button
                                 className="button"
                                 onClick={() => {
-                                    close();
+                                    this.props.toggle();
                                 }}
                             >
                                 Отмена
                             </button>
-                            <button className="button" onClick={(event) => {this.handleSubmitCategory(event); close()}}>Сохранить</button>
+                            <button className="button" onClick={(event) => {this.handleSubmitCategory(event); this.props.toggle()}}>Сохранить</button>
                         </div>
                     </div>
                 )}

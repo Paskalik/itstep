@@ -4,16 +4,25 @@ import Button from '@material-ui/core/Button';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import AddNewCategory from './AddNewCategory';
+import FolderIcon from "@material-ui/icons/Folder";
 
 export default class CategoryList extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            name: ""
+            name: "",
+            addCategory: false
         }
         this.handleChooseCategory = this.handleChooseCategory.bind(this);
         this.getFirstCategory = this.getFirstCategory.bind(this);
+        this.toggleAddCategory = this.toggleAddCategory.bind(this);
+    }
+
+    toggleAddCategory() {
+        this.setState({
+            addCategory: !this.state.addCategory
+        })
     }
 
     getFirstCategory() {
@@ -52,7 +61,8 @@ export default class CategoryList extends React.Component {
                 </button>
                 <div className="header">
                     Выберите категорию
-                    <AddNewCategory update={(name) => {this.handleChooseCategory(name); close()}}/>
+                    <FolderIcon color="secondary" className="right" onClick={() => {this.toggleAddCategory()}}/>
+                    <AddNewCategory open={this.state.addCategory} toggle={this.toggleAddCategory} update={(name) => {this.handleChooseCategory(name); close()}}/>
                 </div>
                 <div className="content">
                     <ul className="listChoose">

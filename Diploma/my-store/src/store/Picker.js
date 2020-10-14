@@ -14,11 +14,6 @@ export default class Picker extends React.Component {
         }
 
         this.handlePickColor = this.handlePickColor.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
     }
 
     handlePickColor(color) {
@@ -33,7 +28,6 @@ export default class Picker extends React.Component {
             <Popup trigger={
             <Button variant="outlined" style={{backgroundColor: this.state.backgroundColor}}>Цвет</Button>} modal nested>
                 {close => (
-                        <form onSubmit={this.handleSubmit}>
                             <div className="modal">
                                 <button className="close" onClick={close}>
                                     &times;
@@ -44,11 +38,10 @@ export default class Picker extends React.Component {
                                 <div className="content">
                                 <CirclePicker
                                     color = "#fff"
-                                    onChangeComplete= { (color) => {this.handlePickColor(color); close() }}
+                                    onChangeComplete= {(color) => {this.handlePickColor(color); close() }}
                                 />
                                 </div>
                             </div>
-                        </form>
 
                     )}
             </Popup>

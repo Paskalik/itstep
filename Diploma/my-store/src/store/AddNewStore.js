@@ -1,6 +1,5 @@
 import React from "react";
 import "../index.css";
-import FolderIcon from '@material-ui/icons/Folder';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Picker from './Picker';
@@ -44,12 +43,9 @@ export default class AddNewStore extends React.Component {
 
     render() {
         return (
-            <Popup trigger={
-            <FolderIcon color="secondary" className="right"/>
-            } modal nested>
-                {close => (
+            <Popup open={this.props.open} modal nested>
                         <div className="modal">
-                            <button className="close" onClick={close}>
+                            <button className="close" onClick={this.props.toggle}>
                                 &times;
                             </button>
                             <div className="header">
@@ -63,15 +59,14 @@ export default class AddNewStore extends React.Component {
                                 <button
                                     className="button"
                                     onClick={() => {
-                                        close();
+                                        this.props.toggle();
                                     }}
                                 >
                                     Отмена
                                 </button>
-                                <button className="button" onClick={(event) => {this.handleSubmitStore(event); close()}}>Сохранить</button>
+                                <button className="button" onClick={(event) => {this.handleSubmitStore(event); this.props.toggle()}}>Сохранить</button>
                             </div>
                         </div>
-                )}
             </Popup>
         )
     }

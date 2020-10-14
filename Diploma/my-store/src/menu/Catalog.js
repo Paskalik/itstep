@@ -11,26 +11,46 @@ export default class Catalog extends React.Component {
         super(props);
 
         this.state = {
+            id: 0,
             nameOld: "",
-            nameNew: ""
+            nameNew: "",
+            open: false
         }
 
+        this.toggleValues = this.toggleValues.bind(this);
+        this.handleValues = this.handleValues.bind(this);
         this.handleName = this.handleName.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
 
+    handleValues(id, name) {
+        this.setState({
+            id: +id,
+            nameOld: name,
+            open: true
+        })
+    }
+
+    toggleValues() {
+        this.setState({
+            id: 0,
+            nameOld: "",
+            open: false
+        })
+    }
+
     handleName(event) {
         this.setState({
-            nameOld: event.target.defaultValue,
             nameNew: event.target.value
         })
     }
 
-    handleEdit(event) {
+    handleEdit() {
+        const name = this.state.nameNew ? this.state.nameNew : this.state.nameOld;
         let updatedProduct = {
-            id: +event.target.id,
-            name: this.state.nameNew
+            id: this.state.id,
+            name: name
         };
         Service.getByIndex('store_product', 'product', this.state.nameOld).then(
                 list => {
@@ -44,22 +64,25 @@ export default class Catalog extends React.Component {
         this.props.update();
     }
 
-    handleDelete(event, name) {
+    handleDelete(id, name) {
         Service.getByIndex('store_product', 'product', name).then(
             list => {
                 if (list.length > 0) {
                     const resultConfirm = window.confirm('Данный продукт добавлен в одно из мест хранений. Точно хотите его удалить?');
                     if (resultConfirm) {
                         list.map((val) => {
-                            Service.delete('store_product',+ val.id);
-                            this.props.update();
+                            Service.delete('store_product', +val.id);
                         })
+                        Service.delete('product',+id);
+                        this.props.update();
                     }
                 }
+                else {
+                    Service.delete('product',+id);
+                    this.props.update();
+                }
             }
-        );
-        Service.delete('product',+event.target.id);
-        this.props.update();
+        )
     }
 
     render() {
@@ -71,34 +94,31 @@ export default class Catalog extends React.Component {
                     return (
                         <li key={i} style={{cursor: "default"}}>
                             {val.name}
-                            <DeleteForeverOutlinedIcon className="right" id={val.id} onClick={(event) => {this.handleDelete(event, val.name)}}/>
-                            <Popup trigger={
-                            <EditIcon className="right" id={val.id}/>
-                            } modal nested>
-                                {close => (
+                            <DeleteForeverOutlinedIcon className="right" onClick={() => {this.handleDelete(val.id, val.name)}}/>
+                            <EditIcon className="right" onClick={() => {this.handleValues(val.id, val.name)}}/>
+                            <Popup open={this.state.open} modal nested>
                                     <div className="modal">
-                                        <button className="close" onClick={close}>
+                                        <button className="close" onClick={this.toggleValues}>
                                             &times;
                                         </button>
                                         <div className="header">
                                             Продукт
                                         </div>
                                         <div className="content">
-                                            <input defaultValue={val.name} required="required" onChange={this.handleName}/>
+                                            <input defaultValue={this.state.nameOld} required="required" onChange={this.handleName}/>
                                         </div>
                                         <div className="actions">
                                             <button
                                                 className="button"
                                                 onClick={() => {
-                                                    close();
+                                                    this.toggleValues();
                                                 }}
                                             >
                                                 Отмена
                                             </button>
-                                            <button id={val.id} className="button" onClick={(event) => {this.handleEdit(event); close()}}>Сохранить</button>
+                                            <button className="button" onClick={() => {this.handleEdit(); this.toggleValues()}}>Сохранить</button>
                                         </div>
                                     </div>
-                                )}
                             </Popup>
                         </li>
                     )
