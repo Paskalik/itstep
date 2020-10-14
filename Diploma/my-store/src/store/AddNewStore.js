@@ -10,7 +10,7 @@ export default class AddNewStore extends React.Component {
         super(props);
 
         this.state = {
-            color: "default",
+            color: "red",
             name: ""
         }
 

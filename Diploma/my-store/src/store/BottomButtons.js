@@ -116,7 +116,7 @@ export default class BottomButtons extends React.Component {
                         <form onSubmit={(event) => {this.handleSubmit(event); close()}}>
                         <div className="modal">
 
-                            <button className="close" onClick={close}>
+                            <button className="close" onClick={() => {this.props.updateSave(); close()}}>
                                 &times;
                             </button>
                             <div className="header">Новый продукт</div>
@@ -177,6 +177,7 @@ export default class BottomButtons extends React.Component {
                                 <button
                                     className="button"
                                     onClick={() => {
+                                        this.props.updateSave();
                                         close();
                                     }}
                                 >

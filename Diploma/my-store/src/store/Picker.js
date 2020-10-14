@@ -37,7 +37,7 @@ export default class Picker extends React.Component {
                                 </div>
                                 <div className="content">
                                 <CirclePicker
-                                    color = "#fff"
+                                    color ={this.props.color}
                                     onChangeComplete= {(color) => {this.handlePickColor(color); close() }}
                                 />
                                 </div>
