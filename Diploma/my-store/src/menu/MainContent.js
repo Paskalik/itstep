@@ -2,6 +2,7 @@ import React from "react";
 import "../index.css";
 import BottomButtons from "../store/BottomButtons";
 import moment from "moment";
+import { Color } from '../data/Data';
 
 export default class Catalog extends React.Component {
     constructor(props) {
@@ -67,11 +68,11 @@ export default class Catalog extends React.Component {
                             {val.name}
                             <div className="Pots">
                                 {pots[0] > 0 &&
-                                <div style={{borderColor: "green", backgroundColor: "green"}}>{pots[0]}</div>}
+                                <div style={{borderColor: Color.excellent, backgroundColor: Color.excellent}}>{pots[0]}</div>}
                                 {pots[1] > 0 &&
-                                <div style={{borderColor: "yellow", backgroundColor: "yellow"}}>{pots[1]}</div>}
+                                <div style={{borderColor: Color.good, backgroundColor: Color.good}}>{pots[1]}</div>}
                                 {pots[2] > 0 &&
-                                <div style={{borderColor: "red", backgroundColor: "red"}}>{pots[2]}</div>}
+                                <div style={{borderColor: Color.bad, backgroundColor: Color.bad}}>{pots[2]}</div>}
                             </div>
                         </li>
                     )

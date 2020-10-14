@@ -19,11 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/store/BottomButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/BottomButtons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/store/Picker.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/Picker.js" afterDir="false" />
-    </list>
+    <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -186,7 +182,7 @@
       <workItem from="1602349370789" duration="7844000" />
       <workItem from="1602420513557" duration="537000" />
       <workItem from="1602425654330" duration="13402000" />
-      <workItem from="1602589272243" duration="19352000" />
+      <workItem from="1602589272243" duration="20186000" />
     </task>
     <servers />
   </component>
