@@ -43,7 +43,13 @@ export default class CategoryList extends React.Component {
     }
 
     componentDidMount() {
-        this.getFirstCategory();
+        if (this.props.category) {
+            this.setState({
+                name: this.props.category
+            })
+        } else {
+            this.getFirstCategory();
+        }
     }
 
     render() {

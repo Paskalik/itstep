@@ -14,6 +14,7 @@ export default class AddEditProduct extends React.Component {
         this.state = {
             name: "",
             place: "",
+            color: "",
             category: "",
             dateFrom: moment().format(),
             dateTo: moment().format(),
@@ -22,6 +23,7 @@ export default class AddEditProduct extends React.Component {
             checked: false
         };
 
+        this.handleData = this.handleData.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
         this.handleName = this.handleName.bind(this);
@@ -33,6 +35,28 @@ export default class AddEditProduct extends React.Component {
         this.handleTo = this.handleTo.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
 
+    }
+
+    handleData() {
+        if (!this.props.new) {
+            this.setState({
+                name: this.props.product.name,
+                place: this.props.product.place,
+                category: this.props.product.category,
+                dateFrom: this.props.product.dateFrom,
+                dateTo: this.props.product.dateTo,
+                days: this.props.product.days,
+                count: this.props.product.count,
+                checked: !this.props.days
+            })
+            this.props.storages.map((val) => {
+                if (val.name === this.props.product.name) {
+                    this.setState({
+                        color: val.color
+                    })
+                }
+            })
+        }
     }
 
     handleSubmit(event) {
@@ -97,6 +121,9 @@ export default class AddEditProduct extends React.Component {
         this.props.updateSearch();
     }
 
+    componentDidMount() {
+        this.handleData();
+    }
 
     render() {
         return (
@@ -153,8 +180,8 @@ export default class AddEditProduct extends React.Component {
                                        required="required"
                                        onChange={this.handleCount}
                                 />
-                                <StoreList update={this.handleStorage} storages = {this.props.storages}/>
-                                <CategoryList update={this.handleCategory} categories = {this.props.categories}/>
+                                <StoreList update={this.handleStorage} storages = {this.props.storages} place={this.state.place} color={this.state.color}/>
+                                <CategoryList update={this.handleCategory} categories = {this.props.categories} category={this.state.category}/>
                                 <label>
                                     <input type="checkbox" checked={this.state.checked} onChange={this.handleCheckboxChange}/>
                                     Без срока годности

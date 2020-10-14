@@ -168,7 +168,6 @@ button:focus {
 .Pots {
   position: absolute;
   right: 0;
-  background-color: #b4b1b1;
   top: 0;
   height: 100%;
   width: 10%;
@@ -248,4 +247,8 @@ button:focus {
 .Menu > span {
   font-size: 4vh;
   font-weight: bold;
+}
+
+.ProductList {
+  border: 1px solid black;
 }

@@ -9,14 +9,17 @@ export default class Catalog extends React.Component {
         super(props);
         this.state = {
             search: false,
-            show: ""
+            show: "",
+            showCat: ""
         };
 
         this.handleSearch = this.handleSearch.bind(this);
         this.handleSave = this.handleSave.bind(this);
         this.getPots = this.getPots.bind(this);
         this.toggleShow = this.toggleShow.bind(this);
+        this.toggleShowCat = this.toggleShowCat.bind(this);
         this.getCategories = this.getCategories.bind(this);
+        this.getProducts = this.getProducts.bind(this);
     }
 
     handleSearch() {
@@ -36,30 +39,53 @@ export default class Catalog extends React.Component {
         } else {
             this.setState({
                 show: name
+            }, () => {console.log(this.state.show)})
+        }
+    }
+
+    toggleShowCat(name) {
+        let nameOld = this.state.showCat;
+        if (nameOld === name) {
+            this.setState({
+                showCat: ""
             })
+        } else {
+            this.setState({
+                showCat: name
+            }, () => {console.log(this.state.showCat)})
         }
     }
 
     getProducts(store, category) {
         let products = [];
+        let pots = [];
         this.props.storeProduct.map((val) => {
             if (val.store === store && val.category === category) {
-                if (!products.some((el)=> el === val.product)) {
-                    products.push(val.product)
+                products.push(val);
+                if (val.days !== null) {
+                    let daysLeft = moment.duration(moment(val.date_expired).diff(moment())).days();
+                    if (daysLeft > 5) {
+                        return pots.push(Color.excellent);
+                    } else {
+                        if (daysLeft > 0) {
+                            return pots.push(Color.good);
+                        } else return pots.push(Color.bad);
+                    }
+                }
+                else {
+                    return pots.push(Color.excellent);
                 }
             }
         })
         return (
-            (products.length > 0) ?
-                products.map((val,i) => {
-                        return (
-                            <li key={i}>
-                                {val}
-                            </li>
-                        )
-                    }
-                )
-                : <li>Место хранения пустое</li>
+                    products.map((val, i) => {
+                            return (
+                                <li key={i} style={{background: `linear-gradient(to right, ${pots[i]} 40%, #fff)`}}>
+                                    {val.product}
+                                </li>
+                            )
+                        }
+                    )
         )
     }
 
@@ -73,17 +99,22 @@ export default class Catalog extends React.Component {
             }
         })
         return (
-            (categories.length > 0) ?
-                        categories.map((val,i) => {
-                                return (
-                                <li key={i}>
+                (categories.length > 0) ?
+                    categories.map((val, i) => {
+                        return (
+                            <>
+                                <li key={i} onClick={() => {
+                                    this.toggleShowCat(val)
+                                }}>
                                     {val}
-                                    {this.getProducts(store, val)}
                                 </li>
-                                )
-                            }
-                            )
-             : <li>Место хранения пустое</li>
+                                {this.state.showCat === val &&
+                                this.getProducts(store, val)
+                                }
+                            </>
+                        )
+                    })
+                    : <li>Место хранения пустое</li>
         )
     }
 
@@ -128,7 +159,7 @@ export default class Catalog extends React.Component {
                     const pots = this.getPots(val.name);
                     return (
                         <>
-                        <li key={i} style={{backgroundColor: val.color, position: "relative"}} onClick={() => {this.toggleShow(val.name)}}>
+                        <li key={i} style={{background: `linear-gradient(to right, ${val.color} 60%, #b4b1b1)`, position: "relative"}} onClick={() => {this.toggleShow(val.name)}}>
                             {val.name}
                             <div className="Pots">
                                 {pots[0] > 0 &&

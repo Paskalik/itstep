@@ -48,7 +48,7 @@ export default class BottomButtons extends React.Component {
                 >
                     Add
                 </Button>
-                <AddEditProduct open={this.state.open} close={this.close} updateSave={this.props.updateSave} categories = {this.props.categories} storages = {this.props.storages}/>
+                <AddEditProduct open={this.state.open} close={this.close} updateSave={this.props.updateSave} categories = {this.props.categories} storages = {this.props.storages} new={true}/>
                 <Button
                     variant="outlined"
                     color="primary"
