@@ -8,22 +8,16 @@ export default class Catalog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            search: false,
             show: "",
             showCat: ""
         };
 
-        this.handleSearch = this.handleSearch.bind(this);
         this.handleSave = this.handleSave.bind(this);
         this.getPots = this.getPots.bind(this);
         this.toggleShow = this.toggleShow.bind(this);
         this.toggleShowCat = this.toggleShowCat.bind(this);
         this.getCategories = this.getCategories.bind(this);
         this.getProducts = this.getProducts.bind(this);
-    }
-
-    handleSearch() {
-        this.setState({search: true})
     }
 
     handleSave() {
@@ -149,10 +143,6 @@ export default class Catalog extends React.Component {
     render() {
         return (
             <div>
-                <div className="search">
-                    {this.state.search &&
-                    <input type="search" placeholder="Введите текст для поиска"/>}
-                </div>
             {(this.props.storages.length > 0) ? (
             <ul className="listStore" >
                 {this.props.storages.map((val,i) => {
