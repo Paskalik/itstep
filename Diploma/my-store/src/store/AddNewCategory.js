@@ -56,7 +56,6 @@ export default class AddNewCategory extends React.Component {
                             <button className="button" onClick={(event) => {this.handleSubmitCategory(event); this.props.toggle()}}>Сохранить</button>
                         </div>
                     </div>
-                )}
             </Popup>
         )
     }
