@@ -8,12 +8,15 @@ export default class Catalog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            search: false
+            search: false,
+            show: ""
         };
 
         this.handleSearch = this.handleSearch.bind(this);
         this.handleSave = this.handleSave.bind(this);
         this.getPots = this.getPots.bind(this);
+        this.toggleShow = this.toggleShow.bind(this);
+        this.getCategories = this.getCategories.bind(this);
     }
 
     handleSearch() {
@@ -22,6 +25,66 @@ export default class Catalog extends React.Component {
 
     handleSave() {
         this.props.update()
+    }
+
+    toggleShow(name) {
+        let nameOld = this.state.show;
+        if (nameOld === name) {
+            this.setState({
+                show: ""
+            })
+        } else {
+            this.setState({
+                show: name
+            })
+        }
+    }
+
+    getProducts(store, category) {
+        let products = [];
+        this.props.storeProduct.map((val) => {
+            if (val.store === store && val.category === category) {
+                if (!products.some((el)=> el === val.product)) {
+                    products.push(val.product)
+                }
+            }
+        })
+        return (
+            (products.length > 0) ?
+                products.map((val,i) => {
+                        return (
+                            <li key={i}>
+                                {val}
+                            </li>
+                        )
+                    }
+                )
+                : <li>Место хранения пустое</li>
+        )
+    }
+
+    getCategories(store) {
+        let categories = [];
+        this.props.storeProduct.map((val) => {
+            if (val.store === store) {
+                if (!categories.some((el)=> el === val.category)) {
+                    categories.push(val.category)
+                }
+            }
+        })
+        return (
+            (categories.length > 0) ?
+                        categories.map((val,i) => {
+                                return (
+                                <li key={i}>
+                                    {val}
+                                    {this.getProducts(store, val)}
+                                </li>
+                                )
+                            }
+                            )
+             : <li>Место хранения пустое</li>
+        )
     }
 
     getPots(name) {
@@ -64,7 +127,8 @@ export default class Catalog extends React.Component {
                 {this.props.storages.map((val,i) => {
                     const pots = this.getPots(val.name);
                     return (
-                        <li key={i} style={{backgroundColor: val.color, position: "relative"}}>
+                        <>
+                        <li key={i} style={{backgroundColor: val.color, position: "relative"}} onClick={() => {this.toggleShow(val.name)}}>
                             {val.name}
                             <div className="Pots">
                                 {pots[0] > 0 &&
@@ -75,6 +139,10 @@ export default class Catalog extends React.Component {
                                 <div style={{borderColor: Color.bad, backgroundColor: Color.bad}}>{pots[2]}</div>}
                             </div>
                         </li>
+                            {this.state.show === val.name &&
+                                this.getCategories(val.name)
+                            }
+                        </>
                     )
                 })}
             </ul>) :

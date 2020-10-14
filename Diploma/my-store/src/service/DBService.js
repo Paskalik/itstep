@@ -1,10 +1,12 @@
+import { ColorDefault } from '../data/Data';
+
 const db_name = 'store';
 const db_version = 1;
 let db;
 
 const storage = {
     name: "Без места",
-    color: "red"
+    color: ColorDefault
 };
 const category = {
     name: "Без категории"

@@ -73,7 +73,7 @@ export default class Main extends React.Component {
             return (
                 <MainContent
                     storages={this.state.storages}
-                    categories = {this.state.categories}
+                    categories={this.state.categories}
                     storeProduct = {this.state.storeProduct}
                     update={this.handleSave}
                 />

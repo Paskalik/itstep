@@ -4,13 +4,14 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Picker from './Picker';
 import {Service} from '../service/DBService';
+import {ColorDefault} from '../data/Data';
 
 export default class AddNewStore extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            color: "red",
+            color: ColorDefault,
             name: ""
         }
 

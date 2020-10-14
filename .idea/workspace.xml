@@ -19,7 +19,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="" />
+    <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/AddEditProduct.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/data/Data.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/data/Data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/menu/MainContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/menu/MainContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/service/DBService.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/service/DBService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/store/AddNewStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/AddNewStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/store/BottomButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/BottomButtons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/store/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/Main.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -182,7 +191,7 @@
       <workItem from="1602349370789" duration="7844000" />
       <workItem from="1602420513557" duration="537000" />
       <workItem from="1602425654330" duration="13402000" />
-      <workItem from="1602589272243" duration="20186000" />
+      <workItem from="1602589272243" duration="28783000" />
     </task>
     <servers />
   </component>
@@ -251,10 +260,11 @@
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="221" y="73" key="SettingsEditor/0.23.1440.823@0.23.1440.823" timestamp="1602096564236" />
-    <state x="397" y="172" width="670" height="674" key="search.everywhere.popup" timestamp="1602310470999">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state x="397" y="172" width="670" height="676" key="search.everywhere.popup" timestamp="1602709952555">
+      <screen x="0" y="23" width="1440" height="825" />
     </state>
     <state x="397" y="172" width="670" height="674" key="search.everywhere.popup/0.23.1440.823@0.23.1440.823" timestamp="1602310470999" />
+    <state x="397" y="172" width="670" height="676" key="search.everywhere.popup/0.23.1440.825@0.23.1440.825" timestamp="1602709952555" />
     <state x="397" y="173" width="670" height="676" key="search.everywhere.popup/0.23.1440.826@0.23.1440.826" timestamp="1597163436443" />
   </component>
 </project>
