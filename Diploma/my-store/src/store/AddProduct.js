@@ -23,7 +23,7 @@ export default class AddProduct extends React.Component {
             checked: false
         };
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
         this.handleName = this.handleName.bind(this);
         this.handleStorage = this.handleStorage.bind(this);
@@ -32,10 +32,25 @@ export default class AddProduct extends React.Component {
         this.handleFrom = this.handleFrom.bind(this);
         this.handleDays = this.handleDays.bind(this);
         this.handleTo = this.handleTo.bind(this);
+        this.toggleState = this.toggleState.bind(this);
 
     }
 
-    handleSubmit(event) {
+    toggleState() {
+        this.setState({
+            name: "",
+            place: "",
+            color: "",
+            category: "",
+            dateFrom: moment().format(),
+            dateTo: moment().format(),
+            days: "0",
+            count: "1",
+            checked: false
+        })
+    }
+
+    handleAdd(event) {
         event.preventDefault();
             let newProduct = {
                 name: this.state.name
@@ -51,7 +66,9 @@ export default class AddProduct extends React.Component {
             };
             Service.add('product', newProduct);
             Service.add('store_product', newStoreProduct);
-        this.props.updateSave()
+        this.props.updateSave();
+        this.toggleState();
+
     }
 
     handleCheckboxChange(event) {
@@ -96,6 +113,7 @@ export default class AddProduct extends React.Component {
     render() {
         return (
             <Popup open={this.props.open} modal nested>
+                <form onSubmit={(event) => {this.handleAdd(event); this.props.close()}}>
                 <div className="modal">
                     <button className="close" onClick={() => {this.props.updateSave(); this.props.close()}}>
                         &times;
@@ -165,9 +183,10 @@ export default class AddProduct extends React.Component {
                         >
                             Отмена
                         </button>
-                        <button className="button" type="submit" onClick={(event) => {this.handleSubmit(event); this.props.close()}}>Сохранить</button>
+                        <button className="button" type="submit">Сохранить</button>
                     </div>
                 </div>
+            </form>
             </Popup>
         )
     }

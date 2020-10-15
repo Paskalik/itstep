@@ -45,6 +45,7 @@ export default class AddNewStore extends React.Component {
     render() {
         return (
             <Popup open={this.props.open} modal nested>
+                <form onSubmit={(event) => {this.handleSubmitStore(event); this.props.toggle()}}>
                         <div className="modal">
                             <button className="close" onClick={this.props.toggle}>
                                 &times;
@@ -65,9 +66,10 @@ export default class AddNewStore extends React.Component {
                                 >
                                     Отмена
                                 </button>
-                                <button className="button" onClick={(event) => {this.handleSubmitStore(event); this.props.toggle()}}>Сохранить</button>
+                                <button className="button" type="submit">Сохранить</button>
                             </div>
                         </div>
+                </form>
             </Popup>
         )
     }

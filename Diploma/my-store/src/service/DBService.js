@@ -66,18 +66,43 @@ class DBService {
                 let trans = db.transaction(tablespace, 'readonly');
                 let store = trans.objectStore(tablespace);
                 let indexReq;
-                switch (variant) {
-                    case 'product':
-                        indexReq = store.index('storeProductPr_idx');
-                        break;
-                    case 'category':
-                        indexReq = store.index('storeProductCat_idx');
-                        break;
-                    case 'storage':
-                        indexReq = store.index('storeProductSt_idx');
-                        break;
-                    default:
-                        break;
+                if (variant === 'product') {
+                    indexReq = store.index('storeProductPr_idx');
+                    indexReq.openCursor().onsuccess = (event) => {
+                        let cursor = event.target.result;
+                        console.log(cursor)
+                        if (cursor) {
+                            if (cursor.value.product === name) {
+                                list.push(cursor.value);
+                            }
+                            cursor.continue();
+                        } else resolve(list);
+                    }
+                } else if (variant === 'category') {
+                    indexReq = store.index('storeProductCat_idx');
+                    indexReq.openCursor().onsuccess = (event) => {
+                        let cursor = event.target.result;
+                        console.log(cursor)
+                        if (cursor) {
+                            if (cursor.value.category === name) {
+                                list.push(cursor.value);
+                            }
+                            cursor.continue();
+                        } else resolve(list);
+                    }
+                } else if (variant === 'storage') {
+                    indexReq = store.index('storeProductSt_idx');
+                    indexReq.openCursor().onsuccess = (event) => {
+                        let cursor = event.target.result;
+                        console.log(cursor)
+                        if (cursor) {
+                            if (cursor.value.store === name) {
+                                list.push(cursor.value);
+                            }
+                            cursor.continue();
+                        } else resolve(list);
+                    }
+                } else {
                 }
                 indexReq.openCursor().onsuccess = (event) => {
                     let cursor = event.target.result;
@@ -143,6 +168,27 @@ class DBService {
                 let trans = db.transaction(tablespace, 'readwrite');
                 let store = trans.objectStore(tablespace);
                 let request = store.delete(key);
+                request.onsuccess = () => {
+                    resolve(request.result)
+                }
+                request.onerror = () => {
+                    reject(request.error)
+                }
+            }
+            openRequest.onerror = () => {
+                alert('error opening database ' + openRequest.errorCode);
+            }
+        })
+    }
+
+    clear(tablespace) {
+        return new Promise((resolve,reject) => {
+            let openRequest = indexedDB.open(db_name);
+            openRequest.onsuccess = () => {
+                db = openRequest.result;
+                let trans = db.transaction(tablespace, 'readwrite');
+                let store = trans.objectStore(tablespace);
+                let request = store.clear();
                 request.onsuccess = () => {
                     resolve(request.result)
                 }

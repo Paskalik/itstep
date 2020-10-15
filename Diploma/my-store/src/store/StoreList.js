@@ -71,7 +71,6 @@ export default class StoreList extends React.Component {
     }
 
     render() {
-        console.log(this.props.place)
         return (
             <Popup trigger={
                 <Button variant="outlined" style={{backgroundColor: this.state.color}}>
