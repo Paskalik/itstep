@@ -16,28 +16,22 @@ export default class CustomMenu extends React.Component {
 
     showMenu(event) {
         event.preventDefault();
-
         this.setState({ showMenu: true }, () => {
             document.addEventListener('click', this.closeMenu);
         });
     }
 
     closeMenu(event) {
-
         if (!this.dropdownMenu.contains(event.target)) {
-
             this.setState({ showMenu: false }, () => {
                 document.removeEventListener('click', this.closeMenu);
             });
-
         } else {
             this.props.update(event.target.id);
             this.setState({ showMenu: false }, () => {
                 document.removeEventListener('click', this.closeMenu);
             });
         }
-
-
     }
 
     render() {
@@ -50,27 +44,22 @@ export default class CustomMenu extends React.Component {
                         color="primary">
                     &#9776;
                 </Button>
-
-                {
-                    this.state.showMenu
-                        ? (
-                            <div
-                                className="MenuItems"
-                                ref={(element) => {
-                                    this.dropdownMenu = element;
-                                }}
-                            >
-                                <button id = 'MainContent'> Главная </button>
-                                <button id = 'Catalog'> Каталог </button>
-                                <button id = 'Category'> Категории </button>
-                                <button id = 'Store'> Места хранения </button>
-                            </div>
-                        )
-                        : null
-                }
+                {this.state.showMenu ? (
+                        <div
+                            className="MenuItems"
+                            ref={(element) => {
+                                this.dropdownMenu = element;
+                            }}
+                        >
+                            <button id = 'MainContent'> Главная </button>
+                            <button id = 'Catalog'> Каталог </button>
+                            <button id = 'Category'> Категории </button>
+                            <button id = 'Store'> Места хранения </button>
+                        </div>
+                ) : null}
                 <span>Мои продукты</span>
             </div>
-        );
+        )
     }
 }
 

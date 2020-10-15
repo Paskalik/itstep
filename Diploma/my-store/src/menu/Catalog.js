@@ -53,13 +53,12 @@ export default class Catalog extends React.Component {
             name: name
         };
         Service.getByIndex('store_product', 'product', this.state.nameOld).then(
-                list => {
-                    list.map((val) => {
+            list => {
+                list.map((val) => {
                     val.product = this.state.nameNew;
                     Service.put('store_product', val);
                 })
-                }
-            )
+            })
         Service.put('product', updatedProduct);
         this.props.update();
     }
@@ -89,42 +88,62 @@ export default class Catalog extends React.Component {
         return (
             <div>
                 {(this.props.products.length > 0) ? (
-            <ul className="listStore">
-                {this.props.products.map((val,i) => {
-                    return (
-                        <li key={i} style={{cursor: "default"}}>
-                            {val.name}
-                            <DeleteForeverOutlinedIcon className="right" onClick={() => {this.handleDelete(val.id, val.name)}}/>
-                            <EditIcon className="right" onClick={() => {this.handleValues(val.id, val.name)}}/>
-                            <Popup open={this.state.open} modal nested>
-                                    <div className="modal">
-                                        <button className="close" onClick={this.toggleValues}>
-                                            &times;
-                                        </button>
-                                        <div className="header">
-                                            Продукт
-                                        </div>
-                                        <div className="content">
-                                            <input defaultValue={this.state.nameOld} required="required" onChange={this.handleName}/>
-                                        </div>
-                                        <div className="actions">
-                                            <button
-                                                className="button"
-                                                onClick={() => {
-                                                    this.toggleValues();
-                                                }}
-                                            >
-                                                Отмена
-                                            </button>
-                                            <button className="button" onClick={() => {this.handleEdit(); this.toggleValues()}}>Сохранить</button>
-                                        </div>
-                                    </div>
-                            </Popup>
-                        </li>
-                    )
-                })}
-            </ul>) :
-                    (<p>Отсутствуют продукты</p>)}
+                    <ul className="listStore">
+                        {
+                            this.props.products.map((val,i) => {
+                                return (
+                                    <li key={i} style={{cursor: "default"}}>
+                                        {val.name}
+                                        <DeleteForeverOutlinedIcon
+                                            className="right"
+                                            onClick={() => {this.handleDelete(val.id, val.name)}}
+                                        />
+                                        <EditIcon
+                                            className="right"
+                                            onClick={() => {this.handleValues(val.id, val.name)}}
+                                        />
+                                        <Popup open={this.state.open} modal nested>
+                                                <div className="modal">
+                                                    <button
+                                                        className="close"
+                                                        onClick={this.toggleValues}
+                                                    >
+                                                        &times;
+                                                    </button>
+                                                    <div className="header">
+                                                        Продукт
+                                                    </div>
+                                                    <div className="content">
+                                                        <input
+                                                            defaultValue={this.state.nameOld}
+                                                            required="required"
+                                                            onChange={this.handleName}
+                                                        />
+                                                    </div>
+                                                    <div className="actions">
+                                                        <button
+                                                            className="button"
+                                                            onClick={() => {
+                                                                this.toggleValues();
+                                                            }}
+                                                        >
+                                                            Отмена
+                                                        </button>
+                                                        <button
+                                                            className="button"
+                                                            onClick={() => {this.handleEdit(); this.toggleValues()}}
+                                                        >
+                                                            Сохранить
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                        </Popup>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>) : (<p>Отсутствуют продукты</p>)
+                }
             </div>
         )
     }

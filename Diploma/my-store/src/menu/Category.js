@@ -92,7 +92,7 @@ export default class Category extends React.Component {
                     this.props.update();
                 }
             }
-        );
+        )
     }
 
     toggleAddCategory() {
@@ -114,53 +114,71 @@ export default class Category extends React.Component {
                     >
                         Add
                     </Button>
-                    <AddNewCategory open={this.state.addCategory} toggle={this.toggleAddCategory} update={(name) => {this.handleAdd(name)}}/>
+                    <AddNewCategory
+                        open={this.state.addCategory}
+                        toggle={this.toggleAddCategory}
+                        update={(name) => {this.handleAdd(name)}}
+                    />
                 </div>
-            <div>
-                {(this.props.categories.length > 0) ? (
-            <ul className="listStore">
-                {this.props.categories.map((val,i) => {
-                    return (
-                        <li key={i}  style={{cursor: "default"}}>
-                            {val.name}
-                            {val.id > 1 &&
-                            <DeleteForeverOutlinedIcon className="right" onClick={() => {
-                                this.handleDelete(val.id, val.name)
-                            }}/>
-                            }
-                            {val.id > 1 &&
-                            <EditIcon className="right" id={val.id} onClick={() => {this.handleValues(val.id, val.name)}}/>}
-                                <Popup open={this.state.open} modal nested>
-                                    <div className="modal">
-                                        <button className="close" onClick={this.toggleValues}>
-                                            &times;
-                                        </button>
-                                        <div className="header">
-                                            Категория
-                                        </div>
-                                        <div className="content">
-                                            <input defaultValue={val.name} required="required" onChange={this.handleName}/>
-                                        </div>
-                                        <div className="actions">
-                                            <button
-                                                className="button"
-                                                onClick={() => {
-                                                    this.toggleValues();
-                                                }}
-                                            >
-                                                Отмена
-                                            </button>
-                                            <button className="button" onClick={() => {this.handleEdit(); this.toggleValues()}}>Сохранить</button>
-                                        </div>
-                                    </div>
-                            </Popup>
-                        </li>
-                    )
-                })}
-            </ul>):
-                    (<p>Отсутствуют категории</p>)}
-            </div>
-                </>
+                <div>
+                    {(this.props.categories.length > 0) ? (
+                        <ul className="listStore">
+                            {this.props.categories.map((val,i) => {
+                                return (
+                                    <li key={i}  style={{cursor: "default"}}>
+                                        {val.name}
+                                        {val.id > 1 &&
+                                        <DeleteForeverOutlinedIcon
+                                            className="right"
+                                            onClick={() => {this.handleDelete(val.id, val.name)}}
+                                        />}
+                                        {val.id > 1 &&
+                                        <EditIcon
+                                            className="right"
+                                            id={val.id}
+                                            onClick={() => {this.handleValues(val.id, val.name)}}
+                                        />}
+                                        <Popup open={this.state.open} modal nested>
+                                            <div className="modal">
+                                                <button
+                                                    className="close"
+                                                    onClick={this.toggleValues}
+                                                >
+                                                    &times;
+                                                </button>
+                                                <div className="header">
+                                                    Категория
+                                                </div>
+                                                <div className="content">
+                                                    <input
+                                                        defaultValue={val.name}
+                                                        required="required"
+                                                        onChange={this.handleName}
+                                                    />
+                                                </div>
+                                                <div className="actions">
+                                                    <button
+                                                        className="button"
+                                                        onClick={() => {this.toggleValues();}}
+                                                    >
+                                                        Отмена
+                                                    </button>
+                                                    <button
+                                                        className="button"
+                                                        onClick={() => {this.handleEdit(); this.toggleValues()}}
+                                                    >
+                                                        Сохранить
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </Popup>
+                                    </li>
+                                )
+                            })}
+                        </ul>): (<p>Отсутствуют категории</p>
+                    )}
+                </div>
+            </>
         )
     }
 }

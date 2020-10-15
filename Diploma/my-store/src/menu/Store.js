@@ -107,7 +107,7 @@ export default class Store extends React.Component {
                     this.props.update();
                 }
             }
-        );
+        )
     }
 
     toggleAddStore() {
@@ -119,64 +119,81 @@ export default class Store extends React.Component {
     render() {
         return (
             <>
-            <div className="BottomButton">
-                <Button
-                    variant="outlined"
-                    color="secondary"
-                    size="large"
-                    onClick={() => {this.toggleAddStore()}}
-                    startIcon={<AddIcon />}
-                >
-                    Add
-                </Button>
-                <AddNewStore open={this.state.addStore} toggle={this.toggleAddStore} update={(name, color) => {this.handleAdd(name, color)}}/>
-            </div>
-            <div>
-                {(this.props.storages.length > 0) ? (
+                <div className="BottomButton">
+                    <Button
+                        variant="outlined"
+                        color="secondary"
+                        size="large"
+                        onClick={() => {this.toggleAddStore()}}
+                        startIcon={<AddIcon />}
+                    >
+                        Add
+                    </Button>
+                    <AddNewStore
+                        open={this.state.addStore}
+                        toggle={this.toggleAddStore}
+                        update={(name, color) => {this.handleAdd(name, color)}}
+                    />
+                </div>
+                <div>
+                    {(this.props.storages.length > 0) ? (
                         <ul className="listStore">
                             {this.props.storages.map((val,i) => {
                                 return (
                                     <li key={i} style={{backgroundColor: val.color, cursor: "default"}}>
                                         {val.name}
                                         {val.id > 1 &&
-                                        <DeleteForeverOutlinedIcon className="right" onClick={() => {
-                                            this.handleDelete(val.id, val.name)
-                                        }}/>
-                                        }
+                                        <DeleteForeverOutlinedIcon
+                                            className="right"
+                                            onClick={() => {this.handleDelete(val.id, val.name)}}
+                                        />}
                                         {val.id > 1 &&
-                                            <EditIcon className="right" onClick={() => {this.handleValues(val.id, val.name, val.color)}}/>}
-                                            <Popup open={this.state.open} modal nested>
-                                                <div className="modal">
-                                                    <button className="close" onClick={this.toggleValues}>
-                                                        &times;
-                                                    </button>
-                                                    <div className="header">
-                                                        Место хранения
-                                                    </div>
-                                                    <div className="content">
-                                                        <input defaultValue={this.state.nameOld} required="required" onChange={this.handleName}/>
-                                                        <Picker color={this.state.colorOld} update={this.handleColor}/>
-                                                    </div>
-                                                    <div className="actions">
-                                                        <button
-                                                            className="button"
-                                                            onClick={() => {
-                                                                this.toggleValues();
-                                                            }}
-                                                        >
-                                                            Отмена
-                                                        </button>
-                                                        <button className="button" onClick={() => {this.handleEdit(); this.toggleValues()}}>Сохранить</button>
-                                                    </div>
+                                        <EditIcon
+                                            className="right"
+                                            onClick={() => {this.handleValues(val.id, val.name, val.color)}}
+                                        />}
+                                        <Popup open={this.state.open} modal nested>
+                                            <div className="modal">
+                                                <button className="close" onClick={this.toggleValues}>
+                                                    &times;
+                                                </button>
+                                                <div className="header">
+                                                    Место хранения
                                                 </div>
+                                                <div className="content">
+                                                    <input
+                                                        defaultValue={this.state.nameOld}
+                                                        required="required"
+                                                        onChange={this.handleName}
+                                                    />
+                                                    <Picker
+                                                        color={this.state.colorOld}
+                                                        update={this.handleColor}
+                                                    />
+                                                </div>
+                                                <div className="actions">
+                                                    <button
+                                                        className="button"
+                                                        onClick={() => {this.toggleValues()}}
+                                                    >
+                                                        Отмена
+                                                    </button>
+                                                    <button
+                                                        className="button"
+                                                        onClick={() => {this.handleEdit(); this.toggleValues()}}
+                                                    >
+                                                        Сохранить
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </Popup>
                                     </li>
                                 )
                             })}
-                        </ul>) :
-                    (<p>Отсутствуют места хранения</p>)}
-            </div>
-                </>
+                        </ul>
+                    ) : (<p>Отсутствуют места хранения</p>)}
+                </div>
+            </>
         )
     }
 }

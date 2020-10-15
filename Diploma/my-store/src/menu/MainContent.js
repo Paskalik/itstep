@@ -105,20 +105,31 @@ export default class Catalog extends React.Component {
             }
         })
         return (
-                    products.map((val, i) => {
-                            return (
-                                <li key={i} style={{background: `linear-gradient(to right, ${pots[i]} 40%, #fff)`}}>
-                                    {val.product}
-                                    <DeleteForeverOutlinedIcon className="right" onClick={() => {
-                                        this.handleDeleteProduct(val.id)
-                                    }}/>
-                                    <EditIcon className="right" onClick={() => this.open(val)}/>
-                                    {this.state.open &&
-                                    <EditProduct open={this.state.open} close={this.close} updateSave={this.handleSave} categories = {this.props.categories} storages = {this.props.storages} products = {this.props.products} product={this.state.product}/>}
-                                </li>
-                            )
-                        }
-                    )
+            products.map((val, i) => {
+                return (
+                    <li key={i} style={{background: `linear-gradient(to right, ${pots[i]} 40%, #fff)`}}>
+                        {val.product}
+                        <DeleteForeverOutlinedIcon
+                            className="right"
+                            onClick={() => {this.handleDeleteProduct(val.id)}}
+                        />
+                        <EditIcon
+                            className="right"
+                            onClick={() => this.open(val)}
+                        />
+                        {this.state.open &&
+                        <EditProduct
+                            open={this.state.open}
+                            close={this.close}
+                            updateSave={this.handleSave}
+                            categories = {this.props.categories}
+                            storages = {this.props.storages}
+                            products = {this.props.products}
+                            product={this.state.product}
+                        />}
+                    </li>
+                )
+            })
         )
     }
 
@@ -136,9 +147,7 @@ export default class Catalog extends React.Component {
                     categories.map((val, i) => {
                         return (
                             <>
-                                <li key={i} onClick={() => {
-                                    this.toggleShowCat(val)
-                                }}>
+                                <li key={i} onClick={() => {this.toggleShowCat(val)}}>
                                     {val}
                                 </li>
                                 {this.state.showCat === val &&
@@ -146,8 +155,7 @@ export default class Catalog extends React.Component {
                                 }
                             </>
                         )
-                    })
-                    : <li>Место хранения пустое</li>
+                    }) : <li>Место хранения пустое</li>
         )
     }
 
@@ -157,24 +165,21 @@ export default class Catalog extends React.Component {
         let good = 0;
         let bad = 0;
         this.props.storeProduct.map((val) => {
-                if (val.store === name) {
-                    if (val.days !== null) {
-                        let daysLeft = moment.duration(moment(val.date_expired).diff(moment())).days();
-                        if (daysLeft > 5) {
-                            return excellent++;
-                        } else {
-                            if (daysLeft > 0) {
-                                return good++;
-                            } else return bad++;
-                    }
-                    }
-                    else {
+            if (val.store === name) {
+                if (val.days !== null) {
+                    let daysLeft = moment.duration(moment(val.date_expired).diff(moment())).days();
+                    if (daysLeft > 5) {
                         return excellent++;
+                    } else {
+                        if (daysLeft > 0) {
+                            return good++;
+                        } else return bad++;
                     }
+                } else {
+                    return excellent++;
                 }
             }
-
-        )
+        })
         pots.push(excellent,good,bad)
         return pots;
     }
@@ -182,33 +187,38 @@ export default class Catalog extends React.Component {
     render() {
         return (
             <div>
-            {(this.props.storages.length > 0) ? (
-            <ul className="listStore" >
-                {this.props.storages.map((val,i) => {
-                    const pots = this.getPots(val.name);
-                    return (
-                        <>
-                        <li key={i} style={{background: `linear-gradient(to right, ${val.color} 60%, #b4b1b1)`, position: "relative"}} onClick={() => {this.toggleShow(val.name)}}>
-                            {val.name}
-                            <div className="Pots">
-                                {pots[0] > 0 &&
-                                <div style={{borderColor: Color.excellent, backgroundColor: Color.excellent}}>{pots[0]}</div>}
-                                {pots[1] > 0 &&
-                                <div style={{borderColor: Color.good, backgroundColor: Color.good}}>{pots[1]}</div>}
-                                {pots[2] > 0 &&
-                                <div style={{borderColor: Color.bad, backgroundColor: Color.bad}}>{pots[2]}</div>}
-                            </div>
-                        </li>
-                            {this.state.show === val.name &&
-                                this.getCategories(val.name)
-                            }
-                        </>
-                    )
-                })}
-            </ul>) :
-                (<p>Отсутствуют места хранения</p>)}
+                {(this.props.storages.length > 0) ? (
+                <ul className="listStore" >
+                    {this.props.storages.map((val,i) => {
+                        const pots = this.getPots(val.name);
+                        return (
+                            <>
+                                <li
+                                    key={i}
+                                    style={{background: `linear-gradient(to right, ${val.color} 60%, #b4b1b1)`, position: "relative"}}
+                                    onClick={() => {this.toggleShow(val.name)}}
+                                >
+                                    {val.name}
+                                        <div className="Pots">
+                                            {pots[0] > 0 &&
+                                            <div style={{borderColor: Color.excellent, backgroundColor: Color.excellent}}>{pots[0]}</div>}
+                                            {pots[1] > 0 &&
+                                            <div style={{borderColor: Color.good, backgroundColor: Color.good}}>{pots[1]}</div>}
+                                            {pots[2] > 0 &&
+                                            <div style={{borderColor: Color.bad, backgroundColor: Color.bad}}>{pots[2]}</div>}
+                                        </div>
+                                </li>
+                                {this.state.show === val.name && this.getCategories(val.name)}
+                            </>
+                        )
+                    })}
+                </ul>) : (<p>Отсутствуют места хранения</p>)}
                 {this.state.showBtn &&
-            <BottomButtons categories = {this.props.categories} storages = {this.props.storages} updateSave={this.handleSave}/>}
+                <BottomButtons
+                    categories = {this.props.categories}
+                    storages = {this.props.storages}
+                    updateSave={this.handleSave}
+                />}
             </div>
         )
     }
