@@ -14,7 +14,8 @@ export default class StoreList extends React.Component {
         this.state = {
             color: "default",
             name: "",
-            addStore: false
+            addStore: false,
+            new: true
         }
         this.handleChoosePlace = this.handleChoosePlace.bind(this);
         this.getFirstStorageName = this.getFirstStorageName.bind(this);
@@ -23,13 +24,14 @@ export default class StoreList extends React.Component {
     }
 
     getFirstStorageName() {
-        let obj = this.props.storages[0];
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key) && (key === 'name')) {
-                this.setState({name: obj[key]}, () => {
-                    this.props.update(this.state.name);
-                })
-            }}
+            let obj = this.props.storages[0];
+            for (let key in obj) {
+                if (obj.hasOwnProperty(key) && (key === 'name')) {
+                    this.setState({name: obj[key]}, () => {
+                        this.props.update(this.state.name);
+                    })
+                }
+            }
     }
 
     getFirstStorageColor() {
@@ -55,11 +57,21 @@ export default class StoreList extends React.Component {
     }
 
     componentDidMount() {
-            this.getFirstStorageColor();
-            this.getFirstStorageName();
+        this.props.storages.map((val) => {
+            if (val.name === this.props.place) {
+                this.setState({
+                    name: val.name,
+                    color: val.color
+                })
+            } else {
+                this.getFirstStorageColor();
+                this.getFirstStorageName();
+            }
+        });
     }
 
     render() {
+        console.log(this.props.place)
         return (
             <Popup trigger={
                 <Button variant="outlined" style={{backgroundColor: this.state.color}}>
@@ -67,7 +79,6 @@ export default class StoreList extends React.Component {
                 </Button>} modal nested>
                 {close => (
                         <div className="modal">
-
                             <button className="close" onClick={close}>
                                 &times;
                             </button>

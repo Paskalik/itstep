@@ -184,8 +184,8 @@ export default class EditProduct extends React.Component {
                                required="required"
                                onChange={this.handleCount}
                         />
-                        <StoreList update={this.handleStorage} storages = {this.props.storages} place={this.state.place} color={this.state.color}/>
-                        <CategoryList update={this.handleCategory} categories = {this.props.categories} category={this.state.category}/>
+                        <StoreList update={this.handleStorage} storages = {this.props.storages} place={this.props.product.store} color={this.state.color}/>
+                        <CategoryList update={this.handleCategory} categories = {this.props.categories} category={this.props.product.category}/>
                         <label>
                             <input type="checkbox" checked={this.state.checked} onChange={this.handleCheckboxChange}/>
                             Без срока годности

@@ -3,9 +3,10 @@ import "../index.css";
 import BottomButtons from "../store/BottomButtons";
 import moment from "moment";
 import { Color } from '../data/Data';
-import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import EditIcon from "@material-ui/icons/Edit";
+import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import EditProduct from "../store/EditProduct";
+import {Service} from "../service/DBService";
 
 export default class Catalog extends React.Component {
     constructor(props) {
@@ -13,11 +14,13 @@ export default class Catalog extends React.Component {
         this.state = {
             show: "",
             showCat: "",
+            showBtn: true,
             open: false,
             product: []
         };
 
         this.handleSave = this.handleSave.bind(this);
+        this.handleDeleteProduct = this.handleDeleteProduct.bind(this);
         this.getPots = this.getPots.bind(this);
         this.toggleShow = this.toggleShow.bind(this);
         this.toggleShowCat = this.toggleShowCat.bind(this);
@@ -48,13 +51,18 @@ export default class Catalog extends React.Component {
         let nameOld = this.state.show;
         if (nameOld === name) {
             this.setState({
-                show: ""
+                show: "",
+                showBtn: true
             })
         } else {
             this.setState({
-                show: name
+                show: name,
+                showBtn: false
             })
         }
+        this.setState({
+            showCat: ""
+        })
     }
 
     toggleShowCat(name) {
@@ -68,6 +76,11 @@ export default class Catalog extends React.Component {
                 showCat: name
             })
         }
+    }
+
+    handleDeleteProduct(id) {
+        Service.delete('store_product', +id);
+        this.props.update();
     }
 
     getProducts(store, category) {
@@ -96,7 +109,9 @@ export default class Catalog extends React.Component {
                             return (
                                 <li key={i} style={{background: `linear-gradient(to right, ${pots[i]} 40%, #fff)`}}>
                                     {val.product}
-                                    <DeleteForeverOutlinedIcon className="right"/>
+                                    <DeleteForeverOutlinedIcon className="right" onClick={() => {
+                                        this.handleDeleteProduct(val.id)
+                                    }}/>
                                     <EditIcon className="right" onClick={() => this.open(val)}/>
                                     {this.state.open &&
                                     <EditProduct open={this.state.open} close={this.close} updateSave={this.handleSave} categories = {this.props.categories} storages = {this.props.storages} products = {this.props.products} product={this.state.product}/>}
@@ -192,7 +207,8 @@ export default class Catalog extends React.Component {
                 })}
             </ul>) :
                 (<p>Отсутствуют места хранения</p>)}
-            <BottomButtons categories = {this.props.categories} storages = {this.props.storages} updateSave={this.handleSave}/>
+                {this.state.showBtn &&
+            <BottomButtons categories = {this.props.categories} storages = {this.props.storages} updateSave={this.handleSave}/>}
             </div>
         )
     }
