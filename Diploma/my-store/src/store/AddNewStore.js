@@ -22,6 +22,7 @@ export default class AddNewStore extends React.Component {
 
     handleSubmitStore(event) {
         event.preventDefault();
+        event.stopPropagation();
         let newStore = {
             name: this.state.name,
             color: this.state.color

@@ -18,6 +18,7 @@ export default class AddNewCategory extends React.Component {
 
     handleSubmitCategory(event) {
         event.preventDefault();
+        event.stopPropagation();
         let newCategory = {
             name: this.state.name
         }

@@ -4,6 +4,6 @@ const Color = {
     excellent: "green"
 }
 
-const ColorDefault = "red"
+const ColorDefault = "#fff"
 
 export { Color, ColorDefault }
