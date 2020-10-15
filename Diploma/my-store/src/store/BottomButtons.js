@@ -3,7 +3,7 @@ import "../index.css";
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import 'reactjs-popup/dist/index.css';
-import AddEditProduct from "./AddEditProduct";
+import AddProduct from "./AddProduct";
 
 export default class BottomButtons extends React.Component {
     constructor(props) {
@@ -43,7 +43,7 @@ export default class BottomButtons extends React.Component {
                 >
                     Add
                 </Button>
-                <AddEditProduct open={this.state.open} close={this.close} updateSave={this.props.updateSave} categories = {this.props.categories} storages = {this.props.storages} new={true}/>
+                <AddProduct open={this.state.open} close={this.close} updateSave={this.props.updateSave} categories = {this.props.categories} storages = {this.props.storages}/>
             </div>
         )
     }

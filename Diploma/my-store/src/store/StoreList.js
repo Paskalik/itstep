@@ -55,15 +55,8 @@ export default class StoreList extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.place && this.props.color) {
-            this.setState({
-                name: this.props.place,
-                color: this.props.color
-            })
-        } else {
             this.getFirstStorageColor();
             this.getFirstStorageName();
-        }
     }
 
     render() {

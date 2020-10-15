@@ -3,13 +3,18 @@ import "../index.css";
 import BottomButtons from "../store/BottomButtons";
 import moment from "moment";
 import { Color } from '../data/Data';
+import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
+import EditIcon from "@material-ui/icons/Edit";
+import EditProduct from "../store/EditProduct";
 
 export default class Catalog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             show: "",
-            showCat: ""
+            showCat: "",
+            open: false,
+            product: []
         };
 
         this.handleSave = this.handleSave.bind(this);
@@ -18,6 +23,21 @@ export default class Catalog extends React.Component {
         this.toggleShowCat = this.toggleShowCat.bind(this);
         this.getCategories = this.getCategories.bind(this);
         this.getProducts = this.getProducts.bind(this);
+        this.open = this.open.bind(this);
+        this.close = this.close.bind(this);
+    }
+
+    open(val) {
+        this.setState({
+            open: true,
+            product: val
+        })
+    }
+
+    close() {
+        this.setState({
+            open: false
+        });
     }
 
     handleSave() {
@@ -33,7 +53,7 @@ export default class Catalog extends React.Component {
         } else {
             this.setState({
                 show: name
-            }, () => {console.log(this.state.show)})
+            })
         }
     }
 
@@ -46,7 +66,7 @@ export default class Catalog extends React.Component {
         } else {
             this.setState({
                 showCat: name
-            }, () => {console.log(this.state.showCat)})
+            })
         }
     }
 
@@ -76,6 +96,10 @@ export default class Catalog extends React.Component {
                             return (
                                 <li key={i} style={{background: `linear-gradient(to right, ${pots[i]} 40%, #fff)`}}>
                                     {val.product}
+                                    <DeleteForeverOutlinedIcon className="right"/>
+                                    <EditIcon className="right" onClick={() => this.open(val)}/>
+                                    {this.state.open &&
+                                    <EditProduct open={this.state.open} close={this.close} updateSave={this.handleSave} categories = {this.props.categories} storages = {this.props.storages} products = {this.props.products} product={this.state.product}/>}
                                 </li>
                             )
                         }
@@ -168,7 +192,7 @@ export default class Catalog extends React.Component {
                 })}
             </ul>) :
                 (<p>Отсутствуют места хранения</p>)}
-            <BottomButtons categories = {this.props.categories} storages = {this.props.storages} updateSave={this.handleSave} updateSearch={this.handleSearch} />
+            <BottomButtons categories = {this.props.categories} storages = {this.props.storages} updateSave={this.handleSave}/>
             </div>
         )
     }

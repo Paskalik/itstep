@@ -12,6 +12,8 @@ export default class AddEditProduct extends React.Component {
         super(props);
 
         this.state = {
+            idProduct: 0,
+            idStoreProduct: 0,
             name: "",
             place: "",
             color: "",
@@ -33,24 +35,23 @@ export default class AddEditProduct extends React.Component {
         this.handleFrom = this.handleFrom.bind(this);
         this.handleDays = this.handleDays.bind(this);
         this.handleTo = this.handleTo.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
 
     }
 
     handleData() {
         if (!this.props.new) {
             this.setState({
-                name: this.props.product.name,
-                place: this.props.product.place,
+                name: this.props.product.product,
+                place: this.props.product.store,
                 category: this.props.product.category,
-                dateFrom: this.props.product.dateFrom,
-                dateTo: this.props.product.dateTo,
-                days: this.props.product.days,
-                count: this.props.product.count,
-                checked: !this.props.days
+                dateFrom: this.props.product.date_issued ? this.props.product.date_issued : moment().format(),
+                dateTo: this.props.product.date_expired ? this.props.product.date_expired : moment().format(),
+                days: this.props.product.days ? this.props.product.days : 0,
+                count: this.props.product.quantity,
+                checked: !this.props.product.days
             })
             this.props.storages.map((val) => {
-                if (val.name === this.props.product.name) {
+                if (val.name === this.props.product.store) {
                     this.setState({
                         color: val.color
                     })
@@ -61,20 +62,49 @@ export default class AddEditProduct extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        let newProduct = {
-            name: this.state.name
-        };
-        let newStoreProduct = {
-            store: this.state.place,
-            category: this.state.category,
-            product: this.state.name,
-            quantity: this.state.count,
-            date_issued: !this.state.checked ? this.state.dateFrom : null,
-            date_expired: !this.state.checked ? this.state.dateTo : null,
-            days: !this.state.checked ? this.state.days : null
-        };
-        Service.add('product',newProduct);
-        Service.add('store_product',newStoreProduct);
+        if (this.props.new) {
+            let newProduct = {
+                name: this.state.name
+            };
+            let newStoreProduct = {
+                store: this.state.place,
+                category: this.state.category,
+                product: this.state.name,
+                quantity: this.state.count,
+                date_issued: !this.state.checked ? this.state.dateFrom : null,
+                date_expired: !this.state.checked ? this.state.dateTo : null,
+                days: !this.state.checked ? this.state.days : null
+            };
+            Service.add('product', newProduct);
+            Service.add('store_product', newStoreProduct);
+        } else {
+            Service.getAll("product").then(products =>
+            {products.map((val) => {
+                if (val.name === this.state.name) {
+                    this.setState({
+                        idProduct: val.id,
+                        idStoreProduct: this.props.product.id
+                    }, () => {
+                            let newProduct = {
+                                id: this.state.idProduct,
+                                name: this.state.name
+                            };
+                            let newStoreProduct = {
+                                id: this.state.idStoreProduct,
+                                store: this.state.place,
+                                category: this.state.category,
+                                product: this.state.name,
+                                quantity: this.state.count,
+                                date_issued: !this.state.checked ? this.state.dateFrom : null,
+                                date_expired: !this.state.checked ? this.state.dateTo : null,
+                                days: !this.state.checked ? this.state.days : null
+                            };
+                            Service.put('product', newProduct);
+                            Service.put('store_product', newStoreProduct);
+                        })
+                }
+            })
+        })}
         this.props.updateSave()
     }
 
@@ -117,10 +147,6 @@ export default class AddEditProduct extends React.Component {
         this.setState({category: name})
     }
 
-    handleSearch() {
-        this.props.updateSearch();
-    }
-
     componentDidMount() {
         this.handleData();
     }
@@ -128,7 +154,6 @@ export default class AddEditProduct extends React.Component {
     render() {
         return (
                 <Popup open={this.props.open} modal nested>
-                    <form onSubmit={(event) => {this.handleSubmit(event); this.props.close()}}>
                         <div className="modal">
                             <button className="close" onClick={() => {this.props.updateSave(); this.props.close()}}>
                                 &times;
@@ -139,6 +164,7 @@ export default class AddEditProduct extends React.Component {
                                     placeholder="Наименование продукта"
                                     required="required"
                                     onChange={this.handleName}
+                                    defaultValue={this.state.name}
                                 />
                                 <ul className={this.state.checked ? "afterCheck" : "beforeCheck"}>
                                     <li>
@@ -197,11 +223,9 @@ export default class AddEditProduct extends React.Component {
                                 >
                                     Отмена
                                 </button>
-                                <button className="button" type="submit">Сохранить</button>
+                                <button className="button" type="submit" onClick={(event) => {this.handleSubmit(event); this.props.close()}}>Сохранить</button>
                             </div>
-
                         </div>
-                    </form>
                 </Popup>
         )
     }

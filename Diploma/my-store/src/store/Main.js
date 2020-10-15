@@ -75,6 +75,7 @@ export default class Main extends React.Component {
                     storages={this.state.storages}
                     categories={this.state.categories}
                     storeProduct = {this.state.storeProduct}
+                    products = {this.state.products}
                     update={this.handleSave}
                 />
             )
