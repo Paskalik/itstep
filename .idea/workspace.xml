@@ -21,11 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="25372d59-2990-47f3-a59b-2157f73a790b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/menu/Catalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/menu/Catalog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/menu/Category.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/menu/Category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/menu/MainContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/menu/MainContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/menu/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/menu/Menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/menu/Store.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/menu/Store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Diploma/my-store/src/store/Picker.js" beforeDir="false" afterPath="$PROJECT_DIR$/Diploma/my-store/src/store/Picker.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +185,8 @@
       <workItem from="1602349370789" duration="7844000" />
       <workItem from="1602420513557" duration="537000" />
       <workItem from="1602425654330" duration="13402000" />
-      <workItem from="1602589272243" duration="59852000" />
+      <workItem from="1602589272243" duration="60861000" />
+      <workItem from="1603327441311" duration="3083000" />
     </task>
     <servers />
   </component>
@@ -258,6 +255,10 @@
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="221" y="73" key="SettingsEditor/0.23.1440.823@0.23.1440.823" timestamp="1602096564236" />
+    <state x="352" y="221" width="700" height="530" key="recent.locations.popup" timestamp="1603348947879">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state x="352" y="221" width="700" height="530" key="recent.locations.popup/0.23.1440.825@0.23.1440.825" timestamp="1603348947879" />
     <state x="397" y="172" width="670" height="676" key="search.everywhere.popup" timestamp="1602709952555">
       <screen x="0" y="23" width="1440" height="825" />
     </state>

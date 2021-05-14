@@ -3,26 +3,20 @@ import "../index.css";
 import { CirclePicker } from 'react-color';
 import Button from "@material-ui/core/Button";
 import Popup from "reactjs-popup";
-
 export default class Picker extends React.Component {
-
     constructor(props) {
         super(props);
-
         this.state = {
             backgroundColor: this.props.color
         }
-
         this.handlePickColor = this.handlePickColor.bind(this);
     }
-
     handlePickColor(color) {
         this.setState({
             backgroundColor: color.hex
         })
         this.props.update(color.hex)
     }
-
     render() {
         return (
             <Popup trigger={
